@@ -1,4 +1,4 @@
-## Wahrscheinlichkeitstheorie und frequentistische Inferenz · Wintersemester 2026/27
+## Wahrscheinlichkeitstheorie und frequentistische Inferenz ·  WiSe 2026/27
 
 Vorlesungsmaterialien von **Prof. Dr. Dirk Ostwald**, Institut für Psychologie,
 Otto-von-Guericke-Universität Magdeburg. Die Veranstaltung B1 Statistik I
