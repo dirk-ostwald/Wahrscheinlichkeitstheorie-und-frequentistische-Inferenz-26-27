@@ -1,0 +1,60 @@
+#-----------------------------------------------------------------------------#
+# Vorlesungsskript "Wahrscheinlichkeitstheorie und frequentistische Inferenz"
+#
+# Die Inhalte dieses Buchprojekts werden NICHT dupliziert. Einzige Quelle ist
+# das Buchprojekt
+#
+#   C:\Home\Home\pdwp-online\dirk-ostwald.github.io
+#
+# das über die Windows-Verzeichnis-Junction _src in dieses Projektverzeichnis
+# eingeblendet wird (vgl. README.md und Setup.cmd). Dadurch bleiben alle
+# relativen Pfade der Kapiteldateien (./_figures/..., Referenzen.bib,
+# _texheader.tex) unverändert gültig.
+#-----------------------------------------------------------------------------#
+
+project:
+  type: book
+  output-dir: _book
+
+csl: https://www.zotero.org/styles/apa
+pdf-engine: xelatex
+filters:
+  - _verweise.lua
+  - quarto
+bibliography: _src/Referenzen.bib
+
+book:
+  title: "Wahrscheinlichkeitstheorie und frequentistische Inferenz"
+  subtitle: "Vorlesungsskript"
+  author:
+    - name: Dirk Ostwald
+      affiliation: Otto-von-Guericke-Universität Magdeburg
+  date: today
+  output-file: Skript-Wahrscheinlichkeitstheorie-und-Frequentistische-Inferenz
+  chapters:
+    - index.qmd
+    - _src/_part_3/300-Wahrscheinlichkeitstheorie.qmd
+    - _src/_part_3/301-Wahrscheinlichkeitsräume.qmd
+    - _src/_part_3/302-Elementare-Wahrscheinlichkeiten.qmd
+    - _src/_part_3/303-Zufallsvariablen.qmd
+    - _src/_part_3/304-Zufallsvektoren.qmd
+    - _src/_part_3/305-Erwartungswerte.qmd
+    - _src/_part_3/306-Varianzen.qmd
+    - _src/_part_3/307-Kovarianzen.qmd
+    - _src/_part_3/308-Ungleichungen.qmd
+    - _src/_part_3/309-Grenzwerte.qmd
+    - _src/_part_3/310-Transformationen.qmd
+    - _src/_part_3/311-Normalverteilungen.qmd
+    - _src/Referenzen.qmd
+
+format:
+  pdf:
+    lang: de
+    documentclass: scrreprt
+    toc-depth: 2
+    keep-tex: false
+    code-line-numbers: false
+    latex-tinytex: false
+    include-in-header:
+      - _src/_texheader.tex
+      - _titelseite.tex

@@ -1,0 +1,5 @@
+Tool: image_gen.imagegen
+Source: wtfi-0-ki-variante-2-feed.png
+Output: wtfi-0-ki-variante-2-feed-entsaettigt.png
+
+Edit this exact existing collage. Reduce its overall color saturation modestly, about 20–25 percent, so the illustration feels slightly calmer and more sophisticated on an academic presentation slide. Most noticeably soften the vivid blue, orange, and red accents, while keeping them visibly colorful and keeping the photographs' skin tones warm and natural. Preserve the exact composition, dimensions, crops, subjects, all UI elements, and every letter of the existing German text. Preserve the original luminance, contrast, black and white areas, texture, photographic detail, and sharpness. This is a subtle color-grading adjustment only: no new elements, no removal, no rearrangement, no new text, no borders, and no grayscale conversion. Return the same square collage.

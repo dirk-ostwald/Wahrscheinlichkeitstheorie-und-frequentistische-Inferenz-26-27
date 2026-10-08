@@ -1,0 +1,42 @@
+KI-Collagen für Folie 8
+Erzeugt am 08.10.2026 mit dem integrierten Imagegen-Tool.
+Drei alternative Entwürfe. Die bestehende QMD-Einbindung bleibt bis zur Auswahl erhalten.
+
+1 – Editorial-Collage
+Datei: wtfi-0-ki-variante-1-editorial.png
+
+Use case: stylized-concept.
+Asset type: one square high-resolution image, ideally 2048 x 2048, for an academic lecture slide in German. It will be displayed at about half the slide width; make the collage strong and readable at that scale.
+Primary request: A sophisticated contemporary editorial collage symbolizing the omnipresence of artificial intelligence in public discourse in 2026. Design direction 1: EDITORIAL COLLAGE.
+Composition: An asymmetric, tightly composed montage of 7 or 8 large photographic cutouts and bold typographic fragments, with ample small pockets of clean white space. Integrate candid human faces in public conversation, a newsroom microphone, a classroom, an office worker with a laptop, a medical scan, and an artist's digital screen. Treat these as distinct fragments of the same public conversation, thoughtfully overlapping rather than an equal-size panel grid. A large cropped 'KI' typographic element ties the montage together without taking over.
+Style: current premium European culture/science magazine art direction, crisp digital photomontage, elegant Swiss-inspired sans-serif typography, sharp cutouts, selective fine photographic grain, warm off-white field with charcoal, vermilion and vivid cobalt accents. Modern 2026 graphic design, visually intelligent, energetic but controlled. No retro newspaper scrapbook.
+Visible German words only, exactly spelled: 'KI', 'ARBEIT', 'BILDUNG', 'POLITIK', 'MEDIZIN', 'KUNST', 'WAHRHEIT?'. Use each at most once in large readable type; no article body text and no extra text. The words are conceptual labels, not real news quotations.
+Constraints: produce one finished coherent square collage, not a set of options. Flat edge-to-edge artwork, no mockup frame, no title outside the collage, no watermark. Avoid robot heads, humanoid robots, glowing digital brains, circuit boards, network node webs, holograms, blue sci-fi imagery, tiny gibberish text, stock corporate infographics, glossy 3D icons, fake publisher logos, fake real-person quotations.
+
+========================================================================
+
+2 – Endloser Feed
+Datei: wtfi-0-ki-variante-2-feed.png
+
+Use case: stylized-concept.
+Asset type: one square high-resolution image, ideally 2048 x 2048, for a German academic lecture slide. Must work at half slide width.
+Primary request: A contemporary collage visualizing how AI saturates public discourse as an endless digital media feed. Design direction 2: ENDLOSER FEED.
+Composition: 6 to 8 large overlapping, cropped fragments of believable 2026 digital media: a vertical social-video still with a person speaking into a microphone, a compact chat exchange, a news headline fragment, a video-call debate, a portrait subtly duplicated as synthetic media, and a classroom scene. Several pieces extend off the edges, creating the sense that the conversation continues everywhere beyond the frame. A clear visual hierarchy and readable space between key headlines; art-directed overload, not random clutter. Do not arrange as a tidy dashboard or bento grid.
+Style: contemporary high-end digital editorial collage. Near-black and warm-white interfaces, warm photographic skin tones, vivid orange-red and a few electric cyan accent strokes. Crisp typography, photographic detail, layered screen fragments with subtle depth. Visually fresh and human, not futuristic science-fiction. Flat artwork itself, not a photo of a phone or monitor.
+Text, exact German phrases, each on a separate prominent fragment: 'KI im Job?', 'Echt oder generiert?', 'Wer entscheidet?', 'Lernen mit KI?', plus one large 'KI' and a small repeated 'KI' only where composition benefits. No other words; any supporting UI is purely geometric with no gibberish microcopy. These are invented thematic questions, not imitations of real publications.
+Mood: collective curiosity, debate, hype and uncertainty coexist, without preaching a positive or negative verdict.
+Constraints: one square cohesive collage. No real brands or publisher identities, no recognizable public figures, no watermarks, no robot heads, no glowing brains, no circuit board imagery, no faux futuristic neon metropolis, no corporate stock-art icons.
+
+========================================================================
+
+3 – KI im Alltag
+Datei: wtfi-0-ki-variante-3-alltag.png
+
+Use case: stylized-concept.
+Asset type: one square high-resolution image, ideally 2048 x 2048, for a university lecture slide about data science. It must be visually legible when displayed at half slide width.
+Primary request: A refined photographic editorial collage conveying the omnipresence of AI in everyday society and public conversation. Design direction 3: KI IM ALLTAG.
+Subject and composition: A compelling layered photomontage of contemporary human life: a commuter looking at a phone, two people debating across a cafe table, university students discussing work, a clinician at a monitor, a creative professional at a screen, and a public policy discussion with microphones. Build a continuous visual flow across 6 large overlapping photographic fragments rather than separate framed tiles. Vary scale and crop intelligently, with larger expressive faces and hands, a few glimpses of real workplaces and city life. Subtle clean graphic speech shapes and screen fragments recur across the images, linking the conversations. The viewer should feel AI is being discussed everywhere, even though no AI entity is depicted.
+Style: sophisticated contemporary cultural magazine photographic montage, natural daylight, documentary-like photography of fictional people, warm realistic colors, strong black-white contrast with restrained coral and teal accents, clean digital masking and a few subtle translucent overlaps. Fresh, tactile and human, but absolutely not retro or vintage. The photographic content should be the dominant element.
+Text: the only visible lettering is 'KI', repeated in 4 well-placed conversation/screen fragments of varying sizes, plus one prominent 'ÜBERALL' integrated into the composition. Precise spelling, elegant modern sans-serif. No fake newspaper articles, no tiny text.
+Constraints: one finished square artwork, edge-to-edge, no external title, no watermark, no news brand logos. No robots, no glowing brains, no circuitry, no network diagrams, no central sci-fi AI sphere, no cybersecurity stock imagery. Human-centered, neither utopian nor dystopian. Cohesive collage, not a single continuous photographed scene and not a labeled infographic.
+

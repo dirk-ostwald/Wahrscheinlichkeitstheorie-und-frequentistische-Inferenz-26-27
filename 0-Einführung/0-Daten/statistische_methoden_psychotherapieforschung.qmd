@@ -1,0 +1,340 @@
+---
+title: "Statistische Methoden in der klinischen Psychotherapieforschung"
+subtitle: "Aktueller Mainstream in RCTs, Meta-Analysen, Predictive Modelling und Bayesianischer Inferenz"
+date: "27. August 2026"
+lang: de
+format:
+  pdf:
+    documentclass: scrartcl
+    papersize: a4
+    fontsize: 10pt
+    geometry:
+      - top=20mm
+      - bottom=22mm
+      - left=20mm
+      - right=20mm
+    toc: true
+    toc-title: "Inhalt"
+    number-sections: false
+    colorlinks: true
+    linkcolor: "MidnightBlue"
+    urlcolor: "MidnightBlue"
+    citecolor: "MidnightBlue"
+    pdf-engine: lualatex
+    keep-tex: false
+header-includes:
+  - \usepackage{microtype}
+  - \usepackage{booktabs}
+  - \usepackage{longtable}
+  - \usepackage{array}
+  - \setlength{\emergencystretch}{3em}
+references:
+  - id: baldwin2021
+    type: chapter
+    title: "Methodological foundations and innovations in quantitative psychotherapy research"
+    author:
+      - family: Baldwin
+        given: Scott A.
+      - family: Goldberg
+        given: Simon B.
+    container-title: "Bergin and Garfield's handbook of psychotherapy and behavior change"
+    editor:
+      - family: Barkham
+        given: Michael
+      - family: Lutz
+        given: Wolfgang
+      - family: Castonguay
+        given: Louis G.
+    edition: "7"
+    publisher: Wiley
+    issued:
+      year: 2021
+    URL: "https://www.wiley-vch.de/en/areas-interest/humanities-social-sciences/bergin-and-garfield-39-s-handbook-of-psychotherapy-and-behavior-change-978-1-119-53658-1"
+  - id: qian2021
+    type: article-journal
+    title: "Comprehensive review of statistical methods for analysing patient-reported outcomes (PROs) used as primary outcomes in randomised controlled trials (RCTs) published by the UK's Health Technology Assessment (HTA) journal (1997-2020)"
+    author:
+      - family: Qian
+        given: Y.
+      - family: Walters
+        given: S. J.
+      - family: Jacques
+        given: R.
+      - family: Flight
+        given: L.
+    container-title: "BMJ Open"
+    volume: 11
+    issue: 9
+    page: e051673
+    DOI: "10.1136/bmjopen-2021-051673"
+    issued:
+      year: 2021
+  - id: tutino2024
+    type: article-journal
+    title: "A survey of statistical methods utilized for analysis of randomized controlled trials of behavioral interventions"
+    author:
+      - family: Tutino
+        given: Rebecca
+      - family: Schofield
+        given: Elizabeth
+      - family: Saracino
+        given: Rebecca M.
+      - family: Walsh
+        given: Leah
+      - family: Straus
+        given: Emma
+      - family: Nelson
+        given: Christian J.
+    container-title: "Palliative & Supportive Care"
+    volume: 22
+    issue: 2
+    page: "221-225"
+    DOI: "10.1017/S1478951523000512"
+    issued:
+      year: 2024
+  - id: juul2024
+    type: article-journal
+    title: "Missing outcome data in randomised clinical trials of psychological interventions: A review of published trial reports in major psychiatry journals"
+    author:
+      - family: Juul
+        given: Sophie
+      - family: Gluud
+        given: Christian
+      - family: Jakobsen
+        given: Janus C.
+    container-title: "BMC Psychiatry"
+    volume: 24
+    page: 798
+    DOI: "10.1186/s12888-024-06263-4"
+    issued:
+      year: 2024
+  - id: stringer2024
+    type: article-journal
+    title: "The analysis and reporting of multiple outcomes in mental health trials: A methodological systematic review"
+    author:
+      - family: Stringer
+        given: Dominic
+      - family: Payne
+        given: Mollie
+      - family: Carter
+        given: Ben
+      - family: Emsley
+        given: Richard
+    container-title: "BMC Medical Research Methodology"
+    volume: 24
+    page: 317
+    DOI: "10.1186/s12874-024-02451-8"
+    issued:
+      year: 2024
+  - id: lopeznicolas2022
+    type: article-journal
+    title: "A meta-review of transparency and reproducibility-related reporting practices in published meta-analyses on clinical psychological interventions (2000-2020)"
+    author:
+      - family: López-Nicolás
+        given: Rubén
+      - family: López-López
+        given: José Antonio
+      - family: Rubio-Aparicio
+        given: María
+      - family: Sánchez-Meca
+        given: Julio
+    container-title: "Behavior Research Methods"
+    volume: 54
+    page: "334-349"
+    DOI: "10.3758/s13428-021-01644-z"
+    issued:
+      year: 2022
+  - id: boonpattharatthiti2024
+    type: article-journal
+    title: "Exploring methodological approaches used in network meta-analysis of psychological interventions: A scoping review"
+    author:
+      - family: Boonpattharatthiti
+        given: Kansak
+      - family: Ruenin
+        given: Garin
+      - family: Kulwong
+        given: Pun
+      - family: Lueawattanasakul
+        given: Jitsupa
+      - family: Saechao
+        given: Chintra
+      - family: Pitak
+        given: Panitan
+      - family: Caldwell
+        given: Deborah M.
+      - family: Chaiyakunapruk
+        given: Nathorn
+      - family: Dhippayom
+        given: Teerapon
+    container-title: "Research Synthesis Methods"
+    volume: 15
+    issue: 6
+    page: "1161-1174"
+    DOI: "10.1002/jrsm.1764"
+    issued:
+      year: 2024
+  - id: aafjes2021
+    type: article-journal
+    title: "A scoping review of machine learning in psychotherapy research"
+    author:
+      - family: Aafjes-van Doorn
+        given: Katie
+      - family: Kamsteeg
+        given: Céline
+      - family: Bate
+        given: Jordan
+      - family: Aafjes
+        given: Marc
+    container-title: "Psychotherapy Research"
+    volume: 31
+    issue: 1
+    page: "92-116"
+    DOI: "10.1080/10503307.2020.1808729"
+    issued:
+      year: 2021
+  - id: lees2026
+    type: article-journal
+    title: "Predicting depression treatment outcomes for cognitive behavioural therapy using machine learning: A systematic review and meta-analysis"
+    author:
+      - family: Lees
+        given: Jennifer
+      - family: Delgadillo
+        given: Jaime
+    container-title: "Behaviour Research and Therapy"
+    page: 105024
+    DOI: "10.1016/j.brat.2026.105024"
+    issued:
+      year: 2026
+  - id: boeschen2023
+    type: article-journal
+    title: "Changes in methodological study characteristics in psychology between 2010-2021"
+    author:
+      - family: Böschen
+        given: Ingmar
+    container-title: "PLOS ONE"
+    volume: 18
+    issue: 5
+    page: e0283353
+    DOI: "10.1371/journal.pone.0283353"
+    issued:
+      year: 2023
+---
+
+## Kurzfassung
+
+Die Ausgangsbeobachtung trifft die gegenwärtige Lage weitgehend, sollte aber etwas präzisiert werden:
+
+> Der methodische Mainstream der quantitativen Psychotherapieforschung ist ein überwiegend frequentistisches Regressions- und Mehrebenenmodell-Paradigma. In randomisierten kontrollierten Studien (RCTs) dominieren baseline-adjustierte Regression beziehungsweise ANCOVA sowie longitudinale Mixed Models. In klassischen Meta-Analysen dominieren Random-Effects-Modelle. Predictive Modelling und Machine Learning bilden einen wachsenden, aber vielfach noch explorativen Forschungszweig. Bayesianische Verfahren sind in psychologischen Primärstudien weiterhin selten, in Network Meta-Analysen jedoch bereits substanziell verbreitet.
+
+Der beste aktuelle Gesamtüberblick ist das Handbuchkapitel von @baldwin2021. Es behandelt Messmodelle, klinische Studien, Meta-Analyse, Mediation und Moderation, Mehrebenenmodelle, neuere prädiktive Verfahren, Bayesian Modeling und Open Science. Es ist allerdings keine empirische Zählung der tatsächlich verwendeten Verfahren. Dafür sind die nachfolgenden Methodological Reviews aussagekräftiger.
+
+## Begriffsrahmen
+
+Die Kategorien *frequentistisch*, *Mixed Model*, *Meta-Analyse* und *Machine Learning* liegen nicht auf derselben begrifflichen Ebene:
+
+- **Frequentistisch versus bayesianisch** bezeichnet das Inferenzparadigma.
+- **Linear Mixed Model** bezeichnet eine Modellstruktur mit festen und zufälligen Effekten.
+- **Meta-Analyse** bezeichnet eine Form der Evidenzsynthese auf der Ebene von Studien oder individuellen Teilnehmendendaten.
+- **Machine Learning** bezeichnet meist ein Vorhersageziel und einen Modellierungsworkflow mit Training, Tuning und Out-of-sample-Validierung.
+
+Ein Mixed Model kann somit frequentistisch oder bayesianisch geschätzt und sowohl erklärend als auch prädiktiv verwendet werden. Auch Random-Effects-Meta-Analysen können frequentistisch oder bayesianisch formuliert werden.
+
+## Evidenz aus aktuellen Reviews
+
+\begingroup
+\small
+
+| Bereich | Befund aus Reviews | Einordnung |
+|:--|:--|:--|
+| Primäre RCT-Analysen mit kontinuierlichen Outcomes | In 114 RCTs mit patient-reported primary outcomes waren lineare Mixed Models mit 45 Anwendungen die häufigste multivariable Methode; danach folgten lineare Regression (29) und ANCOVA (13). Unter den eigentlichen Repeated-Measures-Analysen entfielen 23 von 39, also 59 %, auf LMMs. Die Verwendung komplexerer LMM-/GEE-Ansätze nahm über die Zeit zu [@qian2021]. | LMMs sind zentral, aber ANCOVA und einfache Regression bleiben ebenfalls Mainstream. |
+| Behavioral-intervention RCTs | Eine systematische Auswertung von RCTs aus vier Journals für 2015 bis 2021 identifizierte *longitudinal modelling* und ANCOVA als die beiden häufigsten Analysestrategien [@tutino2024]. | Präziser als „LMMs dominieren“ ist ein frequentistischer ANCOVA-/Longitudinal-Model-Mainstream. |
+| Psychotherapie-RCTs und Missingness | In 182 RCTs psychologischer Interventionen aus den Jahren 2017 bis 2022 betrug der mittlere Anteil fehlender primärer Outcomes 18,3 %. Regression beziehungsweise ähnliche Verfahren einschließlich Mixed Models wurden für 28,8 % und Multiple Imputation für 29,6 % der Outcomes eingesetzt. Nur 20,6 % der Outcomes erhielten eine Sensitivitätsanalyse [@juul2024]. | Mixed Models und Imputation sind wichtige Bestandteile des Missing-data-Workflows; dessen praktische Umsetzung ist jedoch häufig unzureichend. |
+| Repeated Outcomes in Mental-Health-RCTs | Von 119 Trials mit mehreren Follow-up-Zeitpunkten analysierten 106, also 89 %, alle Zeitpunkte in einem gemeinsamen Modell. Komplexe multivariate Modelle für mehrere unterschiedliche Outcomes waren dagegen praktisch nicht vertreten [@stringer2024]. | Longitudinale Modelle sind etabliert; multivariate Outcome-Modelle werden bisher wenig genutzt. |
+| Klassische Meta-Analysen psychologischer Interventionen | In einer Zufallsstichprobe von 100 Meta-Analysen gaben 92 das Synthesemodell an. Davon verwendeten 87, also 95 %, ein Random-Effects-Modell. Nur 13 % dieser Arbeiten nannten jedoch den verwendeten Schätzer für die Heterogenitätsvarianz $\tau^2$ [@lopeznicolas2022]. | Random Effects sind eindeutig Mainstream. „Linear Mixed Model“ ist hierfür jedoch nicht die übliche Bezeichnung. |
+| Network Meta-Analysis psychologischer Interventionen | Von 187 Network Meta-Analysen waren 52,9 % frequentistisch und 41,7 % bayesianisch; 79,7 % verwendeten Random Effects [@boonpattharatthiti2024]. | In Network Meta-Analysen ist Bayesianische Inferenz nicht mehr selten. |
+| Machine Learning in Psychotherapie | Ein feldweiter Scoping Review fand 51 Studien: 44 Modellentwicklungsstudien und sieben Machbarkeitsstudien. Die Literatur bestand überwiegend aus ermutigenden Proof-of-Concept-Arbeiten, noch nicht aus klinisch etablierten Verfahren [@aafjes2021]. | ML ist ein wachsender Nebenstrang, nicht das inferenzstatistische Kerngeschäft der RCT-Forschung. |
+| Aktuelle CBT-Prediction | Ein Review zu CBT bei Depression fand 24 ML-Studien mit insgesamt 11.733 Personen. Nur vier Studien wurden als *low risk of bias* beurteilt [@lees2026]. | Die Evidenzbasis wächst, aber externe Validierung, Reporting und Bias bleiben zentrale Probleme. |
+| Bayesianische Inferenz in der Psychologie allgemein | Eine automatisierte Auswertung von 57.909 Artikeln aus zwölf Psychologie-Journals fand Bayesianische Inferenz in insgesamt ungefähr 4 %. Der Anteil stieg von 2 % in beziehungsweise vor 2015 auf 5 % nach 2015 [@boeschen2023]. | Für psychologische Primärforschung ist „selten, aber zunehmend“ gut belegt; die Untersuchung ist allerdings nicht ausschließlich psychotherapiespezifisch. |
+
+\endgroup
+
+## Primäre Psychotherapie-RCTs
+
+Für kontinuierliche, wiederholt gemessene Outcomes ist eine prototypische Analyse:
+
+$$
+Y_{it} = \beta_0 + \beta_1\mathrm{Treatment}_i
+       + \beta_2\mathrm{Time}_t
+       + \beta_3(\mathrm{Treatment}\times\mathrm{Time})_{it}
+       + b_{0i} + \varepsilon_{it}.
+$$
+
+Je nach Design kommen Random Effects für Personen, Therapeut:innen, Therapiegruppen, Zentren oder Studienstandorte hinzu. Bei nur einem primären Follow-up ist eine baseline-adjustierte ANCOVA häufig mindestens ebenso typisch wie ein LMM. Bei binären, ordinalen oder Count-Outcomes werden generalisierte Mixed Models, logistische beziehungsweise ordinale Regression oder GEE eingesetzt.
+
+Eine angemessene Kurzbeschreibung lautet daher:
+
+> Die Primäranalyse psychotherapeutischer RCTs erfolgt überwiegend frequentistisch mit baseline-adjustierter Regression beziehungsweise ANCOVA oder longitudinalen Mixed Models, ergänzt um Multiple Imputation und Sensitivitätsanalysen für fehlende Daten.
+
+Dabei sollte *intention to treat* nicht mit einem bestimmten statistischen Modell gleichgesetzt werden. ITT definiert die auszuwertende Behandlungszuordnung beziehungsweise das Ziel der Analyse; LMM, ANCOVA, Multiple Imputation und Sensitivitätsanalysen bestimmen, wie dieses Ziel unter den jeweiligen Annahmen operationalisiert wird.
+
+## Meta-Analyse
+
+Eine konventionelle Random-Effects-Meta-Analyse lässt sich als hierarchisches Modell schreiben:
+
+$$
+y_j = \mu + u_j + e_j,
+\qquad
+u_j \sim N(0,\tau^2),
+\qquad
+e_j \sim N(0,v_j).
+$$
+
+Hier bezeichnet $y_j$ die in Studie $j$ beobachtete Effektgröße, $v_j$ deren bekannte oder geschätzte Stichprobenvarianz, $\mu$ den durchschnittlichen Effekt und $\tau^2$ die zwischen Studien bestehende Heterogenität. Typische weitere Bestandteile sind:
+
+- standardisierte Mittelwertdifferenzen, Odds Ratios oder andere Effektmaße;
+- $I^2$, $\tau^2$ und Cochranes $Q$ zur Beschreibung der Heterogenität;
+- Meta-Regression und Moderatoranalysen;
+- Funnel Plots und Tests auf Small-study beziehungsweise Publication Bias;
+- Drei-Ebenen-Modelle oder robuste Varianzschätzung bei mehreren abhängigen Effektgrößen pro Studie;
+- Network Meta-Analysis, Component Network Meta-Analysis und Individual Participant Data Meta-Analysis.
+
+Das Random-Effects-Modell ist mathematisch ein hierarchisches Modell. In der angewandten Literatur wird es jedoch normalerweise als *random-effects meta-analysis* und nicht einfach als *linear mixed model* bezeichnet. Die Schätzung erfolgt in klassischen paarweisen Meta-Analysen überwiegend frequentistisch; bei Network Meta-Analysen ist die Bayesianische Formulierung bereits stark vertreten.
+
+## Predictive Modelling und „Machine Learning“
+
+Häufige Anwendungsziele sind:
+
+- Vorhersage von Response, Remission, Verschlechterung und Dropout;
+- Treatment Selection im Sinne von „welche Behandlung für welche Person?“;
+- dynamische Prognosen anhand der bisherigen Symptomkurve;
+- Natural Language Processing für Sitzungsprotokolle und automatische Prozesskodierung.
+
+Der Ausdruck *Machine Learning* umfasst dabei sehr unterschiedliche Verfahren. Neben Random Forests, Support Vector Machines, Gradient Boosting und neuronalen Netzen werden auch LASSO, Elastic Net und gewöhnliche Regressionsmodelle mit Cross-Validation eingesetzt. Der wesentliche Unterschied zur klassischen RCT-Analyse liegt deshalb häufig stärker im Ziel - Out-of-sample-Prediction statt Parameterschätzung - als in einem grundsätzlich neuartigen Algorithmus.
+
+Die Review-Literatur zeigt einen deutlichen Zuwachs an Studien, zugleich aber wiederkehrende Probleme: kleine Stichproben, Optimismus durch interne Validierung, heterogene Outcome-Definitionen, unzureichende Kalibrierungsberichte und zu wenig unabhängige externe oder prospektive Validierung [@aafjes2021; @lees2026].
+
+## Bayesianische Inferenz
+
+Die Aussage „Bayes ist selten“ gilt überzeugend für psychologische Primärstudien und vermutlich noch stärker für konfirmatorische Hauptanalysen psychotherapeutischer RCTs. Sie gilt jedoch nicht gleichermaßen für alle Teilgebiete:
+
+- **Primäre RCT-Hauptanalysen:** weiterhin selten.
+- **Prozessforschung und intensive longitudinale Daten:** punktuell zunehmend.
+- **Klassische paarweise Meta-Analyse:** weiterhin überwiegend frequentistisch.
+- **Network Meta-Analysis und komplexe hierarchische Evidenzsynthese:** Bayesian Modeling bereits relativ häufig.
+
+Die hohen Bayesian-Anteile in Network Meta-Analysen sind sachlich plausibel: Die Modelle sind ohnehin hierarchisch, enthalten mehrere Unsicherheitsebenen und lassen sich mit MCMC- oder verwandten Verfahren flexibel schätzen. Dies sollte jedoch nicht mit einer allgemeinen Bayesianischen Wende der psychotherapeutischen Primärforschung verwechselt werden.
+
+## Schlussfolgerung
+
+Die Ausgangseinschätzung ist im Kern richtig, wenn sie folgendermaßen präzisiert wird:
+
+> Quantitative Psychotherapieforschung wird gegenwärtig von frequentistischen regressionsbasierten Verfahren geprägt. Primäre RCT-Analysen beruhen häufig auf baseline-adjustierter Regression beziehungsweise ANCOVA und - bei wiederholten Messungen oder Clustering - auf linearen oder generalisierten Mixed-Effects-Modellen. Die klassische Evidenzsynthese wird von Random-Effects-Meta-Analysen dominiert und zunehmend durch Mehrebenen-, Netzwerk- und Individual-Participant-Data-Modelle ergänzt. Predictive Modelling und Machine Learning haben insbesondere in der Precision-Treatment-Forschung stark zugenommen, sind jedoch noch häufig explorativ und unzureichend extern validiert. Bayesianische Inferenz bleibt in psychologischen und psychotherapeutischen Primärstudien selten, hat aber in Network Meta-Analysen und anderen komplexen hierarchischen Evidenzsynthesen bereits eine substanzielle Verbreitung erreicht.
+
+## Einschränkung der vorliegenden Zusammenstellung
+
+Diese Darstellung ist eine literaturgestützte Einordnung und kein vollständig systematischer Review mit eigener registrierter Suchstrategie. Die herangezogenen Methodological Reviews unterscheiden sich hinsichtlich Zeitraum, Journalauswahl und Gegenstandsbereich: Einige untersuchen ausschließlich psychologische Interventionen, andere Mental-Health- oder Behavioral-Intervention-RCTs beziehungsweise psychologische Forschung allgemein. Die Prozentangaben sollten daher als Evidenz für die übergeordnete Methodenlandschaft und nicht als exakt vergleichbare Prävalenzschätzungen verstanden werden.
+
+## Literaturverzeichnis
+
+::: {#refs}
+:::

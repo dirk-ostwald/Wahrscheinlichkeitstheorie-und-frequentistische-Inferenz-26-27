@@ -1,0 +1,923 @@
+---
+fontsize: 8pt
+format:
+    beamer:
+        include-in-header: "0-Header.tex"
+        colorlinks: true
+        urlcolor: darkblue
+        linkcolor: darkblue
+        citecolor: darkblue
+bibliography: 0-Referenzen.bib
+---
+
+#  {.plain}
+\center
+\vfill
+```{r, echo = FALSE, out.width = "20%"}
+knitr::include_graphics("0-Abbildungen/wtfi-0-otto.png")
+```
+\vspace{2mm}
+
+\Large
+\resizebox{\linewidth}{!}{Wahrscheinlichkeitstheorie und frequentistische Inferenz}
+\vspace{1mm}
+
+\large
+BSc Psychologie WiSe 2026/27
+
+\vspace{5mm}
+\normalsize
+Prof. Dr. Dirk Ostwald
+\vfill
+
+#  {.plain}
+\vfill
+\center
+\Huge
+\textcolor{red}{Aufnahme läuft!}
+\vfill
+
+
+#  {.plain}
+
+```{=latex}
+\vfill
+\begin{center}
+\huge
+(0) Einführung
+\end{center}
+\vfill
+```
+
+#  {.plain}
+\vfill
+\large
+$\,$ Prof. Dr. Dirk Ostwald (dirk.ostwald@ovgu.de)
+\vspace{2mm}
+
+\normalsize
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{ll}
+Seit 2021 	& W2-Professur Methodenlehre  				        \\
+2014 - 2020 & W1-Professur Freie Universität Berlin 	    \\
+2010 - 2014 & Postdoc BCCN \& MPIB Berlin				          \\
+2007 - 2010 & PhD Psychologie Birmingham				          \\
+2004 - 2006 & MSc Neurowissenschaften Tübingen			      \\
+2005 - 2012 & BSc Mathematik Hagen						            \\
+2000 - 2003 & BSc Medizin Hamburg						            \\
+\end{tabular}
+\vspace{2mm}
+
+\large
+\begin{tabular}{ll}
+Forschung 	    & Komputationale kognitive Neurowissenschaften	\\
+Lehre 		      & Datenwissenschaft
+\end{tabular}
+\vfill
+
+# 
+\small
+BSc Psychologie
+
+* Vorkurs: Mathematische Grundlagen
+* A2 Einführung in die Forschungsmethoden der Psychologie
+* B1 Statistik I (Wahrscheinlichkeitstheorie und frequentistische Inferenz)
+* B2 Statistik II (Das allgemeine lineare Modell)
+* C Einführung in empirisch-wissenschaftliches Arbeiten (Programmierung)
+* E1 Grundlagen der Testtheorie (Fragebogendatenanalyse)
+
+MSc Klinische Psychologie und Psychotherapie
+
+* A1 Vertiefung allgemeiner Forschungsmethoden (Multivariate Verfahren)
+* A2 Vertiefung allgemeiner Forschungsmethoden (Interventionsforschung)
+* B2 Testtheorie und Testkonstruktion (Psychometrische Diagnostik)
+
+MSc Psychologie und MSc Umweltpsychologie/Mensch-Technik-Interaktion
+
+* Vorkurs: Programmieren für Psychologie
+* A1 Multivariate Verfahren
+* A3 Computergestützte Erhebung, Modellierung und Datenanalyse
+
+#
+\vfill
+\setstretch{3.5}
+\Large
+Datenwissenschaft
+
+Formalia
+
+Studium und Diskussion
+\vfill
+
+#
+\vfill
+\setstretch{3.5}
+\Large
+**Datenwissenschaft**
+
+Formalia
+
+Studium und Diskussion
+\vfill
+
+
+# Datenwissenschaft
+\center
+\vfill
+```{r, echo = FALSE, out.width = "85.5%"}
+knitr::include_graphics("0-Abbildungen/wtfi-0-ki-feed-querformat.pdf")
+```
+\vspace{2mm}
+\large
+Statistik = Maschinelles Lernen = Künstliche Intelligenz 
+\vfill
+
+# Datenwissenschaft
+\vfill
+\center
+\huge
+Datenwissenschaft
+\vspace{5mm}
+
+\Large
+Die Kunst, aus Daten Sinn zu generieren
+\vfill
+
+# Datenwissenschaft
+\vspace{2mm}
+```{r, echo = FALSE, out.width = "90%", fig.align = "center"}
+knitr::include_graphics("0-Abbildungen/wtfi-0-datenwissenschaft-komponenten.pdf")
+```
+\vfill
+
+# Datenwissenschaft
+\vspace{2mm}
+```{r, echo = FALSE, out.width = "100%", fig.align = "center"}
+knitr::include_graphics("0-Abbildungen/wtfi-0-datenwissenschaft-geschichte.pdf")
+```
+
+\flushright
+\tiny
+nach Huber (2024) *Introduction to Data Science* Fig. 2.1. 
+
+# Datenwissenschaft
+\Large
+Datenwissenschaft ist Datenreduktion
+
+\center
+\vspace{.4cm}
+
+```{r, echo = FALSE, out.width = "80%", fig.align = "center"}
+knitr::include_graphics("0-Abbildungen/wtfi-0-datenreduktion.pdf")
+```
+
+# Datenwissenschaft
+\Large
+Datenwissenschaft ist Naturwissenschaft
+\vspace{3mm}
+
+```{r, echo = FALSE, out.width = "100%", fig.align = "center"}
+knitr::include_graphics("0-Abbildungen/wtfi-0-modellbasierte-datenwissenschaft.pdf")
+```
+
+# Datenwissenschaft
+\Large
+Datenwissenschaft ist Dateninterpretation
+\center
+\vspace{.5cm}
+
+```{r, echo = FALSE, out.width = "85.5%"}
+knitr::include_graphics("0-Abbildungen/wtfi-0-dateninterpretation-querformat.pdf")
+```
+
+# Datenwissenschaft
+\Large
+Terminologie der Datenwissenschaft
+\vspace{.5cm}
+
+\center
+Statistik = Maschinelles Lernen = Künstliche Intelligenz
+\vspace{.5cm}
+
+\small
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{l|l|l}
+
+Statistik				          & Maschinelles Lernen		    & Künstliche Intelligenz		\\\hline
+Probabilistische Modelle	& Deterministische Modelle	& Agenten-basierte Modelle	\\
+Theoretische Analyse		  & Klassifikation			      & Reinforcement learning 		\\
+Optimalitätstheorie 		  & Bayesianische Modelle		  & Symbolik						      \\
+Asymptotische Theorie		  & Anwendung					        & Anwendung						      \\
+Wissenschaftsphilosophie	& Benchmarking				      & Hype und Bubble						\\
+\end{tabular}
+
+
+\footnotesize
+\flushright
+Siehe auch @tukey1962, @donoho2017, @spector2024
+
+# Datenwissenschaft
+\Large
+Datenwissenschaft vs. Künstliche Intelligenz
+\vspace{.5cm}
+
+\small
+
+\center
+\renewcommand{\arraystretch}{1.7}
+\begin{tabular}{l|l}
+Datenwissenschaft                           & Künstliche Intelligenz                                \\\hline
+Erzeugung von Sinn, Einsichten, Werten      & Entwicklung von generativen Entscheidungssystemen     \\
+Eher statistik- und wissenschaftsnah        & Eher softwareentwicklungsnah                          \\
+Datenschutz, Datensicherheit, Fairness      & Nicht notwendigerweise datenbasiert                   \\
+Genereller und breiter Ansatz               & Duplikation menschlicher Intelligenz                  \\
+\end{tabular}
+
+\vspace{3mm}
+\flushleft
+$\Rightarrow$ Der (mediale) Gebrauch des Begriffs der Künstlichen Intelligenz ist oft sehr unscharf
+
+\vspace{2mm}
+\footnotesize
+\flushright
+Siehe auch @tukey1962, @donoho2017, @spector2024
+
+# Datenwissenschaft
+\vspace{2mm}
+\setstretch{.9}
+Facetten der Datenwissenschaft
+\vspace{1mm}
+\small
+
+Wissenschaft
+
+* Daten als natürliche Ressource, die zur Wertschöpfung genutzt werden kann
+
+Forschungsparadigma
+
+* Exploratorische Herangehensweise an unstrukturiert akquirierte Datenmengen
+
+Forschungsmethode
+
+* Induktiver Ansatz durch Analyse unstrukturierter Datensätze mit maschinellem Lernen
+
+Forschungsdisziplin
+
+* Übergang von multi- zu inter- und transdisziplinären Ansätzen
+
+Workflow
+
+* Datenakquise, -präprozessierung, -organisation, -analyse, -visualisierung, -interpretation
+
+Berufsbild
+
+* Hochrangige Fachkraft mit der Ausbildung und Neugier, Entdeckungen in Daten zu machen
+
+\vfill
+\footnotesize
+\flushright
+@mike2023
+
+# Datenwissenschaft
+\vspace{2mm}
+```{r, echo = FALSE, out.width = "80%", fig.align = "center"}
+knitr::include_graphics("0-Abbildungen/wtfi-0-hdsr.pdf")
+```
+\vfill
+
+# Datenwissenschaft
+\center
+\vfill
+```{r, echo = FALSE, out.width = "85.5%"}
+knitr::include_graphics("0-Abbildungen/wtfi-0-ki-wissenszugang-querformat.pdf")
+```
+\large
+Künstliche Intelligenz als Wissenszugang
+\vfill
+
+# Datenwissenschaft
+\vfill
+
+\center
+\huge
+Datenwissenschaft in der Psychologie
+\vspace{5mm}
+
+\Large
+Die Kunst, aus psychologischen Daten 
+
+psychologischen Sinn zu generieren
+\vfill
+
+# Datenwissenschaft
+\center
+\huge
+Statistik
+\vspace{5mm}
+
+\Large
+Die Kunst, aus Daten Sinn zu generieren
+
+und seine assoziierte Unsicherheit zu quantifizieren
+
+
+# Datenwissenschaft
+\center
+\huge
+Statistik in der Psychologie
+
+\vspace{5mm}
+\Large
+Die Kunst, aus psychologischen Daten
+
+psychologischen Sinn zu generieren
+
+und seine assoziierte Unsicherheit zu quantifizieren
+
+
+# Datenwissenschaft
+\vfill
+\large
+Statistik in der Psychologie
+```{r, echo = FALSE, out.width = "80%", fig.align = "center"}
+knitr::include_graphics("0-Abbildungen/wtfi-0-psychologie-statistik-themen.pdf")
+```
+\vfill
+
+# Datenwissenschaft
+
+Psychotherapieforschung als Datenwissenschaft von unmittelbarem praktischen Interesse
+
+Welche Behandlung hilft welchen Menschen, wodurch und unter welchen Bedingungen?
+
+\small
+\vspace{3mm}
+\setstretch{1.15}
+
+```{r, echo = FALSE, out.width = "100%", fig.align = "center"}
+knitr::include_graphics("0-Abbildungen/wtfi-0-psychotherapie-wirkungsdiagramm.pdf")
+```
+\vspace{3mm}
+\setstretch{1.6}
+\begin{tabular}{ll}
+Wirksamkeit           & Beschwerden gegenüber einer Vergleichsbedingung verbessern       \\
+Veränderungsprozesse  & Psychologische Prozesse der Verbesserung verstehen                                  \\
+Unterschiede          & Ergebnisse in verschiedenen Kontexten erklären  \\
+Versorgung            & Nachhaltigkeit und Nutzen von Behandlungen im Alltag untersuchen
+\end{tabular}
+
+\footnotesize
+\flushright
+ nach @baldwin2021, S. 19--29, 42; vgl. @jacobi2020
+
+# Datenwissenschaft
+\vspace{1mm}
+Psychotherapieforschung als Datenwissenschaft von unmittelbarem praktischen Interesse
+
+Von Forschungsaufgaben zu datenwissenschaftlichen Methoden
+\vspace{2mm}
+
+\footnotesize
+\setstretch{1.8}
+\begin{tabular}{ll}
+Forschungsaufgabe                           & Datenwissenschaftliche Verfahren                        \\\hline
+Beschwerden und Veränderung erfassen?       & Psychometrie, Reliabilität, Validität, Faktoranalyse    \\
+Welche Behandlung wirkt besser?             & RCTs, Varianz- und Regressionsanalyse                   \\
+Veränderungen über die Zeit beschreiben?    & Längsschnittanalysen und Mixed Models                   \\
+Wodurch und für wen wirkt eine Behandlung?  & Mediations- und Moderationsanalysen                     \\
+Ergebnisse vieler Studien zusammenführen?   & Effektgrößen und Random-Effects-Metaanalyse             \\
+Individuelle Verläufe vorhersagen?          & Prädiktive Modellierung                                 \\
+\end{tabular}
+
+\flushright
+\vspace{2mm}
+\footnotesize
+@baldwin2021, S. 20--42; @tutino2024; @lopeznicolas2022
+
+# Datenwissenschaft
+Psychotherapieforschung als Datenwissenschaft von unmittelbarem praktischen Interesse
+
+Forschungsaufgaben und das OVGU Methodencurriculun
+\vspace{2mm}
+
+\footnotesize
+\setstretch{1.6}
+\begin{tabular}{l|l|l}
+Forschungsaufgabe                 
+& Bachelor      
+& Master 
+\\\hline
+Studiendesign
+& Einführung Forschungsmethoden
+& Interventionsforschung 
+\\
+Psychologische Merkmale messen 
+& Grundlagen der Testtheorie 
+& Testtheorie und Testkonstruktion 
+\\
+Effekte und Unsicherheit schätzen 
+& Wahrscheinlichkeitstheorie, Inferenz
+& Multivariate und Linear Mixed Models
+\\
+Veränderungen modellieren 
+& Allgemeines lineares Modell
+& Mehrebenen- und Längsschnittanalysen \\
+Evidenz bündeln und vorhersagen 
+& Statistische Grundlagen 
+& Metaanalyse, Prädiktive Modellierung
+\\
+\end{tabular}
+
+\small
+\vspace{2mm}
+\setstretch{1.4}
+Praktische Umsetzung im BSc Psychologie
+\vspace{-2mm}
+
+* Programmierung und Deskriptive Statistik und Analyse und Dokumentation
+* Experimentalpraktikum (?)
+* Bachelorarbeit
+
+\vspace{-1mm}
+Praktische Umsetzung im BSc Psychologie
+\vspace{-2mm}
+
+* Seminare zur Interventionsforschung, Multivariaten Verfahren, Testtheorie
+
+
+# Datenwissenschaft
+\vspace{2mm}
+Psychotherapieforschung als Datenwissenschaft von unmittelbarem praktischen Interesse
+
+Wahrscheinlichkeitstheorie und frequentistische Inferenz  
+
+\vspace{1mm}
+\small
+\setstretch{.8}
+Wahrscheinlichkeiten und Zufallsvariablen
+
+* Individuelle Unterschiede und zufällige Schwankungen quantitativ beschreiben 
+
+Zufallsvektoren, Erwartungswerte, Varianz und Kovarianz 
+
+* Mehrere Merkmale, ihre Streuung und ihre Zusammenhänge modellieren, Klassische Testtheorie
+
+Grenzwertsätze und Verteilungen von Statistiken
+
+* Verstehen, wie Schätzer zwischen Stichproben variieren und was gute Schätzer sind
+
+Punktschätzung
+
+* Unbekannte Größen wie mittlere Behandlungsergebnisse aus Daten schätzen 
+
+Konfidenzintervalle 
+
+* Präzision einer Schätzung frequentistische quantifizieren 
+
+Hypothesentests, Fehlerwahrscheinlichkeiten und Power
+
+* Hypothesen prüfen und die Leistungsfähigkeit eines statistischen Tests beurteilen 
+
+\vspace{2mm}
+All diese Grundlagen tragen später Psychometrie, Linear (Mixed) Models und Metaanalyse
+
+
+# Datenwissenschaft
+Psychotherapieforschung als Datenwissenschaft von unmittelbarem praktischen Interesse
+
+Beispiel: RCT vergleicht die Symptomwerte unter A und B nach zwölf Wochen.
+
+```{r, echo = FALSE, out.width = "65%", fig.align = "center"}
+knitr::include_graphics("0-Abbildungen/wtfi-0-psychotherapie-konfidenzintervall.pdf")
+```
+
+```{=latex}
+\footnotesize
+Negative Werte sprechen auf dieser Skala für Behandlung A.
+\vspace{2mm}
+
+\footnotesize
+\setstretch{1.05}
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{@{}>{\RaggedRight\arraybackslash}p{5.7cm}>{\RaggedRight\arraybackslash}p{4.9cm}@{}}
+Forschungsfrage                                     & Methode aus diesem Kurs                 \\\hline
+Wie groß ist der geschätzte Unterschied?            & Punktschätzung                          \\
+Wie präzise wurde er geschätzt?                     & Standardfehler und Konfidenzintervall   \\
+Wie prüfen wir die Hypothese ,,kein Unterschied''?  & Hypothesentest                          \\
+Warum könnte eine neue Studie anders ausfallen?     & Stichprobenverteilung                   \\
+\end{tabular}
+\par
+\vspace{2mm}
+```
+
+
+# Datenwissenschaft
+\vfill
+Klassische Partition der Statistik in der Psychologie
+
+* Deskriptivstatistik
+* Inferenzstatistik
+* Multivariate Statistik
+
+Moderne Partition der psychologischen Datenwissenschaft
+
+* Wahrscheinlichkeitstheoretische Grundlagen
+* Frequentistische Inferenz 
+* Bayesianische Inferenz
+* Allgemeines lineares Modell
+* Multivariate Verfahren
+* Hierarchische und metaanalytische Verfahren
+* Methoden der kausalen Inferenz
+* Programmierung
+
+\vfill  
+
+#
+\vfill
+\setstretch{3.5}
+\Large
+Datenwissenschaft
+
+**Formalia**
+
+Studium und Diskussion
+\vfill
+
+
+# Formalia 
+B1 Statistik I | Wahrscheinlichkeitstheorie und frequentistische Inferenz
+
+\setstretch{3}
+
+* \justifying Donnerstags 8 - 11 Uhr in Raum [G40B-226](https://lsf.ovgu.de/qislsf/rds?state=verpublish&status=init&vmfile=no&moduleCall=webInfo&publishConfFile=webInfoRaum&publishSubDir=raum&keep=y&raum.rgid=213 "Details ansehen zu Raum G40B-226 (60 Pl.)")
+* Kursmaterialien (Skript, Videos) auf der [Kurswebseite](https://www.ipsy.ovgu.de/Institut/Abteilungen+des+Institutes/Methodenlehre/Lehre/Wintersemester+2027/Wahrscheinlichkeitstheorie+und+frequentistische+Inferenz.html)  
+* Ankündigungen und weiterführende Literatur auf der [Moodleseite](https://elearning.ovgu.de/course/view.php?id=22166)
+* Mathematisches Vorwissen deckt der Vorkurs [Mathematische Grundlagen](https://www.ipsy.ovgu.de/Institut/Abteilungen+des+Institutes/Methodenlehre/Lehre/Wintersemester+2027/Mathematische+Grundlagen.html) ab  
+* Der Kurs ist im Wesentlichen identisch zu seiner [vorherigen Iteration](https://www.ipsy.ovgu.de/Institut/Abteilungen+des+Institutes/Methodenlehre/Lehre/Wintersemester+2026/Wahrscheinlichkeitstheorie+und+Frequentistische+Inferenz.html)
+
+
+# Formalia  
+B1 Statistik I | Wahrscheinlichkeitstheorie und frequentistische Inferenz
+\vspace{1mm}
+
+\center
+\footnotesize
+\renewcommand{\arraystretch}{1.1}
+\begin{tabular}{lll}
+Datum        & Einheit                       & Thema					                    \\\hline
+15.10.2026   & Einführung                    & (0) Einführung 				                \\
+22.10.2026   & Wahrscheinlichkeitstheorie    & (1) Wahrscheinlichkeitsräume 	            \\
+29.10.2026   & Wahrscheinlichkeitstheorie    & (2) Elementare Wahrscheinlichkeiten          \\
+05.11.2026   & Wahrscheinlichkeitstheorie    & (3) Zufallsvariablen                         \\
+12.11.2026   & Wahrscheinlichkeitstheorie    & (3) Zufallsvariablen                         \\
+19.11.2026   & Wahrscheinlichkeitstheorie    & (4) Zufallsvektoren                          \\
+26.11.2026   & Wahrscheinlichkeitstheorie    & (5) Erwartungswerte                          \\
+03.12.2026   & Wahrscheinlichkeitstheorie    & (6) Ungleichungen und Grenzwerte             \\
+10.12.2026   & Wahrscheinlichkeitstheorie    & (7) Transformationen der Normalverteilung    \\
+17.12.2026   & frequentistische Inferenz     & (8) Grundbegriffe frequentistischer Inferenz \\
+             & \textcolor{black!50}{Weihnachtspause}                                            \\
+07.01.2027   & frequentistische Inferenz     & (9) Punktschätzung                           \\
+14.01.2027   & frequentistische Inferenz     & (10) Konfidenzintervalle                     \\
+21.01.2027   & frequentistische Inferenz     & (11) Hypothesentests                         \\
+28.01.2027   & frequentistische Inferenz     & (11) Hypothesentests                         \\\hline
+Februar 2027 & Klausurtermin                 &                                             \\
+Juli 2027    & Klausurwiederholungstermin    &
+\end{tabular}
+
+
+# Formalia  
+B1 Statistik I | Wahrscheinlichkeitstheorie und frequentistische Inferenz
+\vspace{1mm}
+
+\setstretch{3}
+
+* Vorlesungsfolien inklusive Selbstkontrollfragen sind klausurrelevant
+* Altklausuren finden sich auf den Kurswebseiten früherer Jahre
+* Benotete digitale Multiple Choice Klausur (30 Fragen) im Universitätstestzentrum
+* Klausurwiederholungstermin im Juli 2027
+
+
+# Formalia
+
+```{r, eval = F}
+library(readxl)    
+yrs         = c(2025, 2026)
+for(year in yrs){
+pdf(
+file        = file.path("0-Abbildungen", sprintf("wtfi-0-pre-post-%s.pdf", substr(year, 3, 4))),
+width       = 8,
+height      = 4)
+par(
+family      = "serif",
+mfcol       = c(1,2),
+pty         = "m",
+bty         = "l",
+lwd         = 1,
+las         = 1,
+xaxs        = "i",
+yaxs        = "i",
+font.main   = 1,
+cex         = 1,
+cex.main    = 1)
+tags        =  c("Pre", "Post")
+
+# Iterationen
+for (tag in tags){                                                           
+  
+  # Datei zusammensetzen und einlesen
+  fname     = file.path("0-Daten", paste0("Klausur-", year, "-", tag, ".xlsx"))
+  D         = as.data.frame(read_excel(fname))
+  
+  # Spalte auswählen und NAs ausschließen
+  x         = D$Bewertung
+  x         = x[!is.na(x)]
+  n         = length(x)
+  
+  # Histogramm zeichnen
+  hist(
+  x,
+  breaks    = seq(min(x), max(x), 1),   # Klassenbreite = 1 Punkt
+  col       = "gray",
+  border    = "white",
+  xlab      = "Punkte",
+  ylab      = "Anzahl",
+  xlim      = c(0,30),   
+  ylim      = c(0, 20), 
+  main      = sprintf("Klausurpunkte %s-Kursteilnahme (n = %.0f)", tag, n)
+  )
+}
+dev.off()
+}
+```
+
+Kurseffekt (Pre/Post) 2025
+
+```{r, echo = FALSE, out.width = "100%"}
+knitr::include_graphics("0-Abbildungen/wtfi-0-pre-post-25.pdf")
+```
+
+# Formalia
+
+Kurseffekt (Pre/Post) 2026
+
+```{r, echo = FALSE, out.width = "100%"}
+knitr::include_graphics("0-Abbildungen/wtfi-0-pre-post-26.pdf")
+```
+
+
+# Formalia
+\vspace{2mm}
+\small
+\center
+Evaluation Wahrscheinlichkeitstheorie und frequentistische Inferenz WiSe 2024/25 (n = 50) 
+\center
+\footnotesize
+$\bullet$   Stimme voll und ganz zu       $\,$
+$\bullet$   Stimme zu                     $\,$
+$\bullet$   Neutral                       $\,$
+$\bullet$   Stimme nicht zu               $\,$
+$\bullet$   Stimme überhaupt nicht zu     $\,$
+$\Box$      k.A.
+\vspace{1mm}
+
+```{r, echo = FALSE, out.width = "100%"}
+knitr::include_graphics("0-Abbildungen/wtfi-0-evaluation-wtfi-25.pdf")
+```
+
+Erhebungsdatum 07.02.2025
+
+\normalsize
+[Zentrale Evaluation im WiSe 2025/26](https://www.ipsy.ovgu.de/ipsy_media/Methodenlehre/Wintersemester+2026/Wahrscheinlichkeitstheorie+und+Frequentistische+Inferenz/Klausur-p-13376.pdf)
+
+
+# Formalia
+
+\vfill
+\Large
+\center
+
+[Umfrage zum Studienstart](https://elearning.ovgu.de/mod/feedback/view.php?id=695911) 
+\vspace{4mm}
+
+[Altklausur - Was wissen Sie schon?](https://elearning.ovgu.de/mod/quiz/view.php?id=696479)
+
+
+\vfill
+
+#
+\vfill
+\setstretch{3.5}
+\Large
+Datenwissenschaft
+
+Formalia
+
+**Studium und Diskussion**
+\vfill
+
+# Studium und Diskussion
+\setstretch{2}
+\large
+Studium $\neq$ Schule
+\normalsize
+
+* Schule ist Pflicht, Studium ist freiwillig.
+* Sie wollen nicht studiert werden, Sie wollen studieren.
+* Sie sind motiviert.
+* Studium ist Arbeit mit 40-Stundenwoche.
+* 1 CP = 30 Arbeitsstunden $\Rightarrow$ 6 CP = 180 Arbeitsstunden.
+* 15 Wochen $\Rightarrow$ 12 Stunden/Woche für B1 Statistik I | WTFI.
+* Wir machen keinen Osterhasenunterricht.
+* Klausuren dienen Ihnen, nicht den Lehrenden.
+* Veranstaltungen dienen der Organisation, nicht dem Erwerb von Wissen.
+
+# Studium und Diskussion
+\setstretch{2.2}
+\large
+Studium $\neq$ Berufsausbildung
+\normalsize
+
+* Das Studium dient dem Erwerb theoretischen Wissens.
+* Studium = Reproduktion, Praxis = Translation, Wissenschaft = Reflexion.
+* Sie werden nie wieder so viel Zeit zum Erwerb theoretischen Wissens haben.
+* Nach Studienabschluss sind Sie keine Psychotherapeut:in.
+* Nach Studienabschluss haben Sie viel über Psychologie gelesen.
+* Praktische Fähigkeiten lernt man in der Praxis, nicht in der Theorie.
+* Denken und lernen Sie interdisziplinär, Fachgrenzen sind für Faule.
+
+# Studium und Diskussion
+\large
+\setstretch{1.2}
+Lernphasen
+\small
+
+Phase 1: Überblicken
+
+* Überblick durch Vorlesung/Überfliegen der Materialien.
+* Verstehen einfacher Zusammenhänge.
+* Verstehen, was man nicht versteht.
+
+Phase 2: Verstehen
+
+* Erarbeiten des Verstehens komplexer Zusammenhänge.
+* Schriftliche Beantwortung der Selbstkontrollfragen.
+* Klärung von Details.
+
+Phase 3: Memorisieren
+
+* Auswendiglernen aller Inhalte.
+* Aktive Wiedergabe der Inhalte, schriftlich oder mündlich.
+* Teilnahme an der Klausur.
+
+Teilen Sie große Aufgaben immer in viele kleine, gut zu bewältigende Aufgaben!
+
+Sie machen Schreibtischarbeit, treiben Sie also täglich Sport!
+
+# Studium und Diskussion
+\large
+Zur wöchentlichen Mitarbeit im Kurs
+\normalsize
+\setstretch{2.7}
+
+* Bereiten Sie sich auf die Vorlesung durch Lesen des Skriptes vor.
+* Wenn nach Skriptlektüre/Vorlesung noch Unklarheiten bestehen, fragen Sie bitte.
+* Fragen im Rahmen der Vorlesung helfen Ihnen und Ihren Kommilitonen.
+* Fragen im Rahmen der Vorlesung helfen der Weiterentwicklung des Kurses.
+* Bearbeiten Sie bitte die Selbstkontrollfragen.
+
+# Studium und Diskussion
+\large
+Zur Arbeit mit den Selbstkontrollfragen und Klausurvorbereitung
+\normalsize
+\setstretch{2.3}
+
+* Die Selbstkontrollfragen fokussieren den Vorlesungsstoff.
+* "Geben Sie ... wieder" heißt "Geben Sie ... *wortwörtlich* wieder".
+* Dazu sind entsprechende Definitionen/Theoreme auswendig zu lernen. 
+* "Erläutern Sie ..." heißt "Nutzen Sie Ihre eigenen Worte" zur Darstellung. 
+* Erläuterungen beziehen sich auf die Bemerkungen zu Definitionen/Theoremen
+* Die Selbstkontrollfragen sind die Grundlage zur Entwicklung von Klausurfragen.
+* Die Lösungen der Selbstkontrollfragen finden Sie im Skript und auf den Folien.
+
+# Studium und Diskussion
+\normalsize
+Zur Frage der Anwendung
+
+* Wir geben durchgängig Anwendungsbeispiele aus der Psychotherapieforschung
+* "Anwendung" frequentistischer Inferenz heißt Programmierung
+* In Modul C1 lernen Sie die dafür nötigen Grundlagen
+* In Modul C2 wenden Sie Verfahren des allgemeinen linearen Modells an
+
+\vspace{1mm}
+Anwendung der im gesamten Kurs entwickelten Theorie am Ende von C1
+\vspace{1mm}
+\setstretch{1}
+\tiny
+```{r, echo = T, eval = T}
+D         = read.csv("./0-Daten/dBDI.csv")                # Datensatzeinlesen
+y         = D$dBDI                                      # Datenauswahl
+t.test(y)                                               # Einstichproben-T-Test
+```
+
+\normalsize
+\flushright
+$\Rightarrow$ Ziel des Kurses ist ein kritisches Verständnis dieser Anwendung
+
+
+# Studium und Diskussion
+\setstretch{1.1}
+Approbationsordnung für Psychotherapeutinnen und Psychotherapeuten (2020)
+
+[Quelle: Anlage 1 (Bachelor)](https://www.gesetze-im-internet.de/psychthappro/anlage_1.html)
+\footnotesize
+\vspace{2mm}
+
+Inhalte, die im Bachelorstudiengang im Rahmen der hochschulischen Lehre zu vermitteln
+und bei dem Antrag auf Zulassung zur psychotherapeutischen Prüfung nachzuweisen sind.
+
+\noindent \textbf{9. wissenschaftliche Methodenlehre}
+
+Die studierenden Personen (...)
+
+c) wenden Begriffe, Methoden und Ergebnisse der qualitativen und quantitativen
+Forschung in der psychologischen Grundlagen- und Anwendungsforschung an,
+
+d) beurteilen die Auswirkungen von Forschungsmethoden auf Untersuchungspopulationen
+und wenden deskriptive und inferenzstatistische Methoden sowie weitere statistische
+Verfahren zur Auswertung von Ergebnissen grundlagen- und anwendungsbezogener Studien
+in verschiedenen Bereichen der psychologischen und psychotherapeutischen Forschung an,
+
+e) planen wissenschaftliche Untersuchungen, führen diese Untersuchungen durch und werten sie aus, (...)
+
+$\quad\Rightarrow$ Bachelorarbeit
+
+Zur Vermittlung der Inhalte der wissenschaftlichen Methodenlehre sind bei der Planung
+der hochschulischen Lehre (...) die folgenden Wissensbereiche abzudecken (...)
+
+c) deskriptive und Inferenz-Statistik (...)
+
+e) Datenerhebung und Datenanalyse unter Nutzung digitaler Technologien.
+
+# Studium und Diskussion
+\setstretch{1.1}
+Approbationsordnung für Psychotherapeutinnen und Psychotherapeuten (2020)
+
+[Quelle: Anlage 2 (Master)](https://www.gesetze-im-internet.de/psychthappro/anlage_2.html)
+\vspace{2mm}
+
+\footnotesize
+Inhalte, die im Masterstudiengang im Rahmen der hochschulischen Lehre zu vermitteln
+und bei dem Antrag auf Zulassung zur psychotherapeutischen Prüfung nachzuweisen sind.
+\vspace{1mm}
+
+\footnotesize
+\noindent \textbf{2. vertiefte Forschungsmethodik}
+
+Die studierenden Personen
+
+a) wenden komplexe und multivariate Erhebungs- und Auswertungsmethoden zur Evaluierung
+und Qualitätssicherung von Interventionen an,
+
+b) nutzen und beurteilen einschlägige Forschungsstudien und deren Ergebnisse für die Psychotherapie
+
+c) planen selbstständig Studien zur Neu- oder Weiterentwicklung der Psychotherapieforschung
+oder der Forschung in angrenzenden Bereichen, führen solche Studien durch, werten sie aus
+und fassen sie zusammen, (...)
+
+$\quad\Rightarrow$ Masterarbeit
+
+Zur Vermittlung der Inhalte der vertieften Forschungsmethodik sind bei der Planung
+der hochschulischen Lehre (...) die folgenden Wissensbereiche abzudecken (...)
+
+a) multivariate Verfahren und Messtheorie
+
+# Studium und Diskussion
+
+\setstretch{2}
+
+Bei Problemen in Veranstaltungen
+
+\small
+
+Suchen Sie bitte immer zunächst das direkte klärende Gespräch mit den Dozierenden! 
+
+Sollte dies nicht zur Klärung beitragen, wenden Sie sich bitte in dieser Reihenfolge
+
+1. an den Studiengangsleiter (Dirk Ostwald)
+2. an den Prüfungsausschuss (Dirk Ostwald)
+3. an den Studiendekan (Fred Schaper)
+4. an den Dekan (Oliver Speck)
+5. an den Rektor (Jens Strackeljan)
+
+# Studium und Diskussion
+
+\Huge
+\vfill
+\center
+Q & A
+\vfill
+
+# Referenzen {.allowframebreaks}
+\footnotesize
+\setstretch{1.2}
