@@ -22,47 +22,6 @@ liegenden Kapitelquellen werden im separaten PDWP-Projekt gepflegt.
 Weitere Informationen zur Veranstaltung stehen auf der
 [Kurswebseite](https://www.ipsy.ovgu.de/Institut/Abteilungen+des+Institutes/Methodenlehre/Lehre/Wintersemester+2027/Wahrscheinlichkeitstheorie+und+frequentistische+Inferenz.html).
 
-## Aufbau
-
-- `0-Einführung/` enthält die Folien als `.qmd` und `.pdf`, den lokalen
-  LaTeX-Header und das Literaturverzeichnis im BibTeX-Format.
-- `0-Einführung/0-Abbildungen/` enthält Grafiken und teilweise bearbeitbare
-  PowerPoint-Quelldateien.
-- `0-Einführung/0-Daten/` enthält Beispieldaten, namenlose Punktwerte der
-  Kurseffekt-Auswertung und ergänzende Materialien zur Psychotherapieforschung.
-- `Skript/_book/` enthält das fertige Vorlesungsskript als PDF.
-- `Skript/` enthält außerdem die Konfiguration, Titelseite, Vorbemerkungen
-  und Hinweise zum Erstellen des Skripts.
-
-## Folien selbst erstellen
-
-Benötigt werden Quarto, R mit den Paketen `knitr` und `rmarkdown` sowie eine
-LaTeX-Installation mit Beamer und den im Header eingebundenen Paketen.
-Für die optionale Neuberechnung der Kurseffekt-Abbildungen wird zusätzlich
-`readxl` benötigt; die fertigen Abbildungen sind bereits enthalten.
-
-Die R-Pakete lassen sich in einer R-Konsole installieren:
-
-```r
-install.packages(c("knitr", "rmarkdown", "readxl"))
-```
-
-Die Folien werden aus ihrem Themenordner gerendert:
-
-```powershell
-cd 0-Einführung
-quarto render 0-Einführung.qmd --to beamer
-```
-
-Die PDF-Ausgabe liegt neben der Quelldatei und ersetzt dort die vorhandene PDF.
-Einzelne R-Codeblöcke werden beim Rendern ausgeführt; der Block zur Neuberechnung
-der Kurseffekt-Abbildungen ist mit `eval = F` deaktiviert.
-
-Die Folien-PDFs, das Skript-PDF und Abbildungen werden mit Git versioniert.
-Temporäre Render-Dateien, Vorschauen, Caches, externe Skriptquellen und die lokale
-Literaturkopie des Psychotherapie-Handbuchs werden ignoriert.
-Zum Erstellen des Skripts siehe [Skript/README.md](Skript/README.md).
-
 ## Korrekturen und Beiträge
 
 Hinweise auf Fehler sind über die
