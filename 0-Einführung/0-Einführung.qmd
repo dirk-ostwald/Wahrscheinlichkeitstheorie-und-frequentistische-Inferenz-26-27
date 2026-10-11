@@ -16,7 +16,7 @@ bibliography: 0-Referenzen.bib
 ```{r, echo = FALSE, out.width = "20%"}
 knitr::include_graphics("0-Abbildungen/wtfi-0-otto.png")
 ```
-\vspace{2mm}
+\vspace{3mm}
 
 \Large
 \resizebox{\linewidth}{!}{Wahrscheinlichkeitstheorie und frequentistische Inferenz}
@@ -240,43 +240,8 @@ $\Rightarrow$ Der (mediale) Gebrauch des Begriffs der Künstlichen Intelligenz i
 \vspace{2mm}
 \footnotesize
 \flushright
-Siehe auch @tukey1962, @donoho2017, @spector2024
+Siehe auch @tukey1962, @donoho2017, @mike2023, @spector2024
 
-# Datenwissenschaft
-\vspace{2mm}
-\setstretch{.9}
-Facetten der Datenwissenschaft
-\vspace{1mm}
-\small
-
-Wissenschaft
-
-* Daten als natürliche Ressource, die zur Wertschöpfung genutzt werden kann
-
-Forschungsparadigma
-
-* Exploratorische Herangehensweise an unstrukturiert akquirierte Datenmengen
-
-Forschungsmethode
-
-* Induktiver Ansatz durch Analyse unstrukturierter Datensätze mit maschinellem Lernen
-
-Forschungsdisziplin
-
-* Übergang von multi- zu inter- und transdisziplinären Ansätzen
-
-Workflow
-
-* Datenakquise, -präprozessierung, -organisation, -analyse, -visualisierung, -interpretation
-
-Berufsbild
-
-* Hochrangige Fachkraft mit der Ausbildung und Neugier, Entdeckungen in Daten zu machen
-
-\vfill
-\footnotesize
-\flushright
-@mike2023
 
 # Datenwissenschaft
 \vspace{2mm}
@@ -367,8 +332,9 @@ Versorgung            & Nachhaltigkeit und Nutzen von Behandlungen im Alltag unt
 \end{tabular}
 
 \footnotesize
+\vspace{1mm}
 \flushright
- nach @baldwin2021, S. 19--29, 42; vgl. @jacobi2020
+@baldwin2021, vgl. @jacobi2020
 
 # Datenwissenschaft
 \vspace{1mm}
@@ -378,21 +344,21 @@ Von Forschungsaufgaben zu datenwissenschaftlichen Methoden
 \vspace{2mm}
 
 \footnotesize
-\setstretch{1.8}
+\setstretch{2}
 \begin{tabular}{ll}
 Forschungsaufgabe                           & Datenwissenschaftliche Verfahren                        \\\hline
 Beschwerden und Veränderung erfassen?       & Psychometrie, Reliabilität, Validität, Faktoranalyse    \\
 Welche Behandlung wirkt besser?             & RCTs, Varianz- und Regressionsanalyse                   \\
 Veränderungen über die Zeit beschreiben?    & Längsschnittanalysen und Mixed Models                   \\
 Wodurch und für wen wirkt eine Behandlung?  & Mediations- und Moderationsanalysen                     \\
-Ergebnisse vieler Studien zusammenführen?   & Effektgrößen und Random-Effects-Metaanalyse             \\
 Individuelle Verläufe vorhersagen?          & Prädiktive Modellierung                                 \\
+Ergebnisse vieler Studien zusammenführen?   & Effektgrößen und Random-Effects-Metaanalyse             \\
 \end{tabular}
 
 \flushright
 \vspace{2mm}
 \footnotesize
-@baldwin2021, S. 20--42; @tutino2024; @lopeznicolas2022
+@baldwin2021, @tutino2024, @lopeznicolas2022
 
 # Datenwissenschaft
 Psychotherapieforschung als Datenwissenschaft von unmittelbarem praktischen Interesse
@@ -417,15 +383,18 @@ Psychologische Merkmale messen
 \\
 Effekte und Unsicherheit schätzen 
 & Wahrscheinlichkeitstheorie, Inferenz
-& Multivariate und Linear Mixed Models
+& Multivariate/Linear Mixed Models
 \\
 Veränderungen modellieren 
 & Allgemeines lineares Modell
-& Mehrebenen- und Längsschnittanalysen \\
-Evidenz bündeln und vorhersagen 
+& Mehrebenen/Längsschnittanalysen \\
+Individualisierte Vorhersagen
 & Statistische Grundlagen 
-& Metaanalyse, Prädiktive Modellierung
+& Prädiktive Modellierung
 \\
+Evidenzakkumulation
+& Statistische Grundlagen 
+& Metaanalyse
 \end{tabular}
 
 \small
@@ -452,7 +421,7 @@ Psychotherapieforschung als Datenwissenschaft von unmittelbarem praktischen Inte
 Wahrscheinlichkeitstheorie und frequentistische Inferenz  
 
 \vspace{1mm}
-\small
+\footnotesize
 \setstretch{.8}
 Wahrscheinlichkeiten und Zufallsvariablen
 
@@ -479,59 +448,33 @@ Hypothesentests, Fehlerwahrscheinlichkeiten und Power
 * Hypothesen prüfen und die Leistungsfähigkeit eines statistischen Tests beurteilen 
 
 \vspace{2mm}
+\small
 All diese Grundlagen tragen später Psychometrie, Linear (Mixed) Models und Metaanalyse
 
 
 # Datenwissenschaft
+\vspace{2mm}
 Psychotherapieforschung als Datenwissenschaft von unmittelbarem praktischen Interesse
 
 Beispiel: RCT vergleicht die Symptomwerte unter A und B nach zwölf Wochen.
 
+\vspace{2mm}
 ```{r, echo = FALSE, out.width = "65%", fig.align = "center"}
 knitr::include_graphics("0-Abbildungen/wtfi-0-psychotherapie-konfidenzintervall.pdf")
 ```
-
-```{=latex}
-\footnotesize
-Negative Werte sprechen auf dieser Skala für Behandlung A.
 \vspace{2mm}
 
-\footnotesize
-\setstretch{1.05}
-\setlength{\tabcolsep}{3pt}
-\renewcommand{\arraystretch}{1.3}
-\begin{tabular}{@{}>{\RaggedRight\arraybackslash}p{5.7cm}>{\RaggedRight\arraybackslash}p{4.9cm}@{}}
-Forschungsfrage                                     & Methode aus diesem Kurs                 \\\hline
-Wie groß ist der geschätzte Unterschied?            & Punktschätzung                          \\
-Wie präzise wurde er geschätzt?                     & Standardfehler und Konfidenzintervall   \\
-Wie prüfen wir die Hypothese ,,kein Unterschied''?  & Hypothesentest                          \\
-Warum könnte eine neue Studie anders ausfallen?     & Stichprobenverteilung                   \\
+\setstretch{1.6}
+\small
+\center
+\begin{tabular}{ll}
+Forschungsfrage                                     & Verfahren                             \\\hline
+Wie groß ist der geschätzte Unterschied?            & Punktschätzung                        \\
+Warum könnte eine neue Studie anders ausfallen?     & Stichprobenverteilung                 \\
+Wie präzise wurde der Effekt geschätzt?             & Standardfehler und Konfidenzintervall \\
+Wie prüfen wir die Hypothese eines Unterschieds?    & Hypothesentest                        \\
 \end{tabular}
-\par
-\vspace{2mm}
-```
 
-
-# Datenwissenschaft
-\vfill
-Klassische Partition der Statistik in der Psychologie
-
-* Deskriptivstatistik
-* Inferenzstatistik
-* Multivariate Statistik
-
-Moderne Partition der psychologischen Datenwissenschaft
-
-* Wahrscheinlichkeitstheoretische Grundlagen
-* Frequentistische Inferenz 
-* Bayesianische Inferenz
-* Allgemeines lineares Modell
-* Multivariate Verfahren
-* Hierarchische und metaanalytische Verfahren
-* Methoden der kausalen Inferenz
-* Programmierung
-
-\vfill  
 
 #
 \vfill
@@ -565,9 +508,9 @@ B1 Statistik I | Wahrscheinlichkeitstheorie und frequentistische Inferenz
 \footnotesize
 \renewcommand{\arraystretch}{1.1}
 \begin{tabular}{lll}
-Datum        & Einheit                       & Thema					                    \\\hline
-15.10.2026   & Einführung                    & (0) Einführung 				                \\
-22.10.2026   & Wahrscheinlichkeitstheorie    & (1) Wahrscheinlichkeitsräume 	            \\
+Datum        & Einheit                       & Thema					                              \\\hline
+15.10.2026   & Einführung                    & (0) Einführung 				                      \\
+22.10.2026   & Wahrscheinlichkeitstheorie    & (1) Wahrscheinlichkeitsräume 	              \\
 29.10.2026   & Wahrscheinlichkeitstheorie    & (2) Elementare Wahrscheinlichkeiten          \\
 05.11.2026   & Wahrscheinlichkeitstheorie    & (3) Zufallsvariablen                         \\
 12.11.2026   & Wahrscheinlichkeitstheorie    & (3) Zufallsvariablen                         \\
@@ -575,13 +518,13 @@ Datum        & Einheit                       & Thema					                    \\\
 26.11.2026   & Wahrscheinlichkeitstheorie    & (5) Erwartungswerte                          \\
 03.12.2026   & Wahrscheinlichkeitstheorie    & (6) Ungleichungen und Grenzwerte             \\
 10.12.2026   & Wahrscheinlichkeitstheorie    & (7) Transformationen der Normalverteilung    \\
-17.12.2026   & frequentistische Inferenz     & (8) Grundbegriffe frequentistischer Inferenz \\
-             & \textcolor{black!50}{Weihnachtspause}                                            \\
-07.01.2027   & frequentistische Inferenz     & (9) Punktschätzung                           \\
-14.01.2027   & frequentistische Inferenz     & (10) Konfidenzintervalle                     \\
-21.01.2027   & frequentistische Inferenz     & (11) Hypothesentests                         \\
-28.01.2027   & frequentistische Inferenz     & (11) Hypothesentests                         \\\hline
-Februar 2027 & Klausurtermin                 &                                             \\
+17.12.2026   & Frequentistische Inferenz     & (8) Grundbegriffe frequentistischer Inferenz \\
+             & \textcolor{black!50}{Weihnachtspause}                                        \\
+07.01.2027   & Frequentistische Inferenz     & (9) Punktschätzung                           \\
+14.01.2027   & Frequentistische Inferenz     & (10) Konfidenzintervalle                     \\
+21.01.2027   & Frequentistische Inferenz     & (11) Hypothesentests                         \\
+28.01.2027   & Frequentistische Inferenz     & (11) Hypothesentests                         \\\hline
+Februar 2027 & Klausurtermin                 &                                              \\
 Juli 2027    & Klausurwiederholungstermin    &
 \end{tabular}
 
@@ -804,6 +747,7 @@ Zur Arbeit mit den Selbstkontrollfragen und Klausurvorbereitung
 \normalsize
 Zur Frage der Anwendung
 
+\small
 * Wir geben durchgängig Anwendungsbeispiele aus der Psychotherapieforschung
 * "Anwendung" frequentistischer Inferenz heißt Programmierung
 * In Modul C1 lernen Sie die dafür nötigen Grundlagen
