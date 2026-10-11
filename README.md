@@ -5,7 +5,7 @@ Otto-von-Guericke-Universität Magdeburg. Die Veranstaltung B1 Statistik I
 vermittelt Wahrscheinlichkeitstheorie und frequentistische Inferenz für das
 Psychologiestudium.
 
-## Materialien lesen
+## Materialien
 
 Die Folien liegen als fertige PDFs vor. Zum Lesen ist keine Softwareinstallation
 außer einem PDF-Betrachter erforderlich.
