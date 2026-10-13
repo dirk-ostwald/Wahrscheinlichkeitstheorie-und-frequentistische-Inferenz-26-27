@@ -18,6 +18,7 @@ project:
 
 csl: https://www.zotero.org/styles/apa
 pdf-engine: xelatex
+link-citations: true
 filters:
   - _verweise.lua
   - quarto

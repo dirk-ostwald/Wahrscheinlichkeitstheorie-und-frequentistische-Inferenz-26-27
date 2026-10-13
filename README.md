@@ -13,6 +13,7 @@ außer einem PDF-Betrachter erforderlich.
 | Thema | Folien | Quellen und Abbildungen |
 | --- | --- | --- |
 | 0 · Einführung | [PDF](0-Einführung/0-Einführung.pdf) | [Ordner](0-Einführung/) |
+| 1 · Wahrscheinlichkeitsräume | [PDF](1-Wahrscheinlichkeitsräume/1-Wahrscheinlichkeitsräume.pdf) | [Ordner](1-Wahrscheinlichkeitsräume/) |
 
 Das begleitende **[Vorlesungsskript als PDF](Skript/_book/Skript-Wahrscheinlichkeitstheorie-und-Frequentistische-Inferenz.pdf)**
 enthält derzeit die Kapitel 300–311 des Lehrbuchs *Probabilistische Datenwissenschaft

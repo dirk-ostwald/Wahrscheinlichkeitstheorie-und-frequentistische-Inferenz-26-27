@@ -1,0 +1,1525 @@
+---
+fontsize: 8pt
+format:
+    beamer:
+        include-in-header: "1-Header.tex"
+        colorlinks: true
+        urlcolor: darkblue
+        linkcolor: darkblue
+        citecolor: darkblue
+bibliography: 1-Referenzen.bib
+link-citations: true
+---
+
+#  {.plain}
+\center
+\vfill
+```{r, echo = FALSE, out.width = "20%"}
+knitr::include_graphics("1-Abbildungen/wtfi-1-otto.png")
+```
+\vspace{3mm}
+
+\Large
+\resizebox{\linewidth}{!}{Wahrscheinlichkeitstheorie und frequentistische Inferenz}
+\vspace{1mm}
+
+\large
+BSc Psychologie WiSe 2026/27
+
+\vspace{5mm}
+\normalsize
+Prof. Dr. Dirk Ostwald
+\vfill
+
+# Vorbemerkungen zur Wahrscheinlichkeitstheorie
+\vfill
+\setstretch{1.8}
+\large
+Erste Begrifflichkeiten
+\normalsize
+
+Wahrscheinlichkeitstheorie
+
+* Ein mathematisches Modell zur Beschreibung von Zufallsvorgängen
+* Ein mathematisches Modell zum quantitativen Schlussfolgern über Zufallsvorgänge
+
+Zufallsvorgang
+
+* Ein Phänomen der Wirklichkeit, das nicht mit absoluter Sicherheit vorhersagbar
+ist
+* Ein Phänomen der Wirklichkeit, das für Menschen mit Unsicherheit behaftet ist
+
+Grundannahmen der Wahrscheinlichkeitstheorie
+
+* Zufallsvorgänge können durch *Wahrscheinlichkeitsräume* modelliert werden
+* Mathematik kann zur Vorhersage zufälliger Ereignisse genutzt werden
+
+# Vorbemerkungen zur Wahrscheinlichkeitstheorie
+
+\vfill
+```{r, echo = FALSE, out.width = "90%", fig.align = "center"}
+knitr::include_graphics("1-Abbildungen/wtfi-1-wahrscheinlichkeitstheorie.pdf")
+```
+\vfill
+
+
+# Vorbemerkungen zur Wahrscheinlichkeitstheorie
+
+\vfill
+```{r, echo = FALSE, out.width = "90%", fig.align = "center"}
+knitr::include_graphics("1-Abbildungen/wtfi-1-wahrscheinlichkeitstheorie-beispiel.pdf")
+```
+\vfill
+
+
+# Vorbemerkungen zur Wahrscheinlichkeitstheorie
+
+Zur Interpretation des Wahrscheinlichkeitsbegriffs
+
+\footnotesize
+In der Wahrscheinlichkeitstheorie sind Wahrscheinlichkeiten anhand ihrer
+mathematischen Eigenschaften definiert. Die Interpretation des mathematischen
+Wahrscheinlichkeitsbegriffs ist dabei nicht eindeutig.
+
+Es gibt mindestens zwei unterschiedliche Interpretationen:
+
+Nach der *Frequentistischen Interpretation* ist die Wahrscheinlichkeit eines
+Ereignisses  die idealisierte relative Häufigkeit, mit der ein Ereignis unter
+den gleichen äußeren Bedingungen einzutreten pflegt. Zum Beispiel ist die
+Frequentistische Interpretation der Aussage "Mit einer Wahrscheinlichkeit von
+1/6 zeigt der Würfel im nächsten Wurf eine Zwei" die folgende: "Wenn man einen
+Würfel
+unendlich oft werfen würde und dabei die relative Häufigkeit des Ereignisses,
+dass
+der Würfel eine Zwei zeigt, bestimmen würde, dann wäre diese relative Häufigkeit
+gleich 1/6".
+
+Nach der *Bayesianischen Interpretation* ist die Wahrscheinlichkeit eines
+Ereignisses der Grad der Sicherheit, den eine Beobachter:in aufgrund ihrer
+subjektiven Einschätzung der Lage dem Eintreten des Ereignisses zumisst.
+Zum Beispiel ist die Bayesianische Interpretation der Aussage "Mit einer
+Wahrscheinlichkeit von 1/6 zeigt der Würfel im nächsten Wurf eine Zwei" die
+folgende: "Basierend auf meiner eigenen und der tradierten Erfahrung mit dem
+Werfen eines Würfels bin ich mir zu 16.6% sicher, dass der Würfel beim nächsten
+Wurf eine Zwei zeigt."
+
+In Modellen von tatsächlich zumindest unter ähnlichen Umständen wiederholbaren
+Zufallsvorgängen wie dem Werfen eines Würfels ist der Unterschied zwischen
+Frequentistischer und Bayesianischer Interpretation oft eher subtil. Es gibt
+aber viele Zufallsvorgänge, die mit Wahrscheinlichkeiten beschrieben werden
+können,
+bei denen aufgrund ihrer Einmaligkeit eine Frequentistische Interpretation nicht
+angemessen ist. Zum Beispiel machen Aussagen der Form "Die Wahrscheinlichkeit
+dafür,
+dass die weltweiten Hitzerekorde im Jahr 2023 nicht auf den Klimawandel
+zurückzuführen
+sind, ist kleiner als 0.01" nur unter der Bayesianischen Interpretation Sinn, da
+es
+sich bei den Temperaturaufzeichnungen des Jahres 2023 nicht um ein
+wiederholbares
+Phänomen handelt.
+
+# Vorbemerkungen zur Wahrscheinlichkeitstheorie
+
+Zur Interpretation des Wahrscheinlichkeitsbegriffs
+
+\vspace{2mm}
+
+```{=latex}
+\begingroup
+\normalfont\setstretch{1}\fontsize{8}{9.7}\selectfont
+\setlength{\tabcolsep}{2.5pt}
+\renewcommand{\arraystretch}{1.02}
+\setlength{\arrayrulewidth}{0.3pt}
+\begin{adjustbox}{width=.84\linewidth,center=\linewidth}
+\begin{minipage}{15cm}
+\ifdefined\interpretationwidth\else\newlength{\interpretationwidth}\fi
+\setlength{\interpretationwidth}{\dimexpr\linewidth-10\tabcolsep\relax}
+\begin{tabular}{>{\RaggedRight\arraybackslash}p{.055\interpretationwidth}>{\RaggedRight\arraybackslash}p{.274\interpretationwidth}>{\RaggedRight\arraybackslash}p{.203\interpretationwidth}>{\RaggedRight\arraybackslash}p{.265\interpretationwidth}>{\RaggedRight\arraybackslash}p{.203\interpretationwidth}}
+```
+
+
+```{=latex}
+\multicolumn{5}{l}{\fontsize{12}{14}\selectfont Realistische Interpretationen} \\[1.5mm]
+& {\fontsize{10}{12}\selectfont Intuition} & {\fontsize{10}{12}\selectfont Anwendungsfeld} & {\fontsize{10}{12}\selectfont Probleme} & {\fontsize{10}{12}\selectfont Referenzen} \\[1.5mm]
+\hline
+\noalign{\vskip 1.8mm}
+```
+
+
+```{=latex}
+\multicolumn{5}{l}{\fontsize{9}{11}\selectfont Endlich Frequentistisch} \\[1mm]
+&
+```
+
+
+Die Wahrscheinlichkeit einer Münze, Kopf zu zeigen, entspricht der relativen
+Häufigkeit der Münze, bei endlich vielen Beobachtungen Kopf zu zeigen.
+
+```{=latex}
+&
+```
+
+
+–
+
+```{=latex}
+&
+```
+
+
+Bei einmaligem Münzwurf ergibt sich keine sinnvolle Prädiktion,
+Wahrscheinlichkeiten ändern sich je nach Beobachtungsreihe, sind also nicht
+eindeutig definiert.
+
+```{=latex}
+&
+```
+
+
+@venn1876
+
+```{=latex}
+\\
+\noalign{\vskip 1.8mm}
+\hline
+\noalign{\vskip 1.8mm}
+```
+
+
+```{=latex}
+\multicolumn{5}{l}{\fontsize{9}{11}\selectfont Unendlich Frequentistisch} \\[1mm]
+&
+```
+
+
+Die Wahrscheinlichkeit einer Münze, Kopf zu zeigen, entspricht der relativen
+Häufigkeit der Münze, bei unendlich vielen Beobachtungen Kopf zu zeigen.
+
+```{=latex}
+&
+```
+
+
+Frequentistische Inferenz
+
+```{=latex}
+&
+```
+
+
+Unendliche Beobachtungsreihen sind empirisch nicht verfügbar. Aus endlich vielen
+Beobachtungen lässt sich die als Grenzwert interpretierte Wahrscheinlichkeit nur
+schätzen.
+
+```{=latex}
+&
+```
+
+
+@reichenbach1949
+
+@vonmises1951
+
+```{=latex}
+\\
+\noalign{\vskip 1.8mm}
+\hline
+\noalign{\vskip 1.8mm}
+```
+
+
+```{=latex}
+\multicolumn{5}{l}{\fontsize{9}{11}\selectfont Propensitär} \\[1mm]
+&
+```
+
+
+Die Wahrscheinlichkeit einer Münze, Kopf zu zeigen, entspricht ihrer
+inhärenten physischen Neigung im Schwerefeld der Erde Kopf zeigend zu landen.
+
+```{=latex}
+&
+```
+
+
+Kausale Inferenz
+
+```{=latex}
+&
+```
+
+
+Zusammenhang zu relativen Häufigkeiten oder physikalischen Theorien nicht
+unmittelbar klar.
+
+```{=latex}
+&
+```
+
+
+@peirce1957
+
+@popper1959
+
+@gillies2000
+
+```{=latex}
+\\[1.8mm]
+```
+
+
+```{=latex}
+\end{tabular}
+\end{minipage}
+\end{adjustbox}
+\endgroup
+```
+
+\vfill
+\footnotesize
+\flushright
+Wahrscheinlichkeit als Eigenschaft der Welt, unabhängig von Überzeugungen
+(vgl. @hajek2019).
+
+# Vorbemerkungen zur Wahrscheinlichkeitstheorie
+
+Zur Interpretation des Wahrscheinlichkeitsbegriffs
+
+\vspace{2mm}
+
+```{=latex}
+\begingroup
+\normalfont\setstretch{1}\fontsize{8}{9.7}\selectfont
+\setlength{\tabcolsep}{2.5pt}
+\renewcommand{\arraystretch}{1.02}
+\setlength{\arrayrulewidth}{0.3pt}
+\begin{adjustbox}{width=.84\linewidth,center=\linewidth}
+\begin{minipage}{15cm}
+\ifdefined\interpretationwidth\else\newlength{\interpretationwidth}\fi
+\setlength{\interpretationwidth}{\dimexpr\linewidth-10\tabcolsep\relax}
+\begin{tabular}{>{\RaggedRight\arraybackslash}p{.055\interpretationwidth}>{\RaggedRight\arraybackslash}p{.274\interpretationwidth}>{\RaggedRight\arraybackslash}p{.203\interpretationwidth}>{\RaggedRight\arraybackslash}p{.265\interpretationwidth}>{\RaggedRight\arraybackslash}p{.203\interpretationwidth}}
+```
+
+
+```{=latex}
+\multicolumn{5}{l}{\fontsize{12}{14}\selectfont Evidenzielle Interpretationen} \\[1.5mm]
+& {\fontsize{10}{12}\selectfont Intuition} & {\fontsize{10}{12}\selectfont Anwendungsfeld} & {\fontsize{10}{12}\selectfont Probleme} & {\fontsize{10}{12}\selectfont Referenzen} \\[1.5mm]
+\hline
+\noalign{\vskip 1.8mm}
+```
+
+
+```{=latex}
+\multicolumn{5}{l}{\fontsize{9}{11}\selectfont Klassisch} \\[1mm]
+&
+```
+
+
+In Abwesenheit weiterer Information sind die Wahrscheinlichkeiten einer Münze,
+Kopf oder Zahl zu zeigen, gleich.
+
+```{=latex}
+&
+```
+
+
+Glücksspiele, Lehrbücher
+
+```{=latex}
+&
+```
+
+
+Beschränkung auf endliche Ergebnisräume
+
+```{=latex}
+&
+```
+
+
+@laplace1814
+
+@jaynes1968
+
+```{=latex}
+\\
+\noalign{\vskip 1.8mm}
+\hline
+\noalign{\vskip 1.8mm}
+```
+
+
+```{=latex}
+\multicolumn{5}{l}{\fontsize{9}{11}\selectfont Subjektiv} \\[1mm]
+&
+```
+
+
+Die Wahrscheinlichkeit einer Münze, Kopf zu zeigen, entspricht dem subjektiven
+Grad der Unsicherheit, dem ein Beobachter dem Ausgang eines Münzwurfs zuweist.
+
+```{=latex}
+&
+```
+
+
+Bayesianische Inferenz
+
+```{=latex}
+&
+```
+
+
+Kohärenz allein legt die Wahrscheinlichkeiten nicht eindeutig fest. Verschiedene
+Personen können unterschiedliche kohärente Einschätzungen haben.
+
+```{=latex}
+&
+```
+
+
+@definetti1975
+
+```{=latex}
+\\
+\noalign{\vskip 1.8mm}
+\hline
+\noalign{\vskip 1.8mm}
+```
+
+
+```{=latex}
+\multicolumn{5}{l}{\fontsize{9}{11}\selectfont Epistemisch} \\[1mm]
+&
+```
+
+
+Die Wahrscheinlichkeit einer Münze, Kopf zu zeigen, entspricht dem subjektiven
+Grad der Unsicherheit, dem ein rationaler Beobachter dem Ausgang eines
+Münzwurfs zuweist.
+
+```{=latex}
+&
+```
+
+
+Bayesianische Inferenz
+
+```{=latex}
+&
+```
+
+
+Zusammenhang zu relativen Häufigkeiten oder physikalischen Theorien nicht
+unmittelbar klar
+
+```{=latex}
+&
+```
+
+
+@ramsey1926
+
+@jeffreys1939
+
+@savage1954
+
+```{=latex}
+\\
+```
+
+
+```{=latex}
+\end{tabular}
+\end{minipage}
+\end{adjustbox}
+\endgroup
+```
+
+\vfill
+\footnotesize
+\flushright
+Wahrscheinlichkeit als Maß für evidenzielle Unterstützung oder Überzeugung
+(vgl. @hajek2019).
+
+#  {.plain}
+
+```{=latex}
+\vfill
+\begin{center}
+\huge
+(1) Wahrscheinlichkeitsräume
+\end{center}
+\vfill
+```
+
+#
+\setstretch{2.5}
+\large
+\vfill
+Definition
+
+Erste Eigenschaften
+
+Wahrscheinlichkeitsfunktionen
+
+Beispiele
+
+Selbstkontrollfragen
+\vfill
+
+#
+\setstretch{2.5}
+\large
+\vfill
+**Definition**
+
+Erste Eigenschaften
+
+Wahrscheinlichkeitsfunktionen
+
+Beispiele
+
+Selbstkontrollfragen
+\vfill
+
+# Definition
+\small
+\begin{definition}[Wahrscheinlichkeitsraum]
+\justifying
+Ein \textit{Wahrscheinlichkeitsraum} ist ein Triple $(\Omega, \mathcal{A},
+\mathbb{P})$, wobei
+\begin{itemize}
+\item $\Omega$ eine beliebige nichtleere Menge von \textit{Ergebnissen} $\omega$
+ist und \textit{Ergebnismenge} heißt,
+\item $\mathcal{A}$ eine \textit{$\sigma$-Algebra auf $\Omega$} ist und
+\textit{Ereignissystem} heißt,
+\item $\mathbb{P}$ eine Abbildung der Form $\mathbb{P}:\mathcal{A} \to [0,1]$
+mit den Eigenschaften
+\begin{itemize}
+\begin{small}
+\item[o] \textit{Nicht-Negativität} $\mathbb{P}(A) \ge 0$ für alle $A \in
+\mathcal{A}$,
+\item[o] \textit{Normiertheit} $\mathbb{P}(\Omega) = 1$ und
+\item[o] \textit{ $\sigma$-Additivität} $\mathbb{P}(\cup_{i=1}^\infty A_i) =
+\sum\limits_{i=1}^\infty \mathbb{P}(A_i)$
+          für paarweise disjunkte $A_i \in \mathcal{A}$
+\end{small}
+\end{itemize}
+ist und \textit{Wahrscheinlichkeitsmaß} heißt.
+\end{itemize}
+Das Tuple $(\Omega, \mathcal{A})$ aus Ergebnismenge und Ereignissystem wird
+als \textit{Messraum} bezeichnet.
+\end{definition}
+
+Bemerkung
+
+* Die Definition benutzt den Begriff der \textit{$\sigma$-Algebra}.
+
+# Definition
+\small
+\begin{definition}[$\sigma$-Algebra]
+\justifying
+$\Omega$ sei eine Menge und $\mathcal{A}$ sei eine Menge von Teilmengen von
+$\Omega$.
+$\mathcal{A}$ heißt \textit{$\sigma$-Algebra auf $\Omega$}, wenn
+\begin{itemize}
+\begin{small}
+\item $\Omega \in \mathcal{A}$ ist,
+\item $\mathcal{A}$ abgeschlossen unter der Bildung von Komplementärmengen ist,
+    also wenn für alle $A\in \mathcal{A}$ gilt, dass auch $A^c := \Omega
+\backslash A \in \mathcal{A}$ ist,
+\item $\mathcal{A}$ abgeschlossen unter abzählbarer Vereinigung ist, also wenn
+aus  
+    $A_1,A_2,... \in \mathcal{A}$ folgt, dass auch $\cup_{i=1}^\infty A_i \in
+\mathcal{A}$ ist.  
+\end{small}
+\end{itemize}
+\end{definition}
+
+\footnotesize
+Bemerkungen
+
+* Eine $\sigma$-Algebra ist eine Menge von Mengen, Mengen von Mengen heißen auch
+*Mengensysteme*.
+* Eine als bekannt vorausgesetzte andere Menge von Mengen ist die *Potenzmenge*.
+* Aus der Abgeschlossenheit unter der Bildung von Komplementärmengen und
+abzählbarer Vereinigung
+folgt mithilfe der *De Morganschen Regeln* auch die Abgeschlossenheit unter der
+Bildung abzählbarer
+Durchschnitte, insbesondere gilt also, dass aus  $A_1,A_2,... \in \mathcal{A}$
+folgt, dass auch
+$\cap_{i=1}^\infty A_i \in \mathcal{A}$ ist.
+
+
+# Definition
+\center
+\vspace{3mm}
+```{r, echo = FALSE, out.width = "100%"}
+knitr::include_graphics("1-Abbildungen/wtfi-1-kolmogorov.pdf")
+```
+
+
+\footnotesize
+\flushleft
+\setstretch{1}
+
+"Zweck des vorliegenden Heftes ist eine axiomatische Begründung der
+Wahrscheinlichkeitsrechnung.
+Der leitende Gedanke des Verfassers war dabei, die Grundbegriffe der
+Wahrscheinlichkeitsrechnung, welche noch unlängst für ganz eigenartig galten,
+natürlicherweise in die Reihe der allgemeinen Begriffsbildungen der modernen
+Mathematik
+[Mengen, Abbildungen] einzuordnen."
+
+"Wir haben die eigentlichen Objekte unserer weiteren Betrachtungen - die
+zufälligen
+Ereignisse - als Mengen definiert."
+
+\flushright
+@kolmogoroff1933 [*1903 \textdagger 1987]
+
+# Definition
+\setstretch{1.6}
+Ergebnismenge $\Omega$
+\small
+
+* Wir betrachten zunächst *endliche Wahrscheinlichkeitsräume* mit
+$|\Omega|<\infty$.
+* $\Omega$ habe also nur endlich viele ("diskrete") Elemente.
+* Wir wählen $\mathcal{A}=\mathcal{P}(\Omega)$. Damit gehört jede Einzelmenge
+$\{\omega\}$ zum Ereignissystem.
+* Zum Modellieren des Werfens eines Würfels definiert man z.B. $\Omega :=
+\{1,2,3,4,5,6\}$.
+
+\vspace{5mm}
+\normalsize
+Die stillschweigende Mechanik des Wahrscheinlichkeitsraummodells
+\small
+
+* Wir stellen uns sequentielle *Durchgänge* eines *Zufallsvorgangs* vor.
+* In jedem Durchgang wird genau ein $\omega$ aus $\Omega$ mit Wahrscheinlichkeit
+$\mathbb{P}(\{\omega\})$ *realisiert*.
+* $\mathbb{P}(\{\omega\})$ bestimmt, mit welcher Wahrscheinlichkeit $\omega$ in
+einem Durchgang aus $\Omega$ realisiert wird.
+* Beim Modell des Werfens eines fairen Würfels gilt etwa $\mathbb{P}(\{\omega\})
+= 1/6$ für alle $\omega \in \Omega$.
+* Im 1. Durchgang wird z.B. "$4$" realisiert, im 2. Durchgang "$1$", im 3.
+Durchgang "$5$", usw.
+
+# Definition
+Ereignisse $A \in \mathcal{A}$
+\small
+\setstretch{1.7}
+
+* *Ereignisse* stellt man sich am besten als Zusammenfassung (ein oder) mehrerer
+Ergebnisse vor.
+* Beim Werfen eines Würfels sind mögliche Ereignisse zum Beispiel
+
+\begin{center}
+\begin{tabular}{ll}
+Es fällt eine gerade Augenzahl,          & das heißt $\omega \in \{2,4,6\}$      \\
+Es fällt eine Augenzahl größer als Zwei, & das heißt $\omega \in \{3,4,5,6\}$    \\
+Es fällt eine Eins oder eine Fünf,       & das heißt $\omega \in \{1,5\}$
+\end{tabular}
+\end{center}
+
+* Bei $\mathcal{A}=\mathcal{P}(\Omega)$ sind auch die Einzelmengen
+$\{\omega\}$ Ereignisse, zum Beispiel
+
+\begin{center}
+\begin{tabular}{ll}
+Es fällt eine Eins,                      & das heißt $\omega \in \{1\}$          \\
+Es fällt eine Sechs,                     & das heißt $\omega \in \{6\}$          \\
+\end{tabular}
+\end{center}
+
+* Betrachtet man $\omega \in \Omega$ als Ereignis, so nennt man es
+*Elementarereignis* und schreibt $\{\omega\}$.
+
+\footnotesize
+"Wir haben die eigentlichen Objekte unserer weiteren Betrachtungen - die
+zufälligen
+Ereignisse - als Mengen definiert."
+
+\flushright
+@kolmogoroff1933 [*1903 \textdagger 1987]
+
+# Definition
+Ereignissystem $\mathcal{A}$
+\small
+\setstretch{1.1}
+
+\begin{itemize}
+\justifying
+\itemsep1mm
+\item Sinn des Ereignissystems ist es, alle Ereignisse, die sich basierend auf
+einer
+gegebenen Ergebnismenge bei Auswahl eines $\omega \in \Omega$ ergeben können,
+mathematisch zu repräsentieren.
+\item Das Ereignissystem $\mathcal{A}$ ist die vollständige Menge aller
+möglichen Ereignisse bei gegebenem $\Omega$.
+\item Die Forderung, dass $\mathcal{A}$ die $\sigma$-Algebra Kriterien erfüllt,
+begründet sich wie folgt
+\begin{itemize}
+
+\begin{footnotesize}
+\setstretch{1.1}
+\item[$\circ$] \justifying Es soll sichergestellt sein, dass $\omega \in \Omega$
+für
+beliebiges $\omega$, dass also irgendein Ergebnis realisiert wird, eines der
+möglichen Ereignisse ist.
+Dies entspricht $\Omega \in \mathcal{A}$.
+Zu jedem Ereignis $A$ soll auch das Gegenereignis "$A$ tritt nicht ein" zum
+Ereignissystem gehören. Daher fordern wir, dass mit $A\in\mathcal{A}$ auch
+$A^c=\Omega\setminus A\in\mathcal{A}$ gilt. Dies
+impliziert auch, dass $\emptyset = \Omega \setminus \Omega \in \mathcal{A}$.
+Ein Ereignis ist also, dass kein Elementarereignis eintritt, allerdings passiert
+dies nur mit Wahrscheinlichkeit Null, $\mathbb{P}(\emptyset) = 0$. Es tritt also
+sicher immer ein Elementarereignis ein. Die Kombination von Ereignissen soll
+auch
+immer ein Ereignis sein, z.B. ``Es fällt eine gerade Zahl'' und/oder ``Es fällt
+eine Zahl größer 2''. Dies entspricht, dass aus $A_1,A_2,... \in \mathcal{A} $
+folgen soll, dass auch $\cup_{i=1}^\infty A_i \in \mathcal{A}$.
+\end{footnotesize}
+
+\end{itemize}
+\item Für endliches $\Omega$ und für $\Omega := \mathbb{R}$ sind passende
+Ereignissysteme schon lange bekannt.
+\center
+\begin{tabular}{rl}
+$\Omega$ ist endlich        & $\Rightarrow$ Man wählt für $\mathcal{A}$ die Potenzmenge von $\Omega$ \\
+$\Omega$ ist $\mathbb{R}$   & $\Rightarrow$ Man wählt für $\mathcal{A}$ die \textit{Borelsche $\sigma$-Algebra $\mathcal{B}(\mathbb{R})$} \\
+$\Omega$ ist $\mathbb{R}^n$ & $\Rightarrow$ Man wählt für $\mathcal{A}$ die \textit{Borelsche $\sigma$-Algebra $\mathcal{B}(\mathbb{R}^n)$}
+\end{tabular}
+\end{itemize}
+
+# Definition
+\small
+\begin{theorem}[Ereignissystem bei endlicher Ergebnismenge]
+\justifying
+\normalfont
+$\Omega := \{\omega_1,\omega_2,...,\omega_n\}$ mit $n \in \mathbb{N}$  sei eine
+endliche
+Menge. Dann ist die Potenzmenge $\mathcal{P}(\Omega)$ von $\Omega$ eine
+$\sigma$-Algebra auf $\Omega$ und damit ein geeignetes Ereignissystem im
+Wahrscheinlichkeitsraummodell.
+\end{theorem}
+
+\footnotesize
+\underline{Beweis}
+\justifying
+
+Die Potenzmenge von $\Omega$ ist die Menge aller Teilmengen von $\Omega$. Wir
+überprüfen die $\sigma$-Algebra Eigenschaften. Zunächst gilt, dass $\Omega$
+selbst eine der Teilmengen von $\Omega$ ist, also ist die erste $\sigma$-Algebra
+Eigenschaft erfüllt. Sei nun $A$ eine Teilmenge von $\Omega$. Dann ist auch $A^c
+= \Omega \setminus A$ eine Teilmenge von $\Omega$ und somit ist auch die zweite
+$\sigma$-Algebra Eigenschaft erfüllt. Schließlich betrachten wir die Vereinigung
+von Teilmengen $A_1, A_2,... \subseteq \Omega$. Dann ist $\cup_{i=1}^\infty A_i$
+die Menge der $\omega \in \Omega$ für die gilt, dass $\omega \in A_1$ oder
+$\omega \in A_2$ oder ..., wobei *oder* wie immer nicht-exklusiv als *und/oder*
+zu verstehen ist. Für jedes $\omega \in \cup_{i=1}^\infty A_i$ gilt also, dass
+$\omega$ zumindest Element einer der betrachteten Teilmengen von $\Omega$ ist.
+Damit bilden die $\omega \in \cup_{i=1}^\infty A_i$ dann aber selbst eine
+Teilmenge von $\Omega$ und damit ist auch die dritte $\sigma$-Algebra
+Eigenschaft erfüllt.
+
+$\hfill\Box$
+\vfill
+
+# Definition
+\setstretch{2}
+Wahrscheinlichkeitsmaß $\mathbb{P}$
+
+\small
+* \justifying $(\Omega,\mathcal{A})$ ist die *strukturelle Basis* eines
+Wahrscheinlichkeitsraummodells.
+* $\mathbb{P}$ repräsentiert die probabilistischen Charakteristika eines
+Wahrscheinlichkeitsraummodells.
+* $\mathbb{P}$ entspricht also der *funktionellen Basis* eines
+Wahrscheinlichkeitsraummodells.
+* Es gilt $\mathbb{P}: \mathcal{A} \to [0,1]$, $\mathbb{P}$ ordnet also (nur)
+Mengen Wahrscheinlichkeiten zu.
+* Bei der Wahl $\mathcal{A}=\mathcal{P}(\Omega)$ für endliches $\Omega$
+gehört jede Einzelmenge $\{\omega\}$ zum Ereignissystem. 
+* Daher ordnet $\mathbb{P}$ dann auch jedem Elementarereignis eine Wahrscheinlichkeit zu.
+* Wahrscheinlichkeiten sind Zahlen in $[0,1]$, nicht Prozente (20\%) oder
+Verhältnisse (50:50).
+* $\mathbb{P}(\Omega) = 1$ entspricht der Tatsache, dass in jedem Durchgang
+sicher $\omega \in \Omega$ gilt.
+* In jedem Durchgang eines Zufallsvorgangs tritt also zumindest ein
+Elementarereignis ein.
+
+
+# Definition
+$\sigma$-Additivität des Wahrscheinlichkeitsmaßes $\mathbb{P}$
+\small
+
+* Die $\sigma$-Additivität des Wahrscheinlichkeitsmaßes $\mathbb{P}$,
+\begin{equation}
+\mathbb{P}\left(\cup_{i = 1}^\infty A_i \right) = \sum_{i=1}^\infty \mathbb{P}(A_i) \mbox{ für paarweise disjunkte } A_i \in \mathcal{A}
+\end{equation}
+ist die zentrale Forderung zum Rechnen mit Wahrscheinlichkeiten im
+Wahrscheinlichkeitsraummodell.
+In Worten besagt sie, dass die Wahrscheinlichkeit der abzählbaren Vereinigung
+disjunkter Ereignisse $A_1,A_2,...$ gleich der Summe der Wahrscheinlichkeiten
+der
+einzelnen Ereignisse $A_1,A_2,...$ sein soll.
+
+* Da es sich hierbei nur um *disjunkte* Ereignisse, also $A_i \cap A_j  =
+\emptyset$
+für $i \neq j$ handeln soll, impliziert die *oder* Aussage der Vereinigung
+$\omega \in A_1 \cup A_2 \cup ...$ hier insbesondere, dass $\omega \in A_i$ für
+*genau ein*
+$i \in \mathbb{N}$. In einem Durchgang des Zufallsvorgangs kann also immer
+nur genau eines der Ereignisse $A_1, A_2, ...$ Ereignisse eintreten. Die
+Wahrscheinlichkeit
+dafür, dass das Ereignis $A_1$ oder (im exklusiven Sinn) das Ereignis $A_2$ ...
+eintritt, soll also durch $\mathbb{P}(A_1) + \mathbb{P}(A_2) + ...$ gegeben
+sein.
+
+* Der Vorteil der Annahme der $\sigma$-Additivität für abzählbare Vereinigungen
+$\cup_{i=1}^\infty A_i$ gegenüber endlichen Vereinigungen $\cup_{i=1}^n A_i$
+ist,
+dass wie wir unten zeigen, die $\sigma$-Additivität für endliche Vereinigungen
+aus der $\sigma$-Additivität für abzählbare Vereinigungen folgt, aber nicht
+andersherum.
+
+# Definition
+$\sigma$-Additivität des Wahrscheinlichkeitsmaßes $\mathbb{P}$
+\small
+
+* Die $\sigma$-Additivität von $\mathbb{P}$ erlaubt es, aus bereits bekannten
+Ereigniswahrscheinlichkeiten die Wahrscheinlichkeiten anderer Ereignisse zu
+berechnen.
+Die $\sigma$-Additivität ist also die Grundlage für das Rechnen mit
+Wahrscheinlichkeiten,
+das heißt für die \textit{Wahrscheinlichkeitsrechnung}.
+
+* Man kann basierend auf einer Definition von $\Omega, \mathcal{A}$ und
+$\mathbb{P}$ also
+Wahrscheinlichkeiten für alle möglichen Ereignisse eines
+Wahrscheinlichkeitsraummodells berechnen.
+Ob diese Wahrscheinlichkeiten aber tatsächlich etwas mit den realen Ereignissen
+in einem Zufallsvorgang zu tun haben, kommt darauf an, ob die Modellierung
+einigermaßen gelungen ist oder nicht.
+
+* Die hergeleiteten Wahrscheinlichkeiten werden zumindest nach den Regeln der
+Vernunft,
+also der Logik und der Mathematik, d.h. rational bestimmt. Insgesamt erlaubt das
+Wahrscheinlichkeitsmodell also das modellbasierte schlussfolgernde Denken über
+mit
+Unsicherheit behaftete Phänomene ("reasoning with uncertainty")
+
+#
+\setstretch{2.5}
+\large
+\vfill
+Definition
+
+**Erste Eigenschaften**
+
+Wahrscheinlichkeitsfunktionen
+
+Beispiele
+
+Selbstkontrollfragen
+\vfill
+
+
+# Erste Eigenschaften
+\setstretch{1.2}
+\small
+\begin{theorem}[Wahrscheinlichkeit des unmöglichen Ereignisses]
+\justifying
+\normalfont
+$(\Omega, \mathcal{A}, \mathbb{P})$ sei ein Wahrscheinlichkeitsraum. Dann gilt
+\begin{equation}
+\mathbb{P}(\emptyset) = 0.
+\end{equation}
+\end{theorem}
+
+\footnotesize
+\underline{Beweis}
+\justifying
+
+Für $i = 1,2,...$ sei $A_i := \emptyset$. Dann ist $A_1,A_2,...$ eine Folge
+disjunkter Ereignisse, weil gilt, dass $\emptyset \cap \emptyset = \emptyset$
+und es ist $\cup_{i=1}^\infty A_i = \emptyset$. Mit der $\sigma$-Additivität von
+$\mathbb{P}$ folgt dann, dass
+\begin{equation}
+\mathbb{P}(\emptyset)
+= \mathbb{P}\left(\cup_{i=1}^\infty A_i\right)
+= \sum_{i=1}^\infty \mathbb{P}\left(A_i\right)
+= \sum_{i=1}^\infty \mathbb{P}\left(\emptyset\right).
+\end{equation}
+Das unendliche Aufaddieren der Zahl $\mathbb{P}(\emptyset) \in [0,1]$ soll also
+wieder $\mathbb{P}(\emptyset)$ ergeben. Dies ist aber nur möglich, wenn
+$\mathbb{P}(\emptyset) = 0$.
+
+$\hfill\Box$
+
+
+# Erste Eigenschaften
+\setstretch{1.2}
+\small
+\begin{theorem}[$\sigma$-Additivität bei endlichen Folgen disjunkter Ereignisse]
+\normalfont
+\justifying
+$(\Omega, \mathcal{A}, \mathbb{P})$ sei ein Wahrscheinlichkeitsraum und
+$A_1,...,A_n$
+sei eine endliche Folge paarweise disjunkter Ereignisse. Dann gilt
+\begin{equation}
+\mathbb{P}(\cup_{i=1}^n A_i) = \sum_{i=1}^n \mathbb{P}(A_i).
+\end{equation}
+\end{theorem}
+
+\setstretch{1}
+\footnotesize
+\underline{Beweis}
+\justifying
+
+Wir betrachten eine unendliche Folge von paarweise disjunkten Ereignissen $A_1,
+A_2, ...$ wobei für ein $n\in \mathbb{N}$ gelten soll, dass $A_i := \emptyset$
+für $i>n$. Dann gilt mit der $\sigma$-Additivität von $\mathbb{P}$ zunächst,
+dass
+\begin{equation}
+\mathbb{P}\left(\cup_{i=1}^n A_i\right)
+= \mathbb{P}\left(\cup_{i=1}^\infty A_i\right)
+= \sum_{i=1}^\infty \mathbb{P}\left(A_i\right)
+= \sum_{i=1}^n \mathbb{P}\left(A_i\right) + \sum_{i=n+1}^\infty \mathbb{P}\left(A_i\right).
+\end{equation}
+Mit $\mathbb{P}\left(A_i\right) = \mathbb{P}(\emptyset) = 0$ für $i = n+1,
+n+2,...$ folgt dann direkt
+\begin{equation}
+\mathbb{P}\left(\cup_{i=1}^n A_i\right)
+= \sum_{i=1}^n \mathbb{P}\left(A_i\right) + 0
+= \sum_{i=1}^n \mathbb{P}\left(A_i\right).
+\end{equation}
+
+$\hfill\Box$
+
+# Erste Eigenschaften
+\vspace{2mm}
+\setstretch{1.2}
+\footnotesize
+\begin{theorem}[Abgeschlossenheit von $\sigma$-Algebren bezüglich
+Durchschnitten]
+\justifying
+\normalfont
+$\mathcal{A}$ sei eine $\sigma$-Algebra auf einer Menge $\Omega$. Dann folgt aus
+$A,B \in \mathcal{A}$, dass auch $A \cap B \in \mathcal{A}$. Allgemein gilt
+für $A_1,A_2,... \in \mathcal{A}$, dass auch $\cap_{i=1}^\infty A_i \in
+\mathcal{A}$.
+\end{theorem}
+\vspace{-1mm}
+\underline{Beweis}
+\justifying
+
+Wir zeigen exemplarisch die erste Aussage. Dazu halten wir zunächst fest, dass
+mit der ersten De Morganschen Regel und den Eigenschaften von Komplementen gilt,
+dass
+\begin{equation}
+(A \cap B)^c = A^c \cup B^c
+\Leftrightarrow
+\left((A \cap B)^c \right)^c = \left(A^c \cup B^c \right)^c
+\Leftrightarrow A \cap B = \left(A^c \cup B^c \right)^c.
+\end{equation}
+Ferner gilt mit den definierenden Eigenschaften von $\sigma$-Algebren, dass für
+$A,B \in \mathcal{A}$ gilt, dass auch $\left(A^c \cup B^c\right)^c \in
+\mathcal{A}$. Denn aus der Abgeschlossenheit von $\mathcal{A}$ unter der Bildung
+von Komplementärmengen folgt zunächst, dass auch $A^c \in \mathcal{A}$ und $B^c
+\in \mathcal{A}$. Weiterhin folgt aus der Abgeschlossenheit von $\mathcal{A}$
+unter der abzählbaren Vereinigung auch $A^c \cup B^c \in \mathcal{A}$. Mit der
+Abgeschlossenheit von $\mathcal{A}$ unter der Bildung von Komplementärmengen
+folgt schließlich $\left(A^c \cup B^c\right)^c \in \mathcal{A}$. Insgesamt gilt
+also, dass aus $A,B \in \mathcal{A}$ folgt, dass $A \cap B \in \mathcal{A}$. Für
+$A_1,A_2,\ldots\in\mathcal{A}$ gilt die Aussage dann nach der De Morganschen Regel.
+
+$\hfill\Box$
+
+Bemerkungen
+\vspace{-2mm}
+
+* Ereignissysteme sind als $\sigma$-Algebren unter abzählbaren Vereinigungen per
+Definition abgeschlossen.
+* Nach obigem Theorem sind Ereignissysteme auch unter abzählbaren Durchschnitten
+abgeschlossen.
+* Neben $\mathbb{P}(A), \mathbb{P}(B)$ und $\mathbb{P}(A \cup B)$ ist bei $A,B
+\in \mathcal{A}$ also auch $\mathbb{P}(A \cap B)$ wohldefiniert.
+
+# Erste Eigenschaften
+\small 
+Warum (nur) abzählbare Vereinigungen $\cup_{i=1}^\infty A_i$?
+
+\setstretch{1.6}
+\footnotesize
+
+* Wir betrachten die Gleichverteilung auf $[0,1]$ mit Wahrscheinlichkeit gemäß Intervalllänge.
+\begin{equation}
+\mathbb{P}([a,b]) = b-a \mbox{ für } 0\leq a\leq b\leq1 
+\mbox{ mit }
+\mathbb{P}(\{a\})=\mathbb{P}([a,a])=0 
+\mbox{ und }
+\mathbb{P}([0,1])=1.
+\end{equation}
+* Abzählbare Vereinigungen erfassen „Mindestens eines von $A_1,A_2,\ldots$ tritt ein“, 
+* Nach der $\sigma$-Algebra Definition gilt wie gesehen
+\begin{equation}
+A_i\in\mathcal{A}\mbox{ für alle }i\in\mathbb{N}
+\Longrightarrow\quad\bigcup_{i=1}^{\infty}A_i\in\mathcal{A}.
+\end{equation}
+* Beliebige Vereinigungen von Einzelpunkten würden nun jede Teilmenge von $[0,1]$ zum Ereignis machen.
+\begin{equation}
+A = \bigcup_{x\in A}\{x\}.
+\end{equation}
+* Darunter wären auch sogenannte *Vitali-Mengen*, denen sich keine verträgliche Länge zuweisen lässt.
+* Man nennt diese Mengen dann auch *nicht messbare* Mengen. 
+* Dies begründet auch die übliche Wahl der Borelschen $\sigma$-Algebra auf $\mathbb{R}$.
+* Die Potenzmenge enthält alle Teilmengen von $\mathbb{R}$, einschließlich der Vitali-Mengen.
+
+
+
+# Erste Eigenschaften
+\small 
+\setstretch{1.6}
+Warum (nur) abzählbare Summation $\sum_{i=1}^\infty \mathbb{P}(A_i)$?
+\footnotesize
+
+* Bei der Gleichverteilung auf $[0,1]$ haben Einzelpunkte Wahrscheinlichkeit null.
+\begin{equation}
+\mathbb{P}(\{x\})=0 \mbox{ für alle } x\in[0,1] \mbox{ und } \mathbb{P}([0,1])=1.
+\end{equation}
+* Das Intervall ist die überabzählbare Vereinigung seiner paarweise disjunkten Einzelpunkte,
+\begin{equation}
+[0,1] = \bigcup_{x\in[0,1]}\{x\}.
+\end{equation}
+* Überabzählbare Additivität würde deshalb einen Widerspruch ergeben.
+\begin{equation}
+1 = \mathbb{P}([0,1]) =\mathbb{P}\left(\bigcup_{x\in[0,1]}\{x\}\right) = \sum_{x\in[0,1]}\mathbb{P}(\{x\})=0.
+\end{equation}
+* Die $\sigma$-Additivität verlangt die Summenregel nur für abzählbare disjunkte Familien.
+* Auf die überabzählbare Vereinigung ist sie nicht anwendbar, der Widerspruch entsteht also nicht.
+
+
+
+#
+\setstretch{2.5}
+\large
+\vfill
+Definition
+
+Erste Eigenschaften
+
+**Wahrscheinlichkeitsfunktionen**
+
+Beispiele
+
+Selbstkontrollfragen
+\vfill
+
+# Wahrscheinlichkeitsfunktionen
+\small
+\begin{definition}[Wahrscheinlichkeitsfunktion]
+\justifying
+$\Omega$ sei eine endliche Menge. Dann heißt eine Funktion $\pi:\Omega \to
+[0,1]$
+\textit{Wahrscheinlichkeitsfunktion}, wenn gilt, dass
+\begin{equation}
+\sum_{\omega \in \Omega} \pi(\omega) = 1.
+\end{equation}
+Sei weiterhin $\mathbb{P}$ ein Wahrscheinlichkeitsmaß auf
+$(\Omega,\mathcal{P}(\Omega))$. Dann heißt die durch
+\begin{equation}
+\pi : \Omega \to [0,1], \omega \mapsto \pi(\omega) := \mathbb{P}(\{\omega\})
+\end{equation}
+definierte Funktion \textit{Wahrscheinlichkeitsfunktion} von $\mathbb{P}$ auf
+$\Omega$.
+\end{definition}
+\footnotesize
+Bemerkungen
+
+* \justifying Wahrscheinlichkeitsfunktionen erlauben im Falle endlicher
+Ergebnismengen das
+Festlegen von Wahrscheinlichkeitsmaßen durch die Definition der
+Wahrscheinlichkeiten
+der Elementarereignisse.
+* Über alle Eingabewerte $\omega \in \Omega$ summieren die Funktionswerte
+$\pi(\omega)$ zu 1.
+* Weil $\mathbb{P}$ per Definition $\sigma$-additiv ist, gilt insbesondere auch
+\begin{equation}
+1
+= \mathbb{P}(\Omega)
+= \mathbb{P}(\cup_{\omega \in \Omega}\{\omega\})
+= \sum_{\omega \in \Omega}\mathbb{P}(\{\omega\})
+= \sum_{\omega \in \Omega}\pi(\omega).
+\end{equation}
+
+
+# Wahrscheinlichkeitsfunktionen
+\setstretch{1.2}
+\footnotesize
+\begin{theorem}[Konstruktion eines Wahrscheinlichkeitsmaßes]
+\justifying
+\normalfont
+$\Omega$ sei eine endliche nichtleere Menge,
+$\mathcal{A}:=\mathcal{P}(\Omega)$ und $\pi:\Omega\to[0,1]$ eine
+Wahrscheinlichkeitsfunktion. Dann definiert
+\begin{equation}
+\mathbb{P}:\mathcal{A}\to[0,1],\quad
+A\mapsto\mathbb{P}(A):=\sum_{\omega\in A}\pi(\omega)
+\end{equation}
+ein Wahrscheinlichkeitsmaß auf $(\Omega,\mathcal{A})$ mit $\pi$ als
+Wahrscheinlichkeitsfunktion von $\mathbb{P}$.
+\end{theorem}
+\footnotesize
+Bemerkung
+
+* \justifying Bei endlichem $\Omega$ können die Wahrscheinlichkeiten aller
+möglichen Ereignisse
+aus den Wahrscheinlichkeiten der Elementarereignisse $\pi(\omega)$ berechnet
+werden.
+
+\underline{Beweis}
+\justifying
+
+Wir überprüfen zunächst die Wahrscheinlichkeitsmaßeigenschaften von
+$\mathbb{P}$. Weil $\pi(\omega) \in [0,1]$ für alle $\omega \in \Omega$, gilt
+auch immer $\sum_{\omega \in A} \pi(\omega) \ge 0$ und damit die
+Nicht-Negativität von $\mathbb{P}$. Ferner folgt wie oben gesehen mit der
+Normiertheit von $\pi$ direkt die Normiertheit von $\mathbb{P}$. Seien nun $A_1,
+A_2,\ldots \in \mathcal{A}$ paarweise disjunkte Ereignisse. Dann gilt
+\begin{equation}
+\mathbb{P}\left(\cup_{i=1}^\infty A_i \right)
+= \sum_{\omega \in \cup_{i=1}^\infty A_i} \pi(\omega)
+= \sum_{i = 1}^\infty \sum_{\omega \in A_i} \pi(\omega)
+= \sum_{i = 1}^\infty \mathbb{P}(A_i)
+\end{equation}
+und damit die $\sigma$-Additivität von $\mathbb{P}$.
+
+$\hfill\Box$
+
+#
+\setstretch{2.5}
+\large
+\vfill
+Definition
+
+Erste Eigenschaften
+
+Wahrscheinlichkeitsfunktionen
+
+**Beispiele**
+
+Selbstkontrollfragen
+\vfill
+
+# Beispiele
+\small
+\justifying
+
+Aus dem bis hierin Gesagten lässt sich nun zusammenfassend folgendes Vorgehen
+zur Modellierung eines Zufallsvorganges mithilfe eines
+Wahrscheinlichkeitsraums $(\Omega, \mathcal{A}, \mathbb{P})$ festhalten:
+
+(1) In einem ersten Schritt überlegt man sich eine sinnvolle Definition der
+Ergebnismenge $\Omega$, also der Ergebnisse bzw. Elementarereignisse die in
+jedem
+Durchgang des Zufallsvorgangs realisiert werden sollen.
+
+(2) In einem zweiten Schritt wählt man dann ein geeignetes Ereignissystem. Im
+Falle
+einer endlichen Ergebnismenge bietet sich die Potenzmenge $\mathcal{P}(\Omega)$
+an,
+im Falle der überabzählbaren Ergebnismenge $\Omega := \mathbb{R}$ bietet sich
+die Borelsche $\sigma$-Algebra $\mathcal{B}(\mathbb{R})$ an.
+
+(3) Schließlich definiert man ein Wahrscheinlichkeitsmaß $\mathbb{P}$, das die
+Wahrscheinlichkeiten für das Auftreten aller möglichen Ereignisse repräsentiert.
+Im Falle einer endlichen Ergebnismenge gelingt dies insbesondere wie oben
+beschrieben
+durch Definition der Wahrscheinlichkeiten der Elementarereignisse. In der Folge
+verdeutlichen wir dieses Vorgehen anhand von Beispielen. Im Falle der
+überabzählbaren Ergebnismenge $\Omega := \mathbb{R}$ bietet sich die Definition
+von $\mathbb{P}$ mithilfe von Wahrscheinlichkeitsdichtefunktionen an, wie wir
+später sehen werden.
+
+# Beispiele {.t}
+\small
+\vfill
+Würfeln mit einem Würfel
+\footnotesize
+
+
+Wir modellieren das Würfeln mit einem Würfel. Es ist sicherlich sinnvoll, die
+Ergebnismenge als $\Omega := \{1,2,3,4,5,6\}$ zu definieren. Allerdings wäre
+auch
+die Definition von
+$\Omega := \{
+\cdot,
+\cdot\cdot,
+\cdot\cdot\cdot,
+\cdot\cdot\cdot\cdot,
+\cdot\cdot\cdot\cdot\cdot,
+\cdot\cdot\cdot\cdot\cdot\cdot
+\}$
+in äquivalenter Weise möglich.
+
+
+Da es sich um eine endliche Ergebnismenge handelt, wählen wir als
+$\sigma$-Algebra
+$\mathcal{A}$ die Potenzmenge $\mathcal{P}(\Omega)$. $\mathcal{A}$ enthält dann
+automatisch alle möglichen Ereignisse. Die Kardinalität von
+$\mathcal{A} := \mathcal{P}(\Omega)$ ist $|\mathcal{P}(\Omega)| = 2^{|\Omega|} =
+2^6 = 64$.
+
+In unterer Tabelle listen wir sechs dieser 64 Ereignisse in ihrer
+verbalen Beschreibung und als Teilmenge $A$ von $\Omega$.
+
+\center
+\setstretch{1.8}
+\begin{tabular}{l|l}
+Verbale Beschreibung                       & Mengenform                  \\\hline
+Es fällt eine beliebige Augenzahl          & $\omega \in A = \Omega$     \\
+Keine Augenzahl fällt                      & $\omega \in A = \emptyset$  \\
+Es fällt eine Augenzahl größer als 4       & $\omega \in A = \{5,6\}$    \\
+Es fällt eine gerade Augenzahl             & $\omega \in A = \{2,4,6\}$  \\
+Es fällt eine Sechs                        & $\omega \in A = \{6\}$      \\
+Eine Eins, eine Drei oder eine Sechs fällt & $\omega \in A = \{1,3,6\}$  \\
+\end{tabular}
+
+Damit ist die Definition des Messraums $(\Omega, \mathcal{A})$ in der
+Modellierung
+des Werfens eines Würfels abgeschlossen.
+\vfill
+
+# Beispiele
+\small
+Würfeln mit einem Würfel (fortgesetzt)
+\footnotesize
+
+Wie oben beschrieben kann das Wahrscheinlichkeitsmaß $\mathbb{P}$ durch
+Definition
+einer Wahrscheinlichkeitsfunktion
+\begin{equation}
+\pi : \Omega \to [0,1], \omega \mapsto \pi(\omega) =: \mathbb{P}(\{\omega\})
+\end{equation}
+festgelegt werden. Für das Modell eines
+unverfälschten Würfels würde man
+\begin{equation}
+\mathbb{P}(\{\omega\}) := \frac{1}{|\Omega|} := 1/6 \mbox{ für alle } \omega \in \Omega
+\end{equation}
+wählen. Für ein Modell eines verfälschten Würfels, der das Werfen einer Sechs
+bevorzugt, könnte man zum Beispiel definieren, dass
+\begin{equation}
+\mathbb{P}(\{\omega\}) = \frac{1}{8} \mbox{ für } \omega \in \{1,2,3,4,5\}
+\mbox{ und }
+\mathbb{P}(\{6\}) = \frac{3}{8}.
+\end{equation}
+Im Fall des unverfälschten Würfels ergibt sich die Wahrscheinlichkeit für das
+Ereignis "Es fällt eine gerade Augenzahl" mit der $\sigma$-Additivität von
+$\mathbb{P}$ zu
+\begin{equation}
+\mathbb{P}(\{2,4,6\})
+= \mathbb{P}(\{2\} \cup \{4\} \cup \{6\} )
+= \mathbb{P}(\{2\}) + \mathbb{P}(\{4\}) + \mathbb{P}(\{6\})
+= \frac{1}{6} + \frac{1}{6} +  \frac{1}{6}
+= \frac{3}{6}.
+\end{equation}
+Im Fall des obigen Modells eines verfälschten Würfels ergibt sich für das
+gleiche
+Ereignis die Wahrscheinlichkeit
+\begin{equation}
+\mathbb{P}(\{2,4,6\})
+= \mathbb{P}(\{2\} \cup \{4\} \cup \{6\} )
+= \mathbb{P}(\{2\}) + \mathbb{P}(\{4\}) + \mathbb{P}(\{6\})
+= \frac{1}{8} + \frac{1}{8} +  \frac{3}{8}
+= \frac{5}{8}.
+\end{equation}
+
+
+# Beispiele
+\small
+Gleichzeitiges Würfeln mit einem blauen und einem roten Würfel
+\footnotesize
+
+Wir wollen nun das gleichzeitige Werfen eines blauen und eines roten Würfels
+modellieren. Dazu ist es sinnvoll, die Ergebnismenge als
+\begin{equation}
+\Omega := \{(r,b)| r \in \{1,2,3,4,5,6\}, b \in \{1,2,3,4,5,6\}\}
+\end{equation}
+mit Kardinalität $|\Omega| = 36$ zu definieren. Dabei bezeichnet $r$ die
+Augenzahl des roten Würfels und $b$ die Augenzahl des blauen Würfels.
+
+Wiederum bietet sich die Wahl der Potenzmenge von $\Omega$ als $\sigma$-Algebra
+an, wir
+definieren also wieder $\mathcal{A} := \mathcal{P}(\Omega)$. Die Anzahl der in
+diesem Modell möglichen Ereignisse ergibt sich zu
+$|\mathcal{A}| = 2^{|\Omega|} = 2^{36} = 68.719.476.736$.
+
+In unterer Tabelle listen wir fünf dieser Ereignisse in ihrer
+verbalen Beschreibung und als Teilmenge $A$ von $\Omega$.
+
+\setstretch{1.8}
+\center
+\begin{tabular}{l|l}
+Verbale Beschreibung                      & Mengenform                                                \\\hline
+Auf dem roten Würfel fällt eine Drei      & $\omega \in A = \{(3,1),(3,2),(3,3),(3,4),(3,5),(3,6)\}$  \\
+Auf dem blauen Würfel fällt eine Drei     & $\omega \in A = \{(1,3),(2,3),(3,3),(4,3),(5,3),(6,3)\}$  \\
+Auf beiden Würfeln fällt eine Drei        & $\omega \in A = \{(3,3)\}$                                \\
+Es fällt ein Pasch                       & $\omega \in A = \{(1,1),(2,2),(3,3),(4,4),(5,5),(6,6)\}$  \\
+Die Summe der gefallenen Zahlen ist Vier  & $\omega \in A = \{(1,3),(3,1),(2,2)\}$                    \\
+\end{tabular}
+
+
+# Beispiele
+\small
+Gleichzeitiges Würfeln mit einem blauen und einem roten Würfel (fortgesetzt)
+\footnotesize
+
+Die Definition des Messraums $(\Omega, \mathcal{A})$ ist damit abgeschlossen.
+Ein Wahrscheinlichkeitsmaß $\mathbb{P}$ kann wiederum durch Definition
+einer Wahrscheinlichkeitsfunktion
+\begin{equation}
+\pi : \Omega \to [0,1], \omega \mapsto \pi(\omega) =: \mathbb{P}(\{\omega\})
+\end{equation}
+festgelegt werden. Für das Modell zweier unabhängiger fairer Würfel würde man
+\begin{equation}
+\mathbb{P}(\{\omega\}) := \frac{1}{|\Omega|} = \frac{1}{36} \mbox{ für alle } \omega \in \Omega,
+\end{equation}
+also die gleiche Wahrscheinlichkeit für alle möglichen Augenzahlkombinationen,
+wählen.
+Unter diesem Wahrscheinlichkeitsmaß ergibt sich dann zum Beispiel die
+Wahrscheinlichkeit
+für das Ereignis "Die Summe der gefallenen Zahlen ist Vier" mit der
+$\sigma$-Additivität von $\mathbb{P}$ zu
+\begin{equation}
+\begin{split}
+\mathbb{P}\left(\{(1,3),(3,1),(2,2)\}\right)
+& = \mathbb{P}\left(\{(1,3)\}\cup \{(3,1)\} \cup \{(2,2)\}\right) \\
+& = \mathbb{P}\left(\{(1,3)\}\right)
+  + \mathbb{P}\left(\{(3,1)\}\right)
+  + \mathbb{P}\left(\{(2,2)\}\right) \\
+& = 1/36 + 1/36 + 1/36                  \\
+& = 1/12.
+\end{split}
+\end{equation}
+\vfill
+
+# Beispiele
+\small
+\vspace{2mm}
+Werfen einer Münze
+\footnotesize
+\setstretch{1.3}
+
+Wir modellieren das Werfen einer Münze, deren eine Seite Kopf (heads) und deren
+andere Seite Zahl (tails) zeigt. Es ist sinnvoll, die Ergebnismenge als
+$\Omega := \{H,T\}$ zu definieren, wobei $H$ "Heads" und $T$ "Tails"
+repräsentiert.
+Allerdings wäre auch jede andere binäre Definition von $\Omega$ möglich, z.B.
+$\Omega := \{0,1\}, \Omega := \{-1,1\}$ oder $\Omega := \{1,2\}$.
+
+Die Potenzmenge $\mathcal{A} := \mathcal{P}(\Omega)$ enthält alle möglichen
+Ereignisse. In diesem
+Fall können wir das gesamte Mengensystem $\mathcal{A}$ sehr leicht
+komplett auflisten.
+
+\center
+\setstretch{1.2}
+\begin{tabular}{l|l}
+Verbale Beschreibung          & Mengenform                  \\\hline
+Weder Kopf noch Zahl fällt    & $\omega \in A = \emptyset$  \\
+Kopf fällt                    & $\omega \in A = \{H\}$      \\
+Zahl fällt                    & $\omega \in A = \{T\}$      \\
+Kopf oder Zahl fällt          & $\omega \in A = \{H,T\}$    \\
+\end{tabular}
+\setstretch{1.3}
+\flushleft
+Die Definition des Messraums $(\Omega, \mathcal{A})$ ist damit abgeschlossen.
+Ein Wahrscheinlichkeitsmaß $\mathbb{P}$ kann wiederum durch Definition
+einer Wahrscheinlichkeitsfunktion
+\begin{equation}
+\pi : \Omega \to [0,1], \omega \mapsto \pi(\omega) =: \mathbb{P}(\{\omega\})
+\end{equation}
+festgelegt werden.
+Die Normiertheit von $\pi$ bedingt hier insbesondere, dass
+\begin{equation}
+\mathbb{P}(\Omega) = 1
+\Leftrightarrow
+\mathbb{P}(\{H\}) + \mathbb{P}(\{T\})  = 1
+\Leftrightarrow
+\mathbb{P}(\{T\}) = 1 - \mathbb{P}(\{H\}).
+\end{equation}
+Bei Festlegung der Wahrscheinlichkeit des Elementarereignisses $\{H\}$ wird also
+die Wahrscheinlichkeit des Elementarereignisses $\{T\}$ sofort mit festgelegt
+(andersherum natürlich ebenso). Für das Modell einer fairen Münze würde man
+$\mathbb{P}(\{H\}) = \mathbb{P}(\{T\}) := 1/2$ wählen. Die Wahrscheinlichkeiten
+aller möglichen Ereignisse ergeben sich in diesem Fall zu
+\begin{equation}
+\mathbb{P}(\emptyset) = 0,
+\mathbb{P}(\{H\}) = 1/2,
+\mathbb{P}(\{T\}) = 1/2 \mbox{ und }
+\mathbb{P}(\{H,T\}) = 1.
+\end{equation}
+
+# Beispiele
+\small
+Wert eines BDI-II Items
+\footnotesize
+
+Wir modellieren den Wert einer Patient:in für das Item "Traurigkeit" der
+deutschen
+Version des Beck Depression Inventory II (@hautzinger2006),
+
+(0) Ich bin nicht traurig.
+(1) Ich bin oft traurig.
+(2) Ich bin ständig traurig.
+(3) Ich bin so traurig oder unglücklich, dass ich es nicht aushalte.
+
+Der betrachtete Zufallsvorgang sei also die Antwort einer Patient:in für dieses
+Item.
+Dann bietet sich die Ergebnismenge $\Omega := \{0,1,2,3\}$ an. Für eine erste
+Patient:in
+ergibt sich beispielsweise die Realisierung $3 \in \Omega$, für eine zweite
+Patient:in
+die Realisierung $0 \in \Omega$, für eine dritte Patient:in $1 \in \Omega$ usw.  
+
+Als Ereignissystem $\mathcal{A}$ bietet sich wiederum die Potenzmenge mit
+Kardinalität $|\mathcal{P}(\Omega)| = 2^{|\Omega|} = 2^4 = 16$ an. Im
+vorliegenden
+Fall ergibt sich das Ereignissystem zu
+\begin{equation}
+\begin{split}
+\mathcal{A}
+=
+\lbrace
+& \emptyset, \{0,1,2,3\},                                       \\
+& \{0\},\{1\},\{2\},\{3\},                                      \\
+& \{0,1\},\{0,2\},\{0,3\},\{1,2\},\{1,3\},\{2,3\},              \\
+& \{0,1,2\},\{0,1,3\},\{0,2,3\},\{1,2,3\}
+\rbrace
+\end{split}
+\end{equation}
+
+Z.B. entspricht dem Ereignis $\omega \in \{1,2,3\}$, dass eine Patient:in
+*nicht* (0) Ich bin nicht traurig geantwortet hat.
+
+# Beispiele
+\small
+Wert eines BDI-II Items (fortgesetzt)
+\footnotesize
+
+Gehen wir nun davon aus, dass die Wahrscheinlichkeiten der Itemantworten als
+\begin{equation}
+\mathbb{P}(\{0\}) := \frac{2}{10},\quad
+\mathbb{P}(\{1\}) := \frac{3}{10},\quad
+\mathbb{P}(\{2\}) := \frac{4}{10},\quad
+\mathbb{P}(\{3\}) := \frac{1}{10}
+\end{equation}
+bekannt sind. Dann definieren diese Wahrscheinlichkeiten im Sinne einer
+Wahrscheinlichkeitsfunktion
+\begin{equation}
+\pi : \Omega \to [0,1], \omega \mapsto \pi(\omega) =: \mathbb{P}(\{\omega\})
+\end{equation}
+ein Wahrscheinlichkeitsmaß und die Definition des
+Wahrscheinlichkeitsraummodells $(\Omega, \mathcal{A},\mathbb{P})$ für das
+betrachtete Szenario ist abgeschlossen.
+
+Mithilfe der $\sigma$-Additivität von $\mathbb{P}$ lässt sich nun beispielsweise
+die Wahrscheinlichkeit für eine Itemantwort größer als 1 bestimmen durch
+\begin{equation}
+\mathbb{P}\left(\{2,3\}\right)
+= \mathbb{P}\left(\{2\} \cup \{3\}\right)
+= \mathbb{P}\left(\{2\}\right) +  \mathbb{P}\left(\{3\}\right)
+= \frac{4}{10} + \frac{1}{10}
+= \frac{5}{10}
+= \frac{1}{2}.
+\end{equation}
+Ebenso ergibt sich beispielsweise die Wahrscheinlichkeit dafür, dass eine
+Patient:in
+eine der beiden extremen Itemantworten (0) Ich bin nicht traurig oder (3) Ich bin
+so traurig oder unglücklich, dass ich es nicht aushalte gibt zu
+\begin{equation}
+\mathbb{P}\left(\{0,3\}\right)
+= \mathbb{P}\left(\{0\} \cup \{3\}\right)
+= \mathbb{P}\left(\{0\}\right) +  \mathbb{P}\left(\{3\}\right)
+= \frac{2}{10} + \frac{1}{10}
+= \frac{3}{10}.
+\end{equation}
+
+#
+\setstretch{2.5}
+\large
+\vfill
+Definition
+
+Erste Eigenschaften
+
+Wahrscheinlichkeitsfunktionen
+
+Beispiele
+
+**Selbstkontrollfragen**
+\vfill
+
+# Selbstkontrollfragen
+\footnotesize
+\setstretch{1.6}
+
+1. Erläutern Sie den Begriff des Zufallsvorgangs.
+1. Geben Sie die Definition des Begriffs der $\sigma$-Algebra wieder.
+1. Geben Sie die Definition des Begriffs des Wahrscheinlichkeitsmaßes wieder.
+1. Geben Sie die Definition des Begriffs des Wahrscheinlichkeitsraums wieder.
+1. Erläutern Sie den Begriff der Ergebnismenge $\Omega$.
+1. Erläutern Sie die stillschweigende Mechanik des
+Wahrscheinlichkeitsraummodells.
+1. Erläutern Sie den Begriff eines Ereignisses $A \in \mathcal{A}$.
+1. Erläutern Sie den Begriff des Ereignissystems $\mathcal{A}$.
+1. Welche $\sigma$-Algebra wählt man sinnvollerweise für einen
+Wahrscheinlichkeitsraum mit endlicher Ergebnismenge?
+1. Erläutern Sie den Begriff des Wahrscheinlichkeitsmaßes $\mathbb{P}$.
+1. Geben Sie die Definition des Begriffs der Wahrscheinlichkeitsfunktion wieder.
+1. Warum ist der Begriff der Wahrscheinlichkeitsfunktion bei der Modellierung
+eines Zufallsvorgangs durch einen Wahrscheinlichkeitsraum mit endlicher
+Ergebnismenge hilfreich?
+1. Erläutern Sie die Modellierung des Werfens eines Würfels mithilfe eines
+Wahrscheinlichkeitsraums.
+1. Erläutern Sie die Modellierung des gleichzeitigen Werfens eines roten und
+eines blauen Würfels mithilfe eines Wahrscheinlichkeitsraums.
+
+# Selbstkontrollfragen - Lösungen
+\footnotesize
+\setstretch{1.6}
+
+1. Ein Zufallsvorgang ist ein Phänomen der Wirklichkeit, das nicht mit absoluter
+Sicherheit vorhersagbar ist bzw. für Menschen mit Unsicherheit behaftet ist.
+Siehe Folie 2 Erste Begrifflichkeiten.
+1. Siehe Definition ($\sigma$-Algebra).
+1. Siehe Definition (Wahrscheinlichkeitsraum) bezüglich $\mathbb{P}$.
+1. Siehe Definition (Wahrscheinlichkeitsraum).
+1. Die Ergebnismenge enthält die in einem Durchgang des modellierten
+Zufallsvorgangs
+möglichen Elementarereignisse, siehe Folie 14 Ergebnismenge $\Omega$
+und Die stillschweigende Mechanik des Wahrscheinlichkeitsraummodells.
+1. Siehe Folie 14 Die stillschweigende Mechanik des
+Wahrscheinlichkeitsraummodells.
+1. Siehe Folie 15 Ereignisse $A \in \mathcal{A}$.
+1. Siehe Folie 16 Ereignissystem $\mathcal{A}$.
+1. Die Potenzmenge der Ergebnismenge, sie enthält alle prinzipiell möglichen
+Ereignisse, siehe auch Theorem (Ereignissystem bei endlicher Ergebnismenge).
+1. Siehe Folie 18 Wahrscheinlichkeitsmaß $\mathbb{P}$.
+1. Siehe Definition (Wahrscheinlichkeitsfunktion).
+1. Durch Definition der Funktionswerte einer Wahrscheinlichkeitsfunktion kann
+ein Wahrscheinlichkeitsmaß festgelegt werden, siehe auch die Beispiele
+auf Folien 30 - 36.
+1. Siehe Folien 30 und 31 Würfeln mit einem Würfel.
+1. Siehe Folien 32 und 33 Gleichzeitiges Würfeln mit einem blauen und einem
+roten Würfel.
+
+
+# Referenzen {.allowframebreaks}
+\footnotesize
+\setstretch{1.2}
