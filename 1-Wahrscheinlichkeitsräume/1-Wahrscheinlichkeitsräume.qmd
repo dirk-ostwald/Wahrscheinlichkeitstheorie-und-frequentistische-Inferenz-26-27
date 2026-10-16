@@ -1465,9 +1465,9 @@ Beispiele
 **Selbstkontrollfragen**
 \vfill
 
-# Selbstkontrollfragen
+# Selbstkontrollfragen {.allowframebreaks}
 \footnotesize
-\setstretch{1.6}
+\setstretch{1.2}
 
 1. Erläutern Sie den Begriff des Zufallsvorgangs.
 1. Geben Sie die Definition des Begriffs der $\sigma$-Algebra wieder.
@@ -1490,9 +1490,9 @@ Wahrscheinlichkeitsraums.
 1. Erläutern Sie die Modellierung des gleichzeitigen Werfens eines roten und
 eines blauen Würfels mithilfe eines Wahrscheinlichkeitsraums.
 
-# Selbstkontrollfragen - Lösungen
+# Selbstkontrollfragen - Lösungen {.allowframebreaks}
 \footnotesize
-\setstretch{1.6}
+\setstretch{1.2}
 
 1. Ein Zufallsvorgang ist ein Phänomen der Wirklichkeit, das nicht mit absoluter
 Sicherheit vorhersagbar ist bzw. für Menschen mit Unsicherheit behaftet ist.
@@ -1518,7 +1518,6 @@ auf Folien 30 - 36.
 1. Siehe Folien 30 und 31 Würfeln mit einem Würfel.
 1. Siehe Folien 32 und 33 Gleichzeitiges Würfeln mit einem blauen und einem
 roten Würfel.
-
 
 # Referenzen {.allowframebreaks}
 \footnotesize
