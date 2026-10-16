@@ -616,11 +616,11 @@ knitr::include_graphics("0-Abbildungen/wtfi-0-pre-post-26.pdf")
 Evaluation Wahrscheinlichkeitstheorie und frequentistische Inferenz WiSe 2024/25 (n = 50) 
 \center
 \footnotesize
-$\bullet$   Stimme voll und ganz zu       $\,$
-$\bullet$   Stimme zu                     $\,$
-$\bullet$   Neutral                       $\,$
-$\bullet$   Stimme nicht zu               $\,$
-$\bullet$   Stimme überhaupt nicht zu     $\,$
+\textcolor{green}{$\bullet$}   Stimme voll und ganz zu       $\,$
+\textcolor{lightgreen}{$\bullet$}   Stimme zu                     $\,$
+\textcolor{yellow}{$\bullet$}   Neutral                       $\,$
+\textcolor{orange}{$\bullet$}   Stimme nicht zu               $\,$
+\textcolor{red}{$\bullet$}   Stimme überhaupt nicht zu     $\,$
 $\Box$      k.A.
 \vspace{1mm}
 
