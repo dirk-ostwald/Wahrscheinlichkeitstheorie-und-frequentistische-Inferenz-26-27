@@ -14,9 +14,7 @@ Psychologiestudium.
 | 2 · Elementare Wahrscheinlichkeiten | [PDF](2-Elementare-Wahrscheinlichkeiten/2-Elementare-Wahrscheinlichkeiten.pdf) | [Ordner](2-Elementare-Wahrscheinlichkeiten/) |
 
 Das begleitende **[Vorlesungsskript als PDF](Skript/_book/Skript-Wahrscheinlichkeitstheorie-und-Frequentistische-Inferenz.pdf)**
-enthält Kapitel aus Teil III von *Probabilistische Datenwissenschaft für die Psychologie (PDWP)*.
-
-Weitere Informationen zur Veranstaltung stehen auf der
+enthält Kapitel aus Teil III von *Probabilistische Datenwissenschaft für die Psychologie (PDWP)*. Weitere Informationen zur Veranstaltung stehen auf der
 [Kurswebseite](https://www.ipsy.ovgu.de/Institut/Abteilungen+des+Institutes/Methodenlehre/Lehre/Wintersemester+2027/Wahrscheinlichkeitstheorie+und+frequentistische+Inferenz.html).
 
 ## Korrekturen und Beiträge
