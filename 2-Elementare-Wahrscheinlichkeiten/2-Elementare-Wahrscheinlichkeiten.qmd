@@ -1,0 +1,964 @@
+---
+fontsize: 8pt
+format:
+    beamer:
+        include-in-header: "2-Header.tex"
+        colorlinks: true
+        urlcolor: darkblue
+        linkcolor: darkblue
+        citecolor: darkblue
+bibliography: 2-Referenzen.bib
+link-citations: true
+---
+
+#  {.plain}
+\center
+\vfill
+```{r, echo = FALSE, out.width = "20%"}
+knitr::include_graphics("2-Abbildungen/wtfi-2-otto.png")
+```
+\vspace{3mm}
+
+\Large
+\resizebox{\linewidth}{!}{Wahrscheinlichkeitstheorie und frequentistische Inferenz}
+\vspace{1mm}
+
+\large
+BSc Psychologie WiSe 2026/27
+
+\vspace{5mm}
+\normalsize
+Prof. Dr. Dirk Ostwald
+\vfill
+
+#  {.plain}
+
+\vfill
+\center
+\huge
+\textcolor{black}{(2) Elementare Wahrscheinlichkeiten}
+\vfill
+
+#
+\setstretch{3}
+\vfill
+\large
+
+Gemeinsame Wahrscheinlichkeiten
+
+Bedingte Wahrscheinlichkeiten
+
+Unabhängige Ereignisse
+
+Selbstkontrollfragen
+\vfill
+
+#
+\setstretch{3}
+\vfill
+\large
+
+**Gemeinsame Wahrscheinlichkeiten**
+
+Bedingte Wahrscheinlichkeiten
+
+Unabhängige Ereignisse
+
+Selbstkontrollfragen
+\vfill
+
+# Gemeinsame Wahrscheinlichkeiten
+\small
+\begin{definition}[Gemeinsame Wahrscheinlichkeit]
+\justifying
+$(\Omega, \mathcal{A}, \mathbb{P})$ sei ein Wahrscheinlichkeitsraum und es seien
+$A,B \in \mathcal{A}$. Dann heißt
+\begin{equation}
+\mathbb{P}(A \cap B)
+\end{equation}
+die \textit{gemeinsame Wahrscheinlichkeit von $A$ und $B$}.
+\end{definition}
+
+\setstretch{1.5}
+Bemerkungen
+
+* Zur Abgrenzung nennt man $\mathbb{P}(A)$ manchmal auch *totale
+Wahrscheinlichkeit von $A$*.
+* Mit dem Theorem zur Abgeschlossenheit von $\sigma$-Algebren bezüglich
+Durchschnitten ist gesichert,
+dass $A \cap B \in \mathcal{A}$, woraus die Existenz von $\mathbb{P}(A \cap B)
+\in [0,1]$ folgt.
+* Intuitiv entspricht $\mathbb{P}(A \cap B)$ der Wahrscheinlichkeit, dass $A$
+und $B$ gleichzeitig eintreten.
+* In der  Mechanik des W-Raummodells ist $\mathbb{P}(A \cap B)$ die
+Wahrscheinlichkeit,
+dass in einem Durchgang des Zufallsvorgangs ein $\omega$ mit sowohl $\omega \in
+A$ und $\omega \in B$ realisiert wird.
+
+# Gemeinsame Wahrscheinlichkeiten
+\vspace{3mm}
+\small
+Beispiel
+\vspace{-1mm}
+
+* Wir betrachten das Wahrscheinlichkeitsraummodell des Werfens eines fairen
+Würfels.
+* Wir betrachten die Ereignisse
+
+\begin{center}
+\begin{tabular}{ll}
+$A := \{2,4,6\}$ & Es fällt eine gerade Augenzahl              \\
+$B := \{4,5,6\}$ & Es fällt eine Augenzahl größer als Drei     \\
+\end{tabular}
+\end{center}
+
+* Dann gilt $A \cap B = \{4,6\}$.
+* Die Interpretation von $A \cap B = \{4,6\}$ ist
+\center
+"Es fällt eine gerade Augenzahl und diese Augenzahl ist größer als Drei."
+\justifying
+
+* Mit $\mathbb{P}(\{4\}) = \mathbb{P}(\{6\}) = \frac{1}{6}$ und der
+$\sigma$-Additivität von $\mathbb{P}$ ergibt sich
+\begin{equation}
+\begin{split}
+\mathbb{P}(A \cap B)
+& = \mathbb{P}( \{2,4,6\} \cap \{4,5,6\})       \\
+& = \mathbb{P}( \{4,6\})                        \\
+& = \mathbb{P}(\{4\} \cup \{6\})                \\
+& = \mathbb{P}(\{4\}) + \mathbb{P}(\{6\})       \\
+& = \frac{1}{6} + \frac{1}{6}                   \\
+& = \frac{1}{3}.
+\end{split}
+\end{equation}
+
+# Gemeinsame Wahrscheinlichkeiten
+
+Interpretation von $\mathbb{P}(A \cup B)$
+
+\small
+
+* $\mathbb{P}(A \cap B)$ und $\mathbb{P}(A \cup B)$ sollten nicht verwechselt werden.
+* $\cup$ entspricht dem \textit{inklusiven oder}, also \textit{und/oder}.
+*  $\Delta$ entspricht dem \textit{exklusiven oder}, also
+\textit{entweder..., oder ..., aber nicht beides}.
+* $A \cup B$ entspricht also dem Ereignis, dass $A$ und/oder $B$ eintritt.
+* $\omega \in A \cup B$ ist also schon erfüllt, wenn ``nur'' $\omega \in A$
+oder ``nur'' $\omega \in B$ gilt.
+*  Für obiges Beispiel gilt
+\begin{equation}
+A \cup B = \{2,4,6\} \cup \{4,5,6\} = \{2,4,5,6\}
+\end{equation}
+mit der Interpretation "Es fällt eine gerade Augenzahl oder es fällt eine Augenzahl größer als Drei oder es fällt eine gerade Augenzahl und diese Augenzahl ist größer als Drei."
+und der Wahrscheinlichkeit
+\begin{equation}
+\mathbb{P}(\{2,4,5,6\}) = 4/6 = 2/3.
+\end{equation}
+
+
+# Gemeinsame Wahrscheinlichkeiten
+
+\begin{theorem}[Weitere Eigenschaften von Wahrscheinlichkeiten]
+\normalfont
+\justifying
+$(\Omega, \mathcal{A}, \mathbb{P})$ sei ein Wahrscheinlichkeitsraum und es seien
+$A,B \in \mathcal{A}$ Ereignisse. Dann gelten
+\begin{enumerate}
+\itemsep2mm
+\item $\mathbb{P}(A^c) = 1 - \mathbb{P}(A)$.
+\item $A \subset B \Rightarrow \mathbb{P}(A) \le \mathbb{P}(B)$.
+\item $\mathbb{P}(A \cap B^c) = \mathbb{P}(A) - \mathbb{P}(A \cap B)$
+\item $\mathbb{P}(A \cup B) = \mathbb{P}(A) + \mathbb{P}(B) - \mathbb{P}(A \cap
+B)$.
+\end{enumerate}
+\end{theorem}
+
+\small
+Bemerkungen
+
+* Die Eigenschaften sind in der Analyse probabilistischer Modelle oft nützlich.
+
+# Gemeinsame Wahrscheinlichkeiten
+
+\center
+```{r, echo = FALSE, out.width = "90%"}
+knitr::include_graphics("2-Abbildungen/wtfi-2-rechenregeln.pdf")
+```
+\small
+Die hellblau unterlegten Flächen entsprechen jeweils den Wahrscheinlichkeiten
+von Interesse.
+
+
+# Gemeinsame Wahrscheinlichkeiten
+\vspace{2mm}
+\footnotesize
+\underline{Beweis}
+
+Die zweite, dritte, und vierte Aussage dieses Theorems basieren auf elementaren
+mengentheoretischen Aussagen und der $\sigma$-Additivität von $\mathbb{P}$.
+Wir wollen diese  elementaren mengentheoretischen Aussagen hier nicht beweisen,
+sondern verweisen jeweils auf die Intuition, die durch die Venn-Diagramme
+in untenstehender Abbildung vermittelt wird.
+
+\center
+```{r, echo = FALSE, out.width = "65%"}
+knitr::include_graphics("2-Abbildungen/wtfi-2-venn-diagramme.pdf")
+```
+\flushleft
+
+Zu 1.: Wir halten zunächst fest, dass aus $A^c := \Omega \setminus A$
+folgt, dass $A^c \cup A = \Omega$ und dass $A^c \cap A = \emptyset$. Mit der
+Normiertheit
+und der $\sigma$-Additivität von $\mathbb{P}$ folgt dann
+\begin{equation}
+\mathbb{P}(\Omega) = 1
+\Leftrightarrow
+\mathbb{P}(A^c \cup A) = 1
+\Leftrightarrow
+\mathbb{P}(A^c) + \mathbb{P}(A)  = 1
+\Leftrightarrow
+\mathbb{P}(A^c) = 1 - \mathbb{P}(A).
+\end{equation}
+
+Zu 2.: Zunächst gilt (vgl. Abbildung A)
+\begin{equation}
+A \subset B \Rightarrow B = A \cup (B \cap A^c)
+\mbox{ mit } A \cap (B \cap A^c) = \emptyset.
+\end{equation}
+Mit der $\sigma$-Additivität von $\mathbb{P}$ folgt dann aber
+\begin{equation}
+\mathbb{P}(B) = \mathbb{P}(A) + \mathbb{P}(B \cap A^c).
+\end{equation}
+Mit $\mathbb{P}(B \cap A^c) \ge 0$ folgt dann $\mathbb{P}(A) \le \mathbb{P}(B)$.
+
+
+# Gemeinsame Wahrscheinlichkeiten
+\footnotesize
+\underline{Beweis (fortgeführt)}
+
+Auch bei einer echten Teilmengenbeziehung können zwei Ereignisse dieselbe
+Wahrscheinlichkeit haben. Betrachten wir beispielsweise einen
+Wahrscheinlichkeitsraum mit $\Omega=\mathbb{R}$, in dem die Ereignisse
+$A=[0,1[$ und $B=[0,1]$ die Bedingungen $\mathbb{P}(B)>0$ und
+$\mathbb{P}(\{1\})=0$ erfüllen. Dann ist $A$ eine echte Teilmenge von $B$,
+aber es gilt
+\begin{equation}
+\mathbb{P}(B)=\mathbb{P}(A)+\mathbb{P}(\{1\})=\mathbb{P}(A).
+\end{equation}
+Ein konkretes Beispiel liefert die Standardnormalverteilung, die wir später
+kennenlernen werden.
+
+\footnotesize
+Zu 3.: Zunächst gilt (vgl. Abbildung B)
+\begin{equation}
+(A \cap B) \cap (A \cap B^c)  = \emptyset
+\mbox{ und } A  = (A \cap B) \cup (A \cap B^c).
+\end{equation}
+Mit der $\sigma$-Additivität von $\mathbb{P}$ folgt dann
+\begin{equation}
+\begin{split}
+\mathbb{P}(A) = \mathbb{P}(A \cap B) + \mathbb{P}(A \cap B^c)
+\Leftrightarrow
+\mathbb{P}(A \cap B^c)
+= \mathbb{P}(A) - \mathbb{P}(A \cap B)
+\end{split}
+\end{equation}
+
+Zu 4.: Zunächst gilt (vgl. Abbildung C)
+\begin{equation}
+B \cap (A \cap B^c)  = \emptyset
+\mbox{ und } A \cup B = B \cup (A \cap B^c).
+\end{equation}
+Mit der $\sigma$-Additivität von $\mathbb{P}$ folgt dann
+\begin{equation}
+\mathbb{P}(A \cup B) = \mathbb{P}(B) + \mathbb{P}(A \cap B^c).
+\end{equation}
+Mit 3. folgt dann
+\begin{equation}
+\mathbb{P}(A \cup B) = \mathbb{P}(B) + \mathbb{P}(A) - \mathbb{P}(A \cap B)
+\end{equation}
+
+#
+\setstretch{3}
+\vfill
+\large
+
+Gemeinsame Wahrscheinlichkeiten
+
+**Bedingte Wahrscheinlichkeiten**
+
+Unabhängige Ereignisse
+
+Selbstkontrollfragen
+\vfill
+
+# Bedingte Wahrscheinlichkeiten
+\small
+\begin{definition}[Bedingte Wahrscheinlichkeit]
+\justifying
+$(\Omega,\mathcal{A}, \mathbb{P})$ sei ein Wahrscheinlichkeitsraum und $A, B\in
+\mathcal{A}$
+seien Ereignisse mit $\mathbb{P}(B) > 0$. Die \textit{bedingte
+Wahrscheinlichkeit des Ereignisses
+$A$ gegeben das Ereignis $B$} ist definiert als
+\begin{equation}
+\mathbb{P}(A|B) := \frac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)}.
+\end{equation}
+\end{definition}
+
+\footnotesize
+Bemerkungen
+
+* $\mathbb{P}(A|B)$ ist die mit $1/\mathbb{P}(B)$ skalierte gemeinsame
+Wahrscheinlichkeit $\mathbb{P}(A \cap B)$.
+* Die Festlegung von $\mathbb{P}(A\cap B)$ und $\mathbb{P}(B)>0$ legt auch $\mathbb{P}(A|B)$ fest.
+*  Üblicherweise gilt $\mathbb{P}(A|B) \neq \mathbb{P}(B|A)$, z.B. 
+\begin{equation}
+\mathbb{P}(\mbox{Tod}|\mbox{Erhängen}) \neq  \mathbb{P}(\mbox{Erhängen}|\mbox{Tod}).
+\end{equation}
+* Eine Verallgemeinerung für $\mathbb{P}(B) = 0$ ist möglich, aber technisch
+aufwändig.
+
+# Bedingte  Wahrscheinlichkeiten
+\small
+Werfen eines Würfels
+\footnotesize
+\setstretch{1.3}
+
+Wir betrachten erneut das Modell $(\Omega, \mathcal{A}, \mathbb{P})$ des fairen
+Würfels.
+Wir wollen  die bedingte Wahrscheinlichkeit für das Ereignis "Es fällt eine
+gerade Augenzahl"
+gegeben das Ereignis "Es fällt eine Zahl größer als Drei" berechnen. Wir haben
+oben
+bereits gesehen, dass das Ereignis "Es fällt eine gerade Augenzahl" der
+Teilmenge
+$A := \{2,4,6\}$ von $\Omega$ entspricht, und dass das Ereignis 
+"Es fällt eine Zahl größer als Drei" der Teilmenge $B := \{4,5,6\}$ von $\Omega$
+entspricht. Weiterhin haben wir gesehen, dass unter der Annahme, dass der 
+modellierte Würfel fair ist, gilt, dass
+\begin{equation}
+\begin{aligned}
+\mathbb{P}(\{2,4,6\})
+& = \mathbb{P}(\{2\}) + \mathbb{P}(\{4\}) + \mathbb{P}(\{6\})
+= \frac{1}{6} + \frac{1}{6} + \frac{1}{6} = \frac{1}{2}   \\
+\mathbb{P}(\{4,5,6\})
+& = \mathbb{P}(\{4\}) + \mathbb{P}(\{5\}) + \mathbb{P}(\{6\})
+= \frac{1}{6} + \frac{1}{6} + \frac{1}{6} = \frac{1}{2}.
+\end{aligned}
+\end{equation}
+Schließlich hatten wir auch gesehen, dass das Ereignis $A \cap B$, also das
+Ereignis
+"Es fällt eine gerade Augenzahl, die größer als Drei ist", die
+Wahrscheinlichkeit
+\begin{equation}
+\mathbb{P}(A \cap B) = \mathbb{P}(\{2,4,6\} \cap \{4,5,6\}) = \mathbb{P}(\{4,6\})
+= \mathbb{P}(\{4\}) + \mathbb{P}(\{6\}) = \frac{1}{6} + \frac{1}{6} = \frac{1}{3}
+\end{equation}
+hat. Nach Definition der bedingten Wahrscheinlichkeit ergibt sich dann direkt
+\begin{equation}
+\mathbb{P}(A|B)
+= \frac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)}
+= \frac{\mathbb{P}(\{4,6\})}{\mathbb{P}(\{4,5,6\})}
+= \frac{\mathbb{P}(\{4\}\cup\{6\})}{\mathbb{P}(\{4\}\cup\{5\}\cup\{6\})}
+= \frac{\frac{1}{3}}{\frac{1}{2}}
+= \frac{1}{3} \cdot \frac{2}{1}
+= \frac{2}{3}.
+\end{equation}
+Wenn man also weiß, dass eine Augenzahl größer als Drei gefallen ist, ist die
+Wahrscheinlichkeit, dass es sich dabei um eine gerade Augenzahl handelt, 2/3.
+Wenn man ersteres nicht weiß, ist die Wahrscheinlichkeit für das Fallen einer
+geraden Augenzahl (nur) 1/2. Dieses Beispiel verdeutlicht insbesondere, dass
+das Bedingen auf einem Ereignis der Inkorporation von neuem Wissen in 
+wahrscheinlichkeitstheoretische Modelle entspricht.
+
+
+# Bedingte  Wahrscheinlichkeiten
+\small
+\vspace{2mm}
+Wert eines BDI-II Items
+\footnotesize
+
+Wir betrachten erneut das Beispiel für den Wert einer Patient:in für das Item 
+"Traurigkeit" der deutschen Version des BDI-II. Im Kapitel
+„Wahrscheinlichkeitsräume“ haben wir den möglichen Itemantworten (0), (1),
+(2), (3) die Wahrscheinlichkeiten
+\begin{equation}
+\mathbb{P}(\{0\}) := \frac{2}{10}, \quad
+\mathbb{P}(\{1\}) := \frac{3}{10}, \quad
+\mathbb{P}(\{2\}) := \frac{4}{10}, \quad
+\mathbb{P}(\{3\}) := \frac{1}{10}, \quad
+\end{equation}
+zugeordnet. Wir nehmen nun an, dass wir von einer Patient:in wissen, dass sie 
+einen Wert größer als (1) gewählt hat und fragen nach den Wahrscheinlichkeiten,
+dass die Patient:in den Wert (2) oder (3) gewählt hat. Dazu betrachten wir
+zunächst
+die Wahrscheinlichkeit des Ereignisses "Die Patient:in hat einen Wert größer als
+(1) gewählt".
+Offenbar entspricht dies der Teilmenge $B := \{2,3\}$ von $\Omega$. Mit der $\sigma$-Additivität ergibt sich für die Wahrscheinlichkeit dieses
+Ereignisses $\mathbb{P}(\{2,3\}) = 1/2$. Wir betrachten also die Ereignisse 
+\center
+\begin{tabular}{l|l}
+Verbale Beschreibung                                    & Mengenform                  \\\hline
+Die Patient:in hat einen Wert größer als (1) gewählt    & $\omega \in B := \{2,3\}$   \\
+Die Patient:in hat Antwort (2) gewählt                  & $\omega \in A_1 := \{2\}$   \\
+Die Patient:in hat Antwort (3) gewählt                  & $\omega \in A_2 := \{3\}$   \\
+\end{tabular}
+\flushleft
+Es ergeben sich
+\begin{equation}
+\mathbb{P}(A_1|B)
+= \frac{\mathbb{P}(A_1 \cap B)}{\mathbb{P}(B)}
+= \frac{\mathbb{P}(\{2\} \cap \{2,3\})}{\mathbb{P}(\{2,3\})}
+= \frac{\mathbb{P}(\{2\})}{\mathbb{P}(\{2,3\})} 
+= \frac{4}{10} \cdot \frac{2}{1} = \frac{8}{10}
+\end{equation}
+und
+\begin{equation}
+\mathbb{P}(A_2|B)
+= \frac{\mathbb{P}(A_2 \cap B)}{\mathbb{P}(B)}
+= \frac{\mathbb{P}(\{3\} \cap \{2,3\})}{\mathbb{P}(\{2,3\})}
+= \frac{\mathbb{P}(\{3\})}{\mathbb{P}(\{2,3\})} 
+= \frac{1}{10} \cdot \frac{2}{1} = \frac{2}{10}.
+\end{equation}
+Man beachte, dass
+\begin{equation}
+\mathbb{P}(A_1|B) + \mathbb{P}(A_2|B) = \frac{8}{10} + \frac{2}{10} = 1.
+\end{equation}
+
+# Bedingte Wahrscheinlichkeiten
+\small
+\begin{theorem}[Bedingte Wahrscheinlichkeit]
+\justifying
+\normalfont
+Für ein festes $B \in \mathcal{A}$ mit $\mathbb{P}(B) > 0$ sei 
+\begin{equation}
+\mathbb{P}(\cdot|B) : \mathcal{A} \to [0,1],
+A \mapsto \mathbb{P}(A|B) := \frac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)}
+\end{equation}
+Dann ist $\mathbb{P}(\cdot|B)$ ein Wahrscheinlichkeitsmaß und heißt die 
+\textit{bedingte Wahrscheinlichkeit gegeben Ereignis $B$}.
+\end{theorem}
+\footnotesize
+Bemerkungen
+
+* Die Rechenregeln der Wahrscheinlichkeitstheorie gelten für die Ereignisse
+links des Strichs.
+* Für $\mathbb{P}(B)>0$ ist $\mathbb{P}(\cdot|B)$ ein Wahrscheinlichkeitsmaß.
+Insbesondere gilt
+\begin{equation}
+\mathbb{P}(\Omega|B) 
+= \frac{\mathbb{P}(\Omega \cap B)}{\mathbb{P}(B)}
+= \frac{\mathbb{P}(B)}{\mathbb{P}(B)}
+= 1.
+\end{equation}
+* Dagegen gilt
+\begin{equation}
+\mathbb{P}(\Omega\cap B)=\mathbb{P}(B).
+\end{equation}
+Für $0<\mathbb{P}(B)<1$ ist die Abbildung $\mathbb{P}(\cdot\cap B)$ daher
+nicht normiert und somit kein Wahrscheinlichkeitsmaß. 
+* Für $\mathbb{P}(B)=1$ stimmen beide Abbildungen überein.
+
+# Bedingte Wahrscheinlichkeiten
+\vspace{2mm}
+\setstretch{1.2}
+\footnotesize
+\underline{Beweis} 
+
+Wir weisen die definierenden Eigenschaften eines Wahrscheinlichkeitsmaßes nach.
+
+\noindent (1) $\mathbb{P}(A|B) \ge 0$ für alle $A \in \mathcal{A}$
+
+Nach Definition der bedingten Wahrscheinlichkeit gilt $\mathbb{P}(A|B) =
+\mathbb{P}(A \cap B)/\mathbb{P}(B)$
+mit $\mathbb{P}(B)>0$. Mit dem Theorem zur Abgeschlossenheit von
+$\sigma$-Algebren bezüglich Durchschnitten
+und der Definition von $\mathbb{P}$ gilt $\mathbb{P}(A \cap B) \ge 0$ und damit
+folgt die Aussage.
+
+\noindent (2) $\mathbb{P}(\Omega|B) =  1$.  
+
+Es gilt
+\begin{equation}
+\mathbb{P}(\Omega|B) = \frac{\mathbb{P}(\Omega \cap B)}{\mathbb{P}(B)} = \frac{\mathbb{P}(B)}{\mathbb{P}(B)} = 1.
+\end{equation}
+
+
+\noindent (3) $\mathbb{P}\left(\cup_{i=1}^\infty A_i|B \right) = \sum_{i=1}^\infty \mathbb{P}(A_i|B)$ für  paarweise disjunkte $A_1,A_2,... \in \mathcal{A}$.
+
+Mit dem Theorem zu den Assoziativ- und Distributivgesetzen von Vereinigung und
+Durchschnitt
+gilt zunächst, dass
+\begin{equation}
+\left(\cup_{i=1}^\infty A_i\right) \cap B 
+= \left(A_1 \cup A_2 \cup \cdots \right) \cap B 
+= \left(A_1 \cap B\right) \cup \left(A_2 \cap B\right) \cup \cdots
+= \cup_{i=1}^\infty \left(A_i \cap B\right).
+\end{equation}
+Weiterhin gilt mit $A_i \cap A_j = \emptyset$ und dem Theorem zu den Assoziativ-
+und
+Distributivgesetzen von Vereinigung und Durchschnitt, dass auch die $A_i \cap B$
+für
+$i = 1,2,...$ paarweise disjunkt sind, denn
+\begin{equation}
+\left(A_i \cap B\right) \cap \left(A_j \cap B\right) = \left(A_i \cap A_j\right) \cap (B \cap B) = \emptyset \cap B = \emptyset.
+\end{equation}
+Mit der $\sigma$-Additivität von $\mathbb{P}$ folgt damit dann, dass
+\tiny
+\begin{equation}
+\mathbb{P}\left(\cup_{i=1}^\infty A_i|B \right)
+= \frac{\mathbb{P}\left(\left(\cup_{i=1}^\infty A_i\right) \cap B\right)}{\mathbb{P}(B)}
+= \frac{\mathbb{P}\left(\cup_{i=1}^\infty \left(A_i \cap B\right) \right)}{\mathbb{P}(B)} 
+= \frac{\sum_{i=1}^\infty \mathbb{P}\left(A_i \cap B\right)}{\mathbb{P}(B)}
+= \sum_{i=1}^\infty \frac{\mathbb{P}\left(A_i \cap B\right)}{\mathbb{P}(B)}
+= \sum_{i=1}^\infty \mathbb{P}(A_i|B).
+\end{equation}
+\footnotesize
+$\hfill\Box$
+
+
+# Bedingte Wahrscheinlichkeiten
+\small
+\begin{theorem}[Gemeinsame und bedingte Wahrscheinlichkeiten]
+\normalfont
+Es seien $(\Omega,\mathcal{A}, \mathbb{P})$ ein W-Raum und $A,B\in \mathcal{A}$
+mit $\mathbb{P}(A) > 0$ und $\mathbb{P}(B)>0$. Dann gilt
+\begin{equation}
+\mathbb{P}(A \cap B)
+= \mathbb{P}(A|B)\mathbb{P}(B)
+= \mathbb{P}(B|A)\mathbb{P}(A).
+\end{equation}
+\end{theorem}
+
+\footnotesize
+\underline{Beweis}
+
+Mit der Definition der jeweiligen bedingten Wahrscheinlichkeit folgen direkt
+\begin{equation}
+\mathbb{P}(A|B) = \frac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)}
+\Leftrightarrow 
+\mathbb{P}(A \cap B) =\mathbb{P}(A|B)\mathbb{P}(B)
+\end{equation}
+und
+\begin{equation}
+\mathbb{P}(B|A) = \frac{\mathbb{P}(B \cap A)}{\mathbb{P}(A)}
+\Leftrightarrow 
+\mathbb{P}(A \cap B) =\mathbb{P}(B|A)\mathbb{P}(A).
+\end{equation}
+
+Bemerkungen
+
+* Gemeinsame Wahrscheinlichkeiten können aus bedingten und totalen
+Wahrscheinlichkeiten berechnet werden.
+* Definition von $\mathbb{P}(A)$ und $\mathbb{P}(B|A)$ definiert $\mathbb{P}(A
+\cap B)$ implizit mit.
+
+
+# Bedingte Wahrscheinlichkeiten
+\vspace{2mm}
+\small
+\begin{theorem}[Gesetz der totalen Wahrscheinlichkeit]
+\normalfont
+\justifying
+$(\Omega,\mathcal{A},\mathbb{P})$ sei ein Wahrscheinlichkeitsraum und $A_1,
+...,A_k$
+sei eine Partition von $\Omega$. Dann gilt 
+für jedes $B \in \mathcal{A}$, dass
+\begin{equation}
+\mathbb{P}(B) = \sum_{i=1}^k \mathbb{P}(B \cap A_i).
+\end{equation}
+\end{theorem}
+\vspace{-1mm}
+
+\footnotesize
+\underline{Beweis}
+
+Für $i = 1,...,k$ sei $C_i := B \cap A_i$, so dass $\cup_{i=1}^k C_i = B$ und
+$C_i \cap C_j = \emptyset$ für $1 \le i,j \le k,i \neq j$, visuell
+
+\center
+```{r, echo = FALSE, out.width = "20%"}
+knitr::include_graphics("2-Abbildungen/wtfi-2-partition.pdf")
+```
+\flushleft
+Dann gilt mit der $\sigma$-Additivität von $\mathbb{P}$, dass
+\begin{equation}
+\mathbb{P}(B)
+= \mathbb{P}\left(\cup_{i=1}^k C_i\right)
+= \sum_{i=1}^k \mathbb{P}(C_i)
+= \sum_{i=1}^k \mathbb{P}(B \cap A_i).
+\end{equation}
+\vspace{-1mm}
+Bemerkung
+
+* Totale Wahrscheinlichkeiten können aus gemeinsamen Wahrscheinlichkeiten
+berechnet werden.
+* Im Kontext von Zufallsvariablen wird dieser Prozess auch als
+*Marginalisierung* bezeichnet.
+
+# Bedingte Wahrscheinlichkeiten
+\small
+Beispiel
+
+\footnotesize
+Als Beispiel für die Darstellung der Wahrscheinlichkeit eines Ereignisses
+mithilfe
+des Gesetzes der totalen Wahrscheinlichkeit betrachten wir das
+Wahrscheinlichkeitsraummodell
+des fairen Würfels. Für den Ergebnisraum $\Omega := \{1,2,3,4,5,6\}$ betrachten
+wir das Ereignis $B := \{2,4,6\}$ ("Es fällt eine gerade Zahl") mit
+Wahrscheinlichkeit
+$\mathbb{P}(B) = \frac{1}{2}$ sowie die Partition $A_1 := \{1,2\}$, $A_2 :=
+\{3\}$,
+$A_3 := \{4,5\}$, $A_4 := \{6\}$ von $\Omega$. Dann gelten offenbar
+
+\center
+\begin{tabular}{lllllll}
+$\mathbb{P}\left(B \cap A_1\right)$ & $=$ & $\mathbb{P}\left(\{2,4,6\} \cap \{1,2\} \right) $ & $=$ & $\mathbb{P}\left(\{2\} \right)$     & $=$ & $\frac{1}{6}$ \\
+$\mathbb{P}\left(B \cap A_2\right)$ & $=$ & $\mathbb{P}\left(\{2,4,6\} \cap \{3\} \right)$    & $=$ & $\mathbb{P}\left(\emptyset \right)$ & $=$ & $0$           \\   
+$\mathbb{P}\left(B \cap A_3\right)$ & $=$ & $\mathbb{P}\left(\{2,4,6\} \cap \{4,5\} \right)$  & $=$ & $\mathbb{P}\left(\{4\} \right)$     & $=$ & $\frac{1}{6}$ \\  
+$\mathbb{P}\left(B \cap A_4\right)$ & $=$ & $\mathbb{P}\left(\{2,4,6\} \cap \{6\} \right)$    & $=$ & $\mathbb{P}\left(\{6\} \right)$     & $=$ & $\frac{1}{6}$ \\ 
+\end{tabular}
+\flushleft
+Damit ergibt sich dann
+\begin{equation}
+\sum_{i=1}^4 \mathbb{P}(B \cap A_i) = \mathbb{P}(B \cap A_1) + \mathbb{P}(B \cap A_2) + \mathbb{P}(B \cap A_3) + \mathbb{P}(B \cap A_4) = \frac{1}{6} + 0 + \frac{1}{6} + \frac{1}{6} = \frac{1}{2}.
+\end{equation}
+und somit
+\begin{equation}
+\mathbb{P}(B) = \sum_{i=1}^4 \mathbb{P}(B \cap A_i).
+\end{equation}
+Man beachte, dass die Partitionseigenschaft von $A_1,A_2,A_3,A_4$ essentiell für
+die
+Validität des Theorems in diesem Beispiel ist. Wäre z.B. $A_4 = \{4,6\}$ und
+$A_3$ und $A_4$
+damit nicht disjunkt, so ergäbe die rechte Seite des Gesetzes von der totalen
+Wahrscheinlichkeit
+einen Wert größer $\mathbb{P}(B)$. Ergäbe die Vereinigung der $A_1,A_2,A_3,A_4$
+dagegen
+nicht $\Omega$, weil zum Beispiel $A_4 = \emptyset$, so ergäbe sich umgekehrt
+ein
+Wert kleiner $\mathbb{P}(B)$.
+
+# Bedingte Wahrscheinlichkeiten
+\small
+\begin{theorem}[Theorem von Bayes]
+\normalfont
+\justifying
+$(\Omega,\mathcal{A},\mathbb{P})$ sei ein Wahrscheinlichkeitsraum und $A_1,
+...,A_k$
+sei eine Partition von $\Omega$ mit $\mathbb{P}(A_i) > 0$ für alle $i =
+1,...,k$.
+Wenn $\mathbb{P}(B) > 0$ gilt, dann gilt für jedes $i = 1,...,k$, dass
+\begin{equation}
+\mathbb{P}(A_i|B) = \frac{\mathbb{P}(B|A_i)\mathbb{P}(A_i)}{\sum_{j=1}^k \mathbb{P}(B|A_j)\mathbb{P}(A_j)}.
+\end{equation}
+\end{theorem}
+
+\footnotesize
+\underline{Beweis}
+\vspace{1mm}
+
+Mit der Definition der bedingten Wahrscheinlichkeit und dem Gesetz der totalen 
+Wahrscheinlichkeit gilt
+\begin{equation}
+\mathbb{P}(A_i|B)
+= \frac{\mathbb{P}(A_i \cap B)}{\mathbb{P}(B)}
+= \frac{\mathbb{P}(B|A_i)\mathbb{P}(A_i)}{\mathbb{P}(B)}
+= \frac{\mathbb{P}(B|A_i)\mathbb{P}(A_i)}{\sum_{j=1}^k \mathbb{P}(B \cap A_j)}
+= \frac{\mathbb{P}(B|A_i)\mathbb{P}(A_i)}{\sum_{j=1}^k \mathbb{P}(B|A_j)\mathbb{P}(A_j)}.
+\end{equation}
+$\hfill \Box$
+
+# Bedingte Wahrscheinlichkeiten
+Bemerkungen
+\small
+
+* Das Theorem von Bayes ist eine zu $\mathbb{P}(A_i \cap B)/ \mathbb{P}(B)$ 
+alternative Formel, um die bedingte Wahrscheinlichkeit  $\mathbb{P}(A_i|B)$ zu
+berechnen.
+
+* Das Theorem von Bayes gilt unabhängig von der Frequentistischen oder 
+Bayesianischen Interpretation von Wahrscheinlichkeiten.
+
+* Im Rahmen der frequentistischen Inferenz wird das Theorem von
+Bayes recht selten benutzt.
+
+*  Im Rahmen der Bayesianischen Inferenz ist das Theorem von Bayes 
+zentral; hier wird $\mathbb{P}(A_i)$ oft \textit{Prior Wahrscheinlichkeit} 
+und $\mathbb{P}(A_i|B)$ oft \textit{Posterior Wahrscheinlichkeit des Ereignisses
+$A_i$} genannt. Wie oben erläutert entspricht $\mathbb{P}(A_i|B)$ dann der
+aktualisierten Wahrscheinlichkeit von $A_i$, wenn man um das Eintreten von $B$ weiß.
+
+
+
+# Bedingte Wahrscheinlichkeiten
+\vspace{2mm}
+\large
+Die drei zentralen Rechenregeln der Wahrscheinlichkeitstheorie
+
+\normalsize
+Summationsregel (Gesetz von der totalen Wahrscheinlichkeit)
+
+\small
+Für Ereignisse $A_1,\ldots,A_k$ mit $\Omega=\bigcup_{i=1}^{k}A_i$ und $A_i\cap A_j=\emptyset$ für $i\neq j$ gilt für jedes Ereignis $B$
+\begin{equation}
+\mathbb{P}(B)=\sum_{i=1}^{k}\mathbb{P}(B\cap A_i).
+\end{equation}
+
+\normalsize
+Multiplikationsregel (Gemeinsame und bedingte Wahrscheinlichkeiten)
+
+\small 
+Für $\mathbb{P}(A)>0$ gilt
+\begin{equation}
+\mathbb{P}(A\cap B)=\mathbb{P}(B|A)\mathbb{P}(A).
+\end{equation}
+
+\normalsize
+Theorem von Bayes
+
+\small
+Für $\mathbb{P}(A)>0$ und $\mathbb{P}(B)>0$ gilt
+\begin{equation}
+\mathbb{P}(A|B)=\frac{\mathbb{P}(B|A)\mathbb{P}(A)}{\mathbb{P}(B)}.
+\end{equation}
+
+# 
+\setstretch{3}
+\vfill
+\large
+
+Gemeinsame Wahrscheinlichkeiten
+
+Bedingte Wahrscheinlichkeiten
+
+**Unabhängige Ereignisse**
+
+Selbstkontrollfragen
+\vfill
+
+
+# Unabhängige Ereignisse
+\small
+\begin{definition}[Unabhängige Ereignisse]
+\justifying
+Zwei Ereignisse $A \in \mathcal{A}$ und $B \in \mathcal{A}$ heißen
+\textit{unabhängig}, wenn
+\begin{equation}
+\mathbb{P}(A \cap B) = \mathbb{P}(A)\mathbb{P}(B).
+\end{equation}
+Eine Menge von Ereignissen $\{A_i|i \in I\}\subset \mathcal{A}$ mit beliebiger
+Indexmenge $I$ heißt unabhängig, wenn für jede endliche und mindestens
+zweielementige Untermenge
+$J \subseteq I$ gilt, dass
+\begin{equation}
+\mathbb{P}\left(\cap_{j \in J} A_j \right) = \prod_{j \in J}\mathbb{P}(A_j).
+\end{equation}
+\end{definition}
+\footnotesize
+Bemerkungen 
+
+* Die Unabhängigkeit bestimmter Ereignisse kann in der Definition eines
+probabilistischen Modells vorausgesetzt werden, so zum Beispiel die
+Unabhängigkeit
+von Fehlervariablen in statistischen Modellen.
+* Die Unabhängigkeit von Ereignissen kann aus der Definition eines
+probabilistischen Modells folgen.
+* Disjunkte Ereignisse mit von Null verschiedener Wahrscheinlichkeit sind nie
+unabhängig:
+\begin{equation}
+\mathbb{P}(A)\mathbb{P}(B) > 0 \mbox{, aber } \mathbb{P}(A \cap B) = \mathbb{P}(\emptyset) = 0 \mbox{, also } \mathbb{P}(A \cap B) \neq \mathbb{P}(A)\mathbb{P}(B).
+\end{equation}
+* Der Sinn der Produkteigenschaft bei Unabhängigkeit erschließt sich im Kontext
+\textit{bedingter Wahrscheinlichkeiten}.
+* Die Bedingung der beliebigen Untermengen von $I$ sichert die paarweise
+Unabhängigkeit der $A_i, i \in I$.
+
+
+# Unabhängige Ereignisse
+\small
+Beispiele
+
+\footnotesize
+Unabhängige Ereignisse sind nach Definition immer auch paarweise unabhängig. 
+Beispielsweise gilt für die Menge $\{A_i| i \in \{1,2,3\}\}$ von Ereignissen
+und die möglichen Untermengen  $J_1 := \{1,2\}$,  $J_2 := \{1,3\}$, $J_3 :=
+\{2,3\}$, $J := \{1,2,3\}$
+der Indexmenge $I = \{1,2,3\}$, dass die Definitionsbedingung der Unabhängigkeit
+von $A_1,A_2,A_3$ die Aussagen
+\begin{equation}
+\begin{split}
+\mathbb{P}\left(A_1 \cap A_2\right)             & = \mathbb{P}\left(A_1\right)\mathbb{P}\left(A_2\right)                            \\
+\mathbb{P}\left(A_1 \cap A_3\right)             & = \mathbb{P}\left(A_1\right)\mathbb{P}\left(A_3\right)                            \\
+\mathbb{P}\left(A_2 \cap A_3\right)             & = \mathbb{P}\left(A_2\right)\mathbb{P}\left(A_3\right)                             \\ 
+\mathbb{P}\left(A_1 \cap A_2 \cap A_3\right)    & = \mathbb{P}\left(A_1\right)\mathbb{P}\left(A_2\right)\mathbb{P}\left(A_3\right)
+\end{split}
+\end{equation}
+impliziert. 
+
+Andersherum kann aus der paarweisen Unabhängigkeit von Ereignissen allerdings 
+nicht auf die Unabhängigkeit von Ereignissen geschlossen werden, wie folgendes 
+Beispiel zeigt (cf. @degroot2012):  Wir betrachten das Modell des zweifachen 
+Werfens einer fairen Münze mit dem Ergebnisraum
+\begin{equation}
+\Omega := \{HH, HT, TH, TT\}
+\end{equation}
+mit den Elementareigniswahrscheinlichkeiten
+\begin{equation}
+\mathbb{P}\{HH\}
+= \mathbb{P}\{HT\}
+= \mathbb{P}\{TH\}
+= \mathbb{P}\{TT\}
+= \frac{1}{4}
+\end{equation}
+
+
+# Unabhängige Ereignisse
+\small
+Beispiele (fortgeführt)
+
+\footnotesize
+Dann sind die Ereignisse
+
+\center
+\begin{tabular}{l|l}
+Verbale Beschreibung                        & Mengenform                     \\\hline
+Im ersten Wurf fällt Kopf                   & $A_1 := \{HH, HT\}$   \\
+Im zweiten Wurf fällt Kopf                  & $A_2 := \{HH, TH\}$   \\
+In beiden Würfen fällt das gleiche Ergebnis & $A_3 := \{HH, TT\}$   \\
+\end{tabular}
+\flushleft
+zwar paarweise unabhängig, aber nicht unabhängig. Es gelten hier offenbar
+\begin{equation}
+\mathbb{P}\left(A_1 \right) = \mathbb{P}\left(A_2 \right)= \mathbb{P}\left(A_3 \right) = \frac{1}{2} 
+\end{equation}
+sowie
+\begin{equation}
+\begin{split}
+\mathbb{P}\left(A_1 \cap A_2 \right) & = \mathbb{P}\left(\{HH\}\right) = \frac{1}{4} = \frac{1}{2} \cdot \frac{1}{2} = \mathbb{P}\left(A_1 \right)\mathbb{P}\left(A_2 \right) \\
+\mathbb{P}\left(A_1 \cap A_3 \right) & = \mathbb{P}\left(\{HH\}\right) = \frac{1}{4} = \frac{1}{2} \cdot \frac{1}{2} = \mathbb{P}\left(A_1 \right)\mathbb{P}\left(A_3 \right) \\
+\mathbb{P}\left(A_2 \cap A_3 \right) & = \mathbb{P}\left(\{HH\}\right) = \frac{1}{4} = \frac{1}{2} \cdot \frac{1}{2} = \mathbb{P}\left(A_2 \right)\mathbb{P}\left(A_3 \right) \\
+\end{split}
+\end{equation}
+Die Ereignisse sind also paarweise unabhängig. Allerdings gilt auch
+\begin{equation}
+\mathbb{P}\left(A_1 \cap A_2 \cap A_3 \right) 
+= \mathbb{P}\left(\{HH\}\right) 
+= \frac{1}{4} 
+\neq \frac{1}{8}
+= \frac{1}{2} \cdot \frac{1}{2}  \cdot \frac{1}{2}
+ = \mathbb{P}\left(A_1\right)\mathbb{P}\left(A_2\right)\mathbb{P}\left(A_3\right)  
+\end{equation}
+und die Ereignisse $A_1, A_2, A_3$ sind damit nicht unabhängig.
+
+
+# Unabhängige Ereignisse
+\small
+\begin{theorem}[Bedingte Wahrscheinlichkeit unter Unabhängigkeit]
+\normalfont
+\justifying
+$(\Omega,\mathcal{A}, \mathbb{P})$ sei ein Wahrscheinlichkeitsraum und 
+$A,B\in \mathcal{A}$ seien unabhängige Ereignisse mit $\mathbb{P}(B) > 0$. 
+Dann gilt
+\begin{equation}
+\mathbb{P}(A|B) = \mathbb{P}(A).
+\end{equation}
+\end{theorem}
+\footnotesize
+
+\underline{Beweis}
+
+Unter den Voraussetzungen des Theorems gilt
+\begin{equation}
+\mathbb{P}(A|B)
+= \frac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)}
+= \frac{\mathbb{P}(A)\mathbb{P}(B)}{\mathbb{P}(B)}
+= \mathbb{P}(A).
+\end{equation}
+$\hfill\Box$
+
+Bemerkungen
+
+* Bei Unabhängigkeit von $A$ und $B$ ist es irrelevant, ob auch $B$
+eintritt,  $\mathbb{P}(A)$ bleibt gleich.
+* Unabhängigkeit wird also als $\mathbb{P}(A)\mathbb{P}(B)$ modelliert,
+damit $\mathbb{P}(A|B) = \mathbb{P}(A)$ gilt.
+* Die Unabhängigkeit zweier Ereignisse bedeutet also, dass das Wissen um 
+das Eintreten eines der beiden Ereignisse die Wahrscheinlichkeit für das 
+Eintreten des anderen Ereignisses nicht ändert. Andersherum bedeutet
+Abhängigkeit,
+dass das Wissen um das Eintreten eines der beiden Ereignisse die
+Wahrscheinlichkeit
+für das Eintreten des anderen Ereignisses verändert, also erhöht oder
+verringert.
+
+
+# 
+\setstretch{3}
+\vfill
+\large
+
+Gemeinsame Wahrscheinlichkeiten
+
+Bedingte Wahrscheinlichkeiten
+
+Unabhängige Ereignisse
+
+**Selbstkontrollfragen**
+\vfill
+
+
+# Selbstkontrollfragen
+\footnotesize
+\setstretch{1.8}
+
+1. Geben Sie die Definition der gemeinsamen Wahrscheinlichkeit zweier Ereignisse
+wieder.
+1. Erläutern Sie die intuitive Bedeutung der gemeinsamen Wahrscheinlichkeit
+zweier Ereignisse.
+1. Geben Sie das Theorem zu weiteren Eigenschaften von Wahrscheinlichkeiten
+wieder.
+1. Geben Sie die Definition der bedingten Wahrscheinlichkeit eines Ereignisses
+wieder.
+1. Geben Sie das Theorem zur bedingten Wahrscheinlichkeit wieder.
+1. Geben Sie das Theorem zu gemeinsamen und bedingten Wahrscheinlichkeiten
+wieder.
+1. Geben Sie das Gesetz der totalen Wahrscheinlichkeit wieder.
+1. Geben Sie das Theorem von Bayes wieder.
+1. Geben Sie den Beweis des Theorems von Bayes wieder.
+1. Geben Sie die Definition der Unabhängigkeit zweier Ereignisse wieder.
+1. Geben Sie das Theorem zur bedingten Wahrscheinlichkeit unter Unabhängigkeit
+wieder.
+1. Geben Sie den Beweis des Theorems zur bedingten Wahrscheinlichkeit unter
+Unabhängigkeit wieder.
+1. Erläutern Sie das Theorem zur bedingten Wahrscheinlichkeit unter
+Unabhängigkeit.
+
+\normalsize
+
+# Selbstkontrollfragen - Lösungen
+\footnotesize
+\setstretch{1.8}
+
+1. Siehe Definition (Gemeinsame Wahrscheinlichkeit).
+1. Siehe Bemerkungen zu Definition (Gemeinsame Wahrscheinlichkeit).
+1. Siehe Theorem (Weitere Eigenschaften von Wahrscheinlichkeiten).
+1. Siehe Definition (Bedingte Wahrscheinlichkeit). Die bedingte
+Wahrscheinlichkeit eines Ereignisses gegeben ein anderes Ereignis ist ein Wert
+in $[0,1]$.
+1. Siehe Theorem (Bedingte Wahrscheinlichkeit). Die bedingte Wahrscheinlichkeit
+gegeben ein Ereignis ist ein Wahrscheinlichkeitsmaß.
+1. Siehe Theorem (Gemeinsame und bedingte Wahrscheinlichkeit).
+1. Siehe Theorem (Gesetz der totalen Wahrscheinlichkeit).
+1. Siehe Theorem (Theorem von Bayes).
+1. Siehe Beweis zum Theorem (Theorem von Bayes).
+1. Siehe Definition (Unabhängige Ereignisse).
+1. Siehe Theorem (Bedingte Wahrscheinlichkeit unter Unabhängigkeit).
+1. Siehe Beweis zum Theorem (Bedingte Wahrscheinlichkeit unter Unabhängigkeit).
+1. Siehe Bemerkungen zum Theorem (Bedingte Wahrscheinlichkeit unter
+Unabhängigkeit).
+
+# Referenzen
+\footnotesize
