@@ -7,20 +7,14 @@ Psychologiestudium.
 
 ## Materialien
 
-Die Folien liegen als fertige PDFs vor. Zum Lesen ist keine Softwareinstallation
-außer einem PDF-Betrachter erforderlich.
-
 | Thema | Folien | Quellen und Abbildungen |
 | --- | --- | --- |
 | 0 · Einführung | [PDF](0-Einführung/0-Einführung.pdf) | [Ordner](0-Einführung/) |
 | 1 · Wahrscheinlichkeitsräume | [PDF](1-Wahrscheinlichkeitsräume/1-Wahrscheinlichkeitsräume.pdf) | [Ordner](1-Wahrscheinlichkeitsräume/) |
+| 2 · Elementare Wahrscheinlichkeiten | [PDF](2-Elementare-Wahrscheinlichkeiten/2-Elementare-Wahrscheinlichkeiten.pdf) | [Ordner](2-Elementare-Wahrscheinlichkeiten/) |
 
 Das begleitende **[Vorlesungsskript als PDF](Skript/_book/Skript-Wahrscheinlichkeitstheorie-und-Frequentistische-Inferenz.pdf)**
-enthält derzeit die Kapitel 300–311 des Lehrbuchs *Probabilistische Datenwissenschaft
-für die Psychologie (PDWP)* sowie Vorbemerkungen und Referenzen. Die zugrunde
-liegenden Kapitelquellen werden im separaten PDWP-Projekt gepflegt.
-
-Weitere Informationen zur Veranstaltung stehen auf der
+enthält Kapitel aus Teil III von *Probabilistische Datenwissenschaft für die Psychologie (PDWP)*. Weitere Informationen zur Veranstaltung stehen auf der
 [Kurswebseite](https://www.ipsy.ovgu.de/Institut/Abteilungen+des+Institutes/Methodenlehre/Lehre/Wintersemester+2027/Wahrscheinlichkeitstheorie+und+frequentistische+Inferenz.html).
 
 ## Korrekturen und Beiträge
