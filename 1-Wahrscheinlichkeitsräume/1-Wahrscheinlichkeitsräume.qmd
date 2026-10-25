@@ -45,9 +45,9 @@ Wahrscheinlichkeitstheorie
 
 Zufallsvorgang
 
-* Ein Phänomen der Wirklichkeit, das nicht mit absoluter Sicherheit vorhersagbar
+* Ein Phänomen der Realität, das nicht mit absoluter Sicherheit vorhersagbar
 ist
-* Ein Phänomen der Wirklichkeit, das für Menschen mit Unsicherheit behaftet ist
+* Ein Phänomen der Realität, das für Menschen mit Unsicherheit behaftet ist
 
 Grundannahmen der Wahrscheinlichkeitstheorie
 
@@ -201,7 +201,7 @@ Häufigkeit der Münze, bei unendlich vielen Beobachtungen Kopf zu zeigen.
 ```
 
 
-Frequentistische Inferenz
+Frequentistische\newline\mbox{Inferenz}
 
 ```{=latex}
 &
@@ -588,8 +588,6 @@ Ergebnismenge $\Omega$
 * Wir betrachten zunächst *endliche Wahrscheinlichkeitsräume* mit
 $|\Omega|<\infty$.
 * $\Omega$ habe also nur endlich viele ("diskrete") Elemente.
-* Wir wählen $\mathcal{A}=\mathcal{P}(\Omega)$. Damit gehört jede Einzelmenge
-$\{\omega\}$ zum Ereignissystem.
 * Zum Modellieren des Werfens eines Würfels definiert man z.B. $\Omega :=
 \{1,2,3,4,5,6\}$.
 
@@ -649,7 +647,7 @@ Ereignisse - als Mengen definiert."
 # Definition
 Ereignissystem $\mathcal{A}$
 \small
-\setstretch{1.1}
+\setstretch{1.2}
 
 \begin{itemize}
 \justifying
@@ -671,19 +669,14 @@ für
 beliebiges $\omega$, dass also irgendein Ergebnis realisiert wird, eines der
 möglichen Ereignisse ist.
 Dies entspricht $\Omega \in \mathcal{A}$.
-Zu jedem Ereignis $A$ soll auch das Gegenereignis "$A$ tritt nicht ein" zum
-Ereignissystem gehören. Daher fordern wir, dass mit $A\in\mathcal{A}$ auch
-$A^c=\Omega\setminus A\in\mathcal{A}$ gilt. Dies
-impliziert auch, dass $\emptyset = \Omega \setminus \Omega \in \mathcal{A}$.
-Ein Ereignis ist also, dass kein Elementarereignis eintritt, allerdings passiert
-dies nur mit Wahrscheinlichkeit Null, $\mathbb{P}(\emptyset) = 0$. Es tritt also
-sicher immer ein Elementarereignis ein. Die Kombination von Ereignissen soll
-auch
-immer ein Ereignis sein, z.B. ``Es fällt eine gerade Zahl'' und/oder ``Es fällt
-eine Zahl größer 2''. Dies entspricht, dass aus $A_1,A_2,... \in \mathcal{A} $
-folgen soll, dass auch $\cup_{i=1}^\infty A_i \in \mathcal{A}$.
+\item[$\circ$] \justifying Zu jedem Ereignis $A$ soll auch das Gegenereignis "$A$ tritt nicht ein" zum Ereignissystem gehören. Daher fordern man, dass mit $A\in\mathcal{A}$ auch
+$A^c=\Omega\setminus A\in\mathcal{A}$ gilt. Dies impliziert auch, dass $\emptyset = \Omega \setminus \Omega \in \mathcal{A}$. Ein Ereignis ist also, dass kein Elementarereignis eintritt. Allerdings passiert dies nur, wie unten begründet, mit Wahrscheinlichkeit Null, $\mathbb{P}(\emptyset) = 0$. Es tritt also
+sicher immer ein Elementarereignis ein. 
+\item[$\circ$] \justifying Die Kombination von Ereignissen soll
+auch immer ein Ereignis sein, z.B. ``Es fällt eine gerade Zahl'' und/oder ``Es fällt
+eine Zahl größer 2''. Dies entspricht,  $A_1,A_2,... \in \mathcal{A} \Rightarrow
+\cup_{i=1}^\infty A_i \in \mathcal{A}$.
 \end{footnotesize}
-
 \end{itemize}
 \item Für endliches $\Omega$ und für $\Omega := \mathbb{R}$ sind passende
 Ereignissysteme schon lange bekannt.
@@ -772,13 +765,9 @@ einzelnen Ereignisse $A_1,A_2,...$ sein soll.
 \emptyset$
 für $i \neq j$ handeln soll, impliziert die *oder* Aussage der Vereinigung
 $\omega \in A_1 \cup A_2 \cup ...$ hier insbesondere, dass $\omega \in A_i$ für
-*genau ein*
-$i \in \mathbb{N}$. In einem Durchgang des Zufallsvorgangs kann also immer
-nur genau eines der Ereignisse $A_1, A_2, ...$ Ereignisse eintreten. Die
-Wahrscheinlichkeit
-dafür, dass das Ereignis $A_1$ oder (im exklusiven Sinn) das Ereignis $A_2$ ...
-eintritt, soll also durch $\mathbb{P}(A_1) + \mathbb{P}(A_2) + ...$ gegeben
-sein.
+*genau ein* $i \in \mathbb{N}$. In einem Durchgang des Zufallsvorgangs kann also immer
+nur genau eines der hier betrachteten disjunkten Ereignisse $A_1, A_2, ...$ eintreten. 
+Die Wahrscheinlichkeit dafür, dass das Ereignis $A_1$ oder (im exklusiven Sinn) das Ereignis $A_2$ ... eintritt, soll also durch $\mathbb{P}(A_1) + \mathbb{P}(A_2) + ...$ gegeben sein.
 
 * Der Vorteil der Annahme der $\sigma$-Additivität für abzählbare Vereinigungen
 $\cup_{i=1}^\infty A_i$ gegenüber endlichen Vereinigungen $\cup_{i=1}^n A_i$
@@ -1494,7 +1483,7 @@ eines blauen Würfels mithilfe eines Wahrscheinlichkeitsraums.
 \footnotesize
 \setstretch{1.2}
 
-1. Ein Zufallsvorgang ist ein Phänomen der Wirklichkeit, das nicht mit absoluter
+1. Ein Zufallsvorgang ist ein Phänomen der Realität, das nicht mit absoluter
 Sicherheit vorhersagbar ist bzw. für Menschen mit Unsicherheit behaftet ist.
 Siehe Folie 2 Erste Begrifflichkeiten.
 1. Siehe Definition ($\sigma$-Algebra).
