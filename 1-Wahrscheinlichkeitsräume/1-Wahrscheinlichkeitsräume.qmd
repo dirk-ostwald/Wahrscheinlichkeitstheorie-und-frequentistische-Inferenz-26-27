@@ -1439,6 +1439,102 @@ so traurig oder unglücklich, dass ich es nicht aushalte gibt zu
 = \frac{3}{10}.
 \end{equation}
 
+# Beispiele
+\small
+Handlung eines Agenten
+\footnotesize
+
+Wir modellieren die registrierte Handlungswahl eines Agenten. Dazu nehmen wir an,
+der Agent habe drei Handlungsoptionen $a$, $b$ und $c$. Jeder Handlungsoption misst
+er einen subjektiven *Wert* zu. Seien dazu konkret
+\begin{equation}
+w_a := -2,\qquad w_b := 1,\qquad w_c := 8.
+\end{equation}
+Ein Agent, der die Handlung mit dem höchsten subjektiven Wert wählt, würde bei
+gleichbleibenden Werten immer die Handlungsoption $c$ wählen.
+
+Wir wollen allerdings zulassen, dass bei wiederholter Handlungswahl Störprozesse
+zwischen der Wahl des Agenten und ihrer Registrierung auftreten. Die von uns
+registrierte Wahl kann deshalb von der tatsächlichen Wahl des Agenten abweichen.
+Den Umfang dieser Messfehler beziehungsweise unserer Unsicherheit über die
+tatsächliche Wahl beschreiben wir durch einen Parameter $\tau\in]0,\infty[$.
+
+Als Ergebnismenge bietet sich $\Omega:=\{a,b,c\}$ an. Dabei bezeichnen $a$, $b$ und
+$c$ die jeweils registrierte Handlungsoption. Als Ereignissystem wählen wir
+wiederum die Potenzmenge
+\begin{equation}
+\mathcal{A}:=\mathcal{P}(\Omega)
+=\{\emptyset,\{a\},\{b\},\{c\},\{a,b\},\{a,c\},\{b,c\},\{a,b,c\}\}.
+\end{equation}
+Zum Beispiel entspricht dem Ereignis $\omega\in\{a,b\}$, dass als Wahl Handlung $a$
+oder Handlung $b$ registriert wird. Die Definition des Messraums
+$(\Omega,\mathcal{A})$ ist damit abgeschlossen.
+
+# Beispiele
+\small
+Handlung eines Agenten (fortgesetzt)
+\footnotesize
+
+Die Wahrscheinlichkeiten für die Registrierung jeder der möglichen Handlungen
+wollen wir nun anhand der subjektiven Werte modellieren, die der Agent diesen
+Handlungen zuschreibt. Dazu definieren wir die Wahrscheinlichkeitsfunktion
+\begin{equation}
+\pi:\Omega\to[0,1],\quad
+\omega\mapsto\pi(\omega)
+:=\frac{\exp\left(\tau^{-1}w_\omega\right)}
+{\sum_{\omega'\in\Omega}\exp\left(\tau^{-1}w_{\omega'}\right)}
+\end{equation}
+und setzen $\mathbb{P}(\{\omega\}):=\pi(\omega)$. Die Funktionswerte sind positiv
+und summieren sich zu eins. Damit definiert $\pi$ eine Wahrscheinlichkeitsfunktion
+und legt ein Wahrscheinlichkeitsmaß $\mathbb{P}$ fest.
+
+Diese im Bereich der kognitiven Verhaltensmodellierung und künstlichen Intelligenz
+als *Softmax-Funktion* bezeichnete Zuordnung lässt sich als eine „weichere
+Maximierung“ verstehen: Anstelle einer ausschließlichen Auswahl der Handlung mit
+dem höchsten subjektiven Wert werden allen Handlungen positive Wahrscheinlichkeiten
+zugeordnet. Handlungen mit höheren subjektiven Werten erhalten dabei höhere
+Wahrscheinlichkeiten.
+
+In unserem Modell beschreibt diese Zuordnung die
+Registrierung der Handlung, während der Agent selbst weiterhin die Handlung mit
+dem höchsten subjektiven Wert wählt.
+
+# Beispiele
+\small
+Handlung eines Agenten (fortgesetzt)
+\footnotesize
+
+Der Parameter $\tau$ bestimmt, wie stark sich die Wahrscheinlichkeiten auf die
+Handlung mit dem höchsten subjektiven Wert konzentrieren. Für kleine Werte von
+$\tau$ wird diese Handlung mit hoher Wahrscheinlichkeit registriert. So gilt für
+$\tau=1$, dass
+\begin{equation}
+\mathbb{P}(\{a\})\approx0.00,\quad
+\mathbb{P}(\{b\})\approx0.00,\quad
+\mathbb{P}(\{c\})\approx1.00.
+\end{equation}
+Wir registrieren also mit an Sicherheit grenzender Wahrscheinlichkeit die Handlung
+$c$.
+
+Für größere Werte von $\tau$ gleichen sich die Wahrscheinlichkeiten der
+registrierten Handlungen an. Die Registrierung wird dadurch weniger zuverlässig
+und die registrierte Handlung schlechter vorhersagbar. So gilt für $\tau=5$, dass
+\begin{equation}
+\mathbb{P}(\{a\})\approx0.10,\quad
+\mathbb{P}(\{b\})\approx0.18,\quad
+\mathbb{P}(\{c\})\approx0.72,
+\end{equation}
+und für $\tau=100$, dass
+\begin{equation}
+\mathbb{P}(\{a\})\approx0.32,\quad
+\mathbb{P}(\{b\})\approx0.33,\quad
+\mathbb{P}(\{c\})\approx0.35.
+\end{equation}
+Für $\tau\to0$ nähert sich die Wahrscheinlichkeit für die Registrierung von $c$
+dem Wert eins, während die beiden anderen Wahrscheinlichkeiten gegen null gehen.
+Für $\tau\to\infty$ nähern sich dagegen alle drei Wahrscheinlichkeiten dem Wert
+$1/3$.
+
 #
 \setstretch{2.5}
 \large
