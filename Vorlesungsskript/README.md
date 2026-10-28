@@ -8,7 +8,7 @@ Enthalten sind die Originalkapitel 300–311 aus dem PDWP-Lehrbuch in aufsteigen
 
 ## Einrichtung und Rendern
 
-`Setup.cmd` legt die Verzeichnisverknüpfung bei Bedarf neu an. `Rendern.cmd` oder `quarto render --to pdf` im Skriptordner erzeugt die PDF unter `_book/Skript-Wahrscheinlichkeitstheorie-und-Frequentistische-Inferenz.pdf`. Benötigt werden Quarto, R und XeLaTeX. Die `.Rprofile` verwendet die R-Paketumgebung des PDWP-Quellprojekts.
+`Setup.cmd` legt die Verzeichnisverknüpfung bei Bedarf neu an. `Rendern.cmd` oder `quarto render --to pdf` im Skriptordner erzeugt die PDF unter `_book/Wahrscheinlichkeitstheorie-und-Frequentistische-Inferenz-2027.pdf`. Benötigt werden Quarto, R und XeLaTeX. Die `.Rprofile` verwendet die R-Paketumgebung des PDWP-Quellprojekts.
 
 `_quarto.yml` bestimmt Titel und Kapitelreihenfolge; `_titelseite.tex` passt Cover und Fußzeile an. Logo und Gestaltung entsprechen den anderen Vorlesungsskripten. Die Lizenz ist CC BY 4.0. Bei Verwendung von Nextcloud sollte `_src` als ignoriertes Muster eingetragen sein, damit die Quellen nicht doppelt synchronisiert werden.
 

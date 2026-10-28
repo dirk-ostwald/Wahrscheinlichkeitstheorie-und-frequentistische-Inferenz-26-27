@@ -20,5 +20,5 @@ if errorlevel 1 (
 )
 
 echo.
-echo Fertig: _book\Skript-Wahrscheinlichkeitstheorie-und-Frequentistische-Inferenz.pdf
+echo Fertig: _book\Wahrscheinlichkeitstheorie-und-Frequentistische-Inferenz-2027.pdf
 pause

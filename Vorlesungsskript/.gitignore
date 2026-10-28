@@ -1,6 +1,6 @@
 _src/
 _book/*
-!_book/Skript-Wahrscheinlichkeitstheorie-und-Frequentistische-Inferenz.pdf
+!_book/Wahrscheinlichkeitstheorie-und-Frequentistische-Inferenz-2027.pdf
 .quarto/
 *.tex
 !_titelseite.tex

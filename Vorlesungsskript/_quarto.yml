@@ -31,7 +31,7 @@ book:
     - name: Dirk Ostwald
       affiliation: Otto-von-Guericke-Universität Magdeburg
   date: today
-  output-file: Skript-Wahrscheinlichkeitstheorie-und-Frequentistische-Inferenz
+  output-file: Wahrscheinlichkeitstheorie-und-Frequentistische-Inferenz-2027
   chapters:
     - index.qmd
     - _src/_part_3/300-Wahrscheinlichkeitstheorie.qmd
