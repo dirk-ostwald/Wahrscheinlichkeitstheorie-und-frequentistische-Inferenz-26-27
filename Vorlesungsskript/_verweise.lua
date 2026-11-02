@@ -1,5 +1,11 @@
 -- Verweise auf Abschnitte außerhalb der Kapitelauswahl.
 local refs = {
+  ['thm-abzaehlbare-de-morgansche-regeln'] = {ttl = 'Abzählbare de Morgansche Regeln (PDWP)', url = 'https://dirk-ostwald.github.io/_part_1/102-Mengen.html#thm-abzaehlbare-de-morgansche-regeln'},
+  ['thm-abzaehlbare-distributivitaet'] = {ttl = 'Abzählbare Distributivität (PDWP)', url = 'https://dirk-ostwald.github.io/_part_1/102-Mengen.html#thm-abzaehlbare-distributivitaet'},
+  ['thm-durchschnitte-disjunkter-mengen'] = {ttl = 'Durchschnitte disjunkter Mengen (PDWP)', url = 'https://dirk-ostwald.github.io/_part_1/102-Mengen.html#thm-durchschnitte-disjunkter-mengen'},
+  ['sec-mengen'] = {ttl = 'Mengen (PDWP)', url = 'https://dirk-ostwald.github.io/_part_1/102-Mengen.html#sec-mengen'},
+  ['thm-eigenschaften-von-komplementen'] = {ttl = 'Eigenschaften von Komplementen (PDWP)', url = 'https://dirk-ostwald.github.io/_part_1/102-Mengen.html#thm-eigenschaften-von-komplementen'},
+  ['thm-disjunkte-zerlegungen-von-mengen'] = {ttl = 'Disjunkte Zerlegungen von Mengen (PDWP)', url = 'https://dirk-ostwald.github.io/_part_1/102-Mengen.html#thm-disjunkte-zerlegungen-von-mengen'},
   ['sec-aussagenlogik'] = {ttl = 'Aussagenlogik (PDWP)', url = 'https://dirk-ostwald.github.io/_part_1/101-Sprache-und-Logik.html#sec-aussagenlogik'},
   ['sec-verknuepfungen'] = {ttl = 'Verknüpfungen (PDWP)', url = 'https://dirk-ostwald.github.io/_part_1/102-Mengen.html#sec-verknuepfungen'},
   ['def-bildmenge-wertebereich-urbildmenge-urbild'] = {ttl = 'Bildmenge, Wertebereich, Urbildmenge und Urbild (PDWP)', url = 'https://dirk-ostwald.github.io/_part_1/104-Funktionen.html#def-bildmenge-wertebereich-urbildmenge-urbild'},

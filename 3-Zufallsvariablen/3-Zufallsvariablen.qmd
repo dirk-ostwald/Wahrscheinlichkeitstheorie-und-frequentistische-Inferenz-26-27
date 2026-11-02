@@ -1,0 +1,1668 @@
+---
+fontsize: 8pt
+format:
+    beamer:
+        include-in-header: "3-Header.tex"
+        colorlinks: true
+        urlcolor: darkblue
+        linkcolor: darkblue
+        citecolor: darkblue
+bibliography: 3-Referenzen.bib
+link-citations: true
+---
+
+#  {.plain}
+\center
+\vfill
+```{r, echo = FALSE, out.width = "20%"}
+knitr::include_graphics("3-Abbildungen/wtfi-3-otto.png")
+```
+\vspace{3mm}
+
+\Large
+\resizebox{\linewidth}{!}{Wahrscheinlichkeitstheorie und frequentistische Inferenz}
+\vspace{1mm}
+
+\large
+BSc Psychologie WiSe 2026/27
+
+\vspace{5mm}
+\normalsize
+Prof. Dr. Dirk Ostwald
+\vfill
+
+#  {.plain}
+
+\vfill
+\center
+\huge
+\textcolor{black}{(3) Zufallsvariablen}
+\vfill
+
+#  
+\large
+\setstretch{2.2}
+\vfill
+Konstruktion, Definition, Notation, Intuition
+
+Wahrscheinlichkeitsmassefunktionen
+
+Wahrscheinlichkeitsdichtefunktionen
+
+Kumulative Verteilungsfunktionen
+
+Wahrscheinlichkeitsräume und Zufallsvariablen
+
+Selbstkontrollfragen
+\vfill
+
+#  
+\large
+\setstretch{2.2}
+\vfill
+**Konstruktion, Definition, Notation, Intuition**
+
+Wahrscheinlichkeitsmassefunktionen
+
+Wahrscheinlichkeitsdichtefunktionen
+
+Kumulative Verteilungsfunktionen
+
+Wahrscheinlichkeitsräume und Zufallsvariablen
+
+Selbstkontrollfragen
+\vfill
+
+# Konstruktion, Definition, Notation, Intuition
+\vspace{2mm}
+Konstruktion von Zufallsvariablen und Verteilungen
+\vspace{-1mm}
+\small
+
+* Es seien $(\Omega,\mathcal{A},\mathbb{P})$ ein Wahrscheinlichkeitsraum und $\xi : \Omega \to \mathcal{X}$ eine Abbildung.
+* $\xi$ ist das kleine griechische Xi.
+* Es sei $\mathcal{S}$ eine $\sigma$-Algebra auf $\mathcal{X}$.
+* Für jedes $S \in \mathcal{S}$ sei das \textit{Urbild von $S$} definiert als
+  \begin{equation}
+  \xi^{-1}(S) := \{\omega \in \Omega|\xi(\omega) \in S\}.
+  \end{equation}
+* Wenn $\xi^{-1}(S) \in \mathcal{A}$ für alle $S \in \mathcal{S}$ gilt,
+  dann heißt $\xi$ \textit{messbar}.
+* $\xi : \Omega \to \mathcal{X}$ sei messbar. Allen $S \in \mathcal{S}$
+  kann die Wahrscheinlichkeit
+  \begin{equation}
+  \mathbb{P}_\xi : \mathcal{S} \to [0,1], S \mapsto
+  \mathbb{P}_\xi(S)
+  := \mathbb{P}\left(\xi^{-1}(S)\right)
+   = \mathbb{P}\left(\{\omega \in \Omega|\xi(\omega) \in S\}\right)
+  \end{equation}
+  zugeordnet werden.
+* $\xi$ heißt nun \textit{Zufallsvariable} und $\mathbb{P}_\xi$ heißt
+  \textit{Bildmaß} oder \textit{Verteilung von $\xi$}.
+* $(\mathcal{X},\mathcal{S},\mathbb{P}_\xi)$ ist ein Wahrscheinlichkeitsraum.
+* Mit $\mathcal{X} := \mathbb{R}$ und $\mathcal{S} := \mathcal{B}(\mathbb{R})$ rückt der
+  Wahrscheinlichkeitsraum $(\mathbb{R},\mathcal{B}(\mathbb{R}),\mathbb{P}_\xi)$ ins Zentrum.
+
+
+
+# Konstruktion, Definition, Notation, Intuition
+\vspace{2mm}
+Konstruktion von Zufallsvariablen und Verteilungen
+\vspace{-1mm}
+\center
+```{r, fig.align = "center", out.width = "70%"}
+knitr::include_graphics("3-Abbildungen/wtfi-3-zufallsvariable.pdf")
+```
+
+# Konstruktion, Definition, Notation, Intuition
+\footnotesize
+\begin{definition}[Zufallsvariable]
+\justifying
+Es sei $(\Omega, \mathcal{A}, \mathbb{P})$ ein Wahrscheinlichkeitsraum und
+$(\mathcal{X},\mathcal{S})$ ein \textit{Messraum}. Dann heißt eine Abbildung
+$\xi:\Omega\to\mathcal{X}$ eine \textit{Zufallsvariable (ZV)}, wenn sie die
+\textit{Messbarkeitseigenschaft}
+\begin{equation}
+\{\omega\in\Omega\mid\xi(\omega)\in S\}\in\mathcal{A}
+\quad\mbox{für alle }S\in\mathcal{S}
+\end{equation}
+besitzt.
+\end{definition}
+
+\footnotesize
+Bemerkungen
+
+* ZVen sind weder "zufällig" noch "Variablen".
+* Intuitiv wird $\omega \in \Omega$ ``zufällig'' anhand von $\mathbb{P}$
+  gezogen und $\xi(\omega)$ realisiert.
+* Wir nennen $\mathcal{X}$ den \textit{Ergebnisraum der ZV $\xi$}.
+* Die Verteilungen (Bildmaße) von ZVen sind in der Statistik zentral.
+* Der Begriff der Verteilung wird oft auch für W-Maße und Dichten verwendet.
+
+
+# Konstruktion, Definition, Notation, Intuition
+Beispiel (Summe eines roten und eines blauen Würfels)
+\vspace{1mm}
+
+\small
+\begin{itemize}
+\justifying
+\item Für das Werfen eines roten und eines blauen Würfels ist ein sinnvolles W-Raummodell
+\begin{itemize}
+\small
+\item $\Omega := \{(r,b)| r  \in \mathbb{N}_6, b \in \mathbb{N}_6\}$
+\item $\mathcal{A} := \mathcal{P}(\Omega)$.
+\item $\mathbb{P} : \mathcal{A} \to [0,1]$ mit $\mathbb{P}(\{(r,b)\}) = \frac{1}{36}$ für alle $(r,b) \in \Omega$.
+
+\end{itemize}
+
+\item Die Augenzahl-Summenbildung wird dann sinnvollerweise durch die
+Zufallsvariable
+\begin{equation}
+\xi : \Omega \to \mathcal{X}, (r,b) \mapsto \xi((r,b)) := r + b.
+\end{equation}
+beschrieben, wobei $\mathcal{X} := \{2,3,...,12\}$.
+
+\item $\mathcal{S} := \mathcal{P}(\mathcal{X})$ ist eine sinnvolle $\sigma$-Algebra auf $\mathcal{X}$.
+
+\item Mithilfe der $\sigma$-Additivität von $\mathbb{P}$ können wir die Verteilung
+$\mathbb{P}_\xi$ von $\xi$ für alle Elementarereignisse $\{x\} \in \mathcal{S}$ berechnen,
+wie auf der nächsten Folie gezeigt.
+\item Wir haben damit ein weiteres Wahrscheinlichkeitsraum-Modell
+$(\mathcal{X}, \mathcal{S}, \mathbb{P}_\xi)$ konstruiert.
+\end{itemize}
+
+# Konstruktion, Definition, Notation, Intuition
+Beispiel (Summe eines roten und eines blauen Würfels)
+\vspace{1mm}
+\small
+
+Bestimmung der Verteilung $\mathbb{P}_\xi$ von $\xi$ durch Bestimmung der Elementarereigniswahrscheinlichkeiten
+\vspace{2mm}
+
+\footnotesize
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{llll}
+
+  $\mathbb{P}_\xi(\{2\})$
+& $ = \mathbb{P}\left(\xi^{-1}(\{2\})\right)$
+& $ = \mathbb{P}\left(\{(1,1)\}\right)$
+& $ = \frac{1}{36}$
+\\
+  $\mathbb{P}_\xi(\{3\})$
+& $ = \mathbb{P}\left(\xi^{-1}(\{3\})\right)$
+& $ = \mathbb{P}\left(\{(1,2),(2,1)\}\right)$
+& $ = \frac{2}{36}$
+\\
+  $\mathbb{P}_\xi(\{4\})$
+& $ = \mathbb{P}\left(\xi^{-1}(\{4\})\right)$
+& $ = \mathbb{P}\left(\{(1,3),(3,1),(2,2)\}\right)$
+& $ = \frac{3}{36}$
+\\
+  $\mathbb{P}_\xi(\{5\})$
+& $ = \mathbb{P}\left(\xi^{-1}(\{5\})\right)$
+& $ = \mathbb{P}\left(\{(1,4),(4,1),(2,3),(3,2)\}\right)$
+& $ = \frac{4}{36}$
+\\
+  $\mathbb{P}_\xi(\{6\})$
+& $ = \mathbb{P}\left(\xi^{-1}(\{6\})\right)$
+& $ = \mathbb{P}\left(\{(1,5),(5,1),(2,4),(4,2),(3,3)\}\right)$
+& $ = \frac{5}{36}$
+\\
+  $\mathbb{P}_\xi(\{7\})$
+& $ = \mathbb{P}\left(\xi^{-1}(\{7\})\right)$
+& $ = \mathbb{P}\left(\{(1,6),(6,1),(2,5),(5,2),(3,4),(4,3)\}\right)$
+& $ = \frac{6}{36}$
+\\
+  $\mathbb{P}_\xi(\{8\})$
+& $ = \mathbb{P}\left(\xi^{-1}(\{8\})\right)$
+& $ = \mathbb{P}\left(\{(2,6),(6,2),(3,5),(5,3),(4,4)\}\right)$
+& $ = \frac{5}{36}$
+\\
+  $\mathbb{P}_\xi(\{9\})$
+& $ = \mathbb{P}\left(\xi^{-1}(\{9\})\right)$
+& $ = \mathbb{P}\left(\{(3,6),(6,3),(4,5),(5,4)\}\right)$
+& $ = \frac{4}{36}$
+\\
+  $\mathbb{P}_\xi(\{10\})$
+& $ = \mathbb{P}\left(\xi^{-1}(\{10\})\right)$
+& $ = \mathbb{P}\left(\{(4,6),(6,4),(5,5)\}\right)$
+& $ = \frac{3}{36}$
+\\
+  $\mathbb{P}_\xi(\{11\})$
+& $ = \mathbb{P}\left(\xi^{-1}(\{11\})\right)$
+& $ = \mathbb{P}\left(\{(5,6),(6,5)\}\right)$
+& $ = \frac{2}{36}$
+\\
+  $\mathbb{P}_\xi(\{12\})$
+& $ = \mathbb{P}\left(\xi^{-1}(\{12\})\right)$
+& $ = \mathbb{P}\left(\{(6,6)\}\right)$
+& $ = \frac{1}{36}$
+\end{tabular}
+
+# Konstruktion, Definition, Notation, Intuition
+\vspace{2mm}
+\footnotesize
+\setstretch{1.2}
+\begin{definition}[Notation für Zufallsvariablen]
+\justifying
+Es seien $(\Omega,\mathcal{A},\mathbb{P})$ und $(\mathcal{X},\mathcal{S},\mathbb{P}_\xi)$
+Wahrscheinlichkeitsräume und $\xi : \Omega \to \mathcal{X}$ sei eine Zufallsvariable. 
+Dann gelten mit $S \in \mathcal{S}$ und $x \in \mathcal{X}$ folgende Notationskonventionen 
+für Ereignisse in $\mathcal{A}$:
+\begin{align*}
+\begin{split}
+\{\xi \in S\} & := \{\omega \in \Omega|\xi(\omega) \in S\} 	\\
+\{\xi  =  x\} & := \{\omega \in \Omega|\xi(\omega)  =  x\} 	\\
+\{\xi \le x\} & := \{\omega \in \Omega|\xi(\omega) \le x\} 	\\
+\{\xi  <  x\} & := \{\omega \in \Omega|\xi(\omega)  <  x\}	\\
+\{\xi \ge x\} & := \{\omega \in \Omega|\xi(\omega) \ge x\} 	\\
+\{\xi  >  x\} & := \{\omega \in \Omega|\xi(\omega)  >  x\}	\\
+\end{split}
+\end{align*}
+Aus diesen Konventionen ergeben sich folgende Konventionen für Wahrscheinlichkeiten
+von Verteilungen
+\begin{align*}
+\begin{split}
+    \mathbb{P}_\xi\left(\xi \in S\right)
+& = \mathbb{P}\left(\{\xi \in S\} \right)
+  = \mathbb{P}\left( \{\omega \in \Omega|\xi(\omega) \in S\}\right) \\
+    \mathbb{P}_\xi\left(\xi = x \right)
+& = \mathbb{P}\left(\{\xi = x\} \right)
+  = \mathbb{P}\left( \{\omega \in \Omega|\xi(\omega) = x\}\right)  \\
+    \mathbb{P}_\xi\left(\xi \le x \right)
+& = \mathbb{P}\left(\{\xi \le x\} \right)
+  = \mathbb{P}\left( \{\omega \in \Omega|\xi(\omega) \le x\}\right) \\
+    \mathbb{P}_\xi\left(\xi < x \right)
+& = \mathbb{P}\left(\{\xi < x\} \right)
+  = \mathbb{P}\left( \{\omega \in \Omega|\xi(\omega) < x\}\right)   \\
+    \mathbb{P}_\xi\left(\xi \ge x \right)
+& = \mathbb{P}\left(\{\xi \ge x\} \right)
+  = \mathbb{P}\left(\{\omega \in \Omega|\xi(\omega) \ge x\}\right) \\
+    \mathbb{P}_\xi\left(\xi > x \right)
+& = \mathbb{P}\left(\{\xi > x\} \right)
+  = \mathbb{P}\left( \{\omega \in \Omega|\xi(\omega) > x\} \right)  \\
+\end{split}
+\end{align*}
+Oft wird zudem auf das Subskript bei Verteilungssymbolen verzichtet und zum 
+Beispiel $\mathbb{P}_\xi\left(\xi \in S\right)$ nur als $\mathbb{P}\left(\xi \in S\right)$
+geschrieben, solange sich aus dem Kontext keine Verwechselungsmöglichkeit ergeben kann.
+\end{definition}
+
+# Konstruktion, Definition, Notation, Intuition
+\footnotesize
+\vspace{2mm}
+\begin{definition}[Ergebnisraum und Realisierung einer Zufallsvariable]
+\justifying
+$(\Omega,\mathcal{A},\mathbb{P})$ sei ein Wahrscheinlichkeitsraum,
+$(\mathcal{X},\mathcal{S})$ sei ein Messraum und
+$\xi:\Omega\to\mathcal{X}$ sei eine Zufallsvariable. Dann heißt $\mathcal{X}$
+der \textit{Ergebnisraum der Zufallsvariable $\xi$}. Für ein $\omega\in\Omega$
+heißt der Wert $\xi(\omega)\in\mathcal{X}$ eine \textit{Realisierung der
+Zufallsvariable $\xi$}.
+\end{definition}
+\vspace{-1mm}
+\footnotesize
+* In der Datenanalyse werden Daten typischerweise als Realisierungen von Zufallsvariablen modelliert.
+* Da die Auswahl eines $\omega \in \Omega$ in einem Zufallsvorgang zufällig ist, erscheint $\xi(\omega)$ zufällig.
+
+# Konstruktion, Definition, Notation, Intuition
+
+\vspace{2mm}
+Simulation von Zufallsvariablenrealisierungen (Summe zweier Würfel)
+
+\vspace{2mm}
+\footnotesize
+\setstretch{0.9}
+```{r, echo = T}
+# Wahrscheinlichkeitsraummodell
+Omega    = list()                                 # Ergebnisrauminitialisierung
+idx      = 1                                      # Ergebnisindexinitialisierung
+for(r in 1:6){                                    # Ergebnisse roter  Würfel
+    for(b in 1:6){                                # Ergebnisse blauer Würfel
+        Omega[[idx]] = c(r,b)                     # \omega \in \Omega
+        idx          = idx + 1 }}                 # Ergebnisindexupdate
+K        = length(Omega)                          # Kardinalität von \Omega
+pi       = rep(1/K,1,K)                           # Wahrscheinlichkeitsfunktion \pi
+
+# Zufallsvorgang
+omega    = Omega[[which(rmultinom(1,1,pi) == 1)]] # Auswahl von \omega anhand \mathbb{P}({\omega})
+
+# Auswertung der Zufallsvariable
+xi_omega = sum(omega)                             # \xi(\omega)
+```
+\setstretch{0.9}
+```{r, echo = F}
+cat("omega     : ", omega,
+    "\nxi(omega) : ", xi_omega)
+```
+
+
+# Konstruktion, Definition, Notation, Intuition
+\vspace{2mm}
+Zufallsvariablen als Modelle von Messvorgängen
+\vspace{-1mm}
+\footnotesize
+\setstretch{0.9}
+
+
+```{r, echo = FALSE, out.width = "70%", fig.align = "center"}
+knitr::include_graphics("3-Abbildungen/wtfi-3-zufallsvariable-messen.pdf")
+```
+
+# Konstruktion, Definition, Notation, Intuition
+\footnotesize
+\begin{theorem}[Arithmetik reeller Zufallsvariablen]
+\justifying
+\normalfont
+$(\Omega, \mathcal{A}, \mathbb{P})$ sei ein Wahrscheinlichkeitsraum, 
+$(\mathbb{R}, \mathcal{B}(\mathbb{R}))$ sei der reelle Messraum, 
+$\xi_1 : \Omega \to \mathbb{R}$ und $\xi_2: \Omega \to  \mathbb{R}$ seien 
+reellwertige Zufallsvariablen und $c \in \mathbb{R}$ sei eine Konstante.
+Weiterhin seien
+
+\begin{equation}
+\begin{aligned}
+\xi_1 + c          & : \Omega \to \mathbb{R}, \omega \mapsto (\xi_1 + c)(\omega)\,             := \xi_1(\omega) + c              \mbox{ für } c \in \mathbb{R}     \\
+c\xi_1             & : \Omega \to \mathbb{R}, \omega \mapsto (c\xi_1)(\omega) \quad\,\,\,      := c\xi_1(\omega)                 \mbox{ für } c \in \mathbb{R}     \\
+\xi_1 + \xi_2      & : \Omega \to \mathbb{R}, \omega \mapsto (\xi_1 + \xi_2)(\omega)           := \xi_1(\omega) + \xi_2(\omega)                                      \\
+\xi_1\xi_2         & : \Omega \to \mathbb{R}, \omega \mapsto (\xi_1\xi_2)(\omega)\quad\,\,     := \xi_1(\omega)\xi_2(\omega)                                        
+\end{aligned}
+\end{equation}
+
+die Addition einer Konstante zu einer reellwertigen Zufallsvariable, die Multiplikation einer
+reellwertigen  Zufallsvariable mit einer Konstante, die Addition zweier
+reellwertiger Zufallsvariablen und die
+Multiplikation zweier reellwertiger Zufallsvariablen, respektive. Dann sind auch
+$\xi_1 + c$, $c\xi_1$,
+$\xi_1 + \xi_2$ und $\xi_1\xi_2$ reellwertige Zufallsvariablen.
+\end{theorem}
+Bemerkungen
+
+* Intuitiv ergibt die Addition einer zufälligen Größe zu einer konstanten Größe eine zufällige Größe.
+* Intuitiv ergibt die Multiplikation einer zufälligen Größe mit einer Konstante eine zufällige Größe.
+* Intuitiv ergibt die Addition zweier zufälliger Größen wiederum eine zufällige Größe.
+* Intuitiv ergibt die Multiplikation zweier zufälliger Größen wiederum eine zufällige Größe.
+* Für einen Beweis siehe zum Beispiel @hesse2009, Seite 33-34.
+
+#  
+\large
+\setstretch{2.2}
+\vfill
+Konstruktion, Definition, Notation, Intuition
+
+**Wahrscheinlichkeitsmassefunktionen**
+
+Wahrscheinlichkeitsdichtefunktionen
+
+Kumulative Verteilungsfunktionen
+
+Wahrscheinlichkeitsräume und Zufallsvariablen
+
+Selbstkontrollfragen
+\vfill
+
+# Wahrscheinlichkeitsmassefunktionen
+\footnotesize
+\begin{definition}[Diskrete Zufallsvariable und WMF]
+\justifying
+Eine Zufallsvariable $\xi$ heißt \textit{diskret}, wenn ihr Ergebnisraum
+$\mathcal{X}$ endlich oder abzählbar ist und eine Funktion der Form
+\begin{equation}
+p:\mathcal{X}\to[0,1],\, x\mapsto p(x)
+\end{equation}
+existiert, für die gilt
+
+\begin{itemize}
+\item[1.] $\sum_{x\in\mathcal{X}}p(x)=1$ und
+\item[2.] $\mathbb{P}_\xi(\xi=x)=p(x)$ für alle $x\in\mathcal{X}$.
+\end{itemize}
+
+Eine entsprechende Funktion $p$ heißt \textit{Wahrscheinlichkeitsmassefunktion
+(WMF)}
+von $\xi$.
+\end{definition}
+
+
+\footnotesize
+Bemerkungen
+
+* Eine Menge heißt abzählbar, wenn sie bijektiv auf $\mathbb{N}$ abgebildet werden kann.
+* WMFen heißen im Deutschen auch \textit{W-Funktionen} oder \textit{Zähldichten}.
+* WMFen heißen auf Englisch \textit{probability mass functions (PMFs)}.
+* Die Eigenschaft $\sum_{x \in \mathcal{X}} p(x) = 1$ nennt man auch \textit{Normiertheit} von $p$.
+* Zur Parallelität mit PMFs und WDFs bevorzugen wir den Begriff WMF.
+
+
+# Wahrscheinlichkeitsmassefunktionen
+\footnotesize
+\begin{definition}[Bernoulli-Zufallsvariable]
+\justifying
+Es sei $\xi$ eine Zufallsvariable mit Ergebnisraum $\mathcal{X} := \{0,1\}$ und WMF
+\begin{equation}
+p : \mathcal{X} \to [0,1], x\mapsto p(x) := \mu^{x}(1 - \mu)^{1-x} \mbox{ mit } \mu \in [0,1].
+\end{equation}
+
+Dann sagen wir, dass $\xi$ einer \textit{Bernoulli-Verteilung mit Parameter
+$\mu \in [0,1]$} unterliegt und nennen $\xi$ eine \textit{Bernoulli-Zufallsvariable}.
+Wir kürzen dies mit $\xi \sim \mbox{Bern}(\mu)$ ab. Die WMF einer
+Bernoulli-Zufallsvariable bezeichnen wir mit
+\begin{equation}
+\mbox{Bern}(x;\mu) := \mu^x (1 - \mu)^{1 - x}.
+\end{equation}
+\end{definition}
+
+\footnotesize
+Bemerkungen
+
+* Wir verwenden die Konvention $0^0:=1$.
+* Eine Bernoulli-Zufallsvariable kann als Modell eines Münzwurfs dienen.
+* $\mu$ ist die Wahrscheinlichkeit dafür, dass $\xi$ den Wert 1 annimmt,
+\begin{equation}
+\mathbb{P}(\xi = 1) = \mu^1 (1 -\mu)^{1-1} = \mu.
+\end{equation}
+
+
+# Wahrscheinlichkeitsmassefunktionen
+Bernoulli-Zufallsvariable
+\vspace{3mm}
+
+```{r, eval = F, echo = F}
+pdf(                                                                     
+file   = "3-Abbildungen/wtfi-3-bernoulliverteilung-wmf.pdf" ,      
+width  = 7,                                                          
+height = 3)                                                           
+x           = 0:1                                                                    
+mu          = c(.1,.5, .7)                                                           
+par(                                                                  
+mfcol       = c(1,length(mu)),                                          
+family      = "sans",                                                  
+pty         = "s",                                                      
+bty         = "l",                                                      
+lwd         = 1,                                                        
+las         = 1,                                                        
+mgp         = c(2,1,0),                                                 
+font.main   = 1,                                                        
+cex.main    = 1.4)                    
+for (i in 1:length(mu)){
+
+  # Bernoulli WMFs
+  plot(
+  x,                                                                        
+  dbinom(x,1,mu[i]),                                                        
+  type         = "h",                                                       
+  lwd          =  1,                                                      
+  col          = "black",
+  ylab         = "",                                                       
+  xlab         = "x",                                                       
+  xlim         = c(-.3,1.3),                                                
+  xaxt          = "n") 
+  axis(side = 1, at = c(0, 1), labels = c("0", "1"))
+  title(sprintf("Bern(x;%g)", mu[i]))                                            
+}                                          
+dev.off()
+```
+
+```{r, echo = FALSE, out.width = "100%", fig.align = "center"}
+knitr::include_graphics("3-Abbildungen/wtfi-3-bernoulliverteilung-wmf.pdf")
+```
+
+# Wahrscheinlichkeitsmassefunktionen
+\footnotesize
+\begin{definition}[Binomial-Zufallsvariable]
+\vspace{2pt}
+\justifying
+
+Es sei $\xi$ eine Zufallsvariable mit Ergebnisraum $\mathcal{X} := \mathbb{N}_n^0$
+und WMF
+\begin{equation}
+p : \mathcal{X} \to [0,1],
+x\mapsto p(x) :=
+\begin{pmatrix}
+n \\ x
+\end{pmatrix}
+\mu^{x}(1 - \mu)^{n-x} \mbox{ für } \mu \in [0,1].
+\end{equation}
+Dann sagen wir, dass $\xi$ einer \textit{Binomialverteilung mit Parametern $n \in \mathbb{N}$
+und $\mu \in [0,1]$} unterliegt und nennen $\xi$ eine Binomial-Zufallsvariable.
+Wir kürzen dies mit $\xi \sim \mbox{Bin}(n,\mu)$ ab. Die WMF einer
+Binomial-Zufallsvariable bezeichnen wir mit
+\begin{equation}
+\mbox{Bin}(x;n,\mu) :=
+\begin{pmatrix}
+n \\ x
+\end{pmatrix}
+\mu^{x}(1 - \mu)^{n-x}.
+\end{equation}
+\end{definition}
+Bemerkung
+
+* Es gilt $\mbox{Bin}(x;1,\mu) = \mbox{Bern}(x;\mu)$.
+
+# Wahrscheinlichkeitsmassefunktionen
+Binomial-Zufallsvariable
+\vspace{3mm}
+
+```{r, eval = F, echo = F}
+pdf(                                                                    
+file      = "3-Abbildungen/wtfi-3-binomialverteilung-wmf.pdf",      
+width     = 7,                                                         
+height    = 3)                                                                
+n         = c(5,10,15)                                                             
+mu        = c(.1,.5,.7)                                                            
+par(                                                                  
+mfcol     = c(1,length(mu)),                                          
+family    = "sans",                                                  
+pty       = "s",                                                      
+bty       = "l",                                                      
+lwd       = 1,                                                        
+las       = 1,                                                        
+mgp       = c(2,1,0),                                                 
+font.main = 1,                                                        
+cex.main  = 1.4)
+for (i in 1:length(n)){
+  x       = 0:n[i]                                                               
+  plot(
+  x,                                                                        
+  dbinom(x,n[i],mu[i]),                                                     
+  type         = "h",                                                       
+  lwd          =  1,                                                      
+  col          = "black",
+  ylab         = "",                                                       
+  xlab         = "x",                                                       
+  xlim         = c(-.1,n[i]+.1),                                            
+  ylim         = c(0,.6))                                                   
+   title(sprintf("Bin(x;%g,%g)", n[i], mu[i]))
+}
+dev.off()
+```
+
+```{r, echo = FALSE, out.width = "100%", fig.align = "center"}
+knitr::include_graphics("3-Abbildungen/wtfi-3-binomialverteilung-wmf.pdf")
+```
+
+# Wahrscheinlichkeitsmassefunktionen
+\footnotesize
+\begin{definition}[Diskret-gleichverteilte Zufallsvariable]
+\justifying
+Es sei $\xi$ eine diskrete Zufallsvariable mit nichtleerem endlichem
+Ergebnisraum
+$\mathcal{X}$ und WMF
+\begin{equation}
+p:\mathcal{X}\to\mathbb{R}_{\ge0},\quad x\mapsto p(x):=\frac{1}{|\mathcal{X}|}.
+\end{equation}
+Dann sagen wir, dass $\xi$ einer \textit{diskreten Gleichverteilung auf
+$\mathcal{X}$}
+unterliegt und nennen $\xi$ eine \textit{diskret-gleichverteilte
+Zufallsvariable}.
+Wir kürzen dies mit $\xi\sim U(\mathcal{X})$ ab. Die WMF einer
+diskret-gleichverteilten Zufallsvariable bezeichnen wir mit
+\begin{equation}
+U(x;\mathcal{X}):=\frac{1}{|\mathcal{X}|}
+\quad\mbox{für }x\in\mathcal{X}.
+\end{equation}
+\end{definition}
+
+\footnotesize
+Bemerkungen
+
+* $\mbox{Bern}(x;0.5) = U(x;\mathcal{X})$ für $\mathcal{X} = \{0,1\}$.
+
+# Wahrscheinlichkeitsmassefunktionen
+Diskret-gleichverteilte Zufallsvariable
+\vspace{3mm}
+
+```{r, eval = F, echo = F}
+pdf(                                                                    
+file      = "3-Abbildungen/wtfi-3-gleichverteilung-wmf.pdf",      
+width     = 7,                                                         
+height    = 3) 
+X         = list(0:1,-3:1,-4:4)                                                    
+n         = length(X)
+L         = c("0,1", "-3,-2,-1,0,1", "-4,-3,-2,-1,0,1,2,3,4")                      
+par(                                                                  
+mfcol     = c(1,length(X)),
+family    = "sans",                                                  
+pty       = "s",                                                      
+bty       = "l",                                                      
+lwd       = 1,                                                        
+las       = 1,                                                        
+mgp       = c(2,1,0),                                                 
+font.main = 1,                                                        
+cex.main  = 1.1)                                                      
+for (i in 1:length(X)){
+  x       = X[[i]]                                                               
+  plot(
+  x,                                                                           
+  rep(1/length(x),length(x)),         
+  type    = "h",                                                          
+  lwd     = 1.0,                                                         
+  col     = "black",
+  ylab    = "",                                                          
+  xlab    = "x",                                                          
+  xlim    = c(-5,5),                                                      
+  ylim    = c(0,.6))                                                      
+  title(sprintf("U(x; {%s})", L[i]))
+}
+dev.off()
+```
+```{r, echo = FALSE, out.width = "100%", fig.align = "center"}
+knitr::include_graphics("3-Abbildungen/wtfi-3-gleichverteilung-wmf.pdf")
+```
+
+#  
+\large
+\setstretch{2.2}
+\vfill
+Konstruktion, Definition, Notation, Intuition
+
+Wahrscheinlichkeitsmassefunktionen
+
+**Wahrscheinlichkeitsdichtefunktionen**
+
+Kumulative Verteilungsfunktionen
+
+Wahrscheinlichkeitsräume und Zufallsvariablen
+
+Selbstkontrollfragen
+\vfill
+
+# Wahrscheinlichkeitsdichtefunktionen
+\vspace{3mm}
+\footnotesize
+\begin{definition}[Kontinuierliche Zufallsvariable und WDF]
+\justifying
+Eine reellwertige Zufallsvariable $\xi$ heißt \textit{kontinuierlich}, wenn eine
+Funktion
+\begin{equation}
+p:\mathbb{R}\to\mathbb{R}_{\ge0},  x\mapsto p(x)
+\end{equation}
+existiert, für die gilt
+\begin{itemize}
+\item[1.] $\int_{-\infty}^{\infty}p(x)\,dx=1$ und
+\item[2.] $\mathbb{P}_\xi(\xi\in[a,b])=\int_a^b p(x)\,dx$ für alle $a,b\in\mathbb{R}$ mit $a\le b$.
+\end{itemize}
+Eine entsprechende Funktion $p$ heißt \textit{Wahrscheinlichkeitsdichtefunktion
+(WDF)}
+von $\xi$.
+\end{definition}
+\vspace{-2mm}
+Bemerkungen
+\vspace{-2mm}
+
+* WDFen können Werte größer als $1$ annehmen.
+* Es gilt $\mathbb{P}_\xi(\xi = a) = \int_a^a p(x) \,dx = 0$ für alle $a \in \mathbb{R}$.
+* Wahrscheinlichkeiten werden aus WDFen durch Integration berechnet. 
+* Für ein Intervall $[a,b]$, auf dem sich die Dichte nur wenig verändert, gilt
+näherungsweise
+\begin{equation}
+\mathbb{P}(\xi\in[a,b])=\int_a^b p(x)\,dx
+\approx p(x_0)(b-a),\quad x_0\in[a,b].
+\end{equation}
+also intuitiv: 
+\begin{equation}
+\mbox{Wahrscheinlichkeitsmasse}\approx\mbox{Dichte(höhe)}\times\mbox{Volumen (Intervallbreite)}.
+\end{equation}
+* Ist die Dichte auf dem Intervall konstant, gilt die Beziehung exakt.
+* Ist die WDF nur auf $\mathcal{X}\subseteq\mathbb{R}$ angegeben, setzen wir sie außerhalb von
+$\mathcal{X}$ durch $0$ fort.
+
+# Wahrscheinlichkeitsdichtefunktionen
+\footnotesize
+\begin{definition}[Normalverteilte und standardnormalverteilte Zufallsvariablen]
+\justifying
+Es sei $\xi$ eine Zufallsvariable mit Ergebnisraum  $\mathbb{R}$ und WDF
+\begin{equation}
+p : \mathbb{R} \to \mathbb{R}_{>0}, x\mapsto p(x)
+:= \frac{1}{\sqrt{2\pi \sigma^2}}\exp\left(-\frac{1}{2\sigma^2}(x -
+\mu)^2\right).
+\end{equation}
+
+Dann sagen wir, dass $\xi$ einer \textit{Normalverteilung (oder Gauß-Verteilung)
+mit Parametern $\mu \in \mathbb{R}$ und $\sigma^2 > 0$} unterliegt und nennen
+$\xi$ eine
+\textit{normalverteilte Zufallsvariable}. Wir kürzen dies mit $\xi \sim N\left(\mu,\sigma^2\right)$ ab.
+Die WDF einer normalverteilten Zufallsvariable bezeichnen wir mit
+\begin{equation}
+N\left(x;\mu,\sigma^2\right) := \frac{1}{\sqrt{2\pi
+\sigma^2}}\exp\left(-\frac{1}{2\sigma^2}(x - \mu)^2\right).
+\end{equation}
+
+Eine normalverteilte Zufallsvariable mit $\mu = 0$ und $\sigma^2 = 1$ heißt
+\textit{standardnormalverteilte Zufallsvariable} und wird häufig mit $Z$ bezeichnet.
+\end{definition}
+
+Bemerkungen
+
+* Der Parameter $\mu$ entspricht dem Wert höchster Wahrscheinlichkeitsdichte.
+* Der Parameter $\sigma^2$ spezifiziert die Breite der WDF.
+
+# Wahrscheinlichkeitsdichtefunktionen
+Normalverteilte Zufallsvariablen
+\vspace{3mm}
+
+```{r, echo = F, eval = F}
+pdf(                                                                    
+file      = "3-Abbildungen/wtfi-3-normalverteilung-wdf.pdf",        
+width     = 7,                                                         
+height    = 3)
+x_min     = -10                                                                    
+x_max     = 10                                                                     
+x_res     = 1e3                                                                     
+x         = seq(x_min,x_max,len = x_res)                                           
+mu        = c(0,-2.5,3)                                                            
+sigsqr    = c(1,10,0.5)                                                            
+par(                                                                  
+mfcol     = c(1,length(mu)),                                          
+family    = "sans",                                                  
+pty       = "s",                                                      
+bty       = "l",                                                      
+lwd       = 1,                                                        
+las       = 1,                                                        
+mgp       = c(2,1,0),                                                 
+font.main = 1,                                                        
+cex.main  = 1.4 )
+for (i in 1:length(mu)){
+  plot(
+  x,                                                                        
+  dnorm(x,mu[i],sqrt(sigsqr[i])),                                           
+  type    = "l",                                                       
+  lwd     = 1.0,                                                      
+  col     = "black",
+  ylab    = "",                                                       
+  xlab    = "x",                                                       
+  ylim    = c(0,0.6))                                                  
+  title(sprintf("N(x; %g,%g)", mu[i], sigsqr[i]))                                
+}
+dev.off()
+```
+
+```{r, echo = FALSE, out.width = "100%", fig.align = "center"}
+knitr::include_graphics("3-Abbildungen/wtfi-3-normalverteilung-wdf.pdf")
+```
+
+# Wahrscheinlichkeitsdichtefunktionen
+\footnotesize
+\begin{definition}[Gamma-Zufallsvariable]
+\justifying
+Es sei $\xi$ eine Zufallsvariable mit Ergebnisraum $\mathcal{X} := \mathbb{R}_{>0}$ und WDF
+\begin{equation}
+p : \mathbb{R}_{>0} \to \mathbb{R}_{>0},  x \mapsto p(x) :=
+\frac{1}{\Gamma(\alpha)\beta^{\alpha}}x^{\alpha-1}\exp\left(-\frac{x}{\beta}\right),
+\end{equation}
+wobei $\Gamma$ die Gammafunktion bezeichne. Dann sagen wir, dass $\xi$ einer
+\textit{Gammaverteilung mit Formparameter $\alpha >0$ und Skalenparameter $\beta > 0$}
+unterliegt und nennen $\xi$ eine \textit{gammaverteilte Zufallsvariable}. Wir kürzen
+dies mit $\xi \sim G(\alpha,\beta)$ ab. Die WDF einer gammaverteilten Zufallsvariable
+bezeichnen wir mit
+\begin{equation}
+G(x;\alpha,\beta) := \frac{1}{\Gamma(\alpha)\beta^{\alpha}}x^{\alpha-1}\exp\left(-\frac{x}{\beta}\right).
+\end{equation}
+\end{definition}
+Bemerkung
+
+* $G\left(\frac{n}{2},2\right)$ heißt auch \textit{Chi-Quadrat-Verteilung ($\chi^2$-Verteilung) mit $n$ Freiheitsgraden}.
+
+# Wahrscheinlichkeitsdichtefunktionen
+Gamma-Zufallsvariablen
+\vspace{3mm}
+
+```{r, echo = F, eval = F}
+pdf(
+file      = "3-Abbildungen/wtfi-3-gammaverteilung-wdf.pdf",
+width     = 7,
+height    = 3)
+x_min     = 0                                                                      
+x_max     = 10                                                                     
+x_res     = 1e3                                                                     
+x         = seq(x_min,x_max,len = x_res)                                           
+shape     = c(1,2,5)                                                               
+scale     = c(1,2,1)                                                               
+par(                                                                  
+mfcol     = c(1,length(shape)),                                       
+family    = "sans",                                                  
+pty       = "s",                                                      
+bty       = "l",                                                      
+lwd       = 1,                                                        
+las       = 1,                                                        
+mgp       = c(2,1,0),                                                 
+font.main = 1,                                                        
+cex.main  = 1.4)                                                       
+for (i in seq_along(shape)){
+  plot(
+  x,                                                                       
+  dgamma(x, shape = shape[i], scale = scale[i]),
+  type    = "l",                                                      
+  lwd     = 1.0,                                                     
+  col     = "black",
+  ylab    = "",                                                      
+  xlab    = "x",                                                      
+  ylim    = c(0,1))                                                   
+  title(sprintf("G(x; %g,%g)", shape[i], scale[i]))                          
+}
+dev.off()
+```
+
+```{r, echo = FALSE, out.width = "100%", fig.align = "center"}
+knitr::include_graphics("3-Abbildungen/wtfi-3-gammaverteilung-wdf.pdf")
+```
+
+# Wahrscheinlichkeitsdichtefunktionen
+\footnotesize
+\begin{definition}[Beta-Zufallsvariable]
+\justifying
+Es sei $\xi$ eine Zufallsvariable mit Ergebnisraum $\mathcal{X} := ]0,1[$ und WDF
+\begin{equation}
+p: \mathcal{X} \to \mathbb{R}_{>0}, x \mapsto p(x)
+:= \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha)\Gamma(\beta)}
+x^{\alpha-1}(1-x)^{\beta-1} \mbox{ mit } \alpha,\beta \in \mathbb{R}_{>0},
+\end{equation}
+wobei $\Gamma$ die Gammafunktion bezeichne. Dann sagen wir, dass $\xi$ einer
+\textit{Beta-Verteilung} mit Parametern $\alpha >0$ und $\beta>0$ unterliegt
+und nennen $\xi$ eine \textit{Beta-Zufallsvariable}. Wir kürzen dies mit
+$\xi \sim \mbox{Beta}(\alpha,\beta)$ ab. Die WDF einer Beta-Zufallsvariable
+bezeichnen wir mit
+\begin{equation}
+\mbox{Beta}(x;\alpha,\beta)
+:= \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha)\Gamma(\beta)}
+x^{\alpha-1}(1-x)^{\beta-1}\quad\mbox{für }x\in]0,1[.
+\end{equation}
+\end{definition}
+
+
+# Wahrscheinlichkeitsdichtefunktionen
+Beta-Zufallsvariable
+\vspace{3mm}
+
+```{r, echo = F, eval = F}
+pdf(
+file      = "3-Abbildungen/wtfi-3-betaverteilung-wdf.pdf",
+width     = 7,
+height    = 3)
+x_min     = 0                                                                      
+x_max     = 1                                                                      
+x_res     = 1e3                                                                     
+x         = seq(x_min,x_max,len = x_res)                                           
+alpha     = c(1,3,10)                                                              
+beta      = c(1,2,5)                                                               
+par(                                                                  
+mfcol     = c(1,length(alpha)),                                               
+family    = "sans",                                                          
+pty       = "s",                                                              
+bty       = "l",                                                              
+lwd       = 1,                                                                
+las       = 1,                                                                
+mgp       = c(2,1,0),                                                         
+font.main = 1,                                                                
+cex.main  = 1.4)                                                               
+for (i in 1:length(alpha)){
+  plot(
+  x,                                                                       
+  dbeta(x,alpha[i],beta[i]),                                               
+  type    = "l",                                                      
+  lwd     = 1.0,                                                     
+  col     = "black",
+  ylab    = "",                                                      
+  xlab    = "x",                                                      
+  ylim    = c(0,4))                                                   
+  title(sprintf("Beta(x; %g,%g)", alpha[i], beta[i]))                      
+}
+dev.off()
+```
+
+```{r, echo = FALSE, out.width = "100%", fig.align = "center"}
+knitr::include_graphics("3-Abbildungen/wtfi-3-betaverteilung-wdf.pdf")
+```
+
+
+# Wahrscheinlichkeitsdichtefunktionen
+\footnotesize
+\begin{definition}[Gleichverteilte Zufallsvariable]
+\justifying
+Es seien $a,b\in\mathbb{R}$ mit $a<b$. Weiterhin sei $\xi$ eine kontinuierliche
+Zufallsvariable mit Ergebnisraum $\mathbb{R}$ und WDF
+\begin{equation}
+p : \mathbb{R} \to \mathbb{R}_{\ge 0}, x\mapsto p(x) :=
+\begin{cases}
+\frac{1}{b - a} & x \in [a,b] \\
+0 				      & x \notin [a,b]
+\end{cases}.
+\end{equation}
+Dann sagen wir, dass $\xi$ einer \textit{Gleichverteilung mit Parametern $a$ und $b$}
+unterliegt und nennen $\xi$ eine \textit{gleichverteilte Zufallsvariable}. Wir
+kürzen dies mit $\xi \sim U(a,b)$ ab. Die WDF einer gleichverteilten
+Zufallsvariablen
+bezeichnen wir mit
+\begin{equation}
+U(x;a,b) :=
+\begin{cases}
+\frac{1}{b-a} & x\in[a,b] \\
+0 & x\notin[a,b]
+\end{cases}.
+\end{equation}
+\end{definition}
+
+# Wahrscheinlichkeitsdichtefunktionen
+Gleichverteilte Zufallsvariablen
+\vspace{3mm}
+
+```{r, eval = F, echo = F}
+pdf(
+file      = "3-Abbildungen/wtfi-3-gleichverteilung-wdf.pdf",
+width     = 7,
+height    = 3)
+x_min     = -5                                                                     
+x_max     = 5                                                                      
+x_res     = 1e3                                                                     
+x         = seq(x_min,x_max,len = x_res)                                           
+a         = c(0,-3,-4)                                                             
+b         = c(1, 1, 4)                                                             
+par(                                                                  
+mfcol     = c(1,length(a)),                                                   
+family    = "sans",                                                          
+pty       = "s",                                                              
+bty       = "l",                                                              
+lwd       = 1,                                                                
+las       = 1,                                                                
+mgp       = c(2,1,0),                                                         
+font.main = 1,                                                                
+cex.main  = 1.4)                                                               
+for (i in 1:length(a)){
+  plot(
+  x,                                                                       
+  dunif(x,a[i],b[i]),                                                      
+  type    = "l",                                                      
+  lwd     =    1.0,                                                     
+  col     = "black",
+  ylab    = "",                                                      
+  xlab    = "x",                                                      
+  ylim    = c(0,1.1))                                                 
+  title(sprintf("U(x; %g,%g)", a[i], b[i]))                                
+}
+dev.off()
+```
+
+```{r, echo = FALSE, out.width = "100%", fig.align = "center"}
+knitr::include_graphics("3-Abbildungen/wtfi-3-gleichverteilung-wdf.pdf")
+```
+
+
+#  
+\large
+\setstretch{2.2}
+\vfill
+Konstruktion, Definition, Notation, Intuition
+
+Wahrscheinlichkeitsmassefunktionen
+
+Wahrscheinlichkeitsdichtefunktionen
+
+**Kumulative Verteilungsfunktionen**
+
+Wahrscheinlichkeitsräume und Zufallsvariablen
+
+Selbstkontrollfragen
+\vfill
+
+# Kumulative Verteilungsfunktionen
+\footnotesize
+\begin{definition}[Kumulative Verteilungsfunktion]
+\justifying
+Die \textit{kumulative Verteilungsfunktion (KVF)} einer Zufallsvariable $\xi$ ist definiert als
+\begin{equation}
+P : \mathbb{R} \to [0,1], x \mapsto P(x) := \mathbb{P}(\xi \le x).
+\end{equation}
+\end{definition}
+
+Bemerkungen
+
+* KVFen sind sowohl für diskrete als auch kontinuierliche ZVen definiert.
+* $P(x)$ ist für jedes $x \in \mathbb{R}$ definiert, auch wenn $x \notin \mathcal{X}$.
+* Mithilfe von KVFen können Überschreitungs- und Intervallwahrscheinlichkeiten angegeben werden.
+
+
+# Kumulative Verteilungsfunktionen
+\footnotesize
+\begin{theorem}[Überschreitungswahrscheinlichkeit]
+\justifying
+\normalfont
+Es sei $\xi$ eine reellwertige Zufallsvariable und $P$ ihre kumulative
+Verteilungsfunktion. Dann gilt für die \textit{Überschreitungswahrscheinlichkeit}
+$\mathbb{P}(\xi > x)$, dass
+\begin{equation}
+\mathbb{P}(\xi > x) = 1 - P(x) \mbox{ für alle } x \in \mathbb{R}.
+\end{equation}
+\end{theorem}
+
+\footnotesize
+\underline{Beweis}
+\vspace{1mm}
+
+Die Ereignisse $\{\xi > x\}$ und $\{\xi \le x\}$ sind disjunkt und
+\begin{equation}
+\Omega
+= \{\omega\in \Omega| \xi(\omega) > x\} \cup \{\omega\in \Omega|\xi(\omega) \le x\}
+= \{\xi > x\} \cup \{\xi \le x\}.
+\end{equation}
+
+Mit der $\sigma$-Additivität von $\mathbb{P}$ folgt dann
+\begin{align}
+\begin{split}
+\mathbb{P}(\Omega) & = 1 								\\
+\Leftrightarrow
+\mathbb{P}( \{\xi > x\} \cup \{\xi \le x\}) & = 1			\\
+\Leftrightarrow
+\mathbb{P}(\{\xi > x\}) + \mathbb{P}(\{\xi \le x\}) & = 1 	\\
+\Leftrightarrow
+\mathbb{P}(\{\xi > x\}) &  =  1 -  \mathbb{P}(\{\xi \le x\}) \\
+\Leftrightarrow
+\mathbb{P}(\{\xi > x\}) &  =  1 -  P(x).
+\end{split}
+\end{align}
+$\hfill \Box$
+
+# Kumulative Verteilungsfunktionen
+\footnotesize
+\begin{theorem}[Intervallwahrscheinlichkeiten]
+\justifying
+\normalfont
+Es sei $\xi$ eine reellwertige Zufallsvariable und $P$ ihre kumulative
+Verteilungsfunktion. Dann gilt für die \textit{Intervallwahrscheinlichkeit}
+$\mathbb{P}(\xi \in \,]x_1,x_2])$, dass
+\begin{equation}
+\mathbb{P}(\xi \in \, ]x_1,x_2]) = P(x_2) - P(x_1)
+\mbox{ für alle } x_1,x_2 \in \mathbb{R}
+\mbox{ mit } x_1 < x_2.
+\end{equation}
+\end{theorem}
+
+\footnotesize
+\underline{Beweis}
+\vspace{1mm}
+
+Wir betrachten die Ereignisse $\{\xi \le x_1\}$, $\{x_1 < \xi \le x_2\}$ und
+$\{\xi \le x_2\}$, wobei
+\begin{equation}
+\{\xi \le x_1\} \cap \{x_1 < \xi \le x_2\} = \emptyset
+\mbox{ und }
+\{\xi \le x_1\} \cup \{x_1 < \xi \le x_2\} = \{\xi \le x_2\}.
+\end{equation}
+gelten.
+Mit der $\sigma$-Additivität von $\mathbb{P}$ gilt dann
+\begin{align}
+\begin{split}
+\mathbb{P}(\{\xi \le x_1\} \cup \{x_1 < \xi \le x_2\}) & = \mathbb{P}(\{\xi \le x_2\}) 				\\
+\Leftrightarrow
+\mathbb{P}(\{\xi \le x_1\}) + \mathbb{P}(\{x_1 < \xi \le x_2\}) & = \mathbb{P}(\{\xi \le x_2\}) 		\\
+\Leftrightarrow
+\mathbb{P}(\{x_1 < \xi \le x_2\}) & = \mathbb{P}(\{\xi \le x_2\}) - \mathbb{P}(\{\xi \le x_1\}) 		\\
+\Leftrightarrow
+\mathbb{P}(\{x_1 < \xi \le x_2\}) & = P(x_2) - P(x_1) 											\\
+\Leftrightarrow
+\mathbb{P}(\xi \in \,]x_1,x_2])	& = P(x_2) - P(x_1).
+\end{split}
+\end{align}
+$\hfill \Box$
+
+
+# Kumulative Verteilungsfunktionen
+\footnotesize
+\begin{theorem}[Eigenschaften von kumulativen Verteilungsfunktionen]
+\justifying
+\normalfont
+Es sei $\xi$ eine Zufallsvariable und $P$ ihre kumulative Verteilungsfunktion.
+Dann hat $P$ die folgenden Eigenschaften
+
+\begin{itemize}
+\item[1.] $P$ ist \textit{monoton steigend}, das heißt, wenn $x_1 < x_2$, dann gilt $P(x_1)\le P(x_2)$.
+\item[2.] $\lim_{x \to -\infty} P(x) = 0$ und $\lim_{x \to \infty} P(x) = 1$.
+\item[3.] $P$ ist \textit{rechtsseitig stetig}, das heißt,  $P(x) = \lim_{y \to x, y > x} P(y)$ für alle $x \in \mathbb{R}$.
+\end{itemize}
+\end{theorem}
+
+Bemerkungen
+
+* Wir verzichten auf einen Beweis.
+* Die genannten Eigenschaften können auch zur Definition einer KVF genutzt werden.
+* Aussage 3. besagt, dass eine KVF keine Sprünge hat, wenn man sich Grenzpunkten von rechts nähert.
+
+# Kumulative Verteilungsfunktionen
+\small
+Kumulative Verteilungsfunktionen von diskreten Zufallsvariablen
+\setstretch{2.7}
+\footnotesize
+
+* Wenn $a < b$ und $\mathbb{P}(a < \xi < b) = 0$, dann ist $P$ konstant horizontal auf $]a,b[$.
+* An jedem Punkt $x$ mit $\mathbb{P}(\xi=x)>0$ springt die KVF um den Betrag $\mathbb{P}(\xi=x)$.
+* $\Leftrightarrow$ An jedem Punkt $x$ mit $p(x)>0$ springt die KVF um den Betrag $p(x)>0$.
+* Generell ist die KVF einer diskreten Zufallsvariable mit Ergebnisraum $\mathbb{N}_0$ durch
+  \begin{equation}
+  P : \mathbb{R} \to [0,1], x \mapsto P(x) := \sum_{k=0}^{\lfloor x  \rfloor} \mathbb{P}(\xi = k)
+  \end{equation}
+  gegeben, wobei $\lfloor x \rfloor$ die Abrundungsfunktion bezeichnet.
+
+
+
+# Kumulative Verteilungsfunktionen
+Bernoulli-Zufallsvariablen
+\vspace{.2cm}
+
+```{r, eval = F, echo = F}
+pdf(                                                                    
+file      = "3-Abbildungen/wtfi-3-bernoulliverteilung-kvf.pdf",               
+width     = 6.50,                                                                
+height    = 4.75)  
+mu        = c(.1,.5,.7)                                                            
+par(                                                                  
+mfcol     = c(2,length(mu)),                                          
+family    = "sans",                                                  
+pty       = "s",                                                      
+bty       = "l",                                                      
+lwd       = 1,                                                        
+las       = 1,                                                        
+mgp       = c(2,1,0),                                                 
+font.main = 1,                                                        
+cex.main  = 1.1)     
+for (i in 1:length(mu)){
+  x       = 0:1                                                                  
+  plot(
+  x,                                                                        
+  dbinom(x,1,mu[i]),                                                        
+  type    = "h",                                                       
+  lwd     = 1.0,                                                      
+  col     = "black",
+  ylab    = "",                                                       
+  xlab    = "x",                                                       
+  xlim    = c(-.3,1.3),                                                
+  ylim    = c(0,1))                                                    
+  title(sprintf("WMF von Bern(x;%g)", mu[i]))                                   
+  x         = -1:2
+  kvf       = stepfun(x, c(0, pbinom(x, 1, mu[i])), right = FALSE) 
+  plot(
+  kvf,
+  lwd       = 1.0,
+  col       = "black",
+  pch       = 16,
+  verticals = FALSE,
+  ylim      = c(0,1.01),
+  xlim      = c(-.3,1.3),
+  main      = "",
+  ylab      = "",
+  xlab      = "x",
+  cex       = 1)                                  
+  title(sprintf("KVF von Bern(x;%g)", mu[i]))
+}
+dev.off()                                                           
+```
+
+```{r, echo = FALSE, out.width = "80%", fig.align = "center"}
+knitr::include_graphics("3-Abbildungen/wtfi-3-bernoulliverteilung-kvf.pdf")
+```
+
+# Kumulative Verteilungsfunktionen
+Binomial-Zufallsvariablen
+\vspace{.2cm}
+
+```{r, eval = F, echo = F}
+pdf(                                                                    
+file      = "3-Abbildungen/wtfi-3-binomialverteilung-kvf.pdf",
+width     = 6.50,                                                                 
+height    = 4.75)      
+n         = c(5,10,15)                                                          
+mu        = c(.1,.5,.7)                                                                                                                               
+par(                                                                    
+mfcol      = c(2,length(mu)),                                           
+family     = "sans",                                                    
+pty        = "s",                                                       
+bty        = "l",                                                       
+lwd        = 1,                                                         
+las        = 1,                                                         
+mgp        = c(2,1,0),                                                  
+font.main  = 1,                                                         
+cex.main   = 1)
+for (i in 1:length(n)){                                                          
+  x       = 0:n[i]                                                             
+  plot(
+  x,                                                                        
+  dbinom(x, n[i], mu[i]),                                                     
+  type         = "h",                                                      
+  lwd          =  1,                                                       
+  col          = "black",
+  ylab         = "",                                                       
+  xlab         = "x",                                                       
+  xlim         = c(-.1,n[i]+.1),                                            
+  ylim         = c(0,.6))                                                  
+  title(sprintf("WMF von Bin(x;%g,%g)", n[i], mu[i]))
+  kvf         =  stepfun(x, c(0, pbinom(x, n[i], mu[i])), right = FALSE)
+  plot(
+  kvf,
+  lwd         = 1,
+  col         = "black",
+  pch         = 16,
+  verticals   = FALSE,
+  ylim        = c(0,1.01),
+  xlim        = c(-.1,n[i]+.1),
+  main        = "",
+  ylab        = "",
+  xlab        = "x",
+  cex         = 1)                                  
+  title(sprintf("KVF von  Bin(x;%g,%g)", n[i], mu[i]))
+} 
+dev.off()
+```
+
+```{r, echo = FALSE, out.width = "80%", fig.align = "center"}
+knitr::include_graphics("3-Abbildungen/wtfi-3-binomialverteilung-kvf.pdf")
+```
+
+# Kumulative Verteilungsfunktionen
+\footnotesize
+\vspace{2mm}
+\begin{theorem}[KVFen von kontinuierlichen Zufallsvariablen]
+\justifying
+\normalfont
+$\xi$ sei eine kontinuierliche Zufallsvariable mit WDF $p$ und KVF $P$.
+Dann gilt für alle $x\in\mathbb{R}$
+\begin{equation}
+P(x)=\int_{-\infty}^x p(s)\,ds.
+\end{equation}
+An jeder Stelle $x$, an der $p$ stetig ist, gilt außerdem
+\begin{equation}
+P'(x)=p(x).
+\end{equation}
+\end{theorem}
+
+\vspace{-2mm}
+\underline{Beweis}
+
+Nach Definition der KVF gilt $P(x)=\mathbb{P}(\xi\le x)$. Da
+Wahrscheinlichkeiten unter einer Verteilung mit Dichte durch Integration
+berechnet werden, folgt
+\begin{equation}
+P(x)=\mathbb{P}(\xi\le x)=\int_{-\infty}^x p(s)\,ds.
+\end{equation}
+Ist $p$ an der Stelle $x$ stetig, so folgt aus dem ersten Hauptsatz der
+Differenzial- und Integralrechnung
+\begin{equation}
+P'(x)=p(x).
+\end{equation}
+
+\vspace{-1mm}
+Bemerkungen
+\vspace{-1mm}
+
+* Ist die WDF stetig, so ist die KVF eine Stammfunktion der WDF.
+* An jeder Stetigkeitsstelle der WDF ist diese die Ableitung der KVF.
+* Das \textit{Theorem von Radon-Nikodym} ist eine generalisierte Variante dieser Einsicht.
+* KVFen von kontinuierlichen ZV heißen auch kumulative Dichtefunktionen (KDFen).
+
+
+# Kumulative Verteilungsfunktionen
+Beispiel (Normalverteilung)
+
+\setstretch{1.8}
+\footnotesize
+\justifying
+Es sei $\xi  \sim N(\mu,\sigma^2)$.
+
+* Die WDF von $\xi$ ist
+\begin{equation*}
+p : \mathbb{R} \to \mathbb{R}_{>0}, x \mapsto p(x)
+:= \frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{1}{2\sigma^2}(x-\mu)^2\right).
+\end{equation*}
+* Die KVF von $\xi$ ist
+\begin{align*}
+\begin{split}
+P : \mathbb{R} \to ]0,1[, x \mapsto P(x)
+  = \frac{1}{\sqrt{2\pi\sigma^2}}\int_{-\infty}^x\exp\left(-\frac{1}{2\sigma^2}(s -\mu)^2\right) \,ds
+\end{split}.
+\end{align*}
+* Die KVF der Normalverteilung lässt sich nicht durch elementare Funktionen ausdrücken. 
+* Die Werte der KVF der Normalverteilung werden in der Praxis numerisch berechnet.
+* Für $\mu = 1, \sigma^2 = 1$ gilt zum Beispiel $p(2) \approx 0.24$ und  $P(2) \approx 0.84$.
+* Die WDF und KVF von $Z \sim N(0,1)$ werden oft mit  $\phi$ und $\Phi$, respektive, bezeichnet.
+
+
+# Kumulative Verteilungsfunktionen
+Normalverteilte Zufallsvariablen
+\vspace{.2cm}
+
+```{r, eval = F, echo = F}
+pdf(                                                                    
+file      = "3-Abbildungen/wtfi-3-normalverteilung-kvf.pdf",        
+width     = 6.50,                                                      
+height    = 4.75)                                                       
+x_min     = -10                                                                    
+x_max     = 10                                                                     
+x_res     = 1e3                                                                     
+x         = seq(x_min,x_max,len = x_res)                                           
+mu        = c(0,-2.5,3)                                                            
+sigsqr    = c(1,10,0.5)                                                            
+par(                                                                  
+mfcol      = c(2,length(mu)),                                          
+family     = "sans",                                                  
+bty        = "l",                                                      
+lwd        = 1,                                                        
+las        = 1,                                                        
+mgp        = c(2,1,0),                                                 
+font.main  = 1,                                                        
+cex.main   = 1.1)                                                       
+for (i in 1:length(mu)){
+  plot(
+  x,                                                                        
+  dnorm(x,mu[i],sqrt(sigsqr[i])),                                           
+  type      = "l",                                                       
+  lwd       = 1.0,                                                      
+  col       = "black",
+  ylab      = "",                                                       
+  xlab      = "x",                                                       
+  ylim      = c(0,0.6))                                                  
+  title(sprintf("WDF von N(%g,%g)", mu[i], sigsqr[i]))                           
+
+  plot(
+  x,                                                                           
+  pnorm(x,mu[i],sqrt(sigsqr[i])),                                              
+  type      = "l",                                                          
+  lwd       = 1.0,                                                         
+  col       = "black",
+  ylab      = "",                                                          
+  xlab      = "x",                                                          
+  ylim      = c(0,1.05))                                                    
+  title(sprintf("KDF von N(%g,%g)", mu[i], sigsqr[i]))                           
+}
+dev.off()
+```
+
+```{r, echo = FALSE, out.width = "80%", fig.align = "center"}
+knitr::include_graphics("3-Abbildungen/wtfi-3-normalverteilung-kvf.pdf")
+```
+
+# Kumulative Verteilungsfunktionen
+\footnotesize
+\begin{definition}[Inverse kumulative Verteilungsfunktion]
+\justifying
+$\xi$ sei eine kontinuierliche Zufallsvariable mit KVF $P$.
+Für jedes $q\in]0,1[$ gebe es genau ein $x\in\mathbb{R}$ mit $P(x)=q$.
+Dann heißt die Funktion
+\begin{equation}
+P^{-1}:]0,1[\to\mathbb{R},\quad q\mapsto P^{-1}(q),
+\end{equation}
+die jedem $q$ diesen eindeutig bestimmten Wert $x$ zuordnet,
+die \textit{inverse kumulative Verteilungsfunktion von $\xi$}. Es gilt also
+\begin{equation}
+P^{-1}(q)=x\Longleftrightarrow P(x)=q.
+\end{equation}
+\end{definition}
+\vspace{.1cm}
+Bemerkungen
+
+* Für alle $q\in]0,1[$ gilt $P(P^{-1}(q))=q$.
+* Für alle $x\in\mathbb{R}$ mit $0<P(x)<1$ gilt $P^{-1}(P(x))=x$.
+* Offenbar gilt $P(x) = q \Leftrightarrow \mathbb{P}(\xi \le x) = q$.
+* Für $q \in ]0,1[$ ist also $P^{-1}(q)$ der Wert $x$ von $\xi$, so dass $\mathbb{P}(\xi \le x) = q$ gilt.
+* Wenn $Z \sim N(0,1)$ mit KVF $\Phi$ ist, dann gilt zum Beispiel
+  $\Phi^{-1}(0.975) \approx 1.960$.
+
+
+
+# Kumulative Verteilungsfunktionen
+Beispiel (Normalverteilung)
+\vspace{2mm}
+
+\setstretch{1.8}
+\footnotesize
+Es sei $\xi \sim N(\mu,\sigma^2)$.
+
+* Die KVF von $\xi$ ist
+\begin{equation}
+P : \mathbb{R} \to ]0,1[, x \mapsto \mathbb{P}(\xi \le x)
+= \frac{1}{\sqrt{2\pi\sigma^2}}\int_{-\infty}^x\exp\left(-\frac{1}{2\sigma^2}(s-\mu)^2\right) \,ds
+\end{equation}
+* Die inverse KVF von $\xi$ ist
+\begin{equation}
+P^{-1}:]0,1[\to\mathbb{R},\quad q\mapsto P^{-1}(q),
+\quad P^{-1}(q)=x\Longleftrightarrow P(x)=q.
+\end{equation}
+* Für $\mu = 1, \sigma^2 = 1$ gilt z. B., dass $P(2) \approx 0.84$ und $P^{-1}(0.84) \approx 2$.
+* Die inverse KVF von $\xi \sim N(0,1)$ wird oft mit $\Phi^{-1}$ bezeichnet.
+* Typische Beispielwerte für die KVF und inverse KVF  von $N(0,1)$ sind
+
+\begin{center}
+\begin{tabular}{ll}
+$\Phi(1.645) \approx 0.950$ & $\Phi^{-1}(0.950) = \Phi^{-1}(1 -0.050) \approx 1.645$ \\
+$\Phi(1.960) \approx 0.975$ & $\Phi^{-1}(0.975) = \Phi^{-1}\left(1 - \frac{0.050}{2}\right) \approx 1.960$ 
+\end{tabular}
+\end{center}
+
+# Kumulative Verteilungsfunktionen
+Normalverteilte Zufallsvariablen
+\vspace{.2cm}
+
+```{r, eval = F, echo = F}
+pdf(                                                                    
+file      = "3-Abbildungen/wtfi-3-normalverteilung-ikvf.pdf",                  
+width     = 6.50,                                                                 
+height    = 4.75)                                                                  
+x_min     = -10                                                                    
+x_max     = 10                                                                     
+x_res     = 1e5                                                                     
+x         = seq(x_min,x_max,len = x_res)                                           
+mu        = c(0,-2.5,3)                                                            
+sigsqr    = c(1,10,0.5)                                                            
+par(                                                                  
+mfcol     = c(2,length(mu)),                                          
+family    = "sans",                                                  
+bty       = "l",                                                      
+lwd       = 1,                                                        
+las       = 1,                                                        
+mgp       = c(2,1,0),                                                 
+font.main = 1,                                                        
+cex.main  = 1.1)
+for (i in 1:length(mu)){
+  plot(
+  x,                                                                       
+  pnorm(x,mu[i],sqrt(sigsqr[i])),                                          
+  type         = "l",                                                      
+  lwd = 1.0,                                                     
+  col          = "black",
+  xlab         = "x",                                                      
+  ylab         = "",                                                      
+  ylim         = c(0,1.1))                                                 
+  title(sprintf("KDF von N(%g,%g)", mu[i], sigsqr[i]))                     
+  plot(
+  x,                                                                       
+  qnorm(x,mu[i],sqrt(sigsqr[i])),                                          
+  type         = "l",                                                      
+  lwd = 1.0,                                                     
+  col          = "black",
+  xlab         = "q",                                                      
+  ylab         = "x",                                                      
+  xlim         = c(0,1),                                                   
+  ylim         = c(-10,10))                                                
+  title(sprintf("Inverse KDF von N(%g,%g)", mu[i], sigsqr[i]))             
+}
+dev.off()
+```
+
+```{r, echo = FALSE, out.width = "80%", fig.align = "center"}
+knitr::include_graphics("3-Abbildungen/wtfi-3-normalverteilung-ikvf.pdf")
+```
+
+#  
+\large
+\setstretch{2.2}
+\vfill
+
+Konstruktion, Definition, Notation, Intuition
+
+Wahrscheinlichkeitsmassefunktionen
+
+Wahrscheinlichkeitsdichtefunktionen
+
+Kumulative Verteilungsfunktionen
+
+**Wahrscheinlichkeitsräume und Zufallsvariablen**
+
+Selbstkontrollfragen
+\vfill
+
+# Wahrscheinlichkeitsräume und Zufallsvariablen
+
+\footnotesize
+
+Wir haben drei Möglichkeiten zur Festlegung von  W-Raummodellen für Zufallsvorgänge kennengelernt
+
+(1) Definition von $(\Omega, \mathcal{A},\mathbb{P})$ mit einer Wahrscheinlichkeitsfunktion $\pi$.
+(2) Definition von $(\mathcal{X}, \mathcal{S},\mathbb{P}_\xi)$ für eine
+Zufallsvariable $\xi$ durch eine WMF/WDF $p$ oder eine KVF $P$.
+(3) Definition von $(\Omega, \mathcal{A},\mathbb{P})$, Definition einer
+Zufallsvariable $\xi:\Omega \to \mathcal{X}$ und Herleitung von $\mathbb{P}_\xi$
+in $\left(\mathcal{X}, \mathcal{S}, \mathbb{P}_\xi \right)$.
+
+Abschließend wollen wir die Äquivalenz dieser Herangehensweisen zur Modellierung von Zufallsvorgängen betrachten.
+
+Zunächst halten wir fest
+
+(1) herrscht in Einführungen zur W-Theorie und mathematisch-orientierter W-Theorie vor (vgl. @fristedt1998)
+(2) herrscht in statistischen und datenwissenschaftlichen Anwendungen (ML, KI) vor (vgl. @demidenko2020)
+
+Es gilt, dass (1) und (2) äquivalent sind und (3) essentiell für die Theorie datenwissenschaftlicher Anwendungen ist.
+
+Die Äquivalenz von (1) und (2) ergibt sich dabei durch Definition einer Zufallsvariable als Identitätsabbildung.
+
+Wir wollen die Äquivalenz von (1) und (2) an zwei Beispielen verdeutlichen.
+
+# Wahrscheinlichkeitsräume und Zufallsvariablen
+
+\footnotesize
+"Wir modellieren den Zufallsvorgang *Werfen eines Würfels* mithilfe eines Wahrscheinlichkeitsraums $(\Omega,\mathcal{A}, \mathbb{P})$"
+\vspace{-1mm}
+
+* Wie gesehen würden wir hier $\Omega := \mathbb{N}_6$ und $\mathcal{A} := \mathcal{P}(\mathbb{N}_6)$ wählen und $\mathbb{P}$ durch eine W-Funktion $\pi$ festlegen.
+* In jedem Durchgang des Zufallsvorgangs wird ein Ergebnis zufällig anhand von $\mathbb{P}(\{\omega\})$ realisiert.
+* Man mag die so realisierten Ergebnisse $\omega_1,\omega_2,...$ als Realisationen einer *Zufallsgröße* betrachten.
+* Die realisierten Ergebnisse könnten z. B. wiederholten Würfelwürfen entsprechen.
+
+"Wir modellieren den Zufallsvorgang *Werfen eines Würfels* mit einer Zufallsvariable $\xi$"
+\vspace{-1mm}
+
+* Man würde hier $\mathcal{X} := \mathbb{N}_6$ und $\mathcal{S} := \mathcal{P}(\mathbb{N}_6)$ wählen und $\mathbb{P}_\xi$ durch eine WMF $p_\xi$ festlegen.
+* Die Realisierung $\xi = x$ hat dann die  Wahrscheinlichkeit $\mathbb{P}_\xi(\xi = x) = p_\xi(x)$.
+* Implizit hat man hier die Zufallsvariable $\xi$ als die Identitätsfunktion 
+\begin{equation}
+\xi: \mathcal{X} \to \mathcal{X}, x \mapsto \xi(x) := x
+\end{equation}
+auf einem zugrundeliegenden Wahrscheinlichkeitsraum $(\Omega, \mathcal{A}, \mathbb{P})$ mit $\Omega = \mathcal{X}$ und $\mathcal{A} = \mathcal{S}$ festgelegt.
+* Insbesondere gilt die Äquivalenz der WMF $p_\xi$ auf $\mathcal{X}$ und der W-Funktion $\pi$ auf $\Omega = \mathcal{X}$, denn
+\begin{equation}
+p_\xi(x) = \mathbb{P}_\xi(\xi = x) = \mathbb{P}(\{\omega \in \Omega|\xi(\omega) = x\}) = \mathbb{P}(\{x\}) = \pi(x) \mbox{ für alle } x \in \mathcal{X}.
+\end{equation}
+* Damit gilt dann letztlich
+\begin{equation}
+(\mathcal{X}, \mathcal{S},\mathbb{P}_\xi) = (\Omega, \mathcal{A},\mathbb{P})
+\end{equation}
+* Betrachten des zugrundeliegenden Wahrscheinlichkeitsraums $(\Omega, \mathcal{A},\mathbb{P})$ ergibt also keinen Mehrwert.
+
+\small
+\flushright
+$\Rightarrow$ Generell wird hier die erste Sprechweise bevorzugt
+
+# Wahrscheinlichkeitsräume und Zufallsvariablen
+
+\footnotesize
+"Wir modellieren einen *BDI-II-Itemwert einer Patient:in* mithilfe eines Wahrscheinlichkeitsraums $(\Omega,\mathcal{A}, \mathbb{P})$"
+\vspace{-1mm}
+
+* Wie gesehen würden wir hier $\Omega := \mathbb{N}^0_3$ und $\mathcal{A} := \mathcal{P}(\Omega)$ wählen und $\mathbb{P}$ durch eine W-Funktion $\pi$ festlegen.
+* In jedem Durchgang des Zufallsvorgangs wird ein Ergebnis zufällig anhand von $\mathbb{P}(\{\omega\})$ realisiert.
+* Man mag die so realisierten Ergebnisse $\omega_1,\omega_2,...$ als Realisationen einer *Zufallsgröße* betrachten.
+* Die realisierten Ergebnisse könnten z. B. wiederholten Messungen an einer Patient:in entsprechen.
+
+"Wir modellieren einen *BDI-II-Itemwert einer Patient:in* als Realisation einer Zufallsvariable $\xi$"
+\vspace{-1mm}
+
+* Man würde hier $\mathcal{X} := \mathbb{N}^0_3$ und $\mathcal{S} := \mathcal{P}(\mathcal{X})$ wählen und $\mathbb{P}_\xi$ durch eine WMF $p_\xi$ festlegen.
+* Die Realisierung $\xi = x$ hat dann die  Wahrscheinlichkeit $\mathbb{P}_\xi(\xi = x) = p_\xi(x)$.
+* Implizit hat man hier die Zufallsvariable $\xi$ als die Identitätsfunktion 
+\begin{equation}
+\xi: \mathcal{X} \to \mathcal{X}, x \mapsto \xi(x) := x
+\end{equation}
+auf einem zugrundeliegenden Wahrscheinlichkeitsraum $(\Omega, \mathcal{A}, \mathbb{P})$ mit $\Omega = \mathcal{X}$ und $\mathcal{A} = \mathcal{S}$ festgelegt.
+* Insbesondere gilt die Äquivalenz der WMF $p_\xi$ auf $\mathcal{X}$ und der W-Funktion $\pi$ auf $\Omega = \mathcal{X}$, denn
+\begin{equation}
+p_\xi(x) = \mathbb{P}_\xi(\xi = x) = \mathbb{P}(\{\omega \in \Omega|\xi(\omega) = x\}) = \mathbb{P}(\{x\}) = \pi(x) \mbox{ für alle } x \in \mathcal{X}.
+\end{equation}
+* Damit gilt dann letztlich
+\begin{equation}
+(\mathcal{X}, \mathcal{S},\mathbb{P}_\xi) = (\Omega, \mathcal{A},\mathbb{P})
+\end{equation}
+* Betrachten des zugrundeliegenden Wahrscheinlichkeitsraums $(\Omega, \mathcal{A},\mathbb{P})$ ergibt also keinen Mehrwert.
+
+\small
+\flushright
+$\Rightarrow$ Generell wird hier die zweite Sprechweise bevorzugt
+
+#  
+\large
+\setstretch{2.2}
+\vfill
+
+Konstruktion, Definition, Notation, Intuition
+
+Wahrscheinlichkeitsmassefunktionen
+
+Wahrscheinlichkeitsdichtefunktionen
+
+Kumulative Verteilungsfunktionen
+
+Wahrscheinlichkeitsräume und Zufallsvariablen
+
+**Selbstkontrollfragen**
+
+\vfill
+
+# Selbstkontrollfragen
+\footnotesize
+\setstretch{2}
+
+1. Geben Sie die Definition des Begriffs der Zufallsvariable wieder.
+1. Erläutern Sie die Gleichung $\mathbb{P}_\xi(\xi = x) = \mathbb{P}(\{\xi = x\})$.
+1. Erläutern Sie die intuitive Bedeutung von $\mathbb{P}(\xi = x)$.
+1. Geben Sie die Definition des Begriffs der Wahrscheinlichkeitsmassefunktion wieder.
+1. Geben Sie die Definition des Begriffs der Wahrscheinlichkeitsdichtefunktion wieder.
+1. Geben Sie die Definition der WDF einer normalverteilten Zufallsvariable wieder.
+1. Geben Sie die Definition des Begriffs der kumulativen Verteilungsfunktion wieder.
+1. Schreiben Sie die Intervallwahrscheinlichkeit einer Zufallsvariable mithilfe
+ihrer KVF. 
+1. Schreiben Sie den Wert $P(x)$ der KVF einer kontinuierlichen Zufallsvariable mithilfe ihrer WDF $p$.
+1. Schreiben Sie den Wert $p(x)$ der WDF einer kontinuierlichen Zufallsvariable
+mithilfe ihrer KVF $P$.  
+1. Geben Sie die Definition der KVF einer normalverteilten Zufallsvariable wieder.
+1. Geben Sie die Definition des Begriffs der inversen Verteilungsfunktion wieder.
+
+
+# Selbstkontrollfragen - Lösungen
+\footnotesize
+\setstretch{1.8}
+
+1. Siehe Definition (Zufallsvariable).
+1. Die Gleichung besagt, dass der von der Verteilung $\mathbb{P}_\xi$ der
+Zufallsvariable $\xi$ zugeordnete Wahrscheinlichkeitswert für das Ereignis
+$\xi = x$ in $\mathcal{X}$ definitionsgemäß gleich dem Wert ist, den das
+Wahrscheinlichkeitsmaß $\mathbb{P}$ dem Urbild des Ereignisses $\xi = x$,
+also der Menge $\{\xi = x\} = \{\omega \in \Omega|\xi(\omega) = x\}$ in
+$\mathcal{A}$, zuordnet. Siehe Definition (Notation von Zufallsvariablen).
+1. Intuitiv ist $\mathbb{P}(\xi = x)$ die Wahrscheinlichkeit dafür, dass die Zufallsvariable $\xi$ den Wert $x$ annimmt. 
+1. Siehe Definition (Diskrete Zufallsvariable, Wahrscheinlichkeitsmassefunktion).
+1. Siehe Definition (Kontinuierliche Zufallsvariable, Wahrscheinlichkeitsdichtefunktion).
+1. Siehe Definition (Normalverteilte und standardnormalverteilte Zufallsvariable).
+1. Siehe Definition (Kumulative Verteilungsfunktion).
+1. Siehe Theorem (Intervallwahrscheinlichkeiten).
+1. Siehe Theorem (Kumulative Verteilungsfunktionen von kontinuierlichen Zufallsvariablen). 
+1. Siehe Theorem (Kumulative Verteilungsfunktionen von kontinuierlichen
+Zufallsvariablen). 
+1. Siehe Kumulative Verteilungsfunktionen, Beispiel (Normalverteilung). 
+1. Siehe Definition (Inverse kumulative Verteilungsfunktion).
+
+# Referenzen
+\footnotesize  

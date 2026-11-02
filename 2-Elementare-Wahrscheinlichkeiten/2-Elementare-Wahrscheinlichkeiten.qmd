@@ -68,7 +68,7 @@ Selbstkontrollfragen
 \vfill
 
 # Gemeinsame Wahrscheinlichkeiten
-\small
+\footnotesize
 \begin{definition}[Gemeinsame Wahrscheinlichkeit]
 \justifying
 $(\Omega, \mathcal{A}, \mathbb{P})$ sei ein Wahrscheinlichkeitsraum und es seien
@@ -79,47 +79,49 @@ $A,B \in \mathcal{A}$. Dann heißt
 die \textit{gemeinsame Wahrscheinlichkeit von $A$ und $B$}.
 \end{definition}
 
-\setstretch{1.5}
 Bemerkungen
 
-* Zur Abgrenzung nennt man $\mathbb{P}(A)$ manchmal auch *totale
-Wahrscheinlichkeit von $A$*.
-* Mit dem Theorem zur Abgeschlossenheit von $\sigma$-Algebren bezüglich
-Durchschnitten ist gesichert,
-dass $A \cap B \in \mathcal{A}$, woraus die Existenz von $\mathbb{P}(A \cap B)
-\in [0,1]$ folgt.
-* Intuitiv entspricht $\mathbb{P}(A \cap B)$ der Wahrscheinlichkeit, dass $A$
-und $B$ gleichzeitig eintreten.
-* In der  Mechanik des W-Raummodells ist $\mathbb{P}(A \cap B)$ die
-Wahrscheinlichkeit,
-dass in einem Durchgang des Zufallsvorgangs ein $\omega$ mit sowohl $\omega \in
-A$ und $\omega \in B$ realisiert wird.
+* Zur Abgrenzung nennt man $\mathbb{P}(A)$ manchmal auch *totale Wahrscheinlichkeit von $A$*.
+* Mit dem Theorem zur Abgeschlossenheit von $\sigma$-Algebren bezüglich Durchschnitten ist gesichert, dass 
+\begin{equation}
+A \cap B \in \mathcal{A}.
+\end{equation}
+* Daraus folgt unmittelbar die Existenz von $\mathbb{P}(A \cap B) \in [0,1]$.
+* Intuitiv entspricht $\mathbb{P}(A \cap B)$ der Wahrscheinlichkeit, dass die Ereignisse $A$ und $B$ gleichzeitig eintreten.
+* $\mathbb{P}(A \cap B)$ ist die Wahrscheinlichkeit, dass in einem Durchgang des Zufallsvorgangs ein $\omega$ realisiert wird mit 
+\begin{equation}
+\omega \in A \mbox{ und } \omega \in B. 
+\end{equation}
+
 
 # Gemeinsame Wahrscheinlichkeiten
-\vspace{3mm}
+
 \small
 Beispiel
-\vspace{-1mm}
 
-* Wir betrachten das Wahrscheinlichkeitsraummodell des Werfens eines fairen
-Würfels.
-* Wir betrachten die Ereignisse
+\footnotesize
+Wir betrachten das Wahrscheinlichkeitsraummodell des Werfens eines fairen
+Würfels und betrachten die Ereignisse
 
 \begin{center}
 \begin{tabular}{ll}
 $A := \{2,4,6\}$ & Es fällt eine gerade Augenzahl              \\
-$B := \{4,5,6\}$ & Es fällt eine Augenzahl größer als Drei     \\
+$B := \{4,5,6\}$ & Es fällt eine Augenzahl größer als drei     \\
 \end{tabular}
 \end{center}
 
-* Dann gilt $A \cap B = \{4,6\}$.
-* Die Interpretation von $A \cap B = \{4,6\}$ ist
-\center
-"Es fällt eine gerade Augenzahl und diese Augenzahl ist größer als Drei."
-\justifying
+Dann gilt $A \cap B = \{4,6\}$ mit der Interpretation 
 
-* Mit $\mathbb{P}(\{4\}) = \mathbb{P}(\{6\}) = \frac{1}{6}$ und der
-$\sigma$-Additivität von $\mathbb{P}$ ergibt sich
+\center
+"Es fällt eine gerade Augenzahl und diese Augenzahl ist größer als drei." 
+
+\justifying
+Mit
+\begin{equation}
+\mathbb{P}(\{4\}) = \mathbb{P}(\{6\}) = \frac{1}{6} 
+\end{equation}
+
+und der $\sigma$-Additivität von $\mathbb{P}$ ergibt sich
 \begin{equation}
 \begin{split}
 \mathbb{P}(A \cap B)
@@ -134,148 +136,153 @@ $\sigma$-Additivität von $\mathbb{P}$ ergibt sich
 
 # Gemeinsame Wahrscheinlichkeiten
 
-Interpretation von $\mathbb{P}(A \cup B)$
-
 \small
+Zur Interpretation von $\mathbb{P}(A \cup B)$
 
 * $\mathbb{P}(A \cap B)$ und $\mathbb{P}(A \cup B)$ sollten nicht verwechselt werden.
-* $\cup$ entspricht dem \textit{inklusiven oder}, also \textit{und/oder}.
-*  $\Delta$ entspricht dem \textit{exklusiven oder}, also
-\textit{entweder..., oder ..., aber nicht beides}.
+* $\cup$ entspricht dem \textit{inklusiven Oder}, also \textit{und/oder}.
+* $\Delta$ entspricht dem \textit{exklusiven Oder}, also
+\textit{entweder … oder …, aber nicht beides}.
 * $A \cup B$ entspricht also dem Ereignis, dass $A$ und/oder $B$ eintritt.
-* $\omega \in A \cup B$ ist also schon erfüllt, wenn ``nur'' $\omega \in A$
-oder ``nur'' $\omega \in B$ gilt.
-*  Für obiges Beispiel gilt
+* $\omega \in A \cup B$ ist also schon erfüllt, wenn *nur* $\omega \in A$ oder *nur* $\omega \in B$ gilt.
+
+Beispiel
+\footnotesize 
+
+Für obiges Beispiel des fairen Würfels und die Ereignisse $A := \{2,4,6\}$ und $B := \{4,5,6\}$ gilt
 \begin{equation}
 A \cup B = \{2,4,6\} \cup \{4,5,6\} = \{2,4,5,6\}
 \end{equation}
-mit der Interpretation "Es fällt eine gerade Augenzahl oder es fällt eine Augenzahl größer als Drei oder es fällt eine gerade Augenzahl und diese Augenzahl ist größer als Drei."
+mit der Interpretation 
+
+\center
+"Es fällt eine gerade Augenzahl oder es fällt eine Augenzahl größer als drei 
+\vspace{-2mm}
+
+oder es fällt eine gerade Augenzahl und diese Augenzahl ist größer als drei."
+
+\justifying
 und der Wahrscheinlichkeit
 \begin{equation}
-\mathbb{P}(\{2,4,5,6\}) = 4/6 = 2/3.
+\mathbb{P}(\{2,4,5,6\}) 
+= \mathbb{P}(\{2\}) + \mathbb{P}(\{4\}) + \mathbb{P}(\{5\}) + \mathbb{P}(\{6\}) 
+= \frac{1}{6} + \frac{1}{6} + \frac{1}{6} + \frac{1}{6} = \frac{4}{6} = \frac{2}{3}.
 \end{equation}
-
 
 # Gemeinsame Wahrscheinlichkeiten
 
+\footnotesize
 \begin{theorem}[Weitere Eigenschaften von Wahrscheinlichkeiten]
 \normalfont
 \justifying
 $(\Omega, \mathcal{A}, \mathbb{P})$ sei ein Wahrscheinlichkeitsraum und es seien
 $A,B \in \mathcal{A}$ Ereignisse. Dann gelten
+\vspace{1mm}
 \begin{enumerate}
 \itemsep2mm
 \item $\mathbb{P}(A^c) = 1 - \mathbb{P}(A)$.
 \item $A \subset B \Rightarrow \mathbb{P}(A) \le \mathbb{P}(B)$.
-\item $\mathbb{P}(A \cap B^c) = \mathbb{P}(A) - \mathbb{P}(A \cap B)$
+\item $\mathbb{P}(A \cap B^c) = \mathbb{P}(A) - \mathbb{P}(A \cap B)$.
 \item $\mathbb{P}(A \cup B) = \mathbb{P}(A) + \mathbb{P}(B) - \mathbb{P}(A \cap
 B)$.
 \end{enumerate}
 \end{theorem}
 
-\small
+\footnotesize
 Bemerkungen
 
 * Die Eigenschaften sind in der Analyse probabilistischer Modelle oft nützlich.
+* Zu 2.: Auch bei einer echten Teilmengenbeziehung können zwei Ereignisse dieselbe
+Wahrscheinlichkeit haben. Betrachten wir beispielsweise einen
+Wahrscheinlichkeitsraum mit $\Omega=\mathbb{R}$, in dem die Ereignisse
+$A=[0,1[$ und $B=[0,1]$ die Bedingungen $\mathbb{P}(B)>0$ und
+$\mathbb{P}(\{1\}) = 0$ erfüllen. Dann ist $A$ eine echte Teilmenge von $B$,
+aber 
+\begin{equation}
+\mathbb{P}(B)=\mathbb{P}(A)+\mathbb{P}(\{1\})=\mathbb{P}(A).
+\end{equation}
+
+
+
 
 # Gemeinsame Wahrscheinlichkeiten
 
 \center
-```{r, echo = FALSE, out.width = "90%"}
+```{r, echo = F, out.width = "90%"}
 knitr::include_graphics("2-Abbildungen/wtfi-2-rechenregeln.pdf")
 ```
-\small
-Die hellblau unterlegten Flächen entsprechen jeweils den Wahrscheinlichkeiten
-von Interesse.
+\footnotesize
+Die hellblau unterlegten Flächen entsprechen jeweils den Wahrscheinlichkeiten von Interesse.
 
 
 # Gemeinsame Wahrscheinlichkeiten
-\vspace{2mm}
 \footnotesize
 \underline{Beweis}
 
-Die zweite, dritte, und vierte Aussage dieses Theorems basieren auf elementaren
-mengentheoretischen Aussagen und der $\sigma$-Additivität von $\mathbb{P}$.
-Wir wollen diese  elementaren mengentheoretischen Aussagen hier nicht beweisen,
-sondern verweisen jeweils auf die Intuition, die durch die Venn-Diagramme
-in untenstehender Abbildung vermittelt wird.
+Die benötigten Mengengleichheiten und Disjunktheitsaussagen werden im Appendix
+„Mengentheoretische Ergänzungen“ bewiesen.
 
-\center
-```{r, echo = FALSE, out.width = "65%"}
-knitr::include_graphics("2-Abbildungen/wtfi-2-venn-diagramme.pdf")
-```
-\flushleft
-
-Zu 1.: Wir halten zunächst fest, dass aus $A^c := \Omega \setminus A$
-folgt, dass $A^c \cup A = \Omega$ und dass $A^c \cap A = \emptyset$. Mit der
-Normiertheit
-und der $\sigma$-Additivität von $\mathbb{P}$ folgt dann
+\noindent 1. Nach dem Theorem
+\hyperref[thm:komplemente]{Eigenschaften von Komplementen},
+Aussagen 1. und 2.,
+gelten
 \begin{equation}
-\mathbb{P}(\Omega) = 1
-\Leftrightarrow
-\mathbb{P}(A^c \cup A) = 1
-\Leftrightarrow
-\mathbb{P}(A^c) + \mathbb{P}(A)  = 1
-\Leftrightarrow
-\mathbb{P}(A^c) = 1 - \mathbb{P}(A).
+A^c\cup A=\Omega \mbox{ und } A^c\cap A=\emptyset.
+\end{equation}
+Mit der Normiertheit und der $\sigma$-Additivität von $\mathbb{P}$ folgt
+\begin{equation}
+1=\mathbb{P}(\Omega)=\mathbb{P}(A^c\cup A)=\mathbb{P}(A^c)+\mathbb{P}(A)
+\end{equation}
+und somit
+\begin{equation}
+\mathbb{P}(A^c)=1-\mathbb{P}(A).
 \end{equation}
 
-Zu 2.: Zunächst gilt (vgl. Abbildung A)
+\noindent 2. Es gelte $A\subseteq B$. Nach dem Theorem
+\hyperref[thm:disjunkte-zerlegungen]{Disjunkte Zerlegungen von Mengen},
+Aussage 1., gelten
 \begin{equation}
-A \subset B \Rightarrow B = A \cup (B \cap A^c)
-\mbox{ mit } A \cap (B \cap A^c) = \emptyset.
+B=A\cup(B\cap A^c) \mbox{ und } A\cap(B\cap A^c)=\emptyset.
 \end{equation}
-Mit der $\sigma$-Additivität von $\mathbb{P}$ folgt dann aber
+Mit der $\sigma$-Additivität und der Nichtnegativität von $\mathbb{P}$ folgt
 \begin{equation}
-\mathbb{P}(B) = \mathbb{P}(A) + \mathbb{P}(B \cap A^c).
+\mathbb{P}(B)=\mathbb{P}(A)+\mathbb{P}(B\cap A^c)\geq\mathbb{P}(A).
 \end{equation}
-Mit $\mathbb{P}(B \cap A^c) \ge 0$ folgt dann $\mathbb{P}(A) \le \mathbb{P}(B)$.
-
 
 # Gemeinsame Wahrscheinlichkeiten
 \footnotesize
 \underline{Beweis (fortgeführt)}
 
-Auch bei einer echten Teilmengenbeziehung können zwei Ereignisse dieselbe
-Wahrscheinlichkeit haben. Betrachten wir beispielsweise einen
-Wahrscheinlichkeitsraum mit $\Omega=\mathbb{R}$, in dem die Ereignisse
-$A=[0,1[$ und $B=[0,1]$ die Bedingungen $\mathbb{P}(B)>0$ und
-$\mathbb{P}(\{1\})=0$ erfüllen. Dann ist $A$ eine echte Teilmenge von $B$,
-aber es gilt
+\noindent 3. Nach dem Theorem
+\hyperref[thm:disjunkte-zerlegungen]{Disjunkte Zerlegungen von Mengen},
+Aussage 2., gelten
 \begin{equation}
-\mathbb{P}(B)=\mathbb{P}(A)+\mathbb{P}(\{1\})=\mathbb{P}(A).
+A=(A\cap B)\cup(A\cap B^c)
+\mbox{ und } (A\cap B)\cap(A\cap B^c)=\emptyset.
 \end{equation}
-Ein konkretes Beispiel liefert die Standardnormalverteilung, die wir später
-kennenlernen werden.
-
-\footnotesize
-Zu 3.: Zunächst gilt (vgl. Abbildung B)
+Mit der $\sigma$-Additivität von $\mathbb{P}$ folgt
 \begin{equation}
-(A \cap B) \cap (A \cap B^c)  = \emptyset
-\mbox{ und } A  = (A \cap B) \cup (A \cap B^c).
+\mathbb{P}(A)=\mathbb{P}(A\cap B)+\mathbb{P}(A\cap B^c)
 \end{equation}
-Mit der $\sigma$-Additivität von $\mathbb{P}$ folgt dann
+und somit
 \begin{equation}
-\begin{split}
-\mathbb{P}(A) = \mathbb{P}(A \cap B) + \mathbb{P}(A \cap B^c)
-\Leftrightarrow
-\mathbb{P}(A \cap B^c)
-= \mathbb{P}(A) - \mathbb{P}(A \cap B)
-\end{split}
+\mathbb{P}(A\cap B^c)=\mathbb{P}(A)-\mathbb{P}(A\cap B).
 \end{equation}
 
-Zu 4.: Zunächst gilt (vgl. Abbildung C)
+\noindent 4. Nach dem Theorem
+\hyperref[thm:disjunkte-zerlegungen]{Disjunkte Zerlegungen von Mengen},
+Aussage 3., gelten
 \begin{equation}
-B \cap (A \cap B^c)  = \emptyset
-\mbox{ und } A \cup B = B \cup (A \cap B^c).
+A\cup B=B\cup(A\cap B^c)
+\mbox{ und } B\cap(A\cap B^c)=\emptyset.
 \end{equation}
-Mit der $\sigma$-Additivität von $\mathbb{P}$ folgt dann
+Mit der $\sigma$-Additivität von $\mathbb{P}$ folgt
 \begin{equation}
-\mathbb{P}(A \cup B) = \mathbb{P}(B) + \mathbb{P}(A \cap B^c).
+\mathbb{P}(A\cup B)=\mathbb{P}(B)+\mathbb{P}(A\cap B^c).
 \end{equation}
-Mit 3. folgt dann
+Mit Aussage 3. des hier bewiesenen Theorems ergibt sich
 \begin{equation}
-\mathbb{P}(A \cup B) = \mathbb{P}(B) + \mathbb{P}(A) - \mathbb{P}(A \cap B)
+\mathbb{P}(A\cup B)=\mathbb{P}(A)+\mathbb{P}(B)-\mathbb{P}(A\cap B).
 \end{equation}
 
 #
@@ -293,7 +300,7 @@ Selbstkontrollfragen
 \vfill
 
 # Bedingte Wahrscheinlichkeiten
-\small
+\footnotesize
 \begin{definition}[Bedingte Wahrscheinlichkeit]
 \justifying
 $(\Omega,\mathcal{A}, \mathbb{P})$ sei ein Wahrscheinlichkeitsraum und $A, B\in
@@ -306,35 +313,34 @@ $A$ gegeben das Ereignis $B$} ist definiert als
 \end{equation}
 \end{definition}
 
-\footnotesize
 Bemerkungen
 
 * $\mathbb{P}(A|B)$ ist die mit $1/\mathbb{P}(B)$ skalierte gemeinsame
 Wahrscheinlichkeit $\mathbb{P}(A \cap B)$.
 * Die Festlegung von $\mathbb{P}(A\cap B)$ und $\mathbb{P}(B)>0$ legt auch $\mathbb{P}(A|B)$ fest.
-*  Üblicherweise gilt $\mathbb{P}(A|B) \neq \mathbb{P}(B|A)$, z.B. 
+* Üblicherweise gilt $\mathbb{P}(A|B) \neq \mathbb{P}(B|A)$, z. B. 
 \begin{equation}
 \mathbb{P}(\mbox{Tod}|\mbox{Erhängen}) \neq  \mathbb{P}(\mbox{Erhängen}|\mbox{Tod}).
 \end{equation}
 * Eine Verallgemeinerung für $\mathbb{P}(B) = 0$ ist möglich, aber technisch
 aufwändig.
 
-# Bedingte  Wahrscheinlichkeiten
+# Bedingte Wahrscheinlichkeiten
 \small
-Werfen eines Würfels
+Bedingte Wahrscheinlichkeit eines Ereignisses beim Werfen eines Würfels
 \footnotesize
 \setstretch{1.3}
 
 Wir betrachten erneut das Modell $(\Omega, \mathcal{A}, \mathbb{P})$ des fairen
 Würfels.
-Wir wollen  die bedingte Wahrscheinlichkeit für das Ereignis "Es fällt eine
+Wir wollen die bedingte Wahrscheinlichkeit für das Ereignis "Es fällt eine
 gerade Augenzahl"
-gegeben das Ereignis "Es fällt eine Zahl größer als Drei" berechnen. Wir haben
+gegeben das Ereignis "Es fällt eine Zahl größer als drei" berechnen. Wir haben
 oben
 bereits gesehen, dass das Ereignis "Es fällt eine gerade Augenzahl" der
 Teilmenge
 $A := \{2,4,6\}$ von $\Omega$ entspricht, und dass das Ereignis 
-"Es fällt eine Zahl größer als Drei" der Teilmenge $B := \{4,5,6\}$ von $\Omega$
+"Es fällt eine Zahl größer als drei" der Teilmenge $B := \{4,5,6\}$ von $\Omega$
 entspricht. Weiterhin haben wir gesehen, dass unter der Annahme, dass der 
 modellierte Würfel fair ist, gilt, dass
 \begin{equation}
@@ -349,7 +355,7 @@ modellierte Würfel fair ist, gilt, dass
 \end{equation}
 Schließlich hatten wir auch gesehen, dass das Ereignis $A \cap B$, also das
 Ereignis
-"Es fällt eine gerade Augenzahl, die größer als Drei ist", die
+"Es fällt eine gerade Augenzahl, die größer als drei ist", die
 Wahrscheinlichkeit
 \begin{equation}
 \mathbb{P}(A \cap B) = \mathbb{P}(\{2,4,6\} \cap \{4,5,6\}) = \mathbb{P}(\{4,6\})
@@ -365,81 +371,219 @@ hat. Nach Definition der bedingten Wahrscheinlichkeit ergibt sich dann direkt
 = \frac{1}{3} \cdot \frac{2}{1}
 = \frac{2}{3}.
 \end{equation}
-Wenn man also weiß, dass eine Augenzahl größer als Drei gefallen ist, ist die
-Wahrscheinlichkeit, dass es sich dabei um eine gerade Augenzahl handelt, 2/3.
-Wenn man ersteres nicht weiß, ist die Wahrscheinlichkeit für das Fallen einer
-geraden Augenzahl (nur) 1/2. Dieses Beispiel verdeutlicht insbesondere, dass
-das Bedingen auf einem Ereignis der Inkorporation von neuem Wissen in 
-wahrscheinlichkeitstheoretische Modelle entspricht.
-
-
-# Bedingte  Wahrscheinlichkeiten
-\small
-\vspace{2mm}
-Wert eines BDI-II Items
-\footnotesize
-
-Wir betrachten erneut das Beispiel für den Wert einer Patient:in für das Item 
-"Traurigkeit" der deutschen Version des BDI-II. Im Kapitel
-„Wahrscheinlichkeitsräume“ haben wir den möglichen Itemantworten (0), (1),
-(2), (3) die Wahrscheinlichkeiten
-\begin{equation}
-\mathbb{P}(\{0\}) := \frac{2}{10}, \quad
-\mathbb{P}(\{1\}) := \frac{3}{10}, \quad
-\mathbb{P}(\{2\}) := \frac{4}{10}, \quad
-\mathbb{P}(\{3\}) := \frac{1}{10}, \quad
-\end{equation}
-zugeordnet. Wir nehmen nun an, dass wir von einer Patient:in wissen, dass sie 
-einen Wert größer als (1) gewählt hat und fragen nach den Wahrscheinlichkeiten,
-dass die Patient:in den Wert (2) oder (3) gewählt hat. Dazu betrachten wir
-zunächst
-die Wahrscheinlichkeit des Ereignisses "Die Patient:in hat einen Wert größer als
-(1) gewählt".
-Offenbar entspricht dies der Teilmenge $B := \{2,3\}$ von $\Omega$. Mit der $\sigma$-Additivität ergibt sich für die Wahrscheinlichkeit dieses
-Ereignisses $\mathbb{P}(\{2,3\}) = 1/2$. Wir betrachten also die Ereignisse 
-\center
-\begin{tabular}{l|l}
-Verbale Beschreibung                                    & Mengenform                  \\\hline
-Die Patient:in hat einen Wert größer als (1) gewählt    & $\omega \in B := \{2,3\}$   \\
-Die Patient:in hat Antwort (2) gewählt                  & $\omega \in A_1 := \{2\}$   \\
-Die Patient:in hat Antwort (3) gewählt                  & $\omega \in A_2 := \{3\}$   \\
-\end{tabular}
-\flushleft
-Es ergeben sich
-\begin{equation}
-\mathbb{P}(A_1|B)
-= \frac{\mathbb{P}(A_1 \cap B)}{\mathbb{P}(B)}
-= \frac{\mathbb{P}(\{2\} \cap \{2,3\})}{\mathbb{P}(\{2,3\})}
-= \frac{\mathbb{P}(\{2\})}{\mathbb{P}(\{2,3\})} 
-= \frac{4}{10} \cdot \frac{2}{1} = \frac{8}{10}
-\end{equation}
-und
-\begin{equation}
-\mathbb{P}(A_2|B)
-= \frac{\mathbb{P}(A_2 \cap B)}{\mathbb{P}(B)}
-= \frac{\mathbb{P}(\{3\} \cap \{2,3\})}{\mathbb{P}(\{2,3\})}
-= \frac{\mathbb{P}(\{3\})}{\mathbb{P}(\{2,3\})} 
-= \frac{1}{10} \cdot \frac{2}{1} = \frac{2}{10}.
-\end{equation}
-Man beachte, dass
-\begin{equation}
-\mathbb{P}(A_1|B) + \mathbb{P}(A_2|B) = \frac{8}{10} + \frac{2}{10} = 1.
-\end{equation}
 
 # Bedingte Wahrscheinlichkeiten
 \small
+Bayesianische Lesart – Aktualisierung durch Information
+\footnotesize
+\setstretch{1.25}
+\justifying
+
+Wir betrachten $A:=\{2,4,6\}$ (gerade) und $B:=\{4,5,6\}$ (größer als drei).
+Eine Person wirft einen fairen Würfel unter einem Becher und sieht sich die
+gefallene Zahl an. Ich kann die Zahl nicht sehen.
+
+* Ohne Mitteilung: Die Person fragt mich, wie wahrscheinlich eine gerade
+  Zahl ist. Auf Grundlage des Modells des fairen Würfels antworte ich:
+
+\begin{equation*}
+\mathbb{P}(A)=\mathbb{P}(\{2,4,6\})=\frac{3}{6}=\frac12.
+\end{equation*}
+
+* Mit neuer Information: Vereinbarungsgemäß teilt mir die Person nun
+  wahrheitsgemäß mit, dass die gefallene Zahl größer als drei ist.
+  Meine aktualisierte Einschätzung lautet:
+
+\begin{equation*}
+\mathbb{P}(A\mid B)
+=\frac{\mathbb{P}(\{4,6\})}{\mathbb{P}(\{4,5,6\})}
+=\frac{2/6}{3/6}=\frac23.
+\end{equation*}
+
+Die Zahl unter dem Becher bleibt dieselbe. Mein Informationsstand hat sich
+geändert: Von den drei noch möglichen, gleich wahrscheinlichen Zahlen sind zwei gerade.
+Die Wahrscheinlichkeit beschreibt hier meine Unsicherheit über das bereits gefallene Ergebnis.
+
+
+# Bedingte Wahrscheinlichkeiten
+\small
+Frequentistische Lesart – Relative Häufigkeit in einer Teilfolge
+\footnotesize
+\setstretch{1.15}
+\justifying
+
+Wir simulieren 120 unabhängige Würfe eines fairen Würfels. Die Werte werden
+zeilenweise gelesen. Wir wählen nur Würfe mit $B=\{4,5,6\}$ aus.
+
+<!-- Reproduzierbarkeit: Python 3, random.Random(20261030),
+     rolls = [rng.randint(1, 6) for _ in range(120)]. Ein Simulationslauf.
+     Häufigkeiten der Augenzahlen 1,...,6: 22,20,22,19,17,20. -->
+
+```{=latex}
+\begin{center}
+\setlength{\tabcolsep}{3.7pt}
+\renewcommand{\arraystretch}{1.05}
+\begin{tabular}{*{20}{c}}
+\textbf{5}                        & 
+\textcolor{gray}{2}               & 
+\textbf{5}                        & 
+\textcolor{gray}{3}               & 
+\textcolor{darkblue}{\textbf{4}}  & 
+\textcolor{gray}{1}               & 
+\textcolor{darkblue}{\textbf{6}}  & 
+\textbf{5}                        & 
+\textbf{5}                        & 
+\textcolor{gray}{3}               & 
+\textcolor{darkblue}{\textbf{6}}  & 
+\textcolor{gray}{3}               & 
+\textcolor{gray}{1}               & 
+\textcolor{gray}{3}               & 
+\textcolor{gray}{3}               & 
+\textcolor{darkblue}{\textbf{4}}  & 
+\textcolor{gray}{2}               & 
+\textcolor{darkblue}{\textbf{6}}  & 
+\textcolor{gray}{2}               & 
+\textcolor{gray}{2} 
+\\
+\textcolor{gray}{1}               & 
+\textcolor{gray}{1}               & 
+\textcolor{gray}{3}               & 
+\textcolor{gray}{2}               & 
+\textcolor{darkblue}{\textbf{6}}  & 
+\textcolor{gray}{3}               & 
+\textcolor{darkblue}{\textbf{6}}  & 
+\textcolor{darkblue}{\textbf{4}}  & 
+\textbf{5}                        & 
+\textcolor{darkblue}{\textbf{4}}  & 
+\textcolor{gray}{3}               & 
+\textcolor{gray}{1}               & 
+\textcolor{gray}{1}               & 
+\textcolor{darkblue}{\textbf{4}}  & 
+\textcolor{gray}{3}               & 
+\textcolor{darkblue}{\textbf{4}}  & 
+\textcolor{darkblue}{\textbf{4}}  & 
+\textcolor{gray}{2}               & 
+\textbf{5}                        & 
+\textcolor{gray}{2} 
+\\
+\textcolor{gray}{3}               & 
+\textcolor{darkblue}{\textbf{6}}  & 
+\textcolor{darkblue}{\textbf{4}}  & 
+\textbf{5}                        & 
+\textbf{5}                        & 
+\textcolor{darkblue}{\textbf{6}}  & 
+\textcolor{gray}{2}               & 
+\textcolor{darkblue}{\textbf{6}}  & 
+\textcolor{gray}{2}               & 
+\textcolor{gray}{1}               & 
+\textcolor{darkblue}{\textbf{4}}  & 
+\textcolor{gray}{1}               & 
+\textcolor{gray}{2}               & 
+\textcolor{darkblue}{\textbf{6}}  & 
+\textcolor{gray}{3}               & 
+\textcolor{darkblue}{\textbf{4}}  & 
+\textbf{5}                        & 
+\textcolor{gray}{2}               & 
+\textcolor{darkblue}{\textbf{6}}  & 
+\textcolor{gray}{2} 
+\\
+\textbf{5}                        & 
+\textcolor{darkblue}{\textbf{6}}  & 
+\textcolor{gray}{1}               & 
+\textcolor{gray}{1}               & 
+\textcolor{darkblue}{\textbf{4}}  & 
+\textcolor{gray}{2}               & 
+\textcolor{gray}{1}               & 
+\textcolor{darkblue}{\textbf{4}}  & 
+\textcolor{darkblue}{\textbf{4}}  & 
+\textcolor{darkblue}{\textbf{4}}  & 
+\textbf{5}                        & 
+\textcolor{gray}{1}               & 
+\textcolor{gray}{2}               & 
+\textcolor{gray}{2}               & 
+\textcolor{gray}{1}               & 
+\textcolor{gray}{1}               & 
+\textcolor{darkblue}{\textbf{4}}  & 
+\textcolor{darkblue}{\textbf{6}}  & 
+\textcolor{darkblue}{\textbf{6}}  & 
+\textcolor{gray}{3} 
+\\
+\textcolor{gray}{1}               & 
+\textcolor{darkblue}{\textbf{6}}  & 
+\textcolor{darkblue}{\textbf{6}}  & 
+\textcolor{gray}{1}               & 
+\textcolor{gray}{2}               & 
+\textcolor{darkblue}{\textbf{4}}  & 
+\textbf{5}                        & 
+\textcolor{gray}{3}               & 
+\textcolor{gray}{2}               & 
+\textcolor{gray}{3}               & 
+\textcolor{gray}{1}               & 
+\textcolor{gray}{3}               & 
+\textbf{5}                        & 
+\textcolor{gray}{3}               & 
+\textbf{5}                        & 
+\textcolor{gray}{3}               & 
+\textcolor{gray}{2}               & 
+\textbf{5}                        & 
+\textbf{5}                        & 
+\textcolor{gray}{1} 
+\\
+\textcolor{gray}{3}               & 
+\textcolor{gray}{3}               & 
+\textcolor{darkblue}{\textbf{6}}  & 
+\textcolor{gray}{2}               & 
+\textcolor{darkblue}{\textbf{6}}  & 
+\textcolor{darkblue}{\textbf{6}}  & 
+\textcolor{gray}{1}               & 
+\textcolor{gray}{1}               & 
+\textcolor{darkblue}{\textbf{6}}  & 
+\textcolor{darkblue}{\textbf{6}}  & 
+\textbf{5}                        & 
+\textcolor{gray}{3}               & 
+\textcolor{darkblue}{\textbf{4}}  & 
+\textcolor{darkblue}{\textbf{4}}  & 
+\textcolor{gray}{2}               & 
+\textcolor{gray}{3}               & 
+\textcolor{gray}{1}               & 
+\textcolor{gray}{1}               & 
+\textcolor{darkblue}{\textbf{4}}  & 
+\textcolor{gray}{3} 
+\\
+\end{tabular}
+\end{center}
+```
+
+\textcolor{gray}{Grau: ausgeschlossene Würfe 1, 2, 3.} Fett: ausgewählte Würfe. \textcolor{darkblue}{Blau: davon gerade (4 oder 6).}
+
+Die ausgewählte Teilfolge beginnt mit $5,5,4,6,5,5,6,4,\ldots$. Sie umfasst 56 Würfe, davon sind 39 gerade.
+
+\begin{equation*}
+\widehat{\mathbb{P}}_{120}(A\mid B)
+:=\frac{\text{Anzahl der Würfe mit }A\cap B}{\text{Anzahl der Würfe mit }B}
+=\frac{39}{56}\approx0{,}696
+\quad\text{gegenüber}\quad\mathbb{P}(A\mid B)=\frac23.
+\end{equation*}
+
+„Selektives Mitteln“: In der Teilfolge codieren wir gerade mit 1, ungerade mit 0
+und mitteln diese Werte. Der Nenner ist die Anzahl der ausgewählten Würfe.
+Bei 120 Würfen schwankt die relative Häufigkeit. Unter unabhängigen Wiederholungen
+konvergiert sie langfristig gegen $2/3$ (Gesetz der großen Zahlen).
+
+# Bedingte Wahrscheinlichkeiten
+\footnotesize
 \begin{theorem}[Bedingte Wahrscheinlichkeit]
 \justifying
 \normalfont
 Für ein festes $B \in \mathcal{A}$ mit $\mathbb{P}(B) > 0$ sei 
 \begin{equation}
 \mathbb{P}(\cdot|B) : \mathcal{A} \to [0,1],
-A \mapsto \mathbb{P}(A|B) := \frac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)}
+A \mapsto \mathbb{P}(A|B) := \frac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)}.
 \end{equation}
 Dann ist $\mathbb{P}(\cdot|B)$ ein Wahrscheinlichkeitsmaß und heißt die 
 \textit{bedingte Wahrscheinlichkeit gegeben Ereignis $B$}.
 \end{theorem}
-\footnotesize
+
 Bemerkungen
 
 * Die Rechenregeln der Wahrscheinlichkeitstheorie gelten für die Ereignisse
@@ -468,7 +612,7 @@ nicht normiert und somit kein Wahrscheinlichkeitsmaß.
 
 Wir weisen die definierenden Eigenschaften eines Wahrscheinlichkeitsmaßes nach.
 
-\noindent (1) $\mathbb{P}(A|B) \ge 0$ für alle $A \in \mathcal{A}$
+\noindent 1. *Nicht-Negativität.* $\mathbb{P}(A|B) \ge 0$ für alle $A \in \mathcal{A}$.
 
 Nach Definition der bedingten Wahrscheinlichkeit gilt $\mathbb{P}(A|B) =
 \mathbb{P}(A \cap B)/\mathbb{P}(B)$
@@ -477,7 +621,7 @@ $\sigma$-Algebren bezüglich Durchschnitten
 und der Definition von $\mathbb{P}$ gilt $\mathbb{P}(A \cap B) \ge 0$ und damit
 folgt die Aussage.
 
-\noindent (2) $\mathbb{P}(\Omega|B) =  1$.  
+\noindent 2. *Normiertheit.* $\mathbb{P}(\Omega|B) =  1$.  
 
 Es gilt
 \begin{equation}
@@ -485,25 +629,21 @@ Es gilt
 \end{equation}
 
 
-\noindent (3) $\mathbb{P}\left(\cup_{i=1}^\infty A_i|B \right) = \sum_{i=1}^\infty \mathbb{P}(A_i|B)$ für  paarweise disjunkte $A_1,A_2,... \in \mathcal{A}$.
+\noindent 3. *$\sigma$-Additivität.* $\mathbb{P}\left(\cup_{i=1}^\infty A_i|B \right) = \sum_{i=1}^\infty \mathbb{P}(A_i|B)$ für paarweise disjunkte $A_1,A_2,... \in \mathcal{A}$.
 
-Mit dem Theorem zu den Assoziativ- und Distributivgesetzen von Vereinigung und
-Durchschnitt
-gilt zunächst, dass
+Mit dem Theorem \hyperref[thm:abzaehlbare-distributivitaet]{Abzählbare
+Distributivität} gilt zunächst
 \begin{equation}
-\left(\cup_{i=1}^\infty A_i\right) \cap B 
-= \left(A_1 \cup A_2 \cup \cdots \right) \cap B 
-= \left(A_1 \cap B\right) \cup \left(A_2 \cap B\right) \cup \cdots
-= \cup_{i=1}^\infty \left(A_i \cap B\right).
+\left(\bigcup_{i=1}^{\infty}A_i\right)\cap B
+=\bigcup_{i=1}^{\infty}(A_i\cap B).
 \end{equation}
-Weiterhin gilt mit $A_i \cap A_j = \emptyset$ und dem Theorem zu den Assoziativ-
-und
-Distributivgesetzen von Vereinigung und Durchschnitt, dass auch die $A_i \cap B$
-für
-$i = 1,2,...$ paarweise disjunkt sind, denn
+Für $i\neq j$ gilt $A_i\cap A_j=\emptyset$. Nach dem Theorem
+\hyperref[thm:durchschnitte-disjunkter-mengen]{Durchschnitte disjunkter Mengen}
+folgt daraus
 \begin{equation}
-\left(A_i \cap B\right) \cap \left(A_j \cap B\right) = \left(A_i \cap A_j\right) \cap (B \cap B) = \emptyset \cap B = \emptyset.
+(A_i\cap B)\cap(A_j\cap B)=\emptyset.
 \end{equation}
+Die Mengen $A_i\cap B$ sind also ebenfalls paarweise disjunkt.
 Mit der $\sigma$-Additivität von $\mathbb{P}$ folgt damit dann, dass
 \tiny
 \begin{equation}
@@ -515,11 +655,10 @@ Mit der $\sigma$-Additivität von $\mathbb{P}$ folgt damit dann, dass
 = \sum_{i=1}^\infty \mathbb{P}(A_i|B).
 \end{equation}
 \footnotesize
-$\hfill\Box$
 
 
 # Bedingte Wahrscheinlichkeiten
-\small
+\footnotesize
 \begin{theorem}[Gemeinsame und bedingte Wahrscheinlichkeiten]
 \normalfont
 Es seien $(\Omega,\mathcal{A}, \mathbb{P})$ ein W-Raum und $A,B\in \mathcal{A}$
@@ -531,7 +670,6 @@ mit $\mathbb{P}(A) > 0$ und $\mathbb{P}(B)>0$. Dann gilt
 \end{equation}
 \end{theorem}
 
-\footnotesize
 \underline{Beweis}
 
 Mit der Definition der jeweiligen bedingten Wahrscheinlichkeit folgen direkt
@@ -549,15 +687,13 @@ und
 
 Bemerkungen
 
-* Gemeinsame Wahrscheinlichkeiten können aus bedingten und totalen
-Wahrscheinlichkeiten berechnet werden.
-* Definition von $\mathbb{P}(A)$ und $\mathbb{P}(B|A)$ definiert $\mathbb{P}(A
-\cap B)$ implizit mit.
+* Gemeinsame Wahrscheinlichkeiten können aus bedingten und totalen Wahrscheinlichkeiten berechnet werden.
+* Definition von $\mathbb{P}(A)$ und $\mathbb{P}(B|A)$ definiert $\mathbb{P}(A \cap B)$ implizit mit.
 
 
 # Bedingte Wahrscheinlichkeiten
 \vspace{2mm}
-\small
+\footnotesize
 \begin{theorem}[Gesetz der totalen Wahrscheinlichkeit]
 \normalfont
 \justifying
@@ -569,9 +705,7 @@ für jedes $B \in \mathcal{A}$, dass
 \mathbb{P}(B) = \sum_{i=1}^k \mathbb{P}(B \cap A_i).
 \end{equation}
 \end{theorem}
-\vspace{-1mm}
 
-\footnotesize
 \underline{Beweis}
 
 Für $i = 1,...,k$ sei $C_i := B \cap A_i$, so dass $\cup_{i=1}^k C_i = B$ und
@@ -592,10 +726,8 @@ Dann gilt mit der $\sigma$-Additivität von $\mathbb{P}$, dass
 \vspace{-1mm}
 Bemerkung
 
-* Totale Wahrscheinlichkeiten können aus gemeinsamen Wahrscheinlichkeiten
-berechnet werden.
-* Im Kontext von Zufallsvariablen wird dieser Prozess auch als
-*Marginalisierung* bezeichnet.
+* Totale Wahrscheinlichkeiten können aus gemeinsamen Wahrscheinlichkeiten berechnet werden.
+* Im Kontext von Zufallsvariablen wird dieser Prozess auch als *Marginalisierung* bezeichnet.
 
 # Bedingte Wahrscheinlichkeiten
 \small
@@ -603,15 +735,12 @@ Beispiel
 
 \footnotesize
 Als Beispiel für die Darstellung der Wahrscheinlichkeit eines Ereignisses
-mithilfe
-des Gesetzes der totalen Wahrscheinlichkeit betrachten wir das
-Wahrscheinlichkeitsraummodell
-des fairen Würfels. Für den Ergebnisraum $\Omega := \{1,2,3,4,5,6\}$ betrachten
-wir das Ereignis $B := \{2,4,6\}$ ("Es fällt eine gerade Zahl") mit
-Wahrscheinlichkeit
-$\mathbb{P}(B) = \frac{1}{2}$ sowie die Partition $A_1 := \{1,2\}$, $A_2 :=
-\{3\}$,
-$A_3 := \{4,5\}$, $A_4 := \{6\}$ von $\Omega$. Dann gelten offenbar
+mithilfe des Gesetzes der totalen Wahrscheinlichkeit betrachten wir das
+Wahrscheinlichkeitsraummodell des fairen Würfels. Für den Ergebnisraum 
+$\Omega := \{1,2,3,4,5,6\}$ betrachten wir das Ereignis $B := \{2,4,6\}$ 
+("Es fällt eine gerade Zahl") mit Wahrscheinlichkeit $\mathbb{P}(B) = \frac{1}{2}$ 
+sowie die Partition $A_1 := \{1,2\}$, $A_2 := \{3\}$, $A_3 := \{4,5\}$, $A_4 := \{6\}$ 
+von $\Omega$. Dann gelten offenbar
 
 \center
 \begin{tabular}{lllllll}
@@ -623,26 +752,21 @@ $\mathbb{P}\left(B \cap A_4\right)$ & $=$ & $\mathbb{P}\left(\{2,4,6\} \cap \{6\
 \flushleft
 Damit ergibt sich dann
 \begin{equation}
-\sum_{i=1}^4 \mathbb{P}(B \cap A_i) = \mathbb{P}(B \cap A_1) + \mathbb{P}(B \cap A_2) + \mathbb{P}(B \cap A_3) + \mathbb{P}(B \cap A_4) = \frac{1}{6} + 0 + \frac{1}{6} + \frac{1}{6} = \frac{1}{2}.
+\sum_{i=1}^4 \mathbb{P}(B \cap A_i) = \mathbb{P}(B \cap A_1) + \mathbb{P}(B \cap A_2) + \mathbb{P}(B \cap A_3) + \mathbb{P}(B \cap A_4) = \frac{1}{6} + 0 + \frac{1}{6} + \frac{1}{6} = \frac{1}{2}
 \end{equation}
 und somit
 \begin{equation}
 \mathbb{P}(B) = \sum_{i=1}^4 \mathbb{P}(B \cap A_i).
 \end{equation}
-Man beachte, dass die Partitionseigenschaft von $A_1,A_2,A_3,A_4$ essentiell für
-die
-Validität des Theorems in diesem Beispiel ist. Wäre z.B. $A_4 = \{4,6\}$ und
-$A_3$ und $A_4$
-damit nicht disjunkt, so ergäbe die rechte Seite des Gesetzes von der totalen
-Wahrscheinlichkeit
-einen Wert größer $\mathbb{P}(B)$. Ergäbe die Vereinigung der $A_1,A_2,A_3,A_4$
-dagegen
-nicht $\Omega$, weil zum Beispiel $A_4 = \emptyset$, so ergäbe sich umgekehrt
-ein
-Wert kleiner $\mathbb{P}(B)$.
+Man beachte, dass die Partitionseigenschaft von $A_1,A_2,A_3,A_4$ essentiell für die
+Validität des Theorems in diesem Beispiel ist. Wäre z. B. $A_4 = \{4,6\}$ und
+$A_3$ und $A_4$ damit nicht disjunkt, so ergäbe die rechte Seite des Gesetzes von der totalen
+Wahrscheinlichkeit einen Wert größer $\mathbb{P}(B)$. Ergäbe die Vereinigung der $A_1,A_2,A_3,A_4$
+dagegen nicht $\Omega$, weil zum Beispiel $A_4 = \emptyset$, so ergäbe sich umgekehrt
+ein Wert kleiner $\mathbb{P}(B)$.
 
 # Bedingte Wahrscheinlichkeiten
-\small
+\footnotesize
 \begin{theorem}[Theorem von Bayes]
 \normalfont
 \justifying
@@ -656,9 +780,8 @@ Wenn $\mathbb{P}(B) > 0$ gilt, dann gilt für jedes $i = 1,...,k$, dass
 \end{equation}
 \end{theorem}
 
-\footnotesize
 \underline{Beweis}
-\vspace{1mm}
+ 
 
 Mit der Definition der bedingten Wahrscheinlichkeit und dem Gesetz der totalen 
 Wahrscheinlichkeit gilt
@@ -669,57 +792,47 @@ Wahrscheinlichkeit gilt
 = \frac{\mathbb{P}(B|A_i)\mathbb{P}(A_i)}{\sum_{j=1}^k \mathbb{P}(B \cap A_j)}
 = \frac{\mathbb{P}(B|A_i)\mathbb{P}(A_i)}{\sum_{j=1}^k \mathbb{P}(B|A_j)\mathbb{P}(A_j)}.
 \end{equation}
-$\hfill \Box$
 
-# Bedingte Wahrscheinlichkeiten
 Bemerkungen
-\small
 
-* Das Theorem von Bayes ist eine zu $\mathbb{P}(A_i \cap B)/ \mathbb{P}(B)$ 
-alternative Formel, um die bedingte Wahrscheinlichkeit  $\mathbb{P}(A_i|B)$ zu
+* Das Theorem von Bayes ist eine alternative Formel, um $\mathbb{P}(A_i|B)$ zu
 berechnen.
-
-* Das Theorem von Bayes gilt unabhängig von der Frequentistischen oder 
-Bayesianischen Interpretation von Wahrscheinlichkeiten.
-
-* Im Rahmen der frequentistischen Inferenz wird das Theorem von
-Bayes recht selten benutzt.
-
-*  Im Rahmen der Bayesianischen Inferenz ist das Theorem von Bayes 
-zentral; hier wird $\mathbb{P}(A_i)$ oft \textit{Prior Wahrscheinlichkeit} 
-und $\mathbb{P}(A_i|B)$ oft \textit{Posterior Wahrscheinlichkeit des Ereignisses
-$A_i$} genannt. Wie oben erläutert entspricht $\mathbb{P}(A_i|B)$ dann der
-aktualisierten Wahrscheinlichkeit von $A_i$, wenn man um das Eintreten von $B$ weiß.
-
+* Das Theorem gilt unabhängig von frequentistischen oder bayesianischen
+Wahrscheinlichkeitsinterpretationen.
+* Im Rahmen der frequentistischen Inferenz wird das Theorem von Bayes recht selten benutzt.
+* Im Rahmen der bayesianischen Inferenz ist das Theorem von Bayes zentral.
+* In der bayesianischen Inferenz heißt $\mathbb{P}(A_i)$
+*Priorwahrscheinlichkeit* und $\mathbb{P}(A_i|B)$ *Posteriorwahrscheinlichkeit*.
+* $\mathbb{P}(A_i|B)$ entspricht der Wahrscheinlichkeit von $A_i$, wenn man um
+das Eintreten von $B$ weiß.
 
 
 # Bedingte Wahrscheinlichkeiten
 \vspace{2mm}
-\large
 Die drei zentralen Rechenregeln der Wahrscheinlichkeitstheorie
-
-\normalsize
-Summationsregel (Gesetz von der totalen Wahrscheinlichkeit)
+\vspace{1mm}
 
 \small
+Summationsregel (Gesetz von der totalen Wahrscheinlichkeit)
+
+ 
 Für Ereignisse $A_1,\ldots,A_k$ mit $\Omega=\bigcup_{i=1}^{k}A_i$ und $A_i\cap A_j=\emptyset$ für $i\neq j$ gilt für jedes Ereignis $B$
 \begin{equation}
 \mathbb{P}(B)=\sum_{i=1}^{k}\mathbb{P}(B\cap A_i).
 \end{equation}
 
-\normalsize
+\vspace{1mm}
 Multiplikationsregel (Gemeinsame und bedingte Wahrscheinlichkeiten)
 
-\small 
+ 
 Für $\mathbb{P}(A)>0$ gilt
 \begin{equation}
 \mathbb{P}(A\cap B)=\mathbb{P}(B|A)\mathbb{P}(A).
 \end{equation}
 
-\normalsize
+\vspace{1mm}
 Theorem von Bayes
 
-\small
 Für $\mathbb{P}(A)>0$ und $\mathbb{P}(B)>0$ gilt
 \begin{equation}
 \mathbb{P}(A|B)=\frac{\mathbb{P}(B|A)\mathbb{P}(A)}{\mathbb{P}(B)}.
@@ -741,7 +854,7 @@ Selbstkontrollfragen
 
 
 # Unabhängige Ereignisse
-\small
+\footnotesize
 \begin{definition}[Unabhängige Ereignisse]
 \justifying
 Zwei Ereignisse $A \in \mathcal{A}$ und $B \in \mathcal{A}$ heißen
@@ -757,7 +870,7 @@ $J \subseteq I$ gilt, dass
 \mathbb{P}\left(\cap_{j \in J} A_j \right) = \prod_{j \in J}\mathbb{P}(A_j).
 \end{equation}
 \end{definition}
-\footnotesize
+ 
 Bemerkungen 
 
 * Die Unabhängigkeit bestimmter Ereignisse kann in der Definition eines
@@ -766,7 +879,7 @@ Unabhängigkeit
 von Fehlervariablen in statistischen Modellen.
 * Die Unabhängigkeit von Ereignissen kann aus der Definition eines
 probabilistischen Modells folgen.
-* Disjunkte Ereignisse mit von Null verschiedener Wahrscheinlichkeit sind nie
+* Disjunkte Ereignisse mit von null verschiedener Wahrscheinlichkeit sind nie
 unabhängig:
 \begin{equation}
 \mathbb{P}(A)\mathbb{P}(B) > 0 \mbox{, aber } \mathbb{P}(A \cap B) = \mathbb{P}(\emptyset) = 0 \mbox{, also } \mathbb{P}(A \cap B) \neq \mathbb{P}(A)\mathbb{P}(B).
@@ -784,7 +897,7 @@ Beispiele
 \footnotesize
 Unabhängige Ereignisse sind nach Definition immer auch paarweise unabhängig. 
 Beispielsweise gilt für die Menge $\{A_i| i \in \{1,2,3\}\}$ von Ereignissen
-und die möglichen Untermengen  $J_1 := \{1,2\}$,  $J_2 := \{1,3\}$, $J_3 :=
+und die möglichen Untermengen $J_1 := \{1,2\}$, $J_2 := \{1,3\}$, $J_3 :=
 \{2,3\}$, $J := \{1,2,3\}$
 der Indexmenge $I = \{1,2,3\}$, dass die Definitionsbedingung der Unabhängigkeit
 von $A_1,A_2,A_3$ die Aussagen
@@ -800,18 +913,18 @@ impliziert.
 
 Andersherum kann aus der paarweisen Unabhängigkeit von Ereignissen allerdings 
 nicht auf die Unabhängigkeit von Ereignissen geschlossen werden, wie folgendes 
-Beispiel zeigt (cf. @degroot2012):  Wir betrachten das Modell des zweifachen 
-Werfens einer fairen Münze mit dem Ergebnisraum
+Beispiel zeigt: Wir betrachten das Modell des zweifachen Werfens einer fairen
+Münze mit dem Ergebnisraum
 \begin{equation}
 \Omega := \{HH, HT, TH, TT\}
 \end{equation}
-mit den Elementareigniswahrscheinlichkeiten
+mit den Elementarereigniswahrscheinlichkeiten
 \begin{equation}
 \mathbb{P}\{HH\}
 = \mathbb{P}\{HT\}
 = \mathbb{P}\{TH\}
 = \mathbb{P}\{TT\}
-= \frac{1}{4}
+= \frac{1}{4}.
 \end{equation}
 
 
@@ -839,7 +952,7 @@ sowie
 \begin{split}
 \mathbb{P}\left(A_1 \cap A_2 \right) & = \mathbb{P}\left(\{HH\}\right) = \frac{1}{4} = \frac{1}{2} \cdot \frac{1}{2} = \mathbb{P}\left(A_1 \right)\mathbb{P}\left(A_2 \right) \\
 \mathbb{P}\left(A_1 \cap A_3 \right) & = \mathbb{P}\left(\{HH\}\right) = \frac{1}{4} = \frac{1}{2} \cdot \frac{1}{2} = \mathbb{P}\left(A_1 \right)\mathbb{P}\left(A_3 \right) \\
-\mathbb{P}\left(A_2 \cap A_3 \right) & = \mathbb{P}\left(\{HH\}\right) = \frac{1}{4} = \frac{1}{2} \cdot \frac{1}{2} = \mathbb{P}\left(A_2 \right)\mathbb{P}\left(A_3 \right) \\
+\mathbb{P}\left(A_2 \cap A_3 \right) & = \mathbb{P}\left(\{HH\}\right) = \frac{1}{4} = \frac{1}{2} \cdot \frac{1}{2} = \mathbb{P}\left(A_2 \right)\mathbb{P}\left(A_3 \right). \\
 \end{split}
 \end{equation}
 Die Ereignisse sind also paarweise unabhängig. Allerdings gilt auch
@@ -855,7 +968,7 @@ und die Ereignisse $A_1, A_2, A_3$ sind damit nicht unabhängig.
 
 
 # Unabhängige Ereignisse
-\small
+\footnotesize
 \begin{theorem}[Bedingte Wahrscheinlichkeit unter Unabhängigkeit]
 \normalfont
 \justifying
@@ -882,7 +995,7 @@ $\hfill\Box$
 Bemerkungen
 
 * Bei Unabhängigkeit von $A$ und $B$ ist es irrelevant, ob auch $B$
-eintritt,  $\mathbb{P}(A)$ bleibt gleich.
+eintritt, $\mathbb{P}(A)$ bleibt gleich.
 * Unabhängigkeit wird also als $\mathbb{P}(A)\mathbb{P}(B)$ modelliert,
 damit $\mathbb{P}(A|B) = \mathbb{P}(A)$ gilt.
 * Die Unabhängigkeit zweier Ereignisse bedeutet also, dass das Wissen um 
@@ -938,7 +1051,7 @@ Unabhängigkeit.
 
 \normalsize
 
-# Selbstkontrollfragen - Lösungen
+# Selbstkontrollfragen – Lösungen
 \footnotesize
 \setstretch{1.8}
 
@@ -950,7 +1063,7 @@ Wahrscheinlichkeit eines Ereignisses gegeben ein anderes Ereignis ist ein Wert
 in $[0,1]$.
 1. Siehe Theorem (Bedingte Wahrscheinlichkeit). Die bedingte Wahrscheinlichkeit
 gegeben ein Ereignis ist ein Wahrscheinlichkeitsmaß.
-1. Siehe Theorem (Gemeinsame und bedingte Wahrscheinlichkeit).
+1. Siehe Theorem (Gemeinsame und bedingte Wahrscheinlichkeiten).
 1. Siehe Theorem (Gesetz der totalen Wahrscheinlichkeit).
 1. Siehe Theorem (Theorem von Bayes).
 1. Siehe Beweis zum Theorem (Theorem von Bayes).
@@ -960,5 +1073,239 @@ gegeben ein Ereignis ist ein Wahrscheinlichkeitsmaß.
 1. Siehe Bemerkungen zum Theorem (Bedingte Wahrscheinlichkeit unter
 Unabhängigkeit).
 
-# Referenzen
+#  {.plain}
+\vfill
+\center
+\huge
+Mengentheoretische Ergänzungen
+\vfill
+
+# Mengentheoretische Ergänzungen
 \footnotesize
+\begin{theorem}[Eigenschaften von Komplementen]\label{thm:komplemente}
+\normalfont
+\justifying
+Es sei $A\subseteq\Omega$ und $A^c:=\Omega\setminus A$. Dann gelten
+\begin{enumerate}
+\item $A^c\cup A=\Omega$.
+\item $A^c\cap A=\emptyset$.
+\end{enumerate}
+\end{theorem}
+
+\underline{Beweis}
+
+\noindent 1. Sei $x\in A^c\cup A$. Dann gilt $x\in A^c$ oder $x\in A$.
+In beiden Fällen ist $x\in\Omega$. Damit gilt
+\begin{equation}
+A^c\cup A\subseteq\Omega.
+\end{equation}
+Sei umgekehrt $x\in\Omega$. Falls $x\in A$, gehört $x$ zu $A^c\cup A$.
+Falls $x\notin A$, gilt nach Definition des Komplements $x\in A^c$, also
+ebenfalls $x\in A^c\cup A$. Damit gilt auch
+\begin{equation}
+\Omega\subseteq A^c\cup A.
+\end{equation}
+Zusammengenommen folgt $A^c\cup A=\Omega$.
+
+\noindent 2. Gäbe es ein $x\in A^c\cap A$, so würden gleichzeitig $x\in A$
+und $x\notin A$ gelten. Dies ist unmöglich. Also gilt
+\begin{equation}
+A^c\cap A=\emptyset.
+\end{equation}
+
+# Mengentheoretische Ergänzungen
+\footnotesize
+\begin{theorem}[Disjunkte Zerlegungen von Mengen]\label{thm:disjunkte-zerlegungen}
+\normalfont
+\justifying
+Es seien $A,B\subseteq\Omega$. Alle Komplemente seien bezüglich $\Omega$
+gebildet. Dann gelten
+\vspace{1mm}
+
+\noindent 1. Falls $A\subseteq B$, so gelten
+\begin{equation}
+B=A\cup(B\cap A^c) \mbox{ und } A\cap(B\cap A^c)=\emptyset.
+\end{equation}
+
+\noindent 2. Es gelten
+\begin{equation}
+A=(A\cap B)\cup(A\cap B^c) \mbox{ und } (A\cap B)\cap(A\cap B^c) = \emptyset.
+\end{equation}
+
+\noindent 3. Es gelten
+\begin{equation}
+A\cup B=B\cup(A\cap B^c) \mbox{ und } B\cap(A\cap B^c)=\emptyset.
+\end{equation}
+\end{theorem}
+\vspace{-1mm}
+
+Bemerkung
+\vspace{-1mm}
+
+* Untenstehende Abbildung visualisiert die Aussagen dieses Theorems.
+
+\center
+```{r, echo = F, out.width = "80%"}
+knitr::include_graphics("2-Abbildungen/wtfi-2-venn-diagramme.pdf")
+```
+
+# Mengentheoretische Ergänzungen
+\footnotesize
+\underline{Beweis}
+
+\noindent 1. Es gelte $A\subseteq B$. Sei zunächst $x\in B$.
+
+* Falls $x\in A$, gilt $x\in A\cup(B\cap A^c)$.
+* Falls $x\notin A$, gilt wegen $x\in B\subseteq\Omega$ auch $x\in A^c$.
+Somit ist $x\in B\cap A^c$ und ebenfalls $x\in A\cup(B\cap A^c)$.
+
+Damit gilt
+\begin{equation}
+B\subseteq A\cup(B\cap A^c).
+\end{equation}
+Sei umgekehrt $x\in A\cup(B\cap A^c)$. Dann gilt entweder
+$x\in A\subseteq B$ oder $x\in B\cap A^c\subseteq B$. Also gilt auch
+\begin{equation}
+A\cup(B\cap A^c)\subseteq B.
+\end{equation}
+Zusammengenommen folgt
+\begin{equation}
+B=A\cup(B\cap A^c).
+\end{equation}
+Gäbe es ein $x\in A\cap(B\cap A^c)$, so würden gleichzeitig $x\in A$ und
+$x\notin A$ gelten. Daher ist
+\begin{equation}
+A\cap(B\cap A^c)=\emptyset.
+\end{equation}
+
+# Mengentheoretische Ergänzungen
+\footnotesize
+\underline{Beweis}
+
+\noindent 2. Sei zunächst $x\in A$.
+
+* Falls $x\in B$, gilt $x\in A\cap B$.
+* Falls $x\notin B$, gilt wegen $x\in A\subseteq\Omega$ auch $x\in B^c$
+und damit $x\in A\cap B^c$.
+
+In beiden Fällen gilt $x\in(A\cap B)\cup(A\cap B^c)$. Damit ist
+\begin{equation}
+A\subseteq(A\cap B)\cup(A\cap B^c).
+\end{equation}
+Sei umgekehrt $x\in(A\cap B)\cup(A\cap B^c)$. Dann gehört $x$ zu mindestens
+einer der Mengen $A\cap B$ und $A\cap B^c$. In beiden Fällen gilt $x\in A$.
+Also ist
+\begin{equation}
+(A\cap B)\cup(A\cap B^c)\subseteq A.
+\end{equation}
+Zusammengenommen folgt
+\begin{equation}
+A=(A\cap B)\cup(A\cap B^c).
+\end{equation}
+Gäbe es ein $x\in(A\cap B)\cap(A\cap B^c)$, so würden gleichzeitig
+$x\in B$ und $x\notin B$ gelten. Daher ist
+\begin{equation}
+(A\cap B)\cap(A\cap B^c)=\emptyset.
+\end{equation}
+
+# Mengentheoretische Ergänzungen
+\footnotesize
+\underline{Beweis}
+
+\noindent 3. Sei zunächst $x\in A\cup B$.
+
+* Falls $x\in B$, gilt unmittelbar $x\in B\cup(A\cap B^c)$.
+* Falls $x\notin B$, muss $x\in A$ gelten. Wegen $x\in\Omega$ gilt außerdem
+$x\in B^c$. Somit ist $x\in A\cap B^c$ und ebenfalls $x\in B\cup(A\cap B^c)$.
+
+Damit gilt
+\begin{equation}
+A\cup B\subseteq B\cup(A\cap B^c).
+\end{equation}
+Sei umgekehrt $x\in B\cup(A\cap B^c)$. Dann gilt $x\in B$ oder
+$x\in A\cap B^c$. In beiden Fällen ist $x\in A\cup B$. Also gilt auch
+\begin{equation}
+B\cup(A\cap B^c)\subseteq A\cup B.
+\end{equation}
+Zusammengenommen folgt
+\begin{equation}
+A\cup B=B\cup(A\cap B^c).
+\end{equation}
+Gäbe es ein $x\in B\cap(A\cap B^c)$, so würden gleichzeitig $x\in B$ und
+$x\notin B$ gelten. Daher ist
+\begin{equation}
+B\cap(A\cap B^c)=\emptyset.
+\end{equation}
+
+# Mengentheoretische Ergänzungen
+\footnotesize
+\begin{theorem}[Abzählbare Distributivität]\label{thm:abzaehlbare-distributivitaet}
+\normalfont
+\justifying
+Es seien $A_1,A_2,\ldots$ und $B$ Mengen. Dann gilt
+\begin{equation}
+\left(\bigcup_{i=1}^{\infty}A_i\right)\cap B
+=\bigcup_{i=1}^{\infty}(A_i\cap B).
+\end{equation}
+\end{theorem}
+
+\underline{Beweis}
+
+Sei zunächst
+\begin{equation}
+x\in\left(\bigcup_{i=1}^{\infty}A_i\right)\cap B.
+\end{equation}
+Dann gilt $x\in B$ und es gibt ein $i\in\mathbb{N}$ mit $x\in A_i$.
+Für dieses $i$ gilt somit $x\in A_i\cap B$. Also ist
+\begin{equation}
+x\in\bigcup_{i=1}^{\infty}(A_i\cap B).
+\end{equation}
+Damit gilt
+\begin{equation}
+\left(\bigcup_{i=1}^{\infty}A_i\right)\cap B
+\subseteq\bigcup_{i=1}^{\infty}(A_i\cap B).
+\end{equation}
+
+# Mengentheoretische Ergänzungen
+\footnotesize
+\underline{Beweis (fortgeführt)}
+
+Sei umgekehrt
+\begin{equation}
+x\in\bigcup_{i=1}^{\infty}(A_i\cap B).
+\end{equation}
+Dann gibt es ein $i\in\mathbb{N}$ mit $x\in A_i\cap B$. Für dieses $i$
+gelten $x\in A_i$ und $x\in B$. Also gehört $x$ zur Vereinigung der $A_i$
+und zugleich zu $B$. Damit gilt
+\begin{equation}
+\bigcup_{i=1}^{\infty}(A_i\cap B)
+\subseteq\left(\bigcup_{i=1}^{\infty}A_i\right)\cap B.
+\end{equation}
+Zusammengenommen folgt
+\begin{equation}
+\left(\bigcup_{i=1}^{\infty}A_i\right)\cap B
+=\bigcup_{i=1}^{\infty}(A_i\cap B).
+\end{equation}
+
+# Mengentheoretische Ergänzungen
+\footnotesize
+\begin{theorem}[Durchschnitte disjunkter Mengen]\label{thm:durchschnitte-disjunkter-mengen}
+\normalfont
+\justifying
+Es seien $A,B,C$ Mengen mit $A\cap B=\emptyset$. Dann gilt
+\begin{equation}
+(A\cap C)\cap(B\cap C)=\emptyset.
+\end{equation}
+\end{theorem}
+
+\underline{Beweis}
+
+Gäbe es ein Element
+\begin{equation}
+x\in(A\cap C)\cap(B\cap C),
+\end{equation}
+so würden insbesondere $x\in A$ und $x\in B$ gelten. Dann wäre
+$x\in A\cap B$, im Widerspruch zur vorausgesetzten Disjunktheit. Also gilt
+\begin{equation}
+(A\cap C)\cap(B\cap C)=\emptyset.
+\end{equation}
