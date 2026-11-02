@@ -51,7 +51,7 @@ Wahrscheinlichkeitsdichtefunktionen
 
 Kumulative Verteilungsfunktionen
 
-Wahrscheinlichkeitsräume und Zufallsvariablen
+Zufallsergebnisse und Zufallsvariablen
 
 Selbstkontrollfragen
 \vfill
@@ -68,7 +68,7 @@ Wahrscheinlichkeitsdichtefunktionen
 
 Kumulative Verteilungsfunktionen
 
-Wahrscheinlichkeitsräume und Zufallsvariablen
+Zufallsergebnisse und Zufallsvariablen
 
 Selbstkontrollfragen
 \vfill
@@ -397,7 +397,7 @@ Wahrscheinlichkeitsdichtefunktionen
 
 Kumulative Verteilungsfunktionen
 
-Wahrscheinlichkeitsräume und Zufallsvariablen
+Zufallsergebnisse und Zufallsvariablen
 
 Selbstkontrollfragen
 \vfill
@@ -662,7 +662,7 @@ Wahrscheinlichkeitsmassefunktionen
 
 Kumulative Verteilungsfunktionen
 
-Wahrscheinlichkeitsräume und Zufallsvariablen
+Zufallsergebnisse und Zufallsvariablen
 
 Selbstkontrollfragen
 \vfill
@@ -999,7 +999,7 @@ Wahrscheinlichkeitsdichtefunktionen
 
 **Kumulative Verteilungsfunktionen**
 
-Wahrscheinlichkeitsräume und Zufallsvariablen
+Zufallsergebnisse und Zufallsvariablen
 
 Selbstkontrollfragen
 \vfill
@@ -1501,12 +1501,12 @@ Wahrscheinlichkeitsdichtefunktionen
 
 Kumulative Verteilungsfunktionen
 
-**Wahrscheinlichkeitsräume und Zufallsvariablen**
+**Zufallsergebnisse und Zufallsvariablen**
 
 Selbstkontrollfragen
 \vfill
 
-# Wahrscheinlichkeitsräume und Zufallsvariablen
+# Zufallsergebnisse und Zufallsvariablen
 
 \footnotesize
 
@@ -1532,7 +1532,7 @@ Die Äquivalenz von (1) und (2) ergibt sich dabei durch Definition einer Zufalls
 
 Wir wollen die Äquivalenz von (1) und (2) an zwei Beispielen verdeutlichen.
 
-# Wahrscheinlichkeitsräume und Zufallsvariablen
+# Zufallsergebnisse und Zufallsvariablen
 
 \footnotesize
 "Wir modellieren den Zufallsvorgang *Werfen eines Würfels* mithilfe eines Wahrscheinlichkeitsraums $(\Omega,\mathcal{A}, \mathbb{P})$"
@@ -1567,7 +1567,7 @@ p_\xi(x) = \mathbb{P}_\xi(\xi = x) = \mathbb{P}(\{\omega \in \Omega|\xi(\omega) 
 \flushright
 $\Rightarrow$ Generell wird hier die erste Sprechweise bevorzugt
 
-# Wahrscheinlichkeitsräume und Zufallsvariablen
+# Zufallsergebnisse und Zufallsvariablen
 
 \footnotesize
 "Wir modellieren einen *BDI-II-Itemwert einer Patient:in* mithilfe eines Wahrscheinlichkeitsraums $(\Omega,\mathcal{A}, \mathbb{P})$"
@@ -1615,7 +1615,7 @@ Wahrscheinlichkeitsdichtefunktionen
 
 Kumulative Verteilungsfunktionen
 
-Wahrscheinlichkeitsräume und Zufallsvariablen
+Zufallsergebnisse und Zufallsvariablen
 
 **Selbstkontrollfragen**
 
