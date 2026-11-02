@@ -12,6 +12,7 @@ Psychologiestudium.
 | 0 · Einführung | [PDF](0-Einführung/0-Einführung.pdf) |
 | 1 · Wahrscheinlichkeitsräume | [PDF](1-Wahrscheinlichkeitsräume/1-Wahrscheinlichkeitsräume.pdf) |
 | 2 · Elementare Wahrscheinlichkeiten | [PDF](2-Elementare-Wahrscheinlichkeiten/2-Elementare-Wahrscheinlichkeiten.pdf) |
+| 2 · Zufallsvariablen | [PDF](3-Zufallsvariablen/3-Zufallsvariablen.pdf) |
 | Vorlesungsskript | [PDF](Vorlesungsskript/_book/Wahrscheinlichkeitstheorie-und-Frequentistische-Inferenz-2027.pdf) |
 
 Weitere Informationen zur Veranstaltung stehen auf der
