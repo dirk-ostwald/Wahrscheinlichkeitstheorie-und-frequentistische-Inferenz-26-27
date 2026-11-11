@@ -412,8 +412,9 @@ Frequentistische Lesart – Relative Häufigkeit in einer Teilfolge
 \setstretch{1.15}
 \justifying
 
-Wir simulieren 120 unabhängige Würfe eines fairen Würfels. Die Werte werden
-zeilenweise gelesen. Wir wählen nur Würfe mit $B=\{4,5,6\}$ aus.
+Wir simulieren 120 unabhängige Würfe eines fairen Würfels.  
+
+Wir wählen nur Würfe mit $B=\{4,5,6\}$ aus.
 
 <!-- Reproduzierbarkeit: Python 3, random.Random(20261030),
      rolls = [rng.randint(1, 6) for _ in range(120)]. Ein Simulationslauf.
@@ -565,10 +566,9 @@ Die ausgewählte Teilfolge beginnt mit $5,5,4,6,5,5,6,4,\ldots$. Sie umfasst 56 
 \quad\text{gegenüber}\quad\mathbb{P}(A\mid B)=\frac23.
 \end{equation*}
 
-„Selektives Mitteln“: In der Teilfolge codieren wir gerade mit 1, ungerade mit 0
-und mitteln diese Werte. Der Nenner ist die Anzahl der ausgewählten Würfe.
-Bei 120 Würfen schwankt die relative Häufigkeit. Unter unabhängigen Wiederholungen
-konvergiert sie langfristig gegen $2/3$ (Gesetz der großen Zahlen).
+Bei 120 Würfen schwankt die relative Häufigkeit. 
+
+Unter unabhängigen Wiederholungen konvergiert sie langfristig gegen $2/3$ (Gesetz der großen Zahlen).
 
 # Bedingte Wahrscheinlichkeiten
 \footnotesize

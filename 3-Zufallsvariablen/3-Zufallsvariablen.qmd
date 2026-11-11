@@ -78,6 +78,7 @@ Selbstkontrollfragen
 Konstruktion von Zufallsvariablen und Verteilungen
 \vspace{-1mm}
 \small
+\setstretch{1.6}
 
 * Es seien $(\Omega,\mathcal{A},\mathbb{P})$ ein Wahrscheinlichkeitsraum und $\xi : \Omega \to \mathcal{X}$ eine Abbildung.
 * $\xi$ ist das kleine griechische Xi.
@@ -116,29 +117,103 @@ knitr::include_graphics("3-Abbildungen/wtfi-3-zufallsvariable.pdf")
 
 # Konstruktion, Definition, Notation, Intuition
 \footnotesize
-\begin{definition}[Zufallsvariable]
+\begin{definition}[Zufallsvariable und Verteilung]
 \justifying
 Es sei $(\Omega, \mathcal{A}, \mathbb{P})$ ein Wahrscheinlichkeitsraum und
-$(\mathcal{X},\mathcal{S})$ ein \textit{Messraum}. Dann heißt eine Abbildung
+$(\mathcal{X},\mathcal{S})$ ein  Messraum . Dann heißt eine Abbildung
 $\xi:\Omega\to\mathcal{X}$ eine \textit{Zufallsvariable (ZV)}, wenn sie die
 \textit{Messbarkeitseigenschaft}
 \begin{equation}
 \{\omega\in\Omega\mid\xi(\omega)\in S\}\in\mathcal{A}
 \quad\mbox{für alle }S\in\mathcal{S}
 \end{equation}
-besitzt.
+besitzt. Weiterhin heißt die durch
+\begin{equation}
+\mathbb{P}_\xi : \mathcal{S} \to [0,1], S \mapsto
+\mathbb{P}_\xi(S)
+:= \mathbb{P}\left(\xi^{-1}(S)\right)
+= \mathbb{P}\left(\{\omega \in \Omega|\xi(\omega) \in S\}\right)
+\end{equation}
+definierte Abbildung die \textit{Verteilung der Zufallsvariable $\xi$}. 
+Dabei nennt man $\mathcal{X}$ den \textit{Ergebnisraum der Zufallsvariable $\xi$}
+und für ein $\omega\in\Omega$ den Wert $\xi(\omega)$ eine
+\textit{Realisierung der Zufallsvariable $\xi$}.
 \end{definition}
 
-\footnotesize
 Bemerkungen
+\vspace{-1mm}
 
-* ZVen sind weder "zufällig" noch "Variablen".
-* Intuitiv wird $\omega \in \Omega$ ``zufällig'' anhand von $\mathbb{P}$
-  gezogen und $\xi(\omega)$ realisiert.
-* Wir nennen $\mathcal{X}$ den \textit{Ergebnisraum der ZV $\xi$}.
-* Die Verteilungen (Bildmaße) von ZVen sind in der Statistik zentral.
-* Der Begriff der Verteilung wird oft auch für W-Maße und Dichten verwendet.
+* Zufallsvariablen sind weder "zufällig" noch "Variablen".
+* Intuitiv wird $\omega \in \Omega$ "zufällig" anhand von $\mathbb{P}$ gezogen und $\xi(\omega)$ realisiert.
+* Verteilungen von Zufallsvariablen sind in der Statistik zentral.
+* Das Wort "Verteilung" wird oft auch für die zugehörige WMF oder WDF verwendet.
 
+
+# Konstruktion, Definition, Notation, Intuition
+\vspace{3mm}
+\setstretch{1.2}
+\footnotesize
+\begin{theorem}[Verteilung einer Zufallsvariable]
+\normalfont
+\justifying
+Es seien $(\Omega,\mathcal{A},\mathbb{P})$ ein Wahrscheinlichkeitsraum,
+$(\mathcal{X},\mathcal{S})$ ein Messraum, $\xi:\Omega\to\mathcal{X}$ eine
+Zufallsvariable und $\mathbb{P}_\xi$ die Verteilung von $\xi$. Dann ist
+$\mathbb{P}_\xi$ ein Wahrscheinlichkeitsmaß auf $(\mathcal{X},\mathcal{S})$
+und $(\mathcal{X},\mathcal{S},\mathbb{P}_\xi)$ ein Wahrscheinlichkeitsraum.
+\end{theorem} 
+
+\vspace{-2mm}
+\underline{Beweis}
+
+\vspace{-1mm}
+\noindent 1. *Nichtnegativität* ($\mathbb{P}_\xi(S) \ge 0$ für alle $S \in \mathcal{S}$). 
+Da $\xi$ eine Zufallsvariable ist, gilt $\xi^{-1}(S) \in \mathcal{A}$ für alle
+$S \in \mathcal{S}$ und weil $\mathbb{P}$ ein Wahrscheinlichkeitsmaß ist, gilt dann  
+\begin{equation}
+\mathbb{P}_\xi(S) = \mathbb{P}\left(\xi^{-1}(S)\right) \ge 0 \mbox{ für alle } S \in \mathcal{S}.
+\end{equation}
+
+\noindent 2. *Normiertheit* ($\mathbb{P}_\xi(\mathcal{X}) = 1$). 
+Da $\xi:\Omega\to\mathcal{X}$ eine Funktion ist, ordnet $\xi$ jedem
+$\omega\in\Omega$ genau ein $x\in\mathcal{X}$ zu. Damit gilt
+\begin{equation}
+\xi^{-1}(\mathcal{X}) = \Omega.
+\end{equation}
+Da $\mathcal{X} \in \mathcal{S}$ und weil $\mathbb{P}$ ein Wahrscheinlichkeitsmaß ist, gilt dann  
+\begin{equation}
+\mathbb{P}_\xi(\mathcal{X})
+= \mathbb{P}\left(\xi^{-1}(\mathcal{X})\right)
+= \mathbb{P}(\Omega)
+= 1.
+\end{equation}
+
+\vspace{-1mm}
+\noindent 3. *$\sigma$-Additivität* 
+($\mathbb{P}_\xi\left(\bigcup_{i=1}^{\infty}S_i\right) =\sum_{i=1}^{\infty}\mathbb{P}_\xi(S_i)$
+für paarweise disjunkte $S_1,S_2,\ldots\in\mathcal{S}$). Da $\xi$ eine 
+Zufallsvariable ist, liegen die Urbilder $\xi^{-1}(S_i)$ in $\mathcal{A}$. 
+Aus $S_i\cap S_j=\emptyset$ für $i\ne j$ folgt mit Aussage 2. des Theorems
+\hyperref[thm:urbilder-vereinigungen-durchschnitte]{Urbilder von Vereinigungen
+und Durchschnitten} im Anhang und $\xi^{-1}(\emptyset)=\emptyset$ außerdem
+\begin{equation}
+\xi^{-1}(S_i)\cap\xi^{-1}(S_j)
+=\xi^{-1}(S_i\cap S_j)
+=\emptyset.
+\end{equation}
+Dann folgt mit Aussage 1. desselben
+\hyperref[thm:urbilder-vereinigungen-durchschnitte]{Theorems}
+und der $\sigma$-Additivität von $\mathbb{P}$:
+\begin{equation}
+\begin{aligned}
+\mathbb{P}_\xi\left(\bigcup_{i=1}^{\infty}S_i\right)
+=\mathbb{P}\left(\xi^{-1}\left(\bigcup_{i=1}^{\infty}S_i\right)\right) 
+=\mathbb{P}\left(\bigcup_{i=1}^{\infty}\xi^{-1}(S_i)\right) 
+=\sum_{i=1}^{\infty}\mathbb{P}\left(\xi^{-1}(S_i)\right) 
+=\sum_{i=1}^{\infty}\mathbb{P}_\xi(S_i).
+\end{aligned}
+\end{equation}
+\vspace{-1mm}
 
 # Konstruktion, Definition, Notation, Intuition
 Beispiel (Summe eines roten und eines blauen Würfels)
@@ -241,6 +316,44 @@ Bestimmung der Verteilung $\mathbb{P}_\xi$ von $\xi$ durch Bestimmung der Elemen
 \end{tabular}
 
 # Konstruktion, Definition, Notation, Intuition
+Beispiel (Summe eines roten und eines blauen Würfels)
+\vspace{1mm}
+
+\small
+Simulation
+
+\vspace{2mm}
+\footnotesize
+\setstretch{1.2}
+```{r, echo = T}
+# Wahrscheinlichkeitsraummodell
+Omega    = list()                                 # Ergebnisrauminitialisierung
+idx      = 1                                      # Ergebnisindexinitialisierung
+for(r in 1:6){                                    # Ergebnisse roter  Würfel
+    for(b in 1:6){                                # Ergebnisse blauer Würfel
+        Omega[[idx]] = c(r,b)                     # \omega \in \Omega
+        idx          = idx + 1 }}                 # Ergebnisindexupdate
+K        = length(Omega)                          # Kardinalität von \Omega
+pi       = rep(1/K,1,K)                           # Wahrscheinlichkeitsfunktion \pi
+
+# Zufallsvorgang
+omega    = Omega[[which(rmultinom(1,1,pi) == 1)]] # Auswahl von \omega anhand von \P({\omega})
+
+# Auswertung der Zufallsvariable
+xi_omega = sum(omega)                             # \xi(\omega)
+```
+\setstretch{0.9}
+```{r, echo = F}
+cat("omega     : ", omega,
+    "\nxi(omega) : ", xi_omega)
+```
+
+
+
+
+
+
+# Konstruktion, Definition, Notation, Intuition
 \vspace{2mm}
 \footnotesize
 \setstretch{1.2}
@@ -289,53 +402,7 @@ Beispiel $\mathbb{P}_\xi\left(\xi \in S\right)$ nur als $\mathbb{P}\left(\xi \in
 geschrieben, solange sich aus dem Kontext keine Verwechselungsmöglichkeit ergeben kann.
 \end{definition}
 
-# Konstruktion, Definition, Notation, Intuition
-\footnotesize
-\vspace{2mm}
-\begin{definition}[Ergebnisraum und Realisierung einer Zufallsvariable]
-\justifying
-$(\Omega,\mathcal{A},\mathbb{P})$ sei ein Wahrscheinlichkeitsraum,
-$(\mathcal{X},\mathcal{S})$ sei ein Messraum und
-$\xi:\Omega\to\mathcal{X}$ sei eine Zufallsvariable. Dann heißt $\mathcal{X}$
-der \textit{Ergebnisraum der Zufallsvariable $\xi$}. Für ein $\omega\in\Omega$
-heißt der Wert $\xi(\omega)\in\mathcal{X}$ eine \textit{Realisierung der
-Zufallsvariable $\xi$}.
-\end{definition}
-\vspace{-1mm}
-\footnotesize
-* In der Datenanalyse werden Daten typischerweise als Realisierungen von Zufallsvariablen modelliert.
-* Da die Auswahl eines $\omega \in \Omega$ in einem Zufallsvorgang zufällig ist, erscheint $\xi(\omega)$ zufällig.
 
-# Konstruktion, Definition, Notation, Intuition
-
-\vspace{2mm}
-Simulation von Zufallsvariablenrealisierungen (Summe zweier Würfel)
-
-\vspace{2mm}
-\footnotesize
-\setstretch{0.9}
-```{r, echo = T}
-# Wahrscheinlichkeitsraummodell
-Omega    = list()                                 # Ergebnisrauminitialisierung
-idx      = 1                                      # Ergebnisindexinitialisierung
-for(r in 1:6){                                    # Ergebnisse roter  Würfel
-    for(b in 1:6){                                # Ergebnisse blauer Würfel
-        Omega[[idx]] = c(r,b)                     # \omega \in \Omega
-        idx          = idx + 1 }}                 # Ergebnisindexupdate
-K        = length(Omega)                          # Kardinalität von \Omega
-pi       = rep(1/K,1,K)                           # Wahrscheinlichkeitsfunktion \pi
-
-# Zufallsvorgang
-omega    = Omega[[which(rmultinom(1,1,pi) == 1)]] # Auswahl von \omega anhand \mathbb{P}({\omega})
-
-# Auswertung der Zufallsvariable
-xi_omega = sum(omega)                             # \xi(\omega)
-```
-\setstretch{0.9}
-```{r, echo = F}
-cat("omega     : ", omega,
-    "\nxi(omega) : ", xi_omega)
-```
 
 
 # Konstruktion, Definition, Notation, Intuition
@@ -1663,6 +1730,66 @@ $\mathcal{A}$, zuordnet. Siehe Definition (Notation von Zufallsvariablen).
 Zufallsvariablen). 
 1. Siehe Kumulative Verteilungsfunktionen, Beispiel (Normalverteilung). 
 1. Siehe Definition (Inverse kumulative Verteilungsfunktion).
+
+#  {.plain}
+\vfill
+\center
+\huge
+Mengentheoretische Ergänzungen
+\vfill
+
+# Mengentheoretische Ergänzungen
+\footnotesize
+\setstretch{1.2}
+\setlength{\abovedisplayskip}{3pt}
+\setlength{\belowdisplayskip}{3pt}
+\setlength{\jot}{1pt}
+\vspace{2mm}
+\begin{theorem}[Urbilder von Vereinigungen und Durchschnitten]\label{thm:urbilder-vereinigungen-durchschnitte}
+\normalfont
+\justifying
+Es sei $f:D\to Z$ eine Funktion und es seien $A_i\subseteq Z$ für alle $i$
+einer nichtleeren Indexmenge $I$. Dann gelten
+\vspace{1mm}
+
+\noindent 1. \textit{Urbilder von Vereinigungen.}
+\begin{equation}
+f^{-1}\left(\bigcup\nolimits_{i\in I}A_i\right)
+=\bigcup\nolimits_{i\in I}f^{-1}(A_i).
+\end{equation}
+
+\noindent 2. \textit{Urbilder von Durchschnitten.}
+\begin{equation}
+f^{-1}\left(\bigcap\nolimits_{i\in I}A_i\right)
+=\bigcap\nolimits_{i\in I}f^{-1}(A_i).
+\end{equation}
+\end{theorem}
+
+\underline{Beweis}
+
+\noindent 1. Für jedes $x\in D$ gilt
+\begin{equation}
+\begin{aligned}
+x\in f^{-1}\left(\bigcup\nolimits_{i\in I}A_i\right)
+&\Longleftrightarrow f(x)\in\bigcup\nolimits_{i\in I}A_i\\
+&\Longleftrightarrow \mbox{Es gibt ein }i\in I\mbox{ mit }f(x)\in A_i\\
+&\Longleftrightarrow \mbox{Es gibt ein }i\in I\mbox{ mit }x\in f^{-1}(A_i)\\
+&\Longleftrightarrow x\in\bigcup\nolimits_{i\in I}f^{-1}(A_i).
+\end{aligned}
+\end{equation}
+
+
+\noindent 2. Für jedes $x\in D$ gilt
+\begin{equation}
+\begin{aligned}
+x\in f^{-1}\left(\bigcap\nolimits_{i\in I}A_i\right)
+&\Longleftrightarrow f(x)\in\bigcap\nolimits_{i\in I}A_i\\
+&\Longleftrightarrow f(x)\in A_i\mbox{ für alle }i\in I\\
+&\Longleftrightarrow x\in f^{-1}(A_i)\mbox{ für alle }i\in I\\
+&\Longleftrightarrow x\in\bigcap\nolimits_{i\in I}f^{-1}(A_i).
+\end{aligned}
+\end{equation}
+In beiden Fällen besitzen die Mengen dieselben Elemente und sind damit gleich.
 
 # Referenzen
 \footnotesize  

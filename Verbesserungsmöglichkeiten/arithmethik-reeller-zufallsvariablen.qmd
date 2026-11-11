@@ -1,0 +1,715 @@
+---
+title: "Arithmetik reeller Zufallsvariablen"
+subtitle: "Definitionen, Hilfssätze und vollständiger Beweis zu Folie 14"
+date: "2026-11-06"
+date-format: "D. MMMM YYYY"
+lang: de
+format:
+  pdf:
+    documentclass: scrartcl
+    pdf-engine: xelatex
+    fontsize: 10pt
+    papersize: a4
+    geometry: [left=27mm, right=27mm, top=24mm, bottom=25mm]
+    number-sections: true
+    toc: false
+    keep-tex: false
+    latex-tinytex: false
+    colorlinks: true
+    include-in-header:
+      text: |
+        \usepackage{mathtools,amssymb,microtype}
+        \usepackage{fancyhdr}
+        \pagestyle{fancy}
+        \fancyhf{}
+        \fancyhead[L]{\small Wahrscheinlichkeitstheorie und frequentistische Inferenz}
+        \fancyfoot[L]{\footnotesize Ergänzungsbericht zum Kurs WiSe 2026/27}
+        \fancyfoot[R]{\thepage}
+        \setlength{\headheight}{15pt}
+        \setlength{\emergencystretch}{2em}
+        \AtBeginEnvironment{proof}{\small}
+        \AtEndEnvironment{definition}{\hfill$\bullet$}
+        \AtEndEnvironment{theorem}{\hfill$\circ$}
+        \fancypagestyle{plain}{\fancyhf{}\fancyfoot[L]{\footnotesize Ergänzungsbericht zum Kurs WiSe 2026/27}\fancyfoot[R]{\thepage}\renewcommand{\headrulewidth}{0pt}}
+---
+
+# Ziel und Anschluss an den Kurs
+
+Dieser Bericht entwickelt einen elementaren Beweis des Theorems
+*Arithmetik reeller Zufallsvariablen* aus Vorlesung (3), Folie 14.
+Ausgehend von den bekannten Begriffen Menge, Funktion, Urbild und
+$\sigma$-Algebra werden alle zusätzlich benötigten Schritte begründet.
+Der Beweis benutzt weder Zufallsvektoren noch Produkt-$\sigma$-Algebren
+oder einen allgemeinen Satz über stetige Transformationen.
+
+Die Darstellung folgt dem Aufbau der Skripte: Definitionen und Theoreme
+werden durch explizite Beweise und erläuternde Bemerkungen ergänzt.
+Die Absätze **Einordnung** geben jeweils eine empfohlene Einfügestelle an.
+Diese Hinweise sind Vorschläge; die vorhandenen Kursdateien werden durch
+diesen Bericht nicht verändert.
+
+## Bereits eingeführte Grundlagen
+
+Im Skript *Mathematische Grundlagen* stehen Mengenoperationen und die
+abzählbaren de Morganschen Regeln im Kapitel *Mengen*. Das Kapitel
+*Funktionen* enthält die Definition des Urbilds, das Theorem über Urbilder
+von Vereinigungen und Durchschnitten sowie die Definition endlicher und
+abzählbar unendlicher Mengen. Das Kapitel *Folgen, Grenzwerte, Stetigkeit*
+behandelt insbesondere den Grenzwert $1/n\to0$ und verweist auf das
+Archimedische Axiom.
+
+Im Skript *Wahrscheinlichkeitstheorie und frequentistische Inferenz*
+werden $\sigma$-Algebren, Wahrscheinlichkeitsräume und die Abgeschlossenheit
+unter abzählbaren Durchschnitten in *Wahrscheinlichkeitsräume* eingeführt.
+Dort wird die Borelsche $\sigma$-Algebra bereits als kleinste
+$\sigma$-Algebra beschrieben, die alle offenen Teilmengen von $\mathbb R$
+enthält. Der vorliegende Bericht behält diese Charakterisierung bei und
+beweist die Gleichwertigkeit mit der Erzeugung durch Halbstrahlen.
+
+## Beweisweg
+
+1. Urbildregeln und Abgeschlossenheit von $\sigma$-Algebren bereitstellen.
+2. Abzählbarkeit und Dichtheit von $\mathbb Q$ begründen.
+3. Erzeugte und Borelsche $\sigma$-Algebren definieren.
+4. Nachweisen, dass offene linke Halbstrahlen $\mathcal B(\mathbb R)$ erzeugen.
+5. Das Messbarkeitskriterium über diese Halbstrahlen beweisen.
+6. Die vier arithmetischen Operationen auf ihre Messbarkeit prüfen.
+
+Die Schritte 2 bis 4 schließen insbesondere die Lücke zwischen der
+bisherigen Beschreibung der Borelschen $\sigma$-Algebra und dem für die
+Summe benötigten Messbarkeitskriterium. Die Aussagen über $\mathbb Q$
+werden hier ausdrücklich ergänzt: Zwischen zwei rationalen Zahlen eine
+weitere rationale Zahl zu finden, reicht für den Summenbeweis noch nicht
+aus; benötigt wird eine rationale Zahl zwischen zwei beliebigen
+verschiedenen reellen Zahlen.
+
+\newpage
+
+# Mengen und Urbilder als Grundlage
+
+**Einordnung.** Wiederholung aus *Mathematische Grundlagen*, Kapitel
+*Mengen* und *Funktionen*. Die Urbildregel für Komplemente ergänzt dort
+das Theorem *Urbilder von Vereinigungen und Durchschnitten*. In Vorlesung
+(3) passt sie in den Anhang *Mengentheoretische Ergänzungen*.
+
+:::{#def-urbild}
+## Urbild einer Menge
+Es sei $f:D\to Z$ eine Funktion und $B\subseteq Z$. Dann heißt
+$$
+f^{-1}(B):=\{x\in D\mid f(x)\in B\}
+$$
+das *Urbild von $B$ unter $f$*. Diese Schreibweise setzt keine
+Umkehrfunktion von $f$ voraus.
+:::
+
+:::{#thm-urbildregeln}
+## Rechenregeln für Urbilder
+Es seien $f:D\to Z$ eine Funktion und $B\subseteq Z$.
+Weiterhin sei $(B_i)_{i\in I}$ eine Familie von Teilmengen von $Z$
+mit nichtleerer Indexmenge $I$.
+Dann gelten
+$$
+\begin{aligned}
+f^{-1}(Z)&=D,&f^{-1}(\emptyset)&=\emptyset,\\
+f^{-1}(Z\setminus B)&=D\setminus f^{-1}(B),\\
+f^{-1}\left(\bigcup_{i\in I}B_i\right)&=\bigcup_{i\in I}f^{-1}(B_i),\\
+f^{-1}\left(\bigcap_{i\in I}B_i\right)&=\bigcap_{i\in I}f^{-1}(B_i).
+\end{aligned}
+$$
+:::
+
+:::{.proof}
+Für jedes $x\in D$ gilt $f(x)\in Z$ und $f(x)\notin\emptyset$.
+Dies beweist die ersten beiden Gleichheiten. Weiterhin gilt
+$$
+x\in f^{-1}(Z\setminus B)
+\Longleftrightarrow f(x)\notin B
+\Longleftrightarrow x\notin f^{-1}(B).
+$$
+Für die Vereinigung gilt
+$$
+\begin{aligned}
+x\in f^{-1}\left(\bigcup_{i\in I}B_i\right)
+&\Longleftrightarrow \text{Es gibt ein }i\in I\text{ mit }f(x)\in B_i\\
+&\Longleftrightarrow x\in\bigcup_{i\in I}f^{-1}(B_i).
+\end{aligned}
+$$
+Ersetzt man in dieser Äquivalenzkette „Es gibt ein“ durch „Für alle“
+und die Vereinigungen durch Durchschnitte, erhält man den Beweis der
+letzten Gleichheit. Jeweils besitzen beide Mengen dieselben Elemente.
+:::
+
+:::{#def-sigma}
+## $\sigma$-Algebra und Messraum
+Eine Menge $\mathcal A\subseteq\mathcal P(\Omega)$ heißt
+*$\sigma$-Algebra auf $\Omega$*, wenn $\Omega\in\mathcal A$ gilt,
+mit $A\in\mathcal A$ auch $A^c:=\Omega\setminus A\in\mathcal A$ ist
+und aus $A_1,A_2,\ldots\in\mathcal A$ folgt, dass
+$\bigcup_{i=1}^{\infty}A_i\in\mathcal A$ ist.
+Das Paar $(\Omega,\mathcal A)$ heißt *Messraum*.
+:::
+
+**Bekannte Folgerungen mit Begründung.** Es gilt
+$\emptyset=\Omega^c\in\mathcal A$. Nach den abzählbaren de Morganschen
+Regeln ist
+$$
+\bigcap_{i=1}^{\infty}A_i
+=\left(\bigcup_{i=1}^{\infty}A_i^c\right)^c\in\mathcal A.
+$$
+Endliche Vereinigungen erhält man durch Ergänzen um leere Mengen,
+endliche Durchschnitte durch Ergänzen um $\Omega$.
+Diese Folgerungen gehören in *Wahrscheinlichkeitsräume* unmittelbar zu
+den ersten Eigenschaften von $\sigma$-Algebren.
+
+\newpage
+
+# Rationale Zahlen als abzählbare Hilfsmenge
+
+**Einordnung.** Mathematische Ergänzung zu *Mengen*, Abschnitt
+*Spezielle Mengen*, beziehungsweise zu *Funktionen* nach der Definition
+abzählbar unendlicher Mengen. In der W-Theorie genügt später ein Verweis
+auf die folgenden beiden Aussagen. Als Grundlage verwenden wir die
+Archimedische Eigenschaft: Zu jedem $t\in\mathbb R$ gibt es
+$n\in\mathbb N$ mit $n>t$. Sie wird im Grundlagenkurs bereits bei
+Grenzwerten herangezogen; eine Konstruktion der reellen Zahlen ist
+hier nicht erforderlich.
+
+:::{#thm-rationale-zahlen}
+## Abzählbarkeit und Dichtheit der rationalen Zahlen
+Die Menge $\mathbb Q$ ist abzählbar unendlich. Für alle $u,v\in\mathbb R$
+mit $u<v$ existiert ein $q\in\mathbb Q$ mit $u<q<v$.
+:::
+
+:::{.proof}
+**1. Abzählbarkeit.** Jede rationale Zahl besitzt eine Darstellung
+$m/n$ mit $m\in\mathbb Z$ und $n\in\mathbb N$. Wir ordnen die Paare
+$(m,n)$ nach wachsendem Wert von $|m|+n$. Zu jedem festen Wert gibt es
+nur endlich viele Paare; innerhalb einer solchen Gruppe ordnen wir nach
+wachsendem $m$. So erhält man eine Folge, in der jedes Paar vorkommt.
+Wir lesen die zugehörigen Brüche ab und streichen jeden Bruch, dessen
+Wert schon früher vorkam. Jede rationale Zahl bleibt genau einmal
+stehen. Da $\mathbb N\subseteq\mathbb Q$ ist, bleiben unendlich viele
+Werte übrig. Ihre Reihenfolge definiert eine Bijektion von $\mathbb N$
+nach $\mathbb Q$.
+
+**2. Dichtheit.** Seien $u<v$. Nach der Archimedischen Eigenschaft
+existiert $n\in\mathbb N$ mit $n>1/(v-u)$, also $1/n<v-u$.
+Wähle eine ganze Zahl $m$ mit
+$$
+nu<m\leq nu+1.
+$$
+Eine solche Zahl existiert: Wähle $N\in\mathbb N$ mit $N>|nu|+1$.
+In der endlichen Menge $\{-N,-N+1,\ldots,N\}$ gibt es eine kleinste
+Zahl $m>nu$. Wegen ihrer Minimalität gilt $m-1\leq nu$.
+Für $q:=m/n\in\mathbb Q$ folgt damit
+$$
+u<q\leq u+\frac1n<v.
+$$
+Dies beweist die zweite Aussage.
+:::
+
+**Bemerkungen.** Die beiden Eigenschaften erfüllen unterschiedliche
+Aufgaben. Die Dichtheit liefert eine rationale Zahl zwischen zwei
+reellen Schranken. Die Abzählbarkeit erlaubt, die zugehörigen
+Ereignisse durch eine abzählbare Vereinigung zusammenzufassen.
+Eine Vereinigung über sämtliche reellen Zahlen wäre durch die
+$\sigma$-Algebra-Eigenschaften allein nicht abgesichert.
+
+Für den folgenden Abschnitt benötigen wir außerdem, dass
+$\mathbb Q\times\mathbb Q$ abzählbar ist. Dazu sei
+$\mathbb Q=\{q_1,q_2,\ldots\}$ ohne Wiederholungen aufgelistet.
+Die Paare $(q_i,q_j)$ lassen sich nach wachsendem $i+j$ und innerhalb
+jeder endlichen Gruppe nach wachsendem $i$ anordnen. Jedes Paar kommt
+genau einmal vor. Jede Teilmenge dieser Paare ist somit höchstens
+abzählbar, also endlich oder abzählbar unendlich; dies folgt durch
+Streichen der nicht enthaltenen Paare aus der Liste.
+
+\newpage
+
+# Erzeugte und Borelsche $\sigma$-Algebren
+
+**Einordnung.** Neue Präzisierung in *Wahrscheinlichkeitsräume*,
+Abschnitt *Definition und erste Eigenschaften*. Im Skript unmittelbar
+vor dem Absatz „Dies begründet auch, warum man für Wahrscheinlichkeitsmodelle
+auf $\mathbb R$ üblicherweise die Borelsche $\sigma$-Algebra …“ im
+Unterabschnitt *Zur Begründung der Abzählbarkeit bei $\sigma$-Algebren
+und $\sigma$-Additivität*. In Vorlesung (1) passt sie zur Erläuterung
+der Borelschen $\sigma$-Algebra auf der Folie
+*Warum (nur) abzählbare Vereinigungen?*; der Beweis kann in den Anhang.
+
+:::{#thm-erzeugung}
+## Kleinste $\sigma$-Algebra über einer Mengenfamilie
+Es seien $E$ eine Menge und $\mathcal G\subseteq\mathcal P(E)$.
+Dann gibt es genau eine kleinste $\sigma$-Algebra auf $E$, die
+$\mathcal G$ enthält.
+:::
+
+:::{.proof}
+Sei $\mathfrak S$ das System aller $\sigma$-Algebren auf $E$, die
+$\mathcal G$ enthalten. Wegen $\mathcal P(E)\in\mathfrak S$ ist
+$\mathfrak S$ nichtleer. Setze
+$$
+\mathcal C:=\bigcap_{\mathcal S\in\mathfrak S}\mathcal S.
+$$
+Da $E$ zu jedem $\mathcal S\in\mathfrak S$ gehört, ist $E\in\mathcal C$.
+Ist $B\in\mathcal C$, so liegt $B$ in jedem solchen $\mathcal S$.
+Daher liegt auch $E\setminus B$ in jedem $\mathcal S$ und somit in
+$\mathcal C$. Sind $B_1,B_2,\ldots\in\mathcal C$, so gehören alle
+$B_i$ zu jedem $\mathcal S\in\mathfrak S$. Dessen Abgeschlossenheit
+liefert $\bigcup_i B_i\in\mathcal S$ für jedes $\mathcal S$, also
+$\bigcup_i B_i\in\mathcal C$.
+
+Damit ist $\mathcal C$ eine $\sigma$-Algebra. Sie enthält $\mathcal G$,
+weil jedes $\mathcal S\in\mathfrak S$ diese Familie enthält. Nach
+Konstruktion ist $\mathcal C\subseteq\mathcal S$ für jedes
+$\mathcal S\in\mathfrak S$. Dies ist die behauptete Minimalität.
+Zwei kleinste solche $\sigma$-Algebren wären gegenseitig ineinander
+enthalten und damit gleich.
+:::
+
+:::{#def-erzeugte-sigma}
+## Erzeugte $\sigma$-Algebra
+Die in @thm-erzeugung bestimmte kleinste $\sigma$-Algebra heißt die
+*von $\mathcal G$ erzeugte $\sigma$-Algebra* und wird mit
+$\sigma(\mathcal G)$ bezeichnet. Insbesondere gilt für jede
+$\sigma$-Algebra $\mathcal S$ auf $E$:
+$$
+\mathcal G\subseteq\mathcal S
+\quad\Longrightarrow\quad \sigma(\mathcal G)\subseteq\mathcal S.
+$$
+:::
+
+:::{#def-borel}
+## Offene Mengen und Borelsche $\sigma$-Algebra
+Eine Menge $U\subseteq\mathbb R$ heißt *offen*, wenn es zu jedem
+$x\in U$ ein $\varepsilon>0$ gibt mit
+$]x-\varepsilon,x+\varepsilon[\subseteq U$.
+Sei $\mathcal O$ die Familie aller offenen Teilmengen von $\mathbb R$.
+Dann heißt
+$$
+\mathcal B(\mathbb R):=\sigma(\mathcal O)
+$$
+die *Borelsche $\sigma$-Algebra auf $\mathbb R$*.
+:::
+
+**Bemerkung.** Der Durchschnitt in @thm-erzeugung darf über beliebig
+viele $\sigma$-Algebren laufen. Das widerspricht nicht der Beschränkung
+auf abzählbare Mengenoperationen innerhalb einer $\sigma$-Algebra:
+Hier werden verschiedene Mengensysteme geschnitten und ihre Axiome
+direkt überprüft.
+
+\newpage
+
+# Halbstrahlen erzeugen die Borelsche $\sigma$-Algebra
+
+**Einordnung.** Neues Theorem direkt nach @def-borel in
+*Wahrscheinlichkeitsräume*. Den vollständigen Beweis würde ich ins
+Skript und gegebenenfalls in den Anhang von Vorlesung (1) aufnehmen.
+In Vorlesung (3) wird anschließend nur die Aussage benötigt.
+
+:::{#thm-halbstrahlen}
+## Erzeugung durch offene linke Halbstrahlen
+Für $H_a:=]-\infty,a[$ und
+$\mathcal H:=\{H_a\mid a\in\mathbb R\}$ gilt
+$$
+\sigma(\mathcal H)=\mathcal B(\mathbb R).
+$$
+:::
+
+:::{.proof}
+**1. Erste Inklusion.** Jeder Halbstrahl $H_a$ ist offen: Für
+$x<a$ wähle $\varepsilon=(a-x)/2>0$. Dann liegt
+$]x-\varepsilon,x+\varepsilon[$ in $H_a$. Folglich gilt
+$\mathcal H\subseteq\mathcal B(\mathbb R)$ und nach der Minimalität
+der erzeugten $\sigma$-Algebra
+$$
+\sigma(\mathcal H)\subseteq\mathcal B(\mathbb R).
+$$
+
+**2. Beschränkte offene Intervalle.** Setze
+$\mathcal C:=\sigma(\mathcal H)$. Für jedes $a\in\mathbb R$ gilt
+$$
+]-\infty,a]=\bigcap_{n=1}^{\infty}]-\infty,a+1/n[\ \in\mathcal C.
+$$
+Denn $x\leq a$ erfüllt alle Ungleichungen $x<a+1/n$. Ist dagegen
+$x>a$, so gibt es wegen $1/n\to0$ ein $n$ mit $1/n<x-a$;
+dann ist $x\notin]-\infty,a+1/n[$. Für $a<b$ folgt
+$$
+]a,b[=]-\infty,b[\ \cap\bigl(]-\infty,a]\bigr)^c\in\mathcal C,
+$$
+wobei das Komplement bezüglich $\mathbb R$ gebildet wird.
+
+**3. Beliebige offene Mengen.** Für jede offene Menge $U$ gilt
+$$
+U=\bigcup_{\substack{r,s\in\mathbb Q,\ r<s\\ ]r,s[\,\subseteq U}}]r,s[.
+$$
+Die rechte Seite ist nach ihrer Definition in $U$ enthalten.
+Sei umgekehrt $x\in U$. Nach Offenheit existiert $\varepsilon>0$
+mit $]x-\varepsilon,x+\varepsilon[\subseteq U$. Die Dichtheit von
+$\mathbb Q$ liefert $r,s\in\mathbb Q$ mit
+$$
+x-\varepsilon<r<x<s<x+\varepsilon.
+$$
+Damit gehört $x$ zu einem der rechts auftretenden Intervalle.
+Dies beweist die Mengengleichheit. Weil die verwendeten Paare eine
+Teilmenge von $\mathbb Q\times\mathbb Q$ bilden, ist die Vereinigung
+höchstens abzählbar. Jeder ihrer Bestandteile liegt nach Schritt 2 in
+$\mathcal C$, also auch $U$. Für $U=\emptyset$ gilt dies ebenfalls.
+
+**4. Zweite Inklusion.** Nach Schritt 3 enthält $\mathcal C$ alle
+offenen Mengen. Die Minimalität von $\mathcal B(\mathbb R)$ liefert
+$\mathcal B(\mathbb R)\subseteq\mathcal C$. Zusammen mit Schritt 1
+folgt die Behauptung.
+:::
+
+**Bemerkung.** Der Nachweis für beschränkte offene Intervalle allein
+wäre noch kein Beweis für alle Borel-Mengen. Entscheidend sind die
+abzählbare Darstellung offener Mengen und anschließend die Minimalität
+der Borelschen $\sigma$-Algebra.
+
+\newpage
+
+# Messbarkeit und das Halbstrahlenkriterium
+
+**Einordnung.** In *Zufallsvariablen*, Abschnitt *Definition*, nach
+der Definition *Zufallsvariable und Verteilung* und spätestens nach
+*Notation für Zufallsvariablen*, vor dem Arithmetik-Theorem. Für die
+Vorlesung bietet sich eine zusätzliche Folie mit dem Kriterium vor der
+bisherigen Folie 14 an; den Beweis kann der Anhang aufnehmen.
+
+:::{#def-messbarkeit}
+## Messbare Abbildung und reellwertige Zufallsvariable
+Es seien $(\Omega,\mathcal A)$ und $(E,\mathcal S)$ Messräume.
+Eine Abbildung $f:\Omega\to E$ heißt *messbar*, wenn
+$f^{-1}(B)\in\mathcal A$ für alle $B\in\mathcal S$ gilt.
+Ist $(\Omega,\mathcal A,\mathbb P)$ ein Wahrscheinlichkeitsraum,
+so heißt eine messbare Abbildung
+$\xi:\Omega\to\mathbb R$ mit Zielmessraum
+$(\mathbb R,\mathcal B(\mathbb R))$ eine *reellwertige Zufallsvariable*.
+:::
+
+Wir verwenden die bekannte Ereignisnotation
+$\{\xi<a\}:=\{\omega\in\Omega\mid\xi(\omega)<a\}$, entsprechend
+für andere Relationen. Zur Erinnerung: $\mathbb P:\mathcal A\to[0,1]$
+ist nichtnegativ, normiert und $\sigma$-additiv auf paarweise disjunkten
+Ereignissen. Diese Eigenschaften von $\mathbb P$ werden im folgenden
+Messbarkeitsbeweis jedoch nicht benötigt.
+
+:::{#thm-kriterium}
+## Messbarkeitskriterium über Halbstrahlen
+Eine Abbildung $\xi:\Omega\to\mathbb R$ ist genau dann messbar, wenn
+$$
+\{\xi<a\}\in\mathcal A\qquad\text{für alle }a\in\mathbb R.
+$$
+:::
+
+:::{.proof}
+**Hinrichtung.** Ist $\xi$ messbar, so folgt wegen
+$H_a\in\mathcal B(\mathbb R)$ unmittelbar
+$\{\xi<a\}=\xi^{-1}(H_a)\in\mathcal A$.
+
+**Rückrichtung.** Die Urbilder aller $H_a$ seien in $\mathcal A$.
+Definiere
+$$
+\mathcal D:=\{B\subseteq\mathbb R\mid\xi^{-1}(B)\in\mathcal A\}.
+$$
+Dieses Mengensystem ist eine $\sigma$-Algebra auf $\mathbb R$:
+Wegen $\xi^{-1}(\mathbb R)=\Omega\in\mathcal A$ liegt
+$\mathbb R$ in $\mathcal D$. Ist $B\in\mathcal D$, so folgt mit
+@thm-urbildregeln und der Komplementabgeschlossenheit von $\mathcal A$
+$$
+\xi^{-1}(\mathbb R\setminus B)
+=\Omega\setminus\xi^{-1}(B)\in\mathcal A.
+$$
+Also ist $\mathbb R\setminus B\in\mathcal D$. Für
+$B_1,B_2,\ldots\in\mathcal D$ gilt entsprechend
+$$
+\xi^{-1}\left(\bigcup_{i=1}^{\infty}B_i\right)
+=\bigcup_{i=1}^{\infty}\xi^{-1}(B_i)\in\mathcal A.
+$$
+Somit gehört auch $\bigcup_iB_i$ zu $\mathcal D$. Nach Voraussetzung
+ist $\mathcal H\subseteq\mathcal D$. Aus @thm-halbstrahlen und der
+Minimalität der erzeugten $\sigma$-Algebra folgt
+$$
+\mathcal B(\mathbb R)=\sigma(\mathcal H)\subseteq\mathcal D.
+$$
+Damit ist das Urbild jeder Borel-Menge in $\mathcal A$; dies ist
+genau die Messbarkeit von $\xi$.
+:::
+
+\newpage
+
+# Hilfssätze für die arithmetischen Operationen
+
+**Einordnung.** Direkt im Anschluss an das Halbstrahlenkriterium in
+*Zufallsvariablen*. Im Skript können die folgenden Aussagen als kurze
+Hilfssätze vor dem Arithmetik-Theorem stehen. In der Vorlesung genügt
+es, sie im Beweis zu erläutern; ein eigener Hauptabschnitt ist dort
+nicht nötig.
+
+:::{#thm-schwellen}
+## Weitere Schwellenereignisse
+Ist $\xi$ eine reellwertige Zufallsvariable und $a\in\mathbb R$, so
+gehören auch $\{\xi\leq a\}$, $\{\xi>a\}$ und $\{\xi\geq a\}$ zu
+$\mathcal A$.
+:::
+
+:::{.proof}
+Es gelten die Mengengleichheiten
+$$
+\begin{aligned}
+\{\xi\leq a\}&=\bigcap_{n=1}^{\infty}\{\xi<a+1/n\},\\
+\{\xi>a\}&=\Omega\setminus\{\xi\leq a\},\\
+\{\xi\geq a\}&=\Omega\setminus\{\xi<a\}.
+\end{aligned}
+$$
+Zur ersten Gleichheit: $\xi(\omega)\leq a$ impliziert jede der
+rechts stehenden Ungleichungen. Ist $\xi(\omega)>a$, so gibt es
+$n$ mit $1/n<\xi(\omega)-a$ und die entsprechende Ungleichung
+ist falsch. Die anderen beiden Gleichheiten folgen durch Negieren
+der jeweiligen Ungleichung. Nun liefern das Halbstrahlenkriterium,
+die Abgeschlossenheit unter abzählbaren Durchschnitten und die
+Komplementabgeschlossenheit die Behauptung.
+:::
+
+:::{#thm-quadrat}
+## Quadrat einer reellwertigen Zufallsvariable
+Ist $\xi$ eine reellwertige Zufallsvariable, so ist auch die punktweise
+definierte Abbildung
+$$
+\xi^2:\Omega\to\mathbb R,\qquad \omega\mapsto(\xi(\omega))^2
+$$
+eine reellwertige Zufallsvariable.
+:::
+
+:::{.proof}
+Sei $a\in\mathbb R$. Für $a\leq0$ gilt
+$\{\xi^2<a\}=\emptyset\in\mathcal A$, denn Quadrate reeller
+Zahlen sind nichtnegativ. Für $a>0$ gilt
+$$
+\{\xi^2<a\}=\{-\sqrt a<\xi<\sqrt a\}
+=\{\xi>-\sqrt a\}\cap\{\xi<\sqrt a\}.
+$$
+Die beiden Mengen rechts sind nach @thm-schwellen und der
+Messbarkeit von $\xi$ in $\mathcal A$. Ihr Durchschnitt ist daher
+ebenfalls in $\mathcal A$. Weil dies für jedes $a$ gilt, ist $\xi^2$
+nach @thm-kriterium messbar.
+:::
+
+**Bemerkung zur Beweisreihenfolge.** Dieser Beweis der Messbarkeit
+des Quadrats benutzt den Produktsatz nicht. Deshalb dürfen wir
+anschließend das Produkt zweier Zufallsvariablen mithilfe von
+Quadraten ausdrücken, ohne einen Zirkelschluss zu erzeugen.
+
+**Zum Fall negativer Konstanten.** Das Schwellenereignis
+$\{\xi>a/c\}$ bei $c<0$ ist nach @thm-schwellen messbar.
+Der Vorzeichenwechsel beim Dividieren einer Ungleichung ist dabei
+wesentlich. Der Sonderfall $c=0$ wird im folgenden Beweis separat
+behandelt.
+
+\newpage
+
+# Arithmetik reeller Zufallsvariablen
+
+**Einordnung.** Dies ist das Theorem der bisherigen Folie 14 in
+Vorlesung (3). Im Skript steht es am Ende des Abschnitts *Definition*
+im Kapitel *Zufallsvariablen*. Der Quellbezeichner lautet
+
+`thm-arithmetik-reeller-zufallsvariablen`.
+
+Dort ersetzt der folgende
+Beweis den bloßen Literaturverweis. Die vorangehenden Hilfssätze
+müssen an dieser Stelle bereits verfügbar sein.
+
+:::{#thm-arithmetik}
+## Arithmetik reeller Zufallsvariablen
+Es seien $(\Omega,\mathcal A,\mathbb P)$ ein Wahrscheinlichkeitsraum,
+$\xi_1,\xi_2:\Omega\to\mathbb R$ reellwertige Zufallsvariablen und
+$c\in\mathbb R$ eine Konstante. Wir definieren punktweise
+$$
+\begin{aligned}
+(\xi_1+c)(\omega)&:=\xi_1(\omega)+c,\\
+(c\xi_1)(\omega)&:=c\xi_1(\omega),\\
+(\xi_1+\xi_2)(\omega)&:=\xi_1(\omega)+\xi_2(\omega),\\
+(\xi_1\xi_2)(\omega)&:=\xi_1(\omega)\xi_2(\omega).
+\end{aligned}
+$$
+Dann sind $\xi_1+c$, $c\xi_1$, $\xi_1+\xi_2$ und $\xi_1\xi_2$
+ebenfalls reellwertige Zufallsvariablen.
+:::
+
+:::{.proof}
+Alle vier Vorschriften ordnen jedem $\omega\in\Omega$ genau eine
+reelle Zahl zu. Es bleibt jeweils die Messbarkeit nachzuweisen.
+
+**1. Addition einer Konstanten.** Für jedes $a\in\mathbb R$ gilt
+$$
+\{\xi_1+c<a\}=\{\xi_1<a-c\}\in\mathcal A.
+$$
+Nach @thm-kriterium ist $\xi_1+c$ messbar.
+
+**2. Multiplikation mit einer Konstanten.** Für $c>0$ gilt
+$$
+\{c\xi_1<a\}=\{\xi_1<a/c\}\in\mathcal A.
+$$
+Für $c<0$ kehrt sich die Ungleichung beim Dividieren um, sodass
+$$
+\{c\xi_1<a\}=\{\xi_1>a/c\}\in\mathcal A
+$$
+nach @thm-schwellen gilt. Für $c=0$ ist die Abbildung konstant null
+und es gilt
+$$
+\{0\xi_1<a\}=
+\begin{cases}
+\Omega,&a>0,\\
+\emptyset,&a\leq0.
+\end{cases}
+$$
+Auch diese Mengen liegen in $\mathcal A$. In allen Fällen liefert
+@thm-kriterium die Messbarkeit von $c\xi_1$.
+:::
+
+Der Beweis der beiden übrigen Aussagen folgt auf der nächsten Seite.
+Die bereits bewiesene Aussage 2 gilt für jede reellwertige
+Zufallsvariable und wird dort insbesondere mit $c=-1$ verwendet.
+
+\newpage
+
+## Beweis der Summen- und Produktaussage
+
+:::{.proof}
+Fortsetzung des Beweises von @thm-arithmetik.
+
+**3. Addition zweier Zufallsvariablen.** Sei $a\in\mathbb R$.
+Wir zeigen zunächst die Mengengleichheit
+$$
+\boxed{\displaystyle
+\{\xi_1+\xi_2<a\}
+=\bigcup_{q\in\mathbb Q}
+\bigl(\{\xi_1<q\}\cap\{\xi_2<a-q\}\bigr).}
+$$
+Sei $\omega$ ein Element der linken Seite. Dann gilt
+$$
+\xi_1(\omega)<a-\xi_2(\omega).
+$$
+Nach der Dichtheit von $\mathbb Q$ existiert eine rationale Zahl
+$q$ mit
+$$
+\xi_1(\omega)<q<a-\xi_2(\omega).
+$$
+Damit erfüllt $\omega$ die beiden Ungleichungen
+$\xi_1(\omega)<q$ und $\xi_2(\omega)<a-q$ und gehört zur rechten Seite.
+Umgekehrt gehört jedes Element $\omega$ der rechten Seite für
+mindestens ein $q\in\mathbb Q$ zu beiden Ereignissen im
+entsprechenden Durchschnitt. Durch Addition folgt
+$$
+\xi_1(\omega)+\xi_2(\omega)<q+(a-q)=a.
+$$
+Also gehört $\omega$ zur linken Seite. Die Mengengleichheit ist bewiesen.
+
+Für jedes feste $q\in\mathbb Q$ sind $q$ und $a-q$ reelle Zahlen.
+Die Messbarkeit von $\xi_1$ und $\xi_2$ liefert daher
+$$
+\{\xi_1<q\}\in\mathcal A,
+\qquad \{\xi_2<a-q\}\in\mathcal A.
+$$
+Die Durchschnitte liegen ebenfalls in $\mathcal A$. Weil $\mathbb Q$
+abzählbar ist, gehört ihre Vereinigung zu $\mathcal A$. Somit ist
+$\{\xi_1+\xi_2<a\}\in\mathcal A$ für jedes $a$, und nach
+@thm-kriterium ist $\xi_1+\xi_2$ messbar.
+
+**4. Multiplikation zweier Zufallsvariablen.** Nach Aussage 2 ist
+$-\xi_2$ eine Zufallsvariable. Nach Aussage 3 sind deshalb sowohl
+$\xi_1+\xi_2$ als auch $\xi_1-\xi_2:=\xi_1+(-\xi_2)$
+Zufallsvariablen. Nach @thm-quadrat gilt dies auch für ihre Quadrate.
+Erneute Anwendung der Aussagen 2 und 3 zeigt, dass
+$$
+\eta:=\frac14\bigl((\xi_1+\xi_2)^2-(\xi_1-\xi_2)^2\bigr)
+$$
+eine Zufallsvariable ist. Für jedes $\omega\in\Omega$ liefern die
+binomischen Formeln
+$$
+\begin{aligned}
+\eta(\omega)
+&=\frac14\bigl((\xi_1(\omega)+\xi_2(\omega))^2
+                 -(\xi_1(\omega)-\xi_2(\omega))^2\bigr)\\
+&=\xi_1(\omega)\xi_2(\omega).
+\end{aligned}
+$$
+Also stimmen $\eta$ und $\xi_1\xi_2$ als Funktionen überein.
+Damit ist auch das Produkt messbar und das Theorem vollständig bewiesen.
+:::
+
+**Bemerkung.** Unabhängigkeit ist nicht vorausgesetzt. Entscheidend
+sind der gemeinsame Definitionsraum und die Messbarkeit. Insbesondere
+geht es um die Existenz der resultierenden Zufallsvariablen, nicht um
+eine Formel für ihre Verteilungen.
+
+\newpage
+
+# Empfohlene Einbindung und Quellenbasis
+
+## Reihenfolge im Skript und in den Vorlesungen
+
+**Mathematische Grundlagen.** Die vorhandenen Urbildregeln im Kapitel
+*Funktionen* um Komplemente, Gesamtmenge und leere Menge ergänzen.
+Abzählbarkeit und Dichtheit von $\mathbb Q$ als Ergänzung bei den
+speziellen Zahlenmengen beziehungsweise nach der Definition der
+Abzählbarkeit einführen. Der vorliegende Bericht enthält die dafür
+nötigen Beweise. Für die Dichtheit wird die Archimedische Eigenschaft
+der reellen Zahlen ausdrücklich als Grundlage benannt.
+
+**Vorlesung (1) / Skriptkapitel Wahrscheinlichkeitsräume.** Die
+erzeugte $\sigma$-Algebra und ihre Existenz im Zusammenhang mit der
+bisherigen Erläuterung der Borelschen $\sigma$-Algebra ergänzen.
+Die Definition über offene Mengen beibehalten. Anschließend
+@thm-halbstrahlen einfügen. Die vorhandene Abgeschlossenheit unter
+Durchschnitten muss für dessen Beweis vorher verfügbar sein; daher
+diese Aussage im Skript aus ihrer derzeit späteren Position an die
+ersten Eigenschaften der $\sigma$-Algebra vorziehen oder dort kurz
+mithilfe von de Morgan begründen.
+
+**Vorlesung (2) / Elementare Wahrscheinlichkeiten.** Für diesen
+Beweisweg ist keine zusätzliche Aussage nötig. Bedingte
+Wahrscheinlichkeiten und Unabhängigkeit werden nicht verwendet.
+
+**Vorlesung (3) / Skriptkapitel Zufallsvariablen.** Nach Definition und
+Notation das Halbstrahlenkriterium mit Beweis ergänzen. Danach die
+Schwellenereignisse und das Quadrat behandeln und das vorhandene
+Arithmetik-Theorem vollständig beweisen. Für die Folien bietet sich
+an, Kriterium und zentrale Mengengleichheit des Summenbeweises im
+Hauptteil zu zeigen und die ausführlichen Hilfsbeweise in den Anhang
+aufzunehmen. „Folie 14“ bezeichnet den Stand vor diesen Ergänzungen.
+
+## Reichweite
+
+Der Beweis ist für endlich reellwertige Zufallsvariablen formuliert.
+Bei Werten in $\mathbb R\cup\{-\infty,+\infty\}$ sind bestimmte
+arithmetische Ausdrücke nicht definiert; dieser Fall wird nicht
+mitbehauptet. Für Zufallsvektoren kann man die Ergebnisse später
+koordinatenweise erweitern, sobald das Koordinatenkriterium der
+Borel-Messbarkeit auf $\mathbb R^d$ bewiesen ist. Das ist eine
+Erweiterung für das folgende Kapitel und keine Voraussetzung des
+hier geführten Beweises.
+
+## Verwendete Kursquellen
+
+Grundlage sind die lokal vorliegenden Skripte und Folien,
+eingesehen am 6. November 2026:
+
+* Dirk Ostwald: *Mathematische Grundlagen*, Vorlesungsskript WiSe
+  2026/27, insbesondere die eingebundenen Kapitel
+  *Mengen* (102), *Funktionen* (104) und
+  *Folgen, Grenzwerte, Stetigkeit* (105).
+* Dirk Ostwald: *Wahrscheinlichkeitstheorie und frequentistische
+  Inferenz*, Vorlesungsskript WiSe 2026/27, insbesondere
+  *Wahrscheinlichkeitsräume* (301) und *Zufallsvariablen* (303).
+* Zugehörige Vorlesungen (1) *Wahrscheinlichkeitsräume*, (2)
+  *Elementare Wahrscheinlichkeiten* und (3) *Zufallsvariablen*;
+  Zielaussage: Folie 14 der dritten Vorlesung.
+
+Die beiden Skripte binden Kapitel aus Dirk Ostwalds
+*Probabilistische Datenwissenschaft für die Psychologie* ein und
+weisen diese als CC BY 4.0 aus. Dieser Bericht ist eine ergänzende
+Ausarbeitung mit neu zusammengestellter Beweiskette und
+Einordnungshinweisen; er ist kein unverändertes Originalkapitel.
