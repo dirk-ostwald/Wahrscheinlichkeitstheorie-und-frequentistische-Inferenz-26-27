@@ -32,7 +32,7 @@ Desktop.ini
 
 # Externe Skriptquellen
 /Vorlesungsskript/_src/
-/Verbesserungsmöglichkeiten/
+/Zusatzmaterial/
 
 # Lokale Vorschauen, Arbeitsdateien und Editor-/Synchronisationseinstellungen
 tmp/
@@ -43,3 +43,6 @@ inspect.json
 
 # Lokale Literaturkopie, kein Bestandteil der veröffentlichten Lehrmaterialien
 /0-Einführung/0-Daten/Barkham*.pdf
+
+/.quarto/
+**/*.quarto_ipynb

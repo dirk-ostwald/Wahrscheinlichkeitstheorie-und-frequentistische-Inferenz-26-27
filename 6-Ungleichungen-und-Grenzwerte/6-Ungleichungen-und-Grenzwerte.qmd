@@ -1,0 +1,1080 @@
+---
+fontsize: 8pt
+format:
+    beamer:
+        include-in-header: "6-Header.tex"
+        colorlinks: true
+        urlcolor: darkblue
+        linkcolor: darkblue
+        citecolor: darkblue
+bibliography: 6-Referenzen.bib
+link-citations: true
+---
+
+#  {.plain}
+\center
+\vfill
+```{r, echo = FALSE, out.width = "20%"}
+knitr::include_graphics("6-Abbildungen/wtfi-6-otto.png")
+```
+\vspace{3mm}
+
+\Large
+\resizebox{\linewidth}{!}{Wahrscheinlichkeitstheorie und frequentistische Inferenz}
+\vspace{1mm}
+
+\large
+BSc Psychologie WiSe 2026/27
+
+\vspace{5mm}
+\normalsize
+Prof. Dr. Dirk Ostwald
+\vfill
+
+#  {.plain}
+
+\vfill
+\center
+\huge
+\textcolor{black}{(6) Ungleichungen und Grenzwerte}
+\vfill
+
+#
+\large
+\vfill
+\setstretch{2.5}
+Wahrscheinlichkeitsungleichungen
+
+Erwartungswertungleichungen
+
+Gesetze der großen Zahlen
+
+Zentrale Grenzwertsätze
+
+Selbstkontrollfragen
+\vfill
+
+#
+\large
+\vfill
+\setstretch{2.5}
+**Wahrscheinlichkeitsungleichungen**
+
+Erwartungswertungleichungen
+
+Gesetze der großen Zahlen
+
+Zentrale Grenzwertsätze
+
+Selbstkontrollfragen
+\vfill
+
+# Wahrscheinlichkeitsungleichungen
+\small
+\begin{theorem}[Markov-Ungleichung]
+\justifying
+\normalfont
+$\xi$ sei eine Zufallsvariable mit $\mathbb{P}(\xi \ge 0) = 1$. Dann gilt für
+alle $x > 0$, dass
+\begin{equation}
+\mathbb{P}(\xi \ge x) \le \frac{\mathbb{E}(\xi)}{x}.
+\end{equation}
+\end{theorem}
+
+\footnotesize
+Bemerkungen
+
+* Weil $\mathbb{P}(\xi \ge 0) = 1$ gilt, sagt man auch, dass $\xi$ eine
+  \textit{nicht-negative} Zufallsvariable ist.
+* Die Ungleichung setzt Überschreitungswahrscheinlichkeiten und Erwartungswerte
+  in Bezug.
+* Gilt z.B. für eine nichtnegative Zufallsvariable $\xi$, dass
+  $\mathbb{E}(\xi) = 1$, dann ist $\mathbb{P}(\xi \ge 100) \le 0.01$.
+
+
+# Wahrscheinlichkeitsungleichungen
+\footnotesize
+\underline{Beweis}
+
+Wir betrachten den Fall einer kontinuierlichen Zufallsvariable $\xi$ mit WDF $p$
+. Wir halten zunächst fest, dass
+\begin{equation}
+\mathbb{E}(\xi)
+= \int_{-\infty}^\infty s \, p(s)\,ds
+= \int_0^\infty s \, p(s)\,ds
+= \int_0^x s \, p(s)\,ds + \int_x^\infty s \, p(s)\,ds,
+\end{equation}
+weil $\xi$ nicht-negativ ist. Es folgt dann
+\begin{equation}
+\mathbb{E}(\xi)
+\ge  \int_x^\infty s \, p(s)\,ds
+\ge  \int_x^\infty x \, p(s)\,ds
+=  x\int_x^\infty  p(s)\,ds
+=  x\, \mathbb{P}(\xi \ge x).
+\end{equation}
+
+Dabei gilt die erste Ungleichung, weil
+\begin{equation}
+\int_{0}^x s \, p(s)\,ds \ge 0
+\end{equation}
+und die zweite Ungleichung gilt, weil $x \le \xi$ für $\xi \in [x,\infty[$. Es
+folgt also, dass
+\begin{equation}
+\mathbb{E}(\xi) \ge x\, \mathbb{P}(\xi \ge x)
+\Leftrightarrow
+\mathbb{P}(\xi \ge x) \le \frac{\mathbb{E}(\xi)}{x}.
+\end{equation}
+
+$\hfill$ $\Box$
+
+# Wahrscheinlichkeitsungleichungen
+\small
+Beispiel ($\xi \sim G(\alpha,\beta)$)
+\vspace{1mm}
+\footnotesize
+\begin{itemize}
+\item Wir halten ohne Beweis fest, dass für $\xi \sim G(\alpha,\beta)$ gilt, dass $\mathbb{E}(\xi) = \alpha\beta$.
+\item Wir betrachten den Fall $\alpha := 5, \beta := 2$, so dass $\xi \sim \chi^2(10)$
+\end{itemize}
+
+```{r, eval = F, echo = F}
+# model formulation
+x_min   = 0.01                                                                  # minimum x-value
+x_max   = 25                                                                    # maximum x-value
+x_res   = 1e3                                                                   # x space resolution
+x       = seq(x_min,x_max,len = x_res)                                          # x space
+n       = 10                                                                    # df of a chi^2 variable
+shape   = n/2                                                                   # shape parameter
+scale   = 2                                                                     # scale parameters
+E_x     = shape*scale                                                           # expected value
+miq     = cbind(matrix(1-pgamma(x,shape=shape,scale=scale)), matrix(E_x/x))     # \mathbb{P}(\xi \ge x), \mathbb{E}(\xi)/x
+
+# figure
+library(latex2exp)
+cairo_pdf(file = "./6-Abbildungen/wtfi-6-markov-ungleichung.pdf", width=8, height=4)                                                                 
+par(                                                                    
+family     = "sans",                                                  
+mfcol      = c(1,2),                                                 
+pty        = "m",                                                    
+bty        = "l",                                                     
+lwd        = 1,                                                       
+las        = 1,                                                      
+mgp        = c(2,1,0),                                               
+xaxs       = "i",                                                     
+yaxs       = "i",                                                     
+cex        = 1.1,                                                    
+font.main  = 1,                                                      
+cex.main   = 1.1)                                              
+
+# Gamma CDF
+plot(
+x,                                                                         
+pgamma(x, shape = shape, scale = scale),                                                   
+type         = "l",                                                       
+lwd          =  2,                                                        
+col          = 'Black',                                                    
+ylab         = " ",                                                       
+xlab         = "x",                                                       
+ylim         = c(-.01,1.01),                                              
+main         = "P(x)")                                                   
+
+# Markov inequality
+matplot(
+x,                                                                        
+miq,                                                                     
+type        = "l",                                                        
+lty         = 1,                                                          
+lwd         =  2,                                                        
+col         = c("black","gray70"),                                         
+ylab        = " ",                                                       
+xlim        = c(0,10),                                                    
+ylim        = c(-.1,5),                                                   
+main        = "Markov-Ungleichung")                                        
+
+legend(
+4,                                                                        
+5,                                                                       
+c("1 - P(x)",TeX("$E(\\xi)/x$")),
+cex         = .9,                                                         
+lty         = 1,                                                          
+col         = c("black","gray70"),                                        
+lwd         = 2,                                                         
+y.intersp   = 1.5,                                                       
+bty         = "n")                                                        
+dev.off()
+```
+
+```{r, echo = FALSE, out.width = "95%"}
+knitr::include_graphics("6-Abbildungen/wtfi-6-markov-ungleichung.pdf")
+```
+
+# Wahrscheinlichkeitsungleichungen
+\small
+\begin{theorem}[Chebyshev-Ungleichung]
+\justifying
+\normalfont
+Es sei $\xi$ eine Zufallsvariable mit endlicher Varianz $\mathbb{V}(\xi)$. Dann
+gilt für alle $x > 0$
+\begin{equation}
+\mathbb{P}(|\xi - \mathbb{E}(\xi)| \ge x) \le \frac{\mathbb{V}(\xi)}{x^2}.
+\end{equation}
+\end{theorem}
+
+\footnotesize
+\underline{Beweis}
+
+Es sei  $\zeta := (\xi - \mathbb{E}(\xi))^2$. Dann gilt mit Markov-Ungleichung
+\begin{align}
+\begin{split}
+\mathbb{P}\left(\zeta \ge x^2\right)
+\le \frac{\mathbb{E}(\zeta)}{x^2}
+\Leftrightarrow
+\mathbb{P}\left((\xi - \mathbb{E}(\xi))^2 \ge x^2 \right)
+\le \frac{\mathbb{E}\left((\xi - \mathbb{E}(\xi))^2 \right)}{x^2}
+\Leftrightarrow
+\mathbb{P}(|\xi - \mathbb{E}(\xi)| \ge x)
+\le \frac{\mathbb{V}(\xi)}{x^2},
+\end{split}
+\end{align}
+wobei die zweite Äquivalenz aus dem
+[Theorem „Quadrate und Beträge“](https://dirk-ostwald.github.io/_part_1/103-Summen-Produkte-Potenzen.html#thm-quadrate-und-betraege)
+mit $a:=\xi-\mathbb{E}(\xi)$ und $b:=x>0$ folgt.
+
+$\hfill$ $\Box$
+
+# Wahrscheinlichkeitsungleichungen
+
+\setstretch{1.8}
+\footnotesize
+Bemerkungen
+
+* Die Chebyshev-Ungleichung setzt Abweichungen vom Erwartungswert in Bezug zur Varianz.
+* Die Ungleichung begründet die Interpretation der Varianz als Streuungsmaß.
+* Die Schranke gilt unabhängig von der genauen Form der Verteilung.
+* Für $0<\mathbb{V}(\xi) < \infty$ gelten beispielsweise
+\begin{equation}
+\mathbb{P}(|\xi - \mathbb{E}(\xi)| \ge 2\sqrt{\mathbb{V}(\xi)}) 
+\le 
+\frac{\mathbb{V}(\xi)}{\left(2\sqrt{\mathbb{V}(\xi)}\right)^2} 
+= \frac{1}{4} 
+\end{equation}
+\begin{equation}
+\mathbb{P}(|\xi - \mathbb{E}(\xi)| \ge 3\sqrt{\mathbb{V}(\xi)}) 
+\le \frac{\mathbb{V}(\xi)}{\left(3\sqrt{\mathbb{V}(\xi)}\right)^2} 
+= \frac{1}{9} 
+\end{equation}
+* Abweichungen von mindestens zwei Standardabweichungen haben höchstens Wahrscheinlichkeit $1/4$.
+* Abweichungen von mindestens drei Standardabweichungen haben höchstens Wahrscheinlichkeit $1/9$.
+
+
+
+#
+\large
+\vfill
+\setstretch{2.5}
+Wahrscheinlichkeitsungleichungen
+
+**Erwartungswertungleichungen**
+
+Gesetze der großen Zahlen
+
+Zentrale Grenzwertsätze
+
+Selbstkontrollfragen
+\vfill
+
+# Erwartungswertungleichungen
+\small
+\begin{theorem}[Cauchy-Schwarz-Ungleichung]
+\normalfont
+\justifying
+$\xi_1$ und $\xi_2$ seien zwei Zufallsvariablen mit  $\mathbb{E}(\xi_1^2),\mathbb{E}(\xi_2^2)<\infty$.
+Dann gilt
+\begin{equation}
+\mathbb{E}(\xi_1\xi_2)^2 \le \mathbb{E}\left(\xi_1^2\right)\mathbb{E}\left(\xi_2^2 \right).
+\end{equation}
+\end{theorem}
+
+\footnotesize
+Bemerkungen
+
+* Analog gilt für Vektoren $x,y \in \mathbb{R}^n$, dass
+  $\langle x,y \rangle^2 \le \Vert x \Vert^2 \cdot \Vert y \Vert^2$.
+* Die Korrelationsungleichung ist eine direkte Konsequenz der
+  Cauchy-Schwarz-Ungleichung.
+
+
+
+# Erwartungswertungleichungen
+\footnotesize
+\underline{Beweis}
+
+Falls $\mathbb{E}(\xi_2^2)=0$, gilt $\xi_2 = 0$ mit Wahrscheinlichkeit $1$,
+denn $\xi_2^2$ ist nichtnegativ und für jedes $\varepsilon>0$ liefert die
+Markov-Ungleichung in diesem Fall
+\begin{equation}
+\mathbb{P}(|\xi_2|\ge\varepsilon)
+=\mathbb{P}(\xi_2^2\ge\varepsilon^2)
+\le \frac{\mathbb{E}(\xi_2^2)}{\varepsilon^2}
+=0.
+\end{equation}
+Andernfalls setzen wir
+\begin{equation}
+a:=\frac{\mathbb{E}(\xi_1\xi_2)}{\mathbb{E}(\xi_2^2)}.
+\end{equation}
+Weil Quadrate nichtnegativ sind, folgt
+\begin{equation}
+\begin{aligned}
+0
+& 
+\le 
+\mathbb{E}\bigl((\xi_1-a\xi_2)^2\bigr)
+\\
+& 
+= \mathbb{E}(\xi_1^2)-2a\,\mathbb{E}(\xi_1\xi_2) +a^2\mathbb{E}(\xi_2^2)
+\\
+& 
+= \mathbb{E}(\xi_1^2)-2\frac{\mathbb{E}(\xi_1\xi_2)}{\mathbb{E}(\xi_2^2)}\mathbb{E}(\xi_1\xi_2) + \frac{\mathbb{E}(\xi_1\xi_2)^2}{\mathbb{E}(\xi_2^2)^2}\mathbb{E}(\xi_2^2)
+\\
+& 
+= \mathbb{E}(\xi_1^2)-2\frac{\mathbb{E}(\xi_1\xi_2)^2}{\mathbb{E}(\xi_2^2)} + \frac{\mathbb{E}(\xi_1\xi_2)^2}{\mathbb{E}(\xi_2^2)} 
+\\
+&
+= \mathbb{E}(\xi_1^2)- \frac{\mathbb{E}(\xi_1\xi_2)^2}{\mathbb{E}(\xi_2^2)},
+\end{aligned}
+\end{equation}
+und damit mit $\mathbb{E}(\xi_2^2) > 0$
+\begin{equation}
+\frac{\mathbb{E}(\xi_1\xi_2)^2}{\mathbb{E}(\xi_2^2)} \le \mathbb{E}(\xi_1^2)
+\Leftrightarrow 
+\mathbb{E}(\xi_1\xi_2)^2
+\le \mathbb{E}(\xi_1^2)\,\mathbb{E}(\xi_2^2).
+\end{equation}
+
+
+# Erwartungswertungleichungen
+\small
+\begin{theorem}[Korrelationsungleichung]
+\justifying
+\normalfont
+$\xi_1$ und $\xi_2$ seien Zufallsvariablen mit positiven, endlichen Varianzen. Dann
+gelten
+\begin{equation}
+\frac{\mathbb{C}(\xi_1,\xi_2)^2}{\mathbb{V}(\xi_1)\mathbb{V}(\xi_2)} \le 1
+\mbox{ und }
+-1 \le \rho(\xi_1,\xi_2) \le 1.
+\end{equation}
+\end{theorem}
+
+\footnotesize
+Bemerkung
+
+* Korrelationen nehmen also immer Werte im Intervall $[-1,1]$ an.
+
+# Erwartungswertungleichungen
+\footnotesize
+\underline{Beweis}
+
+Mit der Cauchy-Schwarz-Ungleichung für zwei Zufallsvariablen $\alpha$ und
+$\beta$ gilt, dass
+\begin{equation}
+\mathbb{E}(\alpha\beta)^2 \le \mathbb{E}\left(\alpha^2\right)\mathbb{E}\left(\beta^2\right).
+\end{equation}
+Wir definieren nun $\alpha := \xi_1 -\mathbb{E}(\xi_1)$ und
+$\beta := \xi_2 - \mathbb{E}(\xi_2)$.
+Dann besagt die Cauchy-Schwarz-Ungleichung gerade, dass
+\begin{equation}
+\mathbb{E}\left((\xi_1 -\mathbb{E}(\xi_1))(\xi_2-\mathbb{E}(\xi_2))\right)^2
+\le  \mathbb{E}\left((\xi_1 -\mathbb{E}(\xi_1))^2 \right) \mathbb{E}\left((\xi_2-\mathbb{E}(\xi_2))^2 \right).
+\end{equation}
+Also gilt
+\begin{align}
+\begin{split}
+\mathbb{C}(\xi_1,\xi_2)^2
+\le  \mathbb{V}(\xi_1)\mathbb{V}(\xi_2)
+\Leftrightarrow \frac{\mathbb{C}(\xi_1,\xi_2)^2}{\mathbb{V}(\xi_1)\mathbb{V}(\xi_2)}
+\le 1.
+\end{split}
+\end{align}
+Weiterhin folgt aus der Definition der Korrelation dann sofort, dass auch
+\begin{equation}
+\rho(\xi_1,\xi_2)^2 \le 1.
+\end{equation}
+Dann gilt aber auch
+\begin{equation}
+|\rho(\xi_1,\xi_2)| \le 1 \Leftrightarrow -1 \le \rho(\xi_1,\xi_2) \le 1,
+\end{equation}
+denn
+
+\noindent (1) für $\rho(\xi_1,\xi_2) \ge 0$ gilt $\rho(\xi_1,\xi_2)^2 \le 1 \Rightarrow \sqrt{\rho(\xi_1,\xi_2)^2} \le \sqrt{1} \Rightarrow \quad\rho(\xi_1,\xi_2)  \le 1 \Rightarrow |\rho(\xi_1,\xi_2)| \le 1$ und
+
+\noindent (2) für $\rho(\xi_1,\xi_2) <0$ gilt $\rho(\xi_1,\xi_2)^2 \le 1 \Rightarrow \sqrt{\rho(\xi_1,\xi_2)^2} \le \sqrt{1} \Rightarrow -\rho(\xi_1,\xi_2) \le 1 \Rightarrow |\rho(\xi_1,\xi_2)| \le 1$
+
+$\hfill \Box$
+
+
+# Erwartungswertungleichungen
+\footnotesize
+\setstretch{1.2}
+\begin{theorem}[Jensensche Ungleichung]
+\justifying
+\normalfont
+$I \subseteq \mathbb{R}$ sei ein offenes Intervall und $\xi$ eine
+Zufallsvariable mit $\mathbb{P}(\xi \in I)=1$ und $\mathbb{E}(|\xi|)<\infty$.
+Für die betrachtete differenzierbare Funktion $g : I \to \mathbb{R}$ gelte
+$\mathbb{E}(|g(\xi)|)<\infty$. Sei $g$ konvex, d.h.
+\begin{equation}
+g(\lambda x_1 + (1-\lambda)x_2) \le \lambda g(x_1) + (1-\lambda)g(x_2)
+\end{equation}
+für alle $x_1,x_2 \in I, \lambda \in [0,1]$. Dann gilt
+\begin{equation}
+\mathbb{E}(g(\xi)) \ge g(\mathbb{E}(\xi)).
+\end{equation}
+Analog sei $g : I \to \mathbb{R}$ eine konkave Funktion, d.h.
+\begin{equation}
+g(\lambda x_1 + (1-\lambda)x_2) \ge \lambda g(x_1) + (1-\lambda)g(x_2)
+\end{equation}
+für alle $x_1,x_2 \in I, \lambda \in [0,1]$. Dann gilt
+\begin{equation}
+\mathbb{E}(g(\xi)) \le g(\mathbb{E}(\xi)).
+\end{equation}
+\end{theorem}
+
+\footnotesize
+Bemerkungen
+
+* Bei konvexem $g$ liegt der Funktionsgraph auf $[x_1,x_2]$ auf oder unter der
+  Geraden von $g(x_1)$ zu $g(x_2)$.
+* Bei konkavem $g$ liegt der Funktionsgraph auf $[x_1,x_2]$ auf oder über der
+  Geraden von $g(x_1)$ zu $g(x_2)$.
+* Der Logarithmus ist auf $]0,\infty[$ konkav. Mit $\mathbb{P}(\xi>0) = 1$,
+$\mathbb{E}(\xi)<\infty$ und $\mathbb{E}(|\ln\xi|)<\infty$ gilt dann
+\begin{equation}
+\mathbb{E}(\ln \xi) \le \ln \mathbb{E}(\xi)
+\end{equation}
+* Dies ist die Grundlage einer Theorie zur Gehirnfunktion (vgl. @feynman1955, @friston2026a)
+
+# Erwartungswertungleichungen
+\small
+\vspace{2mm}
+Visualisierung einer konvexen Funktion
+
+```{r, eval = F, echo = F}
+# figure setup
+pdf(file = "6-Abbildungen/wtfi-6-jensensche-ungleichung.pdf", width=5, height=5)   
+library(latex2exp)                                                                       
+par(
+family     = "sans",                                                  
+mfcol      = c(1,1),                                                  
+pty        = "s",                                                     
+bty        = "l",                                                    
+lwd        = 1,                                                       
+las        = 1,                                                       
+mgp        = c(2,1,0),                                                
+xaxs       = "i",                                                     
+yaxs       = "i",                                                     
+cex        = 1.2,                                                     
+font.main  = 1,                                                       
+cex.main   = 1)  
+
+# konvexe Funktion
+x          = seq(-2,2,1e-2)
+gx         = x^2
+
+# Gerade
+x_1        = -sqrt(1.5)
+x_2        = sqrt(3.5)
+lambda     = seq(0,1,1e-2)
+x1x2       = lambda*x_1 + (1 - lambda)*x_2
+gx1gx2     = lambda*x_1^2 + (1-lambda)*x_2^2
+
+# Tangente
+x_0        = 1
+tx         = x_0^2 + 2*x_0*(x - x_0)
+
+# Visualisierung
+plot(
+x,
+gx,
+type       = "l",
+xlim       = c(-2.5,2.5),
+ylim       = c(0,4),
+ylab       = "")
+lines(
+x1x2,
+gx1gx2,
+type       = "l",
+col        = "orange")
+lines(
+x,
+tx,
+type       = "l",
+col        = "gray60")
+text(
+-1.7,
+1.2,
+TeX("$g(x_1)$"))
+text(
+2.4,
+3.5,
+TeX("$g(x_2)$"),
+xpd = T)
+text(
+1.5,
+0.8,
+TeX("$g(x_0)$"),
+xpd = T)
+points(
+c(x_0,x_1,x_2),
+c(x_0,x_1,x_2)^2,
+pch = 19)
+dev.off()
+```
+
+\center
+--- $g(x) := x^2$
+\vspace{-4mm}
+```{r, echo = FALSE, out.width = "55%"}
+knitr::include_graphics("6-Abbildungen/wtfi-6-jensensche-ungleichung.pdf")
+```
+\vspace{-4mm}
+\footnotesize
+\textcolor{orange}{---} $\lambda g(x_1) + (1 - \lambda)g(x_2)$ für $x_1 := -\sqrt{1.5}, x_2 := \sqrt{3.5}, \lambda \in [0,1]$ 
+
+\textcolor{gray}{---} $t(x) := g(x_0) + g'(x_0)(x-x_0)$ für $x_0 := 1$ 
+
+# Erwartungswertungleichungen
+\footnotesize
+\setstretch{1.1}
+\underline{Beweis}
+
+Es sei $g$ konvex und differenzierbar. Dann gilt für die Tangente $t$ in
+$x_0 \in I$ für alle $x \in I$, dass
+\begin{equation}
+g(x) \ge t(x) := g(x_0) + g'(x_0)(x - x_0).
+\end{equation}
+Wir setzen nun $x := \xi$ und $x_0 := \mathbb{E}(\xi)$. Dann gilt mit obiger
+Ungleichung, dass
+\begin{equation}
+g(\xi) \ge g(\mathbb{E}(\xi)) + g'(\mathbb{E}(\xi))(\xi - \mathbb{E}(\xi))
+\end{equation}
+Erwartungswertbildung ergibt dann
+\begin{align}
+\begin{split}
+\mathbb{E}(g(\xi)) & \ge \mathbb{E}(g(\mathbb{E}(\xi))) + \mathbb{E}(g'(\mathbb{E}(\xi))(\xi - \mathbb{E}(\xi))) \\
+\Leftrightarrow
+\mathbb{E}(g(\xi)) & \ge g(\mathbb{E}(\xi)) + g'(\mathbb{E}(\xi))\mathbb{E}((\xi - \mathbb{E}(\xi))) \\
+\Leftrightarrow
+\mathbb{E}(g(\xi)) & \ge g(\mathbb{E}(\xi)) + g'(\mathbb{E}(\xi))(\mathbb{E}(\xi) - \mathbb{E}(\xi)) \\
+\Leftrightarrow
+\mathbb{E}(g(\xi)) & \ge g(\mathbb{E}(\xi)).
+\end{split}
+\end{align}
+Sei nun $g$ eine konkave Funktion. Dann ist $-g$ eine konvexe Funktion. Mit der
+Jensenschen Ungleichung für konvexe Funktionen
+folgt dann die Jensensche Ungleichung für konkave Funktionen aus
+\begin{align}
+\begin{split}
+\mathbb{E}(-g(\xi)) & \ge -g(\mathbb{E}(\xi)) \\
+\Leftrightarrow
+-\mathbb{E}(g(\xi)) & \ge -g(\mathbb{E}(\xi)) \\
+\Leftrightarrow
+\mathbb{E}(g(\xi)) & \le g(\mathbb{E}(\xi)).
+\end{split}
+\end{align}
+$\hfill \Box$
+
+#
+\large
+\vfill
+\setstretch{2.5}
+Wahrscheinlichkeitsungleichungen
+
+Erwartungswertungleichungen
+
+**Gesetze der großen Zahlen**
+
+Zentrale Grenzwertsätze
+
+Selbstkontrollfragen
+\vfill
+
+
+# Gesetze der großen Zahlen
+Überblick
+\vspace{2mm}
+\small
+\begin{itemize}
+\itemsep3mm
+\justifying
+\item Es gibt ein \textit{Schwaches Gesetz der großen Zahlen} und ein \textit{Starkes Gesetz der großen Zahlen}.
+\item Intuitiv besagen beide Gesetze, dass sich das Stichprobenmittel von unabhängigen und identisch verteilten Zufallsvariablen für eine große Anzahl an Zufallsvariablen dem Erwartungswert  der zugrundeliegenden Verteilung nähert.
+\item Das Schwache und das Starke Gesetz der großen Zahlen unterscheiden sich in Hinblick auf die zu ihrer Formulierung benutzten Formen der \textit{Konvergenz von Zufallsvariablen}.
+\begin{itemize}
+\small
+\item Das Schwache Gesetz basiert auf der \textit{Konvergenz in Wahrscheinlichkeit}.
+\item Das Starke Gesetz basiert auf der \textit{fast sicheren Konvergenz}.
+\end{itemize}
+\item Wir begnügen uns mit dem Schwachen Gesetz.
+\end{itemize}
+
+# Gesetze der großen Zahlen
+\footnotesize
+\begin{theorem}[Schwaches Gesetz der großen Zahlen]
+\justifying
+\normalfont
+$\xi_1,\xi_2,\ldots$ seien u.i.v. Zufallsvariablen mit Erwartungswert
+$\mathbb{E}(\xi_i) =: \mu$ und $\mathbb{V}(\xi_i)<\infty$ für alle
+$i\in\mathbb{N}$ und
+\begin{equation}
+\bar{\xi}_n := \frac{1}{n}\sum_{i=1}^n \xi_i
+\end{equation}
+sei das Stichprobenmittel der $\xi_i, i = 1,...,n$. Dann gilt für ein beliebig kleines $\epsilon>0$, dass
+\begin{equation}
+\lim_{n \to \infty} \mathbb{P}(|\bar{\xi}_n - \mu| \ge \epsilon) = 0.
+\end{equation}
+\end{theorem}
+
+\footnotesize
+Bemerkungen
+
+* Die Wahrscheinlichkeit, dass das Stichprobenmittel nahe am Erwartungswert der 
+zugrundeliegenden Verteilungen der $\xi_i$ liegt, nähert sich 1, wenn
+$n\to\infty$. Die Wahrscheinlichkeit, dass das Stichprobenmittel weit entfernt
+vom Erwartungswert der zugrundeliegenden Verteilungen der $\xi_i$ liegt, nähert
+sich 0, wenn $n\to\infty$.
+* Die hier betrachtete Folgenkonvergenzart ist die sogenannte *Konvergenz in Wahrscheinlichkeit*.
+
+
+# Gesetze der großen Zahlen
+\footnotesize
+\underline{Beweis}
+
+Mit der Linearkombinationseigenschaft des Erwartungswerts gilt zunächst, dass 
+\begin{equation}
+\mathbb{E}\left(\bar{\xi}_n\right)
+= \mathbb{E}\left(\frac{1}{n}\sum_{i=1}^n \xi_i\right)
+= \frac{1}{n}\sum_{i=1}^n \mathbb{E}\left(\xi_i\right)
+= \frac{1}{n} n \mathbb{E}\left(\xi_i\right)
+= \mathbb{E}\left(\xi_i\right)
+= \mu.
+\end{equation}
+Der Erwartungswert $\mu$ der $i$ten Stichprobenvariable $\xi_i$ stimmt also mit dem
+Erwartungswert des Stichprobenmittels $\bar{\xi}_n$ überein. Weiterhin halten 
+wir fest, dass mit der Linearkombinationseigenschaft bei Unabhängigkeit der Varianz gilt, 
+dass
+\begin{equation}
+\mathbb{V}\left(\bar{\xi}_n\right)
+= \mathbb{V}\left(\frac{1}{n}\sum_{i=1}^n \xi_i\right)
+= \frac{1}{n^2}\sum_{i=1}^n \mathbb{V}\left(\xi_i\right)
+=  \frac{1}{n^2}n\mathbb{V}\left(\xi_i\right)
+= \frac{\mathbb{V}\left(\xi_i\right)}{n}.
+\end{equation}
+für $i=1,...,n$. Die Varianz des Stichprobenmittels ergibt sich also durch Teilen der Varianz
+der $i$ten Stichprobenvariable durch $n$. Mit der Chebyshev-Ungleichung gilt dann aber
+\begin{equation}
+\mathbb{P}(|\bar{\xi}_n - \mathbb{E}\left(\bar{\xi}_n\right)| \ge \epsilon) 
+\le \frac{\mathbb{V}\left(\bar{\xi}_n\right)}{\epsilon^2}
+=   \frac{\mathbb{V}\left(\xi_i\right)}{n\epsilon^2}.
+\end{equation}
+Dann aber gilt für beliebige $\mathbb{V}\left(\xi_i\right)\ge 0$ und $\epsilon >
+0$ und mit der Nichtnegativität der Wahrscheinlichkeit
+\begin{equation}
+\lim_{n \to \infty} \mathbb{P}(|\bar{\xi}_n - \mathbb{E}\left(\bar{\xi}_n\right)| \ge \epsilon) 
+\le \lim_{n \to \infty} \frac{\mathbb{V}\left(\xi_i\right)}{n\epsilon^2}
+\Leftrightarrow
+\lim_{n \to \infty} \mathbb{P}(|\bar{\xi}_n - \mu| \ge \epsilon) \le 0
+\Leftrightarrow
+\lim_{n \to \infty} \mathbb{P}(|\bar{\xi}_n -  \mu| \ge \epsilon) = 0
+\end{equation}
+und es ist alles gezeigt. $\hfill\Box$
+
+# Gesetze der großen Zahlen
+\vspace{2mm}
+Beispiel ($\xi_1,...,\xi_n \sim N(0,1)$)
+\vspace{1mm}
+\footnotesize
+\begin{itemize}
+\item Die linke Abbildung zeigt Realisationen von $\bar{\xi}_n$ als Funktion von $n$.
+\item Die rechte Abbildung zeigt Schätzungen von $\mathbb{P}(|\bar{\xi}_n - \mu| \ge \epsilon)$
+als Funktionen von $n$ und $\epsilon$.
+\end{itemize}
+
+
+```{r, eval = F, echo = F}
+# model formulation
+s_max   = 100                                                                   # number of simulations
+s_all   = 1:s_max                                                               # simulation index vector
+n_max   = 200                                                                   # maximal n number of variables
+n_all   = 1:n_max                                                               # number of variables vector
+mu      = 0                                                                     # expectation parameter
+sigsqr  = 1                                                                     # variance parameter
+epsilon = c(1,.5,.25,.125)
+
+# sample mean distribution
+X_bar    = matrix(rep(NaN, s_max*n_max), nrow = s_max)                          # sample mean array
+for(s in s_all){                                                                # simulation iterations
+    for(n in n_all){                                                            # sample size iterations
+        X_bar[s,n] = mean(rnorm(n,mu,sqrt(sigsqr)))}}                                 # sample mean \xi_n
+                                    
+# geschätzte Überschreitungswahrscheinlichkeiten der Stichprobenmittel
+P_hat       = cbind(matrix(colMeans(abs(X_bar) > epsilon[1])),
+                    matrix(colMeans(abs(X_bar) > epsilon[2])),
+                    matrix(colMeans(abs(X_bar) > epsilon[3])),
+                    matrix(colMeans(abs(X_bar) > epsilon[4])))
+
+# figure
+library(latex2exp)
+pdf(file = "./6-Abbildungen/wtfi-6-schwaches-gesetz.pdf", width = 10, height =5)                                                                   
+par(                                                                  
+family     = "sans",                                                  
+mfcol      = c(1,2),                                                  
+pty        = "m",                                                    
+bty        = "l",                                                     
+lwd        = 1,                                                      
+las        = 1,                                                       
+mgp        = c(2,1,0),                                               
+xaxs       = "i",                                                     
+yaxs       = "i",                                                     
+cex        = 1.2,                                                    
+font.main  = 1,                                                       
+cex.main   = 1.1)
+
+matplot(
+n_all,                                                                    
+t(X_bar[1:2,]),                                                          
+type        = "p",                                                        
+pch         = 1,                                                          
+lwd         = 1,                                                          
+col         = c("gray"),                                                  
+ylab        = " ",                                                        
+xlim        = c(0,n_max),                                                 
+ylim        = c(-1.5,1.5),                                                
+xlab        = "n",                                                        
+main        = "Stichprobenmittelrealisationen")                           
+legend(
+140,                                                                       
+1.55,                                                                      
+TeX("$\\bar{\\xi}_n$"),                                                       
+lty          = NA,                                                        
+pch          = 1,                                                          
+cex          = 1,                                                          
+col          = c("gray"),                                                  
+lwd          = 2,                                                          
+x.intersp    = -.2,                                                        
+y.intersp    = 1.5,                                                        
+bty          = "n")                                                        
+matplot(
+n_all,                                                                    
+P_hat,                                                                    
+type        = "l",                                                        
+lty         = 1,
+lwd         = 2,                                                          
+col         = c("gray20","gray40","gray60","gray80"),                     
+ylab        = " ",                                                        
+xlim        = c(0,n_max),                                                 
+ylim        = c(-.01,1),                                                  
+xlab        = "n",                                                        
+main        = "Wahrscheinlichkeitsschätzungen")                            
+legend(
+100,                                                                        
+1.00,                                                                      
+c(TeX("$\\epsilon = 1.000$"),
+  TeX("$\\epsilon = 0.500$"),
+  TeX("$\\epsilon = 0.250$"),
+  TeX("$\\epsilon = 0.125$")),                                             
+lty          = 1,                                                          
+cex          = .8,                                                         
+col          = c("gray20","gray40","gray60","gray80"),                     
+lwd          = 2,                                                          
+x.intersp    = .2,                                                         
+y.intersp    = 2,                                                          
+bty          = "n")                                                        
+dev.off()
+```
+
+```{r, echo = FALSE, out.width = "95%"}
+knitr::include_graphics("6-Abbildungen/wtfi-6-schwaches-gesetz.pdf")
+```
+
+#
+\large
+\vfill
+\setstretch{2.5}
+Wahrscheinlichkeitsungleichungen
+
+Erwartungswertungleichungen
+
+Gesetze der großen Zahlen
+
+**Zentrale Grenzwertsätze**
+
+Selbstkontrollfragen
+\vfill
+
+# Zentrale Grenzwertsätze
+Überblick
+\footnotesize
+
+* \justifying Die Zentralen Grenzwertsätze besagen, dass die Summe von unabhängigen
+Zufallsvariablen mit Erwartungswert 0 asymptotisch, d.h. für unendlich viele
+Zufallsvariablen, normalverteilt mit Erwartungswertparameter 0 ist.
+
+* Modelliert man eine Datenvariable $y$ also als Summe eines deterministischen
+Einflusses $\mu$ und der Summe
+\begin{equation}
+\varepsilon := \sum_{i=1}^n \xi_i
+\end{equation}
+einer Vielzahl von unabhängigen Zufallsvariablen $\xi_i, i = 1,...,n$, welche
+unbekannte Störeinflüsse beschreiben, so ist für großes $n$ die Annahme
+\begin{equation}\label{eq:stat_model}
+y = \mu + \varepsilon \mbox{ mit } \varepsilon \sim N(0,\sigma^2)
+\end{equation}
+also mathematisch gerechtfertigt. 
+
+* Wie wir später sehen werden, liegt die Annahme in Gleichung \eqref{eq:stat_model} 
+vielen probabilistischen Modellen zugrunde.
+
+* In der "Lindeberg und Lévy" Form des Zentralen Grenzwertsatzes werden
+unabhängig und identisch verteilte Zufallsvariablen vorausgesetzt. In der
+"Liapounov"
+Form werden nur unabhängig verteilte Zufallsvariablen vorausgesetzt. Der Beweis
+der
+"Lindeberg und Lévy" Form ist einfacher als der Beweis der "Liapounov" Form.
+Wir verzichten hier aber auf die Angabe von Beweisen.
+
+* Zur mathematik-geschichtlichen Genese der Zentralen Grenzwertsätze siehe z.B. @fischer2011.
+
+
+# Zentrale Grenzwertsätze
+\footnotesize
+\begin{theorem}[Zentraler Grenzwertsatz nach Lindeberg und Lévy]
+\justifying
+\normalfont
+$\xi_1,\xi_2,\ldots$ seien unabhängig und identisch verteilte Zufallsvariablen
+mit
+\begin{equation}
+\mathbb{E}(\xi_i) =: \mu \mbox{ und }
+\mathbb{V}(\xi_i) =: \sigma^2 \in ]0,\infty[
+\mbox{ für alle } i \in \mathbb{N}.
+\end{equation}
+Weiterhin sei $P_{\zeta_n}$ die KVF der Zufallsvariable
+\begin{equation}
+\zeta_n :=  \sqrt{n}\frac{\bar{\xi}_n - \mu}{\sigma}.
+\end{equation}
+Dann gilt für alle $z \in \mathbb{R}$
+\begin{equation}
+\lim_{n \to \infty} P_{\zeta_n}(z) = \Phi(z),
+\end{equation}
+wobei $\Phi$ die KVF der Standardnormalverteilung bezeichnet.
+\end{theorem}
+
+\footnotesize
+Bemerkung
+
+* Die hier betrachtete Folgenkonvergenzart ist die sogenannte *Konvergenz in Verteilung*.
+* Für großes $n$ ergeben sich daraus die folgenden Normalapproximationen:
+\begin{equation}
+\sum_{i=1}^n \xi_i \stackrel{a}{\sim} N(n\mu, n\sigma^2)
+\mbox{ und }
+\bar{\xi}_n \stackrel{a}{\sim} N\left(\mu,\frac{\sigma^2}{n}\right).
+\end{equation}
+
+
+```{r, eval = F, echo = F}
+# figure setup
+pdf(file = "./6-Abbildungen/wtfi-6-lindeberg-levy.pdf", width = 15, height = 5)
+library(latex2exp)
+par(                                                                    
+family     = "sans",                                                  
+mfcol      = c(1,3),                                                  
+pty        = "m",                                                     
+bty        = "l",                                                     
+lwd        = 1,                                                       
+las        = 1,                                                       
+mgp        = c(2,1,0),                                                
+xaxs       = "i",                                                     
+yaxs       = "i",                                                     
+cex        = 1.2,                                                    
+font.main  = 1,                                                       
+cex.main   = 1.3)                                                      
+
+# model formulation
+set.seed(0)                                                                     # random number generator
+s_max   = 1e3                                                                   # number of samples
+s_all   = 1:s_max                                                               # simulation index vector
+n_all   = c(2e0,2e2)                                                            # number of variables vector
+k       = 3                                                                     # chi^2 variable parameter
+mu      = k                                                                     # expectation
+sigsqr  = 2*k                                                                   # variance
+x_min   = -4                                                                    # minimum Z variable value
+x_max   = 4                                                                     # maximum Z variable value
+x_res   = 1e3                                                                   # Z space resolution
+x       = seq(x_min,x_max,len = x_res)                                          # Z space
+px      = dnorm(x,0,1)                                                          # standard normal density
+Px      = pnorm(x,0,1)                                                          # standard normal cumulative density
+Y       = matrix(rep(NaN, s_max*length(n_all)), nrow = s_max)                   # standardized sample mean array
+
+# standardized sample mean sampling
+for(n in seq_along(n_all)){                                                     # sample size iteration
+    for(s in s_all){                                                            # simulation iterations
+        X       = rchisq(n_all[n],k)                                            # sample
+        X_n     = mean(X)                                                       # sample mean 
+        Y[s,n]  = sqrt(n_all[n])*(X_n - mu)/(sqrt(sigsqr))}                     # standardized sample mean                        
+
+    # histogram and density for low n
+    hist(
+    Y[,n],                                                                       
+    breaks = 30,                                                            
+    col   = "gray90",                                                       
+    prob  = TRUE,                                                           
+    xlim  = c(x_min, x_max),
+    xlab  = "",                                                            
+    ylab  = "",                                                             
+    ylim  = c(0,0.6),                                                       
+    main  = sprintf("n = %d", n_all[n]))
+    lines(
+    x,                                                                      
+    px,                                                                     
+    lwd   = 2,                                                              
+    col   = "darkorange")}                                                   
+
+# CDF and empirical CDFs
+plot(
+x,                                                                          
+Px,                                                                        
+col     = "darkorange",                                                     
+ylim    = c(-.1,1.1),                                                       
+xlab    = "",                                                              
+ylab    = "")                                                              
+lines(
+ecdf(Y[,1]),                                                                
+pch     = NA,                                                               
+col     = "Gray70",                                                         
+lwd     = 2,                                                                
+lty     = 1)                                                                
+lines(
+ecdf(Y[,2]),                                                                
+pch     = NA,                                                               
+col     = "Black",                                                          
+lwd     = 2,                                                                
+lty     = 1)                                                                
+legend(
+-4,                                                                      
+1,                                                                       
+c(TeX("$\\Phi(z)$"),
+  TeX("$\\hat{P}_{\\zeta_n}(z),\\, n = 2$"),
+  TeX("$\\hat{P}_{\\zeta_n}(z),\\, n = 200$")),                                          
+lty          = 1,                                                          
+cex          = .9,                                                          
+col         = c("darkorange", "Gray70", "Black"),                          
+lwd          = 2,                                                          
+x.intersp    = 0.3,
+y.intersp    = 1.0,                                                        
+seg.len      =  .5,
+bty          = "n")
+dev.off()
+```
+
+# Zentrale Grenzwertsätze
+\small
+Beispiel ($\xi_1,...,\xi_n \sim \chi^2(k)$)
+
+\footnotesize
+* Wir halten ohne Beweis fest, dass $\mathbb{E}(\xi_i) = k$ und $\mathbb{V}(\xi_i) = 2k$.
+* Wir betrachten das Szenario $\xi_i \sim \chi^2(3)$ für $i = 1,...,n$.
+* Die linken Abbildungen zeigen Histogrammschätzer der Wahrscheinlichkeitsdichte von
+\begin{equation}
+\zeta_n := \sqrt{n}\frac{\bar{\xi}_n - \mu}{\sigma}
+\end{equation}
+basierend auf 1000 Realisationen von $\zeta_n$ für $n = 2$ und $n = 200$ sowie die WDF von $N(0,1)$.
+* Die rechte Abbildung zeigt die entsprechenden (empirischen) kumulativen Verteilungsfunktionen.
+
+\vspace{1mm}
+```{r, echo = FALSE, out.width = "95%"}
+knitr::include_graphics("6-Abbildungen/wtfi-6-lindeberg-levy.pdf")
+```
+
+# Zentrale Grenzwertsätze
+\footnotesize
+\begin{theorem}[Zentraler Grenzwertsatz nach Liapounov]
+\justifying
+\normalfont
+$\xi_1,\xi_2,\ldots$ seien unabhängige, aber nicht notwendigerweise identisch
+verteilte Zufallsvariablen mit
+\begin{equation}
+\mathbb{E}(\xi_i) =: \mu_i \mbox{ und }
+\mathbb{V}(\xi_i) =: \sigma^2_i > 0
+\mbox{ für alle } i \in \mathbb{N}
+\end{equation}
+und
+\begin{equation}
+\mathbb{E}(|\xi_i - \mu_i|^3) < \infty \quad (i\in\mathbb{N}) \mbox{ und }
+\lim_{n \to \infty} \frac{\sum_{i=1}^n \mathbb{E}\left(|\xi_i - \mu_i|^3\right)}{(\sum_{i=1}^n \sigma_i^2)^{3/2}} = 0.
+\end{equation}
+Weiterhin sei $P_{\zeta_n}$ die KVF der Zufallsvariable
+\begin{equation}
+\zeta_n := \frac{\sum_{i=1}^n \xi_i - \sum_{i=1}^n \mu_i}{\sqrt{\sum_{i=1}^n \sigma_i^2}}.
+\end{equation}
+Dann gilt für alle $z\in\mathbb{R}$, dass
+\begin{equation}
+\lim_{n \to \infty} P_{\zeta_n}(z) = \Phi(z),
+\end{equation}
+wobei $\Phi$ die KVF der Standardnormalverteilung bezeichnet.
+\end{theorem}
+
+Bemerkungen
+
+* Die hier betrachtete Folgenkonvergenzart ist die sogenannte *Konvergenz in Verteilung*.
+* Für großes $n$ ergibt sich daraus die Normalapproximation $\sum_{i=1}^n \xi_i
+\stackrel{a}{\sim} N\left(\sum_{i=1}^n \mu_i, \sum_{i=1}^n
+\sigma_i^2\right)$.
+
+
+#
+\large
+\vfill
+\setstretch{2.5}
+Wahrscheinlichkeitsungleichungen
+
+Erwartungswertungleichungen
+
+Gesetze der großen Zahlen
+
+Zentrale Grenzwertsätze
+
+**Selbstkontrollfragen**
+\vfill
+
+# Selbstkontrollfragen
+\setstretch{3}
+\footnotesize
+1. Geben Sie die Markov-Ungleichung wieder.
+1. Geben Sie die Chebyshev-Ungleichung wieder.
+1. Geben Sie die Cauchy-Schwarz-Ungleichung wieder.
+1. Geben Sie die Korrelationsungleichung wieder.
+1. Geben Sie die Jensensche Ungleichung wieder.
+1. Geben Sie das Schwache Gesetz der großen Zahlen wieder.
+1. Erläutern Sie den Zentralen Grenzwertsatz nach Lindeberg und Lévy.
+1. Warum sind die Zentralen Grenzwertsätze für die probabilistische Modellbildung wichtig?
+
+# Selbstkontrollfragen - Antworten
+\setstretch{2}
+\footnotesize
+1. Siehe Theorem (Markov-Ungleichung).
+1. Siehe Theorem (Chebyshev-Ungleichung).
+1. Siehe Theorem (Cauchy-Schwarz-Ungleichung).
+1. Siehe Theorem (Korrelationsungleichung).
+1. Siehe Theorem (Jensensche Ungleichung).
+1. Siehe Theorem (Schwaches Gesetz der großen Zahlen).
+1. Der Zentrale Grenzwertsatz nach Lindeberg und Lévy besagt, dass die
+standardisierte
+Summe unabhängig und identisch verteilter Zufallsvariablen asymptotisch normalverteilt ist. 
+1. Die Zentralen Grenzwertsätze begründen die häufige Annahme normalverteilter "Stör-", "Fehler-", "Abweichungs-" oder "Unsicherheitsvariablen" in probabilistischen Modellen.
+
+# Referenzen
+\footnotesize
+
+
+
+

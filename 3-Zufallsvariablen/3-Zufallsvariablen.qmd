@@ -656,7 +656,7 @@ Es sei $\xi$ eine diskrete Zufallsvariable mit nichtleerem endlichem
 Ergebnisraum
 $\mathcal{X}$ und WMF
 \begin{equation}
-p:\mathcal{X}\to\mathbb{R}_{\ge0},\quad x\mapsto p(x):=\frac{1}{|\mathcal{X}|}.
+p:\mathcal{X}\to[0,1],\quad x\mapsto p(x):=\frac{1}{|\mathcal{X}|}.
 \end{equation}
 Dann sagen wir, dass $\xi$ einer \textit{diskreten Gleichverteilung auf
 $\mathcal{X}$}
@@ -1053,6 +1053,252 @@ dev.off()
 knitr::include_graphics("3-Abbildungen/wtfi-3-gleichverteilung-wdf.pdf")
 ```
 
+# Wahrscheinlichkeitsdichtefunktionen
+\footnotesize
+Wahrscheinlichkeiten als Integrale
+\vspace{2mm}
+
+```{r wdf-integration-sigma-intervalle, eval = FALSE, echo = FALSE}
+# Modellformulierung
+mu          = c(3, 3, 3)                                                        # Erwartungswerte
+sigsqr      = c(2, 2, 2)                                                        # Varianzen
+sigma       = sqrt(sigsqr)                                                      # Standardabweichungen
+a           = 3 - (1:3) * sqrt(2)                                               # Untere Integrationsgrenzen
+b           = 3 + (1:3) * sqrt(2)                                               # Obere Integrationsgrenzen
+x           = seq(-2, 8, length.out = 2000)                                     # Gemeinsames Auswertungsgitter
+prob        = pnorm(b, mu, sigma) - pnorm(a, mu, sigma)                          # Intervallwahrscheinlichkeiten
+
+# Abbildungsparameter
+library(latex2exp)
+Sys.setlocale("LC_CTYPE", "English_United States.utf8")                         # Unicode für das Wahrscheinlichkeitsmaß
+cairo_pdf(
+file        = "3-Abbildungen/wtfi-3-wdf-integration-sigma-intervalle.pdf",
+width       = 10,
+height      = 3.2)
+par(
+mfrow       = c(1, 3),
+mar         = c(3.1, 3.1, 4.0, 0.7),
+oma         = c(0, 0, 0, 0),
+family      = "sans",
+bty         = "l",
+las         = 1,
+mgp         = c(1.8, 0.55, 0),
+tcl         = -0.25,
+cex         = 0.95,
+font.main   = 1)
+
+# Dichten, Integrationsflächen und Wahrscheinlichkeiten
+for (i in seq_along(mu)) {
+  fx        = dnorm(x, mu[i], sigma[i])                                         # WDF auf dem gemeinsamen Gitter
+  xi        = seq(a[i], b[i], length.out = 1000)                                # Gitter mit exakten Intervallgrenzen
+  fi        = dnorm(xi, mu[i], sigma[i])                                        # WDF im Integrationsintervall
+
+  plot(
+  x, fx,
+  type      = "n",
+  xlim      = c(-2, 8),
+  ylim      = c(0, 0.6),
+  xaxs      = "i",
+  yaxs      = "i",
+  xaxt      = "n",
+  yaxt      = "n",
+  xlab      = "x",
+  ylab      = "")
+  axis(1, at = seq(-2, 8, by = 2))
+  axis(2, at = seq(0, 0.6, by = 0.2))
+  polygon(
+  c(a[i], xi, b[i]),
+  c(0, fi, 0),
+  col       = "#BDD7EE",
+  border    = NA)
+  segments(c(a[i], b[i]), 0, c(a[i], b[i]), dnorm(c(a[i], b[i]), mu[i], sigma[i]), col = "gray45")
+  lines(x, fx, lwd = 1.2)
+  title(main = TeX(sprintf("$N(x; %g,%g)$", mu[i], sigsqr[i])), line = 2.5, cex.main = 1.05)
+
+  # Beschriftung der Integrationsintervalle
+  pr        = formatC(prob[i], format = "f", digits = 2)                        # Gerundete Wahrscheinlichkeit
+  ks        = if (i == 1) quote(sigma) else bquote(.(i) * sigma)                 # Einfaches oder mehrfaches Sigma
+  lab       = bquote(plain("\u2119") * bgroup("(", xi %in% bgroup("[", list(mu - .(ks), mu + .(ks)), "]"), ")") %~~% .(pr))
+  title(main = lab, line = 0.7, cex.main = 1.05, family = "Cambria Math")
+}
+dev.off()
+```
+
+```{r, echo = FALSE, out.width = "100%", fig.align = "center"}
+knitr::include_graphics("3-Abbildungen/wtfi-3-wdf-integration-sigma-intervalle.pdf")
+```
+
+\footnotesize
+
+* Wahrscheinlichkeiten entsprechen Flächen unter der WDF.
+* Die Intervalle $\mu\pm k\sigma$ enthalten etwa $68{,}3\,\%$,
+  $95{,}4\,\%$ und $99{,}7\,\%$ der Wahrscheinlichkeit.
+
+
+# Wahrscheinlichkeitsdichtefunktionen
+\footnotesize
+Wahrscheinlichkeiten als Integrale
+\vspace{2mm}
+
+```{r wdf-integration-gleiches-intervall, eval = FALSE, echo = FALSE}
+# Modellformulierung
+mu          = c(0, 1.5, 3)                                                      # Erwartungswerte
+sigsqr      = c(1, 0.5, 2)                                                      # Varianzen
+sigma       = sqrt(sigsqr)                                                      # Standardabweichungen
+a           = rep(1, 3)                                                         # Untere Integrationsgrenzen
+b           = rep(2, 3)                                                         # Obere Integrationsgrenzen
+x           = seq(-2, 8, length.out = 2000)                                     # Gemeinsames Auswertungsgitter
+prob        = pnorm(b, mu, sigma) - pnorm(a, mu, sigma)                          # Intervallwahrscheinlichkeiten
+
+# Abbildungsparameter
+library(latex2exp)
+Sys.setlocale("LC_CTYPE", "English_United States.utf8")                         # Unicode für das Wahrscheinlichkeitsmaß
+cairo_pdf(
+file        = "3-Abbildungen/wtfi-3-wdf-integration-gleiches-intervall.pdf",
+width       = 10,
+height      = 3.2)
+par(
+mfrow       = c(1, 3),
+mar         = c(3.1, 3.1, 4.0, 0.7),
+oma         = c(0, 0, 0, 0),
+family      = "sans",
+bty         = "l",
+las         = 1,
+mgp         = c(1.8, 0.55, 0),
+tcl         = -0.25,
+cex         = 0.95,
+font.main   = 1)
+
+# Dichten, Integrationsflächen und Wahrscheinlichkeiten
+for (i in seq_along(mu)) {
+  fx        = dnorm(x, mu[i], sigma[i])                                         # WDF auf dem gemeinsamen Gitter
+  xi        = seq(a[i], b[i], length.out = 1000)                                # Gitter mit exakten Intervallgrenzen
+  fi        = dnorm(xi, mu[i], sigma[i])                                        # WDF im Integrationsintervall
+
+  plot(
+  x, fx,
+  type      = "n",
+  xlim      = c(-2, 8),
+  ylim      = c(0, 0.6),
+  xaxs      = "i",
+  yaxs      = "i",
+  xaxt      = "n",
+  yaxt      = "n",
+  xlab      = "x",
+  ylab      = "")
+  axis(1, at = seq(-2, 8, by = 2))
+  axis(2, at = seq(0, 0.6, by = 0.2))
+  polygon(
+  c(a[i], xi, b[i]),
+  c(0, fi, 0),
+  col       = "#BDD7EE",
+  border    = NA)
+  segments(c(a[i], b[i]), 0, c(a[i], b[i]), dnorm(c(a[i], b[i]), mu[i], sigma[i]), col = "gray45")
+  lines(x, fx, lwd = 1.2)
+  title(main = TeX(sprintf("$N(x; %g,%g)$", mu[i], sigsqr[i])), line = 2.5, cex.main = 1.05)
+
+  # Beschriftung der Integrationsintervalle
+  pr        = formatC(prob[i], format = "f", digits = 2)                        # Gerundete Wahrscheinlichkeit
+  lab       = bquote(plain("\u2119") * bgroup("(", xi %in% bgroup("[", list(.(a[i]), .(b[i])), "]"), ")") %~~% .(pr))
+  title(main = lab, line = 0.7, cex.main = 1.05, family = "Cambria Math")
+}
+dev.off()
+```
+
+```{r, echo = FALSE, out.width = "100%", fig.align = "center"}
+knitr::include_graphics("3-Abbildungen/wtfi-3-wdf-integration-gleiches-intervall.pdf")
+```
+
+\footnotesize
+
+* Dasselbe Intervall $[1,2]$ kann unter verschiedenen WDFen unterschiedliche
+  Wahrscheinlichkeiten haben.
+* Entscheidend ist die Fläche unter der jeweiligen WDF über dem
+  betrachteten Intervall.
+
+
+# Wahrscheinlichkeitsdichtefunktionen
+\footnotesize
+Wahrscheinlichkeiten als Integrale
+\vspace{2mm}
+
+```{r wdf-integration-gleiche-intervalllaenge, eval = FALSE, echo = FALSE}
+# Modellformulierung
+mu          = c(3, 3, 3)                                                        # Erwartungswerte
+sigsqr      = c(2, 2, 2)                                                        # Varianzen
+sigma       = sqrt(sigsqr)                                                      # Standardabweichungen
+a           = c(0, 1, 2)                                                        # Untere Integrationsgrenzen
+b           = c(1, 2, 3)                                                        # Obere Integrationsgrenzen
+x           = seq(-2, 8, length.out = 2000)                                     # Gemeinsames Auswertungsgitter
+prob        = pnorm(b, mu, sigma) - pnorm(a, mu, sigma)                          # Intervallwahrscheinlichkeiten
+
+# Abbildungsparameter
+library(latex2exp)
+Sys.setlocale("LC_CTYPE", "English_United States.utf8")                         # Unicode für das Wahrscheinlichkeitsmaß
+cairo_pdf(
+file        = "3-Abbildungen/wtfi-3-wdf-integration-gleiche-intervalllaenge.pdf",
+width       = 10,
+height      = 3.2)
+par(
+mfrow       = c(1, 3),
+mar         = c(3.1, 3.1, 4.0, 0.7),
+oma         = c(0, 0, 0, 0),
+family      = "sans",
+bty         = "l",
+las         = 1,
+mgp         = c(1.8, 0.55, 0),
+tcl         = -0.25,
+cex         = 0.95,
+font.main   = 1)
+
+# Dichten, Integrationsflächen und Wahrscheinlichkeiten
+for (i in seq_along(mu)) {
+  fx        = dnorm(x, mu[i], sigma[i])                                         # WDF auf dem gemeinsamen Gitter
+  xi        = seq(a[i], b[i], length.out = 1000)                                # Gitter mit exakten Intervallgrenzen
+  fi        = dnorm(xi, mu[i], sigma[i])                                        # WDF im Integrationsintervall
+
+  plot(
+  x, fx,
+  type      = "n",
+  xlim      = c(-2, 8),
+  ylim      = c(0, 0.6),
+  xaxs      = "i",
+  yaxs      = "i",
+  xaxt      = "n",
+  yaxt      = "n",
+  xlab      = "x",
+  ylab      = "")
+  axis(1, at = seq(-2, 8, by = 2))
+  axis(2, at = seq(0, 0.6, by = 0.2))
+  polygon(
+  c(a[i], xi, b[i]),
+  c(0, fi, 0),
+  col       = "#BDD7EE",
+  border    = NA)
+  segments(c(a[i], b[i]), 0, c(a[i], b[i]), dnorm(c(a[i], b[i]), mu[i], sigma[i]), col = "gray45")
+  lines(x, fx, lwd = 1.2)
+  title(main = TeX(sprintf("$N(x; %g,%g)$", mu[i], sigsqr[i])), line = 2.5, cex.main = 1.05)
+
+  # Beschriftung der Integrationsintervalle
+  pr        = formatC(prob[i], format = "f", digits = 2)                        # Gerundete Wahrscheinlichkeit
+  lab       = bquote(plain("\u2119") * bgroup("(", xi %in% bgroup("[", list(.(a[i]), .(b[i])), "]"), ")") %~~% .(pr))
+  title(main = lab, line = 0.7, cex.main = 1.05, family = "Cambria Math")
+}
+dev.off()
+```
+
+```{r, echo = FALSE, out.width = "100%", fig.align = "center"}
+knitr::include_graphics("3-Abbildungen/wtfi-3-wdf-integration-gleiche-intervalllaenge.pdf")
+```
+
+\footnotesize
+
+* Die Intervalle $[0,1]$, $[1,2]$ und $[2,3]$ haben jeweils die Länge $1$.
+* Bei gleicher Intervalllänge bedeutet höhere mittlere Dichte eine größere
+  Wahrscheinlichkeit.
+
+
+
 
 #  
 \large
@@ -1077,7 +1323,7 @@ Selbstkontrollfragen
 \justifying
 Die \textit{kumulative Verteilungsfunktion (KVF)} einer Zufallsvariable $\xi$ ist definiert als
 \begin{equation}
-P : \mathbb{R} \to [0,1], x \mapsto P(x) := \mathbb{P}(\xi \le x).
+P : \mathbb{R} \to [0,1], x \mapsto P(x) := \mathbb{P}_\xi(\xi \le x).
 \end{equation}
 \end{definition}
 
@@ -1095,9 +1341,9 @@ Bemerkungen
 \normalfont
 Es sei $\xi$ eine reellwertige Zufallsvariable und $P$ ihre kumulative
 Verteilungsfunktion. Dann gilt für die \textit{Überschreitungswahrscheinlichkeit}
-$\mathbb{P}(\xi > x)$, dass
+$\mathbb{P}_\xi(\xi > x)$, dass
 \begin{equation}
-\mathbb{P}(\xi > x) = 1 - P(x) \mbox{ für alle } x \in \mathbb{R}.
+\mathbb{P}_\xi(\xi > x) = 1 - P(x) \mbox{ für alle } x \in \mathbb{R}.
 \end{equation}
 \end{theorem}
 
@@ -1127,6 +1373,15 @@ Mit der $\sigma$-Additivität von $\mathbb{P}$ folgt dann
 \end{split}
 \end{align}
 $\hfill \Box$
+
+# Kumulative Verteilungsfunktionen
+\footnotesize
+Abbildung zum Beweis
+\vspace{1mm}
+
+\begin{center}
+\includegraphics[height=0.76\textheight]{3-Abbildungen/wtfi-3-ueberschreitungswahrscheinlichkeit.pdf}
+\end{center}
 
 # Kumulative Verteilungsfunktionen
 \footnotesize
@@ -1171,6 +1426,15 @@ Mit der $\sigma$-Additivität von $\mathbb{P}$ gilt dann
 \end{align}
 $\hfill \Box$
 
+
+# Kumulative Verteilungsfunktionen
+\footnotesize
+Abbildung zum Beweis
+\vspace{1mm}
+
+\begin{center}
+\includegraphics[height=0.76\textheight]{3-Abbildungen/wtfi-3-intervallwahrscheinlichkeit.pdf}
+\end{center}
 
 # Kumulative Verteilungsfunktionen
 \footnotesize
@@ -1435,7 +1699,7 @@ for (i in 1:length(mu)){
   ylab      = "",                                                          
   xlab      = "x",                                                          
   ylim      = c(0,1.05))                                                    
-  title(sprintf("KDF von N(%g,%g)", mu[i], sigsqr[i]))                           
+  title(sprintf("KVF von N(%g,%g)", mu[i], sigsqr[i]))                           
 }
 dev.off()
 ```
@@ -1535,7 +1799,7 @@ for (i in 1:length(mu)){
   xlab         = "x",                                                      
   ylab         = "",                                                      
   ylim         = c(0,1.1))                                                 
-  title(sprintf("KDF von N(%g,%g)", mu[i], sigsqr[i]))                     
+  title(sprintf("KVF von N(%g,%g)", mu[i], sigsqr[i]))                     
   plot(
   x,                                                                       
   qnorm(x,mu[i],sqrt(sigsqr[i])),                                          
@@ -1546,7 +1810,7 @@ for (i in 1:length(mu)){
   ylab         = "x",                                                      
   xlim         = c(0,1),                                                   
   ylim         = c(-10,10))                                                
-  title(sprintf("Inverse KDF von N(%g,%g)", mu[i], sigsqr[i]))             
+  title(sprintf("Inverse KVF von N(%g,%g)", mu[i], sigsqr[i]))             
 }
 dev.off()
 ```

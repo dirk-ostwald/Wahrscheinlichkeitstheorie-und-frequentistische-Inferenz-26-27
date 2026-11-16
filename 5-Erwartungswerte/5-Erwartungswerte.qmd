@@ -1,0 +1,1619 @@
+---
+fontsize: 8pt
+format:
+    beamer:
+        include-in-header: "5-Header.tex"
+        colorlinks: true
+        urlcolor: darkblue
+        linkcolor: darkblue
+        citecolor: darkblue
+bibliography: 5-Referenzen.bib
+link-citations: true
+---
+
+#  {.plain}
+\center
+\vfill
+```{r, echo = FALSE, out.width = "20%"}
+knitr::include_graphics("5-Abbildungen/wtfi-5-otto.png")
+```
+\vspace{3mm}
+
+\Large
+\resizebox{\linewidth}{!}{Wahrscheinlichkeitstheorie und frequentistische Inferenz}
+\vspace{1mm}
+
+\large
+BSc Psychologie WiSe 2026/27
+
+\vspace{5mm}
+\normalsize
+Prof. Dr. Dirk Ostwald
+\vfill
+
+#  {.plain}
+
+\vfill
+\center
+\huge
+\textcolor{black}{(5) Erwartungswerte}
+\vfill
+
+# 
+\setstretch{3}
+\large
+\vfill
+Erwartungswert
+
+Varianz und Standardabweichung
+
+Kovarianz und Korrelation
+
+Selbstkontrollfragen
+\vfill
+
+# 
+\setstretch{3}
+\large
+\vfill
+**Erwartungswert**
+
+Varianz und Standardabweichung
+
+Kovarianz und Korrelation
+
+Selbstkontrollfragen
+\vfill
+
+# Erwartungswert
+\footnotesize
+\begin{definition}[Erwartungswert einer Zufallsvariable]\label{def:erwartungswert}
+\normalfont
+\justifying
+$(\Omega, \mathcal{A},\mathbb{P})$ sei ein Wahrscheinlichkeitsraum und $\xi$
+sei eine Zufallsvariable. Dann ist der \textit{Erwartungswert von $\xi$}
+definiert als
+
+\begin{itemize}
+\item $\mathbb{E}(\xi) := \sum_{x \in \mathcal{X}} x\,p(x)$, wenn $\xi : \Omega
+\to \mathcal{X}$ diskret mit WMF $p$ ist.
+\item $\mathbb{E}(\xi) := \int_{-\infty}^\infty x \,p(x)\,dx$, wenn $\xi :
+\Omega \to \mathbb{R}$ kontinuierlich mit WDF $p$ ist.
+\end{itemize}
+\end{definition}
+
+\footnotesize
+Bemerkungen
+
+* Der Erwartungswert ist eine skalare Kennzahl der Verteilung einer
+  Zufallsvariable.
+* Der Erwartungswert wird allein durch den Ergebnisraum und die WMF/WDF einer Zufallsvariable bestimmt.
+* Der Erwartungswert entspricht dem langfristig durchschnittlich zu erwartenden Wert einer Zufallsvariable.
+* Diese Intuition wird durch das Gesetz der großen Zahlen formalisiert.
+
+# Erwartungswert
+\small
+Beispiel (Erwartungswert einer diskreten Zufallsvariable)
+
+\footnotesize
+$\xi$ sei eine Zufallsvariable mit Ergebnisraum $\mathcal{X} := \{-1,0,1\}$
+und WMF
+\begin{equation}
+p(-1) := \frac{1}{4}, \quad p(0) := \frac{1}{2}, \quad p(1) := \frac{1}{4}.
+\end{equation}
+Dann gilt
+\begin{equation}
+\mathbb{E}(\xi) = 0.
+\end{equation}
+
+\underline{Beweis}
+
+Nach der \hyperref[def:erwartungswert]{Definition des Erwartungswerts} ergibt sich
+\begin{equation}
+\begin{split}
+\mathbb{E}(\xi)
+& = \sum_{x \in \mathcal{X}} x p(x)                                     \\
+& = -1 \cdot p(-1) + 0 \cdot p(0) + 1 \cdot p(1)                        \\
+& = -1 \cdot \frac{1}{4} + 0 \cdot \frac{1}{2} + 1 \cdot  \frac{1}{4}   \\
+& = 0.
+\end{split}
+\end{equation}
+$\hfill\Box$
+
+# Erwartungswert
+\small
+Beispiel (Erwartungswert einer Bernoulli-Zufallsvariable)
+\footnotesize
+
+Es sei $\xi \sim \mbox{Bern}(\mu)$. Dann gilt $\mathbb{E}(\xi) = \mu$.
+
+\underline{Beweis}
+
+$\xi$ ist diskret mit $\mathcal{X} = \{0,1\}$. Also gilt nach der
+\hyperref[def:erwartungswert]{Definition des
+Erwartungswerts}
+\begin{equation}
+\begin{split}
+\mathbb{E}(\xi)
+& = \sum_{x \in \{0,1\}} x\,\mbox{Bern}(x;\mu)                    \\
+& = 0\cdot \mu^0 (1 - \mu)^{1-0} + 1\cdot \mu^1 (1 - \mu)^{1-1}   \\
+& = 1\cdot \mu^1 (1 - \mu)^{0}                                    \\
+& = \mu.
+\end{split}
+\end{equation}
+$\hfill\Box$
+
+\small
+Beispiel (Erwartungswert einer normalverteilten Zufallsvariable)
+
+\footnotesize
+Es sei $\xi \sim N(\mu,\sigma^2)$. Dann gilt $\mathbb{E}(\xi) = \mu$.
+
+\vspace{3mm}
+\footnotesize
+Bemerkungen
+
+* Wir verzichten auf einen Beweis.
+
+
+# Erwartungswert
+\small
+ 
+Beispiel (Einige weitere Erwartungswerte)
+
+\footnotesize
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{l|c}
+Zufallsvariable 							          &	$\mathbb{E}(\xi)$				        \\\hline
+$\xi \sim \mbox{Bern}(\mu)$ 				    & $\mu$							              \\
+$\xi \sim \mbox{Bin}(\mu,n)$ 				    & $n\mu$							            \\
+$\xi \sim G(\alpha,\beta)$					    &	$\alpha\beta$ 					        \\
+$\xi \sim \mbox{Beta}(\alpha,\beta)$		&	$\frac{\alpha}{\alpha+\beta}$ 	\\
+$\xi \sim U(a,b)$							          & 	$\frac{a+b}{2}$ 				      \\
+\end{tabular}
+\end{center}
+
+
+\footnotesize
+Bemerkung
+
+* Zufallsvariablen, deren WMF/WDFen von wenigen Parametern abhängen, heißen auch
+  *parametrisch*.
+* Erwartungswerte von parametrischen Zufallsvariablen sind typischerweise
+  Funktionen der Parameter.
+* Wir verzichten auf Beweise.
+
+
+# Erwartungswert
+\vspace{2mm}
+\small
+Beispiel (Erwartungswert und Mittelwert)
+
+\setstretch{1.2}
+\footnotesize
+Wir betrachten eine diskrete Zufallsvariable $\xi$ mit Ergebnisraum $\{1,2,3\}$
+und WMF
+definiert durch
+\begin{equation}
+p(1) := \frac{1}{4}, \quad p(2) := \frac{1}{4}, \quad p(3) := \frac{1}{2}.
+\end{equation}
+Es gilt also
+\begin{equation}
+\begin{split}
+\mathbb{E}(\xi)
+= \sum_{x \in \{1,2,3\}}xp(x)                                          
+= 1 \cdot p(1) + 2 \cdot p(2) + 3 \cdot p(3)                           
+= 1 \cdot \frac{1}{4} + 2 \cdot \frac{1}{4} + 3 \cdot \frac{1}{2}      
+= \frac{9}{4}.                                                          
+\end{split}
+\end{equation}
+Stellen wir uns nun $n = 100$ unabhängige Realisierungen $x_1,...,x_{100}$ der
+Zufallsvariable vor. Gemäß ihrer WMF würden wir in etwa 25 Einsen, 25 Zweien
+und 50 Dreien erwarten. Nehmen wir konkret an, wir hätten 27 Einsen, 22 Zweien
+und 51 Dreien vorliegen. Der Mittelwert dieser Zahlen ergibt sich dann zu
+\begin{equation*}
+\begin{split}
+\bar{x}
+= \frac{1}{100}\sum_{i=1}^n x_i                                                           
+= \frac{1}{100}\left(27 \cdot 1 + 22 \cdot 2 + 51 \cdot 3 \right)                          
+& = \frac{1}{100}\left(1 \cdot 27 + 2 \cdot 22  + 3 \cdot 51 \right)        \\                        
+& = 1 \cdot \frac{27}{100} + 2 \cdot \frac{22}{100}  + 3 \cdot \frac{51}{100}   \\          
+& = 1 \cdot 0.27 + 2 \cdot 0.22  + 3 \cdot 0.51                                 \\               
+& = 2.24.
+\end{split}
+\end{equation*}
+Versteht man in dieser Rechnung die Faktoren $0.27 \approx \frac{1}{4}$,
+$0.22 \approx \frac{1}{4}$ und $0.51 \approx \frac{1}{2}$ als Schätzungen
+$\hat{p}(1)$,
+$\hat{p}(2)$ und $\hat{p}(3)$ für die WMF-Werte $p(1)$, $p(2)$ und $p(3)$,
+so fällt mit
+\begin{equation}
+\bar{x} = \sum_{x \in \{1,2,3\}} x \hat{p}(x) \approx \sum_{x \in \{1,2,3\}} x p(x) = \mathbb{E}(\xi)
+\end{equation}
+die formale Ähnlichkeit zwischen der Bildung eines Mittelwerts von
+Realisierungen einer diskreten Zufallsvariablen und der
+\hyperref[def:erwartungswert]{Definition des
+Erwartungswerts} einer solchen Zufallsvariable direkt ins Auge.
+
+# Erwartungswert
+\footnotesize
+\begin{definition}[Stichprobenmittel]\label{def:stichprobenmittel}
+\normalfont
+\justifying
+$\xi_1,...,\xi_n$ seien Zufallsvariablen. Dann nennt man $\xi_1,...,\xi_n$ auch
+eine \textit{Stichprobe}. Das \textit{Stichprobenmittel} von $\xi_1,...,\xi_n$
+ist definiert
+als der arithmetische Mittelwert
+\begin{equation}
+\bar{\xi} := \frac{1}{n}\sum_{i=1}^n \xi_i.
+\end{equation}
+\end{definition}
+
+\footnotesize
+Bemerkungen
+
+* $\mathbb{E}(\xi)$ ist eine feste Kennzahl der Verteilung von $\xi$ und
+  selbst keine Zufallsvariable.
+* $\bar{\xi}$ ist als Funktion von Zufallsvariablen selbst eine Zufallsvariable.
+* Realisierungen des Stichprobenmittels bezeichnen wir mit $\bar{x}$.
+
+# Erwartungswert
+
+\small
+Beispiel (Stichprobenmittel)
+\footnotesize
+
+Als Beispiel für die Realisation eines Stichprobenmittels betrachten wir die
+folgenden Realisationen der Zufallsvariablen $\xi_1,...,\xi_{10} \sim N(1,2)$.
+
+\begin{center}
+\begin{tabular}{cccccccccc}
+$x_1$ & $x_2$ & $x_3$ & $x_4$ & $x_5$ & $x_6$ & $x_7$ & $x_8$ & $x_9$ & $x_{10}$ \\\hline
+0.54 & 1.01 & -3.28 & 0.35 & 2.75 & -0.51 & 2.32 & 1.49 & 0.96 & 1.25
+\end{tabular}
+\end{center}
+
+Die Stichprobenmittelrealisation ist
+\begin{equation}
+\bar{x}
+= \frac{1}{10}\sum_{i = 1}^{10}x_i
+= \frac{6.88}{10}
+= 0.688.
+\end{equation}
+
+# Erwartungswert
+\footnotesize
+\begin{definition}[Erwartungswert einer Funktion einer Zufallsvariable]\label{def:erwartungswert-funktion}
+\normalfont
+\justifying
+$(\Omega, \mathcal{A},\mathbb{P})$ sei ein Wahrscheinlichkeitsraum, $\xi$
+sei eine Zufallsvariable mit Ergebnisraum $\mathcal{X}$ und $f: \mathcal{X} \to
+\mathcal{Z}$
+sei eine Funktion mit Zielmenge $\mathcal{Z}$. Dann ist der
+\textit{Erwartungswert der
+Funktion $f$ der Zufallsvariable $\xi$} definiert als
+
+\begin{itemize}
+\item $\mathbb{E}(f(\xi)) := \sum_{x \in \mathcal{X}} f(x)\,p(x)$, wenn $\xi :
+\Omega \to \mathcal{X}$ diskret mit WMF $p$ ist,
+\item $\mathbb{E}(f(\xi)) := \int_{-\infty}^\infty f(x) \,p(x)\,dx$, wenn $\xi :
+\Omega \to \mathbb{R}$ kontinuierlich mit WDF $p$ ist.
+\end{itemize}
+\end{definition}
+
+\footnotesize
+Bemerkung
+
+* Der Erwartungswert einer Zufallsvariable ergibt sich als Spezialfall mit
+  $f(x) := x$.
+
+# Erwartungswert
+\small
+\footnotesize
+\begingroup
+\setbeamerfont{block title}{size=\normalsize}
+\begin{theorem}[Erwartungswert bei linear-affiner Transformation einer Zufallsvariable]\label{thm:erwartungswert-transformation}
+\normalfont
+\justifying
+$\xi$ sei eine Zufallsvariable mit Ergebnisraum $\mathcal{X}$ und es sei
+\begin{equation}
+f: \mathcal{X} \to \mathcal{Z}, x \mapsto f(x) := ax + b \mbox{ für } a,b \in \mathbb{R}
+\end{equation}
+eine linear-affine Funktion. Dann gilt
+\begin{equation}
+\mathbb{E}(f(\xi)) = \mathbb{E}(a\xi + b) = a\mathbb{E}(\xi) + b.
+\end{equation}
+\end{theorem}
+\endgroup
+\underline{Beweis}
+
+Die Aussage des Theorems folgt mit den Linearitätseigenschaften von Summen
+und Integralen. Wir betrachten den Fall einer diskreten Zufallsvariable $\xi$
+mit endlichem Ergebnisraum $\mathcal{X}$ und WMF $p$. Es gilt
+\begin{equation}
+\begin{split}
+\mathbb{E}(f(\xi))
+& = \mathbb{E}(a\xi + b) 						                			\\
+& = \sum_{x \in \mathcal{X}} (ax + b)p(x)  				                	\\
+& = \sum_{x \in \mathcal{X}} \left(axp(x) + b p(x)\right)   		            		\\
+& = a\sum_{x \in \mathcal{X}} xp(x) + b \sum_{x \in \mathcal{X}} p(x)  		\\
+& = a\mathbb{E}(\xi) + b.
+\end{split}
+\end{equation}
+$\hfill\Box$
+
+# Erwartungswert
+\footnotesize
+\begin{definition}[Erwartungswert eines Zufallsvektors]\label{def:erwartungswert-vektor}
+\normalfont
+\justifying
+$\xi$ sei ein $n$-dimensionaler Zufallsvektor. Dann ist der
+\textit{Erwartungswert von $\xi$}
+definiert als der $n$-dimensionale reelle Vektor
+\begin{equation}
+\mathbb{E}(\xi) :=
+\begin{pmatrix}
+\mathbb{E}(\xi_1) \\
+\vdots            \\
+\mathbb{E}(\xi_n)
+\end{pmatrix}.
+\end{equation}
+\end{definition}
+
+\footnotesize
+Bemerkung
+
+* Der Erwartungswert eines Zufallsvektors ist der Vektor der Erwartungswerte
+  seiner Komponenten.
+
+# Erwartungswert
+\footnotesize
+\begin{definition}[Erwartungswert einer Funktion eines Zufallsvektors]\label{def:erwartungswert-vektorfunktion}
+\normalfont
+\justifying
+$(\Omega, \mathcal{A},\mathbb{P})$ sei ein Wahrscheinlichkeitsraum, $\xi$
+sei ein Zufallsvektor mit Ergebnisraum $\mathcal{X}$ und $f: \mathcal{X} \to
+\mathcal{Z}$
+sei eine Funktion mit Zielmenge $\mathcal{Z}$. Dann ist der
+\textit{Erwartungswert der
+Funktion $f$ des Zufallsvektors $\xi$} definiert als
+
+\begin{itemize}
+\item $\mathbb{E}(f(\xi)) := \sum_{x \in \mathcal{X}} f(x)\,p(x)$, wenn $\xi :
+\Omega \to \mathcal{X}$ diskret mit WMF $p$ ist,
+\item $\mathbb{E}(f(\xi)) := \int_{\mathbb{R}^n} f(x) \,p(x)\,dx_1\cdots dx_n$, wenn $\xi :
+\Omega \to \mathbb{R}^n$ kontinuierlich mit WDF $p$ ist.
+\end{itemize}
+\end{definition}
+
+
+\footnotesize
+Bemerkung
+
+* Das Theorem ist analog zu dem bezüglich der Funktion einer Zufallsvariable.
+
+
+# Erwartungswert
+\footnotesize
+\begingroup
+\setbeamerfont{block title}{size=\normalsize}
+\begin{theorem}[Erwartungswert bei linear-affiner Kombination von Zufallsvariablen]\label{thm:erwartungswert-linearkombination}
+\normalfont
+\justifying
+$\xi$ sei ein $n$-dimensionaler Zufallsvektor mit Komponenten $\xi_1,...,\xi_n$
+und Ergebnisraum $\mathcal{X} := \mathcal{X}_1 \times \cdots \times
+\mathcal{X}_n$.
+Die Komponenten besitzen endliche erste absolute Momente, also
+$\mathbb{E}(|\xi_i|) < \infty$ für $i = 1,...,n$.
+Weiterhin sei
+\begin{equation}
+f : \mathcal{X} \to \mathcal{Z}, x \mapsto f(x) := a_0 + \sum_{i=1}^n a_ix_i \mbox{ für }  a_0,...,a_n \in \mathbb{R}.
+\end{equation}
+eine linear-affine Kombination der Komponenten von $\xi$. Dann gilt
+\begin{equation}
+\mathbb{E}(f(\xi)) = \mathbb{E}\left(a_0 +\sum_{i=1}^n a_i\xi_i \right) = a_0 + \sum_{i = 1}^n a_i \mathbb{E}(\xi_i).
+\end{equation}
+\end{theorem}
+\endgroup
+
+\footnotesize
+Bemerkung
+
+* Das Theorem generalisiert das analoge Theorem bezüglich einer Zufallsvariable.
+
+
+# Erwartungswert
+\footnotesize
+\underline{Beweis (linear-affine Kombination)}
+
+Wir beweisen die Aussage für diskrete Zufallsvariablen mit endlichen
+Ergebnisräumen. Es genügen das Umordnen und Ausmultiplizieren endlicher
+Summen. Wir schreiben kurz $\sum_{x_i}$ für
+$\sum_{x_i \in \mathcal{X}_i}$.
+Es gilt
+\begin{equation}
+\begin{split}
+\mathbb{E}(f(\xi))
+&= \mathbb{E}\left(a_0 + \sum_{i=1}^n a_i\xi_i\right) \\
+&= \sum_{x_1}\cdots\sum_{x_n}\left(a_0 + \sum_{i=1}^n a_ix_i\right)p(x_1,...,x_n) \\
+&= a_0\sum_{x_1}\cdots\sum_{x_n}p(x_1,...,x_n) + \sum_{i=1}^n a_i\sum_{x_1}\cdots\sum_{x_n}x_i p(x_1,...,x_n) \\
+&= a_0 + \sum_{i=1}^n a_i\sum_{x_1}\cdots\sum_{x_n}x_i p(x_1,...,x_n) \\
+&= a_0 + \sum_{i=1}^n a_i\sum_{x_i}x_i\sum_{x_1}\cdots\sum_{x_{i-1}}\sum_{x_{i+1}}\cdots\sum_{x_n}p(x_1,...,x_n) \\
+&= a_0 + \sum_{i=1}^n a_i\sum_{x_i}x_i p_{\xi_i}(x_i) \\
+&= a_0 + \sum_{i=1}^n a_i\mathbb{E}(\xi_i).
+\end{split}
+\end{equation}
+Für abzählbar unendliche und kontinuierliche Ergebnisräume folgt die Aussage
+unter den genannten Integrabilitätsvoraussetzungen mithilfe des Satzes von
+Fubini.
+$\hfill\Box$
+
+# Erwartungswert
+\footnotesize
+\begin{theorem}[Erwartungswert des Produkts unabhängiger Zufallsvariablen]\label{thm:erwartungswert-produkt}
+\normalfont
+\justifying
+$\xi$ sei ein $n$-dimensionaler Zufallsvektor mit unabhängigen Komponenten
+$\xi_1,...,\xi_n$ und Ergebnisraum $\mathcal{X} := \mathcal{X}_1 \times \cdots
+\times \mathcal{X}_n$.
+Es gelte $\mathbb{E}(|\xi_i|) < \infty$ für $i = 1,...,n$.
+Weiterhin sei
+\begin{equation}
+f : \mathcal{X} \to \mathcal{Z}, x \mapsto f(x) := \prod_{i=1}^n x_i.
+\end{equation}
+das Produkt der Komponenten von $\xi$. Dann gilt
+\begin{equation}
+\mathbb{E}(f(\xi)) = \prod_{i=1}^n \mathbb{E}(\xi_i).
+\end{equation}
+\end{theorem}
+
+\footnotesize
+Bemerkung
+
+* Die Unabhängigkeitsvoraussetzung ist für die Validität des Theorems unverzichtbar.
+
+# Erwartungswert
+\footnotesize
+\underline{Beweis (Produkt unabhängiger Zufallsvariablen)}
+
+Wir beweisen die Aussage für diskrete Zufallsvariablen mit endlichen
+Ergebnisräumen. Es genügen das Umordnen und Ausmultiplizieren endlicher
+Summen. Wir schreiben kurz $\sum_{x_i}$ für
+$\sum_{x_i \in \mathcal{X}_i}$.
+Wegen der Unabhängigkeit der Komponenten $\xi_1,...,\xi_n$ gilt für die WMF
+des Zufallsvektors
+\begin{equation}
+p(x_1,...,x_n) = \prod_{i=1}^n p(x_i).
+\end{equation}
+Weiterhin gilt also
+\begin{equation}
+\begin{split}
+\mathbb{E}\left(\prod_{i=1}^n \xi_i\right)
+& = \sum_{x_1} \cdots \sum_{x_n} \left(\prod_{i=1}^n x_i\right)p(x_1,...,x_n) 	\\
+& = \sum_{x_1} \cdots \sum_{x_n} \prod_{i=1}^n x_i \prod_{i=1}^n p(x_i) 	    \\
+& = \sum_{x_1} \cdots \sum_{x_n} \prod_{i=1}^n x_i p(x_i)  					    \\
+& = \prod_{i=1}^n \sum_{x_i }x_i p(x_i) 									    \\
+& = \prod_{i=1}^n\mathbb{E}(\xi_i).
+\end{split}
+\end{equation}
+Für abzählbar unendliche und kontinuierliche Ergebnisräume folgt die Aussage
+unter den genannten Integrabilitätsvoraussetzungen mithilfe des Satzes von
+Fubini.
+$\hfill\Box$
+
+
+# 
+\setstretch{3}
+\large
+\vfill
+Erwartungswert
+
+**Varianz und Standardabweichung**
+
+Kovarianz und Korrelation
+
+Selbstkontrollfragen
+\vfill
+
+# Varianz und Standardabweichung
+\footnotesize
+\begin{definition}[Varianz und Standardabweichung]\label{def:varianz-standardabweichung}
+\normalfont
+\justifying
+$\xi$ sei eine Zufallsvariable mit endlichem Erwartungswert $\mathbb{E}(\xi)$.
+Dann ist die \textit{Varianz von $\xi$} definiert als
+\begin{equation}
+\mathbb{V}(\xi) := \mathbb{E}\left((\xi - \mathbb{E}(\xi))^2\right)
+\end{equation}
+und die \textit{Standardabweichung von $\xi$} ist definiert als
+\begin{equation}
+\mathbb{S}(\xi) := \sqrt{\mathbb{V}(\xi)}.
+\end{equation}
+\end{definition}
+
+Bemerkungen
+
+* Die Varianz ist die erwartete quadrierte Abweichung vom Erwartungswert.
+* Ohne Quadrierung gilt stets $\mathbb{E}(\xi-\mathbb{E}(\xi))=0$.
+* Die Standardabweichung hat dieselbe Einheit wie die Zufallsvariable.
+
+# Varianz und Standardabweichung
+\footnotesize
+\small
+Beispiel (Varianz einer diskreten Zufallsvariable)
+
+\footnotesize
+$\xi$ sei eine Zufallsvariable mit Ergebnisraum $\mathcal{X} := \{-1,0,1\}$ und
+WMF
+\begin{equation}
+p(-1) = \frac{1}{4}, \quad p(0) = \frac{1}{2}, \quad p(1) = \frac{1}{4}.
+\end{equation}
+Dann gilt
+\begin{equation}
+\mathbb{V}(\xi) = \frac{1}{2}.
+\end{equation}
+
+\underline{Beweis}
+
+Mit $\mathbb{E}(\xi)=0$ gilt
+\begin{equation}
+\begin{split}
+\mathbb{V}(\xi) 
+& = \mathbb{E}\left((\xi - \mathbb{E}(\xi))^2\right)                        \\
+& = \mathbb{E}\left(\xi^2\right)                                            \\
+& = \sum_{x \in \mathcal{X}} x^2 \,p(x)                                 \\
+& = (-1)^2 \cdot p(-1) + 0^2 \cdot p(0) + 1^2 \cdot p(1)        \\
+& = 1 \cdot \frac{1}{4} + 0 \cdot \frac{1}{2} + 1 \cdot  \frac{1}{4}        \\
+& = \frac{1}{2}.                                                            \\
+\end{split}
+\end{equation}
+$\hfill\Box$
+
+# Varianz und Standardabweichung
+\footnotesize
+\small
+Beispiel (Varianz einer Bernoulli-Zufallsvariable)
+
+\footnotesize
+Es sei $\xi \sim \mbox{Bern}(\mu)$. Dann ist die Varianz von $\xi$ gegeben durch
+\begin{equation}
+\mathbb{V}(\xi) = \mu(1-\mu).
+\end{equation}
+
+\underline{Beweis}
+
+$\xi$ ist eine diskrete Zufallsvariable und es gilt $\mathbb{E}(\xi) = \mu$.
+Also gilt
+\begin{equation}
+\begin{split}
+\mathbb{V}(\xi)
+& = \mathbb{E}\left((\xi - \mu)^2\right) \\
+& = \sum_{x \in \{0,1\}} (x - \mu)^2 \mbox{Bern}(x;\mu) \\
+& = (0 - \mu)^2 \mu^0(1-\mu)^{1-0}  + (1 - \mu)^2\mu^1(1-\mu)^{1-1}  \\
+& = \mu^2 (1-\mu)  + (1 - \mu)^2\mu  \\
+& = \left(\mu^2  + (1 - \mu)\mu\right)(1-\mu)  \\
+& = \left(\mu^2 + \mu - \mu^2\right)(1 - \mu) \\
+& = \mu(1-\mu).
+\end{split}
+\end{equation}
+$\hfill\Box$
+
+# Varianz und Standardabweichung
+\footnotesize
+\small
+Beispiel (Varianz einer normalverteilten Zufallsvariable)
+
+\footnotesize
+Es sei $\xi \sim N(\mu,\sigma^2)$. Dann ist die Varianz von $\xi$ gegeben durch
+\begin{equation}
+\mathbb{V}(\xi) = \sigma^2.
+\end{equation}
+
+Bemerkung
+
+* Wir verzichten auf einen Beweis.
+
+# Varianz und Standardabweichung
+\footnotesize
+\small
+Beispiel (Varianzen einiger weiterer Zufallsvariablen)
+
+\footnotesize
+
+\begin{center}
+\renewcommand{\arraystretch}{1.7}
+\begin{tabular}{l|c}
+Zufallsvariable & $\mathbb{V}(\xi)$ \\\hline
+$\xi \sim \mbox{Bern}(\mu)$ & $\mu(1-\mu)$ \\
+$\xi \sim \mbox{Bin}(\mu,n)$ & $n\mu(1-\mu)$ \\
+$\xi \sim G(\alpha,\beta)$ & $\alpha\beta^2$ \\
+$\xi \sim \mbox{Beta}(\alpha,\beta)$ & $\frac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}$ \\
+$\xi \sim U(a,b)$ & $\frac{(b-a)^2}{12}$
+\end{tabular}
+\end{center}
+
+Bemerkungen
+
+* Varianzen parametrischer Zufallsvariablen sind Funktionen ihrer Parameter.
+* Die Standardabweichung ergibt sich jeweils durch Wurzelziehen.
+* Wir verzichten auf Beweise.
+
+# Varianz und Standardabweichung
+\footnotesize
+\begingroup
+\setbeamerfont{block title}{size=\normalsize}
+\begin{definition}[Stichprobenvarianz und Stichprobenstandardabweichung]\label{def:stichprobenvarianz}
+\normalfont
+\justifying
+$\xi_1,...,\xi_n$ seien $n \ge 2$ Zufallsvariablen und $\bar{\xi}$ sei ihr
+Stichprobenmittel.
+Die \textit{Stichprobenvarianz von $\xi_1,...,\xi_n$} ist definiert als
+\begin{equation}
+S^2 := \frac{1}{n-1}\sum_{i=1}^n (\xi_i - \bar{\xi})^2 
+\end{equation}
+und die \textit{Stichprobenstandardabweichung von $\xi_1,...,\xi_n$} ist
+definiert als
+\begin{equation}
+S := \sqrt{S^2}.
+\end{equation}
+\end{definition}
+\endgroup
+
+Bemerkungen
+
+* $\mathbb{V}(\xi)$ und $\mathbb{S}(\xi)$ sind feste Kennzahlen einer
+  Verteilung.
+* $S^2$ und $S$ sind Funktionen einer Stichprobe und selbst Zufallsvariablen.
+* Ihre Realisierungen bezeichnen wir mit $s^2$ und $s$.
+
+# Varianz und Standardabweichung
+\footnotesize
+\small
+Beispiel (Stichprobenvarianz und Stichprobenstandardabweichung)
+
+\footnotesize
+
+Wir betrachten erneut Realisationen von $\xi_1,...,\xi_{10}\sim N(1,2)$
+mit Stichprobenmittelrealisation $\bar{x}=0.688$.
+
+\begin{center}
+\begin{tabular}{cccccccccc}
+$x_1$ & $x_2$ & $x_3$ & $x_4$ & $x_5$ & $x_6$ & $x_7$ & $x_8$ & $x_9$ & $x_{10}$ \\\hline
+0.54 & 1.01 & -3.28 & 0.35 & 2.75 & -0.51 & 2.32 & 1.49 & 0.96 & 1.25
+\end{tabular}
+\end{center}
+
+Die Stichprobenvarianzrealisation ist
+\begin{equation}
+s^2=\frac{1}{9}\sum_{i=1}^{10}(x_i-\bar{x})^2
+=\frac{1}{9}\sum_{i=1}^{10}(x_i-0.688)^2
+=\frac{25.36836}{9}\approx 2.82.
+\end{equation}
+Die Stichprobenstandardabweichungsrealisation ist
+\begin{equation}
+s=\sqrt{s^2}=\sqrt{\frac{25.36836}{9}}\approx 1.68.
+\end{equation}
+
+# Varianz und Standardabweichung
+\setstretch{2}
+\small
+Zum Sinn der (Stichproben)Standardabweichung 
+
+\footnotesize
+* Offenbar sind (Stichproben)Varianz und (Stichproben)Standardabweichung äquivalent.
+* Die Varianz ist historisch eng mit dem Exponentialargument der Normalverteilung verwoben.
+* Die Varianz ist historisch eng mit den Quadratsummen der Varianzanalyse verwoben.
+* Die Varianz misst Variabilität allerdings im Sinne quadrierter Einheiten, z.B.
+\begin{equation}
+s^2 = \frac{1}{9} \sum_{i=1}^{10} \left( x_i \mbox{ m} - 0.688 \mbox { m}\right)^2 = \frac{25.36836}{9} \mbox{ m}^2 \approx 2.82 \mbox{ m}^2.
+\end{equation}
+* Das Maß für die Variabilität von Längen in Meter hätte hier die Einheit einer Fläche.
+* Wurzelziehen korrigiert die Einheiten dann zurück auf die Einheit der Daten, z.B.
+\begin{equation}
+s = \sqrt{\frac{25.36836}{9} \mbox{ m}^2} \approx 1.68 \mbox{ m}.
+\end{equation}
+* In welchem Sinn die Varianz Variabilität misst, ergibt sich durch die *Chebyshev-Ungleichung*. 
+
+
+# Varianz und Standardabweichung
+\footnotesize
+\begin{theorem}[Nichtnegativität der Varianz]\label{thm:nichtnegativitaet-varianz}
+\normalfont
+\justifying
+$\xi$ sei eine Zufallsvariable mit endlichem zweiten Moment. Dann gilt
+\begin{equation}
+\mathbb{V}(\xi) \ge 0.
+\end{equation}
+\end{theorem}
+
+\underline{Beweis}
+
+Im diskreten Fall gilt für alle $x\in\mathcal{X}$
+\begin{equation}
+(x-\mathbb{E}(\xi))^2\ge 0,\qquad p(x)\ge 0.
+\end{equation}
+Damit sind alle Summanden nichtnegativ und es folgt
+\begin{equation}
+\mathbb{V}(\xi)=\sum_{x\in\mathcal{X}}p(x)(x-\mathbb{E}(\xi))^2\ge 0.
+\end{equation}
+Im kontinuierlichen Fall ist das Integral des nichtnegativen Integranden
+$p(x)(x-\mathbb{E}(\xi))^2$ ebenfalls nichtnegativ.
+$\hfill\Box$
+
+# Varianz und Standardabweichung
+\footnotesize
+\begin{theorem}[Varianzverschiebungssatz]\label{thm:varianzverschiebungssatz}
+\normalfont
+\justifying
+$\xi$ sei eine Zufallsvariable mit endlichem zweiten Moment. Dann gilt
+\begin{equation}
+\mathbb{V}(\xi) = \mathbb{E}\left(\xi^2 \right) - \mathbb{E}(\xi)^2.
+\end{equation}
+\end{theorem}
+
+\underline{Beweis}
+
+Mit der \hyperref[def:varianz-standardabweichung]{Definition der Varianz} und der
+\hyperref[thm:erwartungswert-linearkombination]{Linearität des Erwartungswerts}
+gilt
+\begin{equation}
+\begin{split}
+\mathbb{V}(\xi)
+& = \mathbb{E}\left((\xi - \mathbb{E}(\xi))^2\right) \\
+& = \mathbb{E}\left(\xi^2 - 2\xi\mathbb{E}(\xi) + \mathbb{E}(\xi)^2 \right) \\
+& = \mathbb{E}(\xi^2)
+    - 2\mathbb{E}(\xi)\mathbb{E}(\xi)
+    + \mathbb{E}\left(\mathbb{E}(\xi)^2\right)   \\
+& = \mathbb{E}(\xi^2) - 2\mathbb{E}(\xi)^2 + \mathbb{E}(\xi)^2  \\
+& = \mathbb{E}(\xi^2) - \mathbb{E}(\xi)^2.
+\end{split}
+\end{equation}
+$\hfill\Box$
+
+# Varianz und Standardabweichung
+\footnotesize
+\begingroup
+\setbeamerfont{block title}{size=\footnotesize}
+\begin{theorem}[Varianz und Standardabweichung bei linear-affiner Transformation einer Zufallsvariable]\label{thm:varianz-transformation}
+\normalfont
+\justifying
+$\xi$ sei eine Zufallsvariable mit endlichem zweiten Moment und es sei
+\begin{equation}
+f: \mathcal{X} \to \mathcal{Z}, x \mapsto f(x) := ax + b \mbox{ für } a,b \in \mathbb{R}
+\end{equation}
+eine linear-affine Funktion. Dann gelten
+\begin{equation}
+\mathbb{V}(f(\xi)) = \mathbb{V}(a\xi + b) = a^2 \mathbb{V}(\xi)
+\end{equation}
+und
+\begin{equation}
+\mathbb{S}(f(\xi)) = \mathbb{S}(a\xi + b) = |a| \mathbb{S}(\xi)
+\end{equation}
+\end{theorem}
+\endgroup
+
+\underline{Beweis}
+
+Mit der \hyperref[thm:erwartungswert-linearkombination]{Linearität des
+Erwartungswerts} gilt
+\begin{equation}
+\begin{split}
+\mathbb{V}(a\xi+b)
+&=\mathbb{E}\left((a\xi+b-a\mathbb{E}(\xi)-b)^2\right) \\
+&=\mathbb{E}\left(\left(a(\xi-\mathbb{E}(\xi))\right)^2\right) \\
+&=a^2\mathbb{E}\left((\xi-\mathbb{E}(\xi))^2\right)
+ =a^2\mathbb{V}(\xi).
+\end{split}
+\end{equation}
+Wegen $\sqrt{a^2}=|a|$ folgt
+\begin{equation}
+\mathbb{S}(a\xi+b)=\sqrt{a^2\mathbb{V}(\xi)}=|a|\mathbb{S}(\xi).
+\end{equation}
+$\hfill\Box$
+
+# Varianz und Standardabweichung
+\footnotesize
+\begingroup
+\setbeamerfont{block title}{size=\normalsize}
+\begin{theorem}[Varianz bei Linearkombination zweier unabhängiger Zufallsvariablen]\label{thm:varianz-unabhaengig}
+\normalfont
+\justifying
+$\xi_1$ und $\xi_2$ seien zwei unabhängige Zufallsvariablen mit endlichen
+zweiten Momenten und es seien $a_1,a_2 \in \mathbb{R}$.
+Dann gilt
+\begin{equation}
+\mathbb{V}\left(a_1\xi_1 + a_2\xi_2\right) = a_1^2\mathbb{V}(\xi_1) + a_2^2\mathbb{V}(\xi_2).
+\end{equation}
+\end{theorem}
+\endgroup
+
+\underline{Beweis}
+
+Setze $\mu_i:=\mathbb{E}(\xi_i)$ für $i=1,2$. Nach dem
+\hyperref[thm:erwartungswert-produkt]{Theorem zum Produkt unabhängiger
+Zufallsvariablen} gilt
+\begin{equation}
+\mathbb{E}\left((\xi_1-\mu_1)(\xi_2-\mu_2)\right)
+=\mathbb{E}(\xi_1-\mu_1)\mathbb{E}(\xi_2-\mu_2)=0.
+\end{equation}
+Mit der \hyperref[thm:erwartungswert-linearkombination]{Linearität des
+Erwartungswerts} folgt
+\begin{equation}
+\begin{split}
+\mathbb{V}(a_1\xi_1+a_2\xi_2)
+&=\mathbb{E}\left(\left(a_1(\xi_1-\mu_1)+a_2(\xi_2-\mu_2)\right)^2\right) \\
+&=a_1^2\mathbb{V}(\xi_1)
+ +2a_1a_2\mathbb{E}\left((\xi_1-\mu_1)(\xi_2-\mu_2)\right)
+ +a_2^2\mathbb{V}(\xi_2) \\
+&=a_1^2\mathbb{V}(\xi_1)+a_2^2\mathbb{V}(\xi_2).
+\end{split}
+\end{equation}
+$\hfill\Box$
+
+
+# 
+\setstretch{3}
+\large
+\vfill
+Erwartungswert
+
+Varianz und Standardabweichung
+
+**Kovarianz und Korrelation**
+
+Selbstkontrollfragen
+\vfill
+
+
+# Kovarianz und Korrelation
+\footnotesize
+\begingroup
+\setbeamerfont{block title}{size=\normalsize}
+\begin{definition}[Kovarianz und Korrelation zweier Zufallsvariablen]\label{def:kovarianz-korrelation}
+\normalfont
+\justifying
+$\xi_1$ und $\xi_2$ seien Zufallsvariablen mit endlichen zweiten Momenten.
+Ihre \textit{Kovarianz} ist definiert als
+\begin{equation}
+\mathbb{C}(\xi_1,\xi_2) :=
+\mathbb{E}\left((\xi_1-\mathbb{E}(\xi_1))(\xi_2-\mathbb{E}(\xi_2))\right).
+\end{equation}
+Die \textit{Korrelation} zweier Zufallsvariablen $\xi_1$ und $\xi_2$ mit
+$\mathbb{S}(\xi_1) > 0$
+und $\mathbb{S}(\xi_2) > 0$ ist definiert als
+\begin{equation}
+\rho(\xi_1,\xi_2)
+:= \frac{\mathbb{C}(\xi_1,\xi_2)}{\mathbb{S}(\xi_1)\mathbb{S}(\xi_2)}.
+\end{equation}
+\end{definition}
+\endgroup
+
+Bemerkungen
+
+* Die Kovarianz einer Zufallsvariablen mit sich selbst ist ihre Varianz:
+  $\mathbb{C}(\xi_1,\xi_1)=\mathbb{V}(\xi_1)$.
+* $\rho(\xi_1,\xi_2)$ heißt auch Korrelationskoeffizient.
+* Bei $\rho(\xi_1,\xi_2)=0$ heißen die Zufallsvariablen unkorreliert.
+* Die Korrelationsungleichung liefert $-1\le\rho(\xi_1,\xi_2)\le 1$.
+
+* $\xi:=(\xi_1,\xi_2)$ hat den Ergebnisraum
+  $\mathcal{X}_1\times\mathcal{X}_2$.
+* $\mathbb{E}(\xi_1)$ und $\mathbb{E}(\xi_2)$ folgen aus den marginalen
+  Verteilungen, die Kovarianz aus der gemeinsamen.
+* Mit $\mu_i:=\mathbb{E}(\xi_i)$ sei
+  $f:\mathcal{X}_1\times\mathcal{X}_2\to\mathbb{R},\quad
+  (x_1,x_2)\mapsto(x_1-\mu_1)(x_2-\mu_2)$.
+* Diskret gilt $\mathbb{C}(\xi_1,\xi_2)=\mathbb{E}(f(\xi_1,\xi_2))
+  =\sum_{x_1\in\mathcal{X}_1}\sum_{x_2\in\mathcal{X}_2}
+  (x_1-\mu_1)(x_2-\mu_2)p(x_1,x_2)$.
+
+# Kovarianz und Korrelation
+\footnotesize
+\small
+Beispiel (Kovarianz zweier diskreter Zufallsvariablen)
+
+\footnotesize
+Es sei $\xi:=(\xi_1,\xi_2)$ ein diskreter Zufallsvektor mit Ergebnisraum
+$\mathcal{X}:=\{1,2\}\times\{1,2,3\}$ und den folgenden WMFen:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{c|ccc|c}
+$p(x_1,x_2)$ & $x_2=1$ & $x_2=2$ & $x_2=3$ & $p(x_1)$ \\\hline
+$x_1=1$ & $0.10$ & $0.05$ & $0.15$ & $0.30$ \\
+$x_1=2$ & $0.60$ & $0.05$ & $0.05$ & $0.70$ \\\hline
+$p(x_2)$ & $0.70$ & $0.10$ & $0.20$ &
+\end{tabular}
+\end{center}
+
+Die marginalen Erwartungswerte sind
+\begin{equation}
+\mathbb{E}(\xi_1)=\sum_{x_1=1}^2 x_1p(x_1)=1\cdot0.3+2\cdot0.7=1.7
+\end{equation}
+und
+\begin{equation}
+\mathbb{E}(\xi_2)=\sum_{x_2=1}^3 x_2p(x_2)
+=1\cdot0.7+2\cdot0.1+3\cdot0.2=1.5.
+\end{equation}
+
+# Kovarianz und Korrelation
+\footnotesize
+\small
+Beispiel (Kovarianz zweier diskreter Zufallsvariablen, fortgeführt)
+
+\footnotesize
+Einsetzen in die \hyperref[def:kovarianz-korrelation]{Definition} ergibt
+\begin{equation}
+\resizebox{0.94\linewidth}{!}{$\displaystyle\begin{aligned}
+\mathbb{C}(\xi_1,\xi_2)
+&=\sum_{x_1=1}^2\sum_{x_2=1}^3(x_1-1.7)(x_2-1.5)p(x_1,x_2) \\
+&=(-0.7)(-0.5)\cdot0.10+(-0.7)\cdot0.5\cdot0.05
+  +(-0.7)\cdot1.5\cdot0.15 +0.3(-0.5)\cdot0.60+0.3\cdot0.5\cdot0.05
+  +0.3\cdot1.5\cdot0.05 \\
+&=0.035-0.0175-0.1575-0.09+0.0075+0.0225 \\
+&=-0.2.
+\end{aligned}$}
+\end{equation}
+
+Bemerkung
+
+* Im Gegensatz zur Varianz kann die Kovarianz auch negative Werte annehmen.
+
+# Kovarianz und Korrelation
+\footnotesize
+\begingroup
+\setbeamerfont{block title}{size=\normalsize}
+\begin{theorem}[Symmetrie von Kovarianz und Korrelation]\label{thm:symmetrie-kovarianz}
+\normalfont
+\justifying
+$\xi_1$ und $\xi_2$ seien zwei Zufallsvariablen mit endlichen zweiten Momenten.
+Für die Aussage zur Korrelation seien zudem $\mathbb{S}(\xi_1) > 0$ und
+$\mathbb{S}(\xi_2) > 0$ vorausgesetzt. Dann gelten
+\begin{equation}
+\mathbb{C}(\xi_1,\xi_2) = \mathbb{C}(\xi_2,\xi_1)
+\mbox{ und }
+\rho(\xi_1,\xi_2) = \rho(\xi_2,\xi_1).
+\end{equation}
+\end{theorem}
+\endgroup
+
+
+\setstretch{1}
+\underline{Beweis (Symmetrie)}
+
+Mit der Kommutativität der Multiplikation gilt zunächst
+\begin{equation}
+\begin{split}
+\mathbb{C}(\xi_1,\xi_2)
+&= \mathbb{E}\left((\xi_1-\mathbb{E}(\xi_1))(\xi_2-\mathbb{E}(\xi_2))\right) \\
+&= \mathbb{E}\left((\xi_2-\mathbb{E}(\xi_2))(\xi_1-\mathbb{E}(\xi_1))\right) \\
+&= \mathbb{C}(\xi_2,\xi_1)
+\end{split}
+\end{equation}
+Weiterhin gilt dann
+\begin{equation}
+\rho(\xi_1,\xi_2)
+= \frac{\mathbb{C}(\xi_1,\xi_2)}{\mathbb{S}(\xi_1)\mathbb{S}(\xi_2)}
+= \frac{\mathbb{C}(\xi_2,\xi_1)}{\mathbb{S}(\xi_2)\mathbb{S}(\xi_1)}
+= \rho(\xi_2,\xi_1)
+\end{equation}
+$\hfill\Box$
+
+# Kovarianz und Korrelation
+\footnotesize
+\begingroup
+\setbeamerfont{block title}{size=\normalsize}
+\begin{theorem}[Kovarianzverschiebungssatz]\label{thm:kovarianzverschiebungssatz}
+\normalfont
+\justifying
+$\xi_1$ und $\xi_2$ seien Zufallsvariablen mit endlichen zweiten Momenten.
+Dann gilt
+\begin{equation}
+\mathbb{C}(\xi_1,\xi_2) = \mathbb{E}(\xi_1\xi_2) - \mathbb{E}(\xi_1)\mathbb{E}(\xi_2).
+\end{equation}
+\end{theorem}
+\endgroup
+
+Bemerkung
+
+* Für $\xi_1=\xi_2$ ergibt sich der
+\hyperref[thm:varianzverschiebungssatz]{Varianzverschiebungssatz}.
+
+
+\setstretch{1}
+\underline{Beweis (Kovarianzverschiebungssatz)}
+
+Mit der \hyperref[def:kovarianz-korrelation]{Definition der Kovarianz} gilt
+\begin{equation}
+\begin{split}
+\mathbb{C}(\xi_1,\xi_2)
+& = \mathbb{E}\left((\xi_1-\mathbb{E}(\xi_1))(\xi_2-\mathbb{E}(\xi_2))\right) 															\\
+& = \mathbb{E}\left(\xi_1\xi_2-\xi_1\mathbb{E}(\xi_2)-\mathbb{E}(\xi_1)\xi_2+\mathbb{E}(\xi_1)\mathbb{E}(\xi_2)\right) 					\\
+& = \mathbb{E}(\xi_1\xi_2)-\mathbb{E}(\xi_1)\mathbb{E}(\xi_2)-\mathbb{E}(\xi_1)\mathbb{E}(\xi_2)+\mathbb{E}(\xi_1)\mathbb{E}(\xi_2)		\\
+& = \mathbb{E}(\xi_1\xi_2)-\mathbb{E}(\xi_1)\mathbb{E}(\xi_2).
+\end{split}
+\end{equation}
+$\hfill\Box$
+
+# Kovarianz und Korrelation
+\footnotesize
+\begingroup
+\setbeamerfont{block title}{size=\normalsize}
+\begin{theorem}[Kovarianz und Korrelation bei linear-affinen Transformationen]\label{thm:kovarianz-transformation}
+\normalfont
+$\xi_1,\xi_2$ besitzen endliche zweite Momente. Für $a,b,c,d\in\mathbb{R}$ gilt
+\begin{equation}
+\mathbb{C}(a\xi_1+b,c\xi_2+d)=ac\mathbb{C}(\xi_1,\xi_2).
+\end{equation}
+Für $a,c\neq0$ und $\mathbb{S}(\xi_1),\mathbb{S}(\xi_2)>0$ gilt außerdem
+\begin{equation}
+\rho(a\xi_1+b,c\xi_2+d)=\frac{ac}{|a||c|}\rho(\xi_1,\xi_2).
+\end{equation}
+\end{theorem}
+\endgroup
+
+Bemerkung
+
+* Bei gleichnamigen Vorzeichen bleibt die Korrelation gleich, sonst wechselt ihr
+  Vorzeichen.
+
+
+\setstretch{1}
+\underline{Beweis (Linear-affine Transformationen)}
+
+Mit $\mu_i:=\mathbb{E}(\xi_i)$ für $i=1,2$ gilt
+\begin{equation}
+\begin{split}
+\mathbb{C}(a\xi_1+b,c\xi_2+d)
+&=\mathbb{E}\left((a\xi_1+b-a\mu_1-b)(c\xi_2+d-c\mu_2-d)\right) \\
+&=\mathbb{E}\left(ac(\xi_1-\mu_1)(\xi_2-\mu_2)\right) \\
+&=ac\mathbb{C}(\xi_1,\xi_2).
+\end{split}
+\end{equation}
+Aus dem \hyperref[thm:varianz-transformation]{Theorem zur linear-affinen
+Transformation
+von Varianz und Standardabweichung} folgen
+$\mathbb{S}(a\xi_1+b)=|a|\mathbb{S}(\xi_1)$ und
+$\mathbb{S}(c\xi_2+d)=|c|\mathbb{S}(\xi_2)$. Damit gilt
+\begin{equation}
+\rho(a\xi_1+b,c\xi_2+d)
+=\frac{ac\mathbb{C}(\xi_1,\xi_2)}{|a|\mathbb{S}(\xi_1)|c|\mathbb{S}(\xi_2)}
+=\frac{ac}{|a||c|}\rho(\xi_1,\xi_2).
+\end{equation}
+$\hfill\Box$
+
+# Kovarianz und Korrelation
+\footnotesize
+\begingroup
+\setbeamerfont{block title}{size=\normalsize}
+\begin{theorem}[Kovarianz von Linearkombinationen von Zufallsvariablen]\label{thm:kovarianz-linearkombination}
+\normalfont
+\justifying
+Gegeben seien $n$ Zufallsvariablen  $\xi_1,...,\xi_n$  und $n+1$ reelle
+Konstanten
+$a_0,a_1,...,a_n$ sowie $m$ Zufallsvariablen $\zeta_1,...,\zeta_m$ und $m + 1$
+reelle
+Konstanten $b_0,b_1,...,b_m$.
+Alle genannten Zufallsvariablen besitzen endliche zweite Momente. Dann gilt
+\begin{equation}
+\mathbb{C}\left(a_0 + \sum_{i=1}^n a_i \xi_i, b_0 + \sum_{j=1}^m b_j \zeta_j\right)
+= \sum_{i=1}^n \sum_{j=1}^m a_ib_j\mathbb{C}(\xi_i, \zeta_j).
+\end{equation}
+\end{theorem}
+\endgroup
+
+# Kovarianz und Korrelation
+\vspace{3mm}
+\footnotesize
+\setstretch{1}
+\underline{Beweis}
+\tiny
+\begin{equation}
+\begin{split}
+& \mathbb{C}\left(a_0 + \sum_{i=1}^n a_i \xi_i, b_0 + \sum_{j=1}^m b_j \zeta_j \right) \\
+& = \mathbb{E}\left(
+	\left(a_0 + \sum_{i=1}^n a_i \xi_i  - \mathbb{E}\left(a_0 + \sum_{i=1}^n a_i \xi_i\right)\right)
+	\left(b_0 + \sum_{j=1}^m b_j \zeta_j - \mathbb{E}\left(b_0 + \sum_{j=1}^m b_j \zeta_j \right)\right)
+	\right) \\
+& = \mathbb{E}\left(
+	\left(a_0 + \sum_{i=1}^n a_i \xi_i  - a_0 - \mathbb{E}\left(\sum_{i=1}^n a_i \xi_i\right)\right)
+	\left(b_0 + \sum_{j=1}^m b_j \zeta_j - b_0 - \mathbb{E}\left(\sum_{j=1}^m b_j \zeta_j \right)\right)
+	\right) \\
+& = \mathbb{E}\left(
+	\left(\sum_{i=1}^n a_i \xi_i  - \sum_{i=1}^n a_i \mathbb{E}(\xi_i) \right)
+	\left(\sum_{j=1}^m b_j \zeta_j - \sum_{j=1}^m b_j \mathbb{E}(\zeta_j)\right)
+	\right) \\
+& = \mathbb{E}
+	\left(
+	\sum_{i=1}^n a_i \xi_i\sum_{j=1}^m b_j \zeta_j  - \sum_{i=1}^n a_i \xi_i \sum_{j=1}^m b_j \mathbb{E}(\zeta_j)
+	- \sum_{i=1}^n a_i \mathbb{E}(\xi_i)\sum_{j=1}^m b_j \zeta_j +  \sum_{i=1}^n a_i \mathbb{E}(\xi_i) \sum_{j=1}^m b_j \mathbb{E}(\zeta_j)
+	\right) \\
+& = \mathbb{E}\left(\sum_{i=1}^n a_i \xi_i\sum_{j=1}^m b_j \zeta_j\right)
+    - \mathbb{E}\left(\sum_{i=1}^n a_i \xi_i \sum_{j=1}^m b_j \mathbb{E}(\zeta_j)\right)
+	  - \mathbb{E}\left(\sum_{i=1}^n a_i \mathbb{E}(\xi_i)\sum_{j=1}^m b_j \zeta_j\right)
+	+ \mathbb{E}\left(\sum_{i=1}^n a_i \mathbb{E}(\xi_i) \sum_{j=1}^m b_j \mathbb{E}(\zeta_j)\right) \\
+& =  \sum_{i=1}^n \sum_{j=1}^m a_ib_j \mathbb{E}(\xi_i\zeta_j)
+    - 2\sum_{i=1}^n \sum_{j=1}^m a_i  b_j \mathbb{E}(\xi_i)\mathbb{E}(\zeta_j)
+	+ \sum_{i=1}^n\sum_{j=1}^m a_ib_j \mathbb{E}(\xi_i) \mathbb{E}(\zeta_j) \\
+& =  \sum_{i=1}^n \sum_{j=1}^m a_ib_j \left(\mathbb{E}(\xi_i\zeta_j) -  2 \mathbb{E}(\xi_i)\mathbb{E}(\zeta_j) +\mathbb{E}(\xi_i)\mathbb{E}(\zeta_j)\right) \\
+& =  \sum_{i=1}^n \sum_{j=1}^m a_ib_j
+     \mathbb{E}\left((\xi_i -  \mathbb{E}(\xi_i))(\zeta_j - \mathbb{E}(\zeta_j))\right) \\
+& = \sum_{i=1}^n \sum_{j=1}^m a_ib_j\mathbb{C}(\xi_i, \zeta_j)
+\end{split}
+\end{equation}
+
+# Kovarianz und Korrelation
+\footnotesize
+\begingroup
+\setbeamerfont{block title}{size=\normalsize}
+\begin{theorem}[Kovarianz bei paarweiser Addition von Zufallsvariablen]\label{thm:kovarianz-addition}
+\normalfont
+\justifying
+$\xi_1,\xi_2,\zeta_1,\zeta_2$ seien vier Zufallsvariablen mit endlichen zweiten
+Momenten. Dann gilt
+\begin{equation}
+\mathbb{C}(\xi_1 + \xi_2, \zeta_1 + \zeta_2)
+= \mathbb{C}(\xi_1,\zeta_1) + \mathbb{C}(\xi_1,\zeta_2) + \mathbb{C}(\xi_2,\zeta_1) + \mathbb{C}(\xi_2,\zeta_2).
+\end{equation}
+\end{theorem}
+\endgroup
+
+
+\setstretch{1}
+\underline{Beweis (Paarweise Addition)}
+
+Es seien $n := 2, m := 2, a_0 = b_0 := 0$ und $a_i = b_i := 1$ für $i = 1,2$.
+Dann gilt mit dem \hyperref[thm:kovarianz-linearkombination]{Theorem zur
+Kovarianz von Linearkombinationen}
+\begin{equation}
+\begin{split}
+\mathbb{C}\left(\xi_1 +\xi_2, \zeta_1 + \zeta_2 \right)
+& = \mathbb{C}\left(a_0 + \sum_{i=1}^2 a_i \xi_i, b_0 + \sum_{j=1}^2 b_j \zeta_j \right) \\
+& = \sum_{i=1}^2 \sum_{j=1}^2 a_i b_j\mathbb{C}\left(\xi_i, \zeta_j \right) \\
+& = \sum_{i=1}^2 \sum_{j=1}^2 \mathbb{C}\left(\xi_i, \zeta_j \right) \\
+& = \mathbb{C}\left(\xi_1, \zeta_1\right) + \mathbb{C}\left(\xi_1, \zeta_2 \right) + \mathbb{C}\left(\xi_2, \zeta_1\right) + \mathbb{C}\left(\xi_2, \zeta_2 \right).
+\end{split}
+\end{equation}
+$\hfill\Box$
+
+# Kovarianz und Korrelation
+\footnotesize
+\begingroup
+\setbeamerfont{block title}{size=\normalsize}
+\begin{theorem}[Varianz einer Linearkombination von Zufallsvariablen]\label{thm:varianz-linearkombination}
+\normalfont
+\justifying
+Gegeben seien $n$ Zufallsvariablen $\xi_1,...,\xi_n$ und $n+1$ reelle Konstanten
+$a_0,a_1,...,a_n$.
+Alle Zufallsvariablen besitzen endliche zweite Momente. Dann gilt
+\begin{equation}
+\mathbb{V}\left(a_0 + \sum_{i=1}^n a_i \xi_i \right)
+= \sum_{i=1}^n a_i^2 \mathbb{V}(\xi_i) + 2 \sum_{i=1}^{n-1}\sum_{j=i+1}^n a_ia_j\mathbb{C}(\xi_i,\xi_j).
+\end{equation}
+\end{theorem}
+\endgroup
+
+# Kovarianz und Korrelation
+\footnotesize
+\setstretch{1}
+\underline{Beweis}
+
+Mit $\mathbb{V}(\xi)=\mathbb{C}(\xi,\xi)$ und dem
+\hyperref[thm:kovarianz-linearkombination]{Theorem zur
+Kovarianz von Linearkombinationen} gilt
+\begingroup
+\setlength{\jot}{0pt}
+\begin{equation}
+\begin{split}
+\mathbb{V}\left(a_0 + \sum_{i=1}^n a_i\xi_i\right)
+& = \mathbb{C}\left(a_0 + \sum_{i=1}^n a_i\xi_i, a_0 + \sum_{i=1}^n a_i\xi_i\right) \\
+& = \mathbb{C}\left(a_0 + \sum_{i=1}^n a_i\xi_i, a_0 + \sum_{j=1}^n a_j \xi_j \right) \\
+& = \sum_{i=1}^n \sum_{j=1}^n a_ia_j \mathbb{C}(\xi_i,\xi_j) \\
+& = \sum_{i=1}^n\sum_{\substack{j=1 \\ j = i}}^n a_ia_j \mathbb{C}(\xi_i,\xi_j)  + \sum_{i=1}^n \sum_{\substack{j=1 \\ j \neq i}}^n a_ia_j \mathbb{C}(\xi_i,\xi_j) \\
+& = \sum_{i=1}^n a_i a_i\mathbb{C}(\xi_i,\xi_i)  + \sum_{i=1}^n \sum_{\substack{j=1 \\ j \neq i}}^n a_ia_j \mathbb{C}(\xi_i,\xi_j) \\
+& = \sum_{i=1}^n a_i^2\mathbb{V}(\xi_i)  + \sum_{i=1}^n \sum_{\substack{j=1 \\ j \neq i}}^n a_ia_j \mathbb{C}(\xi_i,\xi_j) \\
+& = \sum_{i=1}^n a_i^2\mathbb{V}(\xi_i)  + 2 \sum_{i=1}^{n-1}\sum_{j=i+1}^na_ia_j \mathbb{C}(\xi_i,\xi_j),
+\end{split}
+\end{equation}
+\endgroup
+In der Doppelsumme trennen wir die Terme mit $i=j$ von denen mit $i\neq j$.
+Für die letzte Gleichheit nutzen wir die
+\hyperref[thm:symmetrie-kovarianz]{Symmetrie der Kovarianz}
+\begin{equation}
+a_ia_j\mathbb{C}(\xi_i,\xi_j)=a_ja_i\mathbb{C}(\xi_j,\xi_i).
+\end{equation}
+
+# Kovarianz und Korrelation
+\footnotesize
+\setstretch{1.2}
+Explizites Beispiel zur Doppelsumme der Kovarianzen für $n=3$
+\begin{equation}
+\begin{aligned}
+& \sum_{i=1}^3\sum_{\substack{j=1 \\ j \neq i}}^3 a_ia_j \mathbb{C}(\xi_i,\xi_j) \\
+& = \sum_{\substack{j=1 \\ j \neq 1}}^3 a_1a_j\mathbb{C}(\xi_1,\xi_j) +
+    \sum_{\substack{j=1 \\ j \neq 2}}^3 a_2a_j\mathbb{C}(\xi_2,\xi_j) +
+	\sum_{\substack{j=1 \\ j \neq 3}}^3 a_3a_j\mathbb{C}(\xi_3,\xi_j) \\
+& = a_1a_2\mathbb{C}(\xi_1,\xi_2) + a_1a_3\mathbb{C}(\xi_1,\xi_3) + a_2a_1\mathbb{C}(\xi_2,\xi_1)  + a_2a_3\mathbb{C}(\xi_2,\xi_3)  + a_3a_1\mathbb{C}(\xi_3,\xi_1) + a_3a_2\mathbb{C}(\xi_3,\xi_2) \\
+& = a_1a_2\mathbb{C}(\xi_1,\xi_2) + a_2a_1\mathbb{C}(\xi_2,\xi_1) + a_1a_3\mathbb{C}(\xi_1,\xi_3)  + a_3a_1\mathbb{C}(\xi_3,\xi_1) + a_2a_3\mathbb{C}(\xi_2,\xi_3) + a_3a_2\mathbb{C}(\xi_3,\xi_2) \\
+& = 2a_1a_2\mathbb{C}(\xi_1,\xi_2) + 2a_1a_3\mathbb{C}(\xi_1,\xi_3) + 2a_2a_3\mathbb{C}(\xi_2,\xi_3) \\
+& = 2\left(a_1a_2\mathbb{C}(\xi_1,\xi_2) + a_1a_3\mathbb{C}(\xi_1,\xi_3) + a_2a_3\mathbb{C}(\xi_2,\xi_3)\right) \\
+& = 2\left(\sum_{j=2}^3 a_1a_j\mathbb{C}(\xi_1,\xi_j) + \sum_{j=3}^3 a_2a_j\mathbb{C}(\xi_2,\xi_j)\right) \\
+& = 2\left(\sum_{j=1+1}^3 a_1a_j\mathbb{C}(\xi_1,\xi_j) + \sum_{j=2+1}^3 a_2a_j\mathbb{C}(\xi_2,\xi_j)\right) \\
+& = 2\sum_{i=1}^{2}\sum_{j=i+1}^3 a_ia_j\mathbb{C}(\xi_i,\xi_j).
+\end{aligned}
+\end{equation}
+
+# Kovarianz und Korrelation
+\footnotesize
+\begingroup
+\setbeamerfont{block title}{size=\normalsize}
+\begin{theorem}[Varianzen spezieller Linearkombinationen von Zufallsvariablen]\label{thm:varianzen-speziell}
+\normalfont
+$\xi$ und $\zeta$ seien Zufallsvariablen mit endlichen zweiten Momenten.
+Dann gelten
+\begin{equation}
+\mathbb{V}(\xi+\zeta)=\mathbb{V}(\xi)+\mathbb{V}(\zeta)+2\mathbb{C}(\xi,\zeta)
+\end{equation}
+und
+\begin{equation}
+\mathbb{V}(\xi-\zeta)=\mathbb{V}(\xi)+\mathbb{V}(\zeta)-2\mathbb{C}(\xi,\zeta).
+\end{equation}
+\end{theorem}
+\endgroup
+
+Bemerkung
+
+* Bei unkorrelierten Zufallsvariablen addieren sich die Varianzen in beiden
+  Fällen.
+
+
+# Kovarianz und Korrelation
+\vspace{2mm}
+\footnotesize
+\underline{Beweis (Varianz einer Summe)}
+
+Es seien $n := 2$, $\xi_1 := \xi$, $\xi_2 := \zeta$, $a_0 := 0$, $a_1 := 1$ und
+$a_2 := 1$. Dann gilt mit dem \hyperref[thm:varianz-linearkombination]{Theorem
+zur Varianz einer Linearkombination}
+\begin{equation}
+\begin{split}
+\mathbb{V}(\xi + \zeta)
+& = \mathbb{V}(a_0 + a_1\xi_1 + a_2\xi_2) 																					\\
+& = \mathbb{V}\left(a_0 + \sum_{i=1}^2 a_i \xi_i \right) 																	\\
+& = \sum_{i=1}^2 a_i^2 \mathbb{V}(\xi_i) + 2 \sum_{i=1}^{2-1}\sum_{j = i+ 1}^2 a_i a_j\mathbb{C}(\xi_i,\xi_j)				\\
+& = \sum_{i=1}^2 a_i^2 \mathbb{V}(\xi_i) + 2 \sum_{i=1}^{1}\sum_{j = i + 1}^2 a_ia_j \mathbb{C}(\xi_i,\xi_j)				\\
+& = \sum_{i=1}^2 a_i^2 \mathbb{V}(\xi_i) + 2 \sum_{j = 1 + 1}^2 a_1a_j \mathbb{C}(\xi_1,\xi_j)								\\
+& = \sum_{i=1}^2 a_i^2 \mathbb{V}(\xi_i) + 2 \sum_{j = 2}^2 a_1a_j\mathbb{C}(\xi_1,\xi_j)									\\
+& = a_1^2\mathbb{V}(\xi_1) + a_2^2\mathbb{V}(\xi_2) + 2 a_1a_2\mathbb{C}(\xi_1,\xi_2)										\\
+& = 1^2 \cdot \mathbb{V}(\xi)   +  1^2 \cdot \mathbb{V}(\zeta) + 2 \cdot  1 \cdot 1 \cdot  \mathbb{C}(\xi,\zeta) 			\\
+& = \mathbb{V}(\xi) + \mathbb{V}(\zeta) + 2 \mathbb{C}(\xi,\zeta).
+\end{split}
+\end{equation}
+
+
+# Kovarianz und Korrelation
+\footnotesize
+\setstretch{1}
+\underline{Beweis (Varianz einer Differenz)}
+
+Es seien nun $n := 2$, $\xi_1 := \xi$, $\xi_2 := \zeta$, $a_0 := 0$, $a_1 := 1$
+und $a_2 := -1$. Dann gilt mit dem
+\hyperref[thm:varianz-linearkombination]{Theorem zur Varianz einer
+Linearkombination}
+\begin{equation}
+\begin{split}
+\mathbb{V}(\xi - \zeta)
+& = \mathbb{V}(a_0 + a_1\xi_1 + a_2\xi_2) 																					\\
+& = \mathbb{V}\left(a_0 + \sum_{i=1}^2 a_i \xi_i \right) 																	\\
+& = \sum_{i=1}^2 a_i^2 \mathbb{V}(\xi_i) + 2 \sum_{i=1}^{2-1}\sum_{j = i+ 1}^2 a_i a_j\mathbb{C}(\xi_i,\xi_j)				\\
+& = \sum_{i=1}^2 a_i^2 \mathbb{V}(\xi_i) + 2 \sum_{i=1}^{1}\sum_{j = i + 1}^2 a_ia_j \mathbb{C}(\xi_i,\xi_j)				\\
+& = \sum_{i=1}^2 a_i^2 \mathbb{V}(\xi_i) + 2 \sum_{j = 1 + 1}^2 a_1a_j \mathbb{C}(\xi_1,\xi_j)								\\
+& = \sum_{i=1}^2 a_i^2 \mathbb{V}(\xi_i) + 2 \sum_{j = 2}^2 a_1a_j\mathbb{C}(\xi_1,\xi_j)									\\
+& = a_1^2\mathbb{V}(\xi_1) + a_2^2\mathbb{V}(\xi_2) + 2 a_1a_2\mathbb{C}(\xi_1,\xi_2)										\\
+& = 1^2\cdot \mathbb{V}(\xi)   +  (-1)^2 \cdot \mathbb{V}(\zeta) + 2 \cdot  1 \cdot (-1)\cdot  \mathbb{C}(\xi,\zeta) \\
+& = \mathbb{V}(\xi) + \mathbb{V}(\zeta) - 2 \mathbb{C}(\xi,\zeta).
+\end{split}
+\end{equation}
+
+$\hfill\Box$
+
+# Kovarianz und Korrelation
+\footnotesize
+\setstretch{1}
+\underline{Alternativer Beweis (Summe und Differenz)}
+
+Alternativ gilt ohne Rückgriff auf das
+\hyperref[thm:varianz-linearkombination]{Theorem zur Varianz einer
+Linearkombination}
+und mit der \hyperref[thm:erwartungswert-linearkombination]{Linearität des
+Erwartungswerts}, dass
+\begin{equation}
+\begin{split}
+& \mathbb{V}(a\xi + b\zeta + c)																	\\
+& = \mathbb{E}\left((a\xi + b\zeta + c - a\mathbb{E}(\xi) - b\mathbb{E}(\zeta) - c)^2\right) 	\\
+& = \mathbb{E}\left((a(\xi  - \mathbb{E}(\xi)) + b(\zeta  - \mathbb{E}(\zeta)))^2\right) 		\\
+& = \mathbb{E}\left(a^2(\xi - \mathbb{E}(\xi))^2
+				  + 2ab(\xi - \mathbb{E}(\xi))(\zeta - \mathbb{E}(\zeta))
+				  + b^2(\zeta - \mathbb{E}(\zeta))^2\right) 									\\
+& = a^2\mathbb{E}\left((\xi - \mathbb{E}(\xi))^2\right) +
+    b^2\mathbb{E}\left((\zeta - \mathbb{E}(\zeta))^2\right) +
+	2ab\mathbb{E}\left((\xi - \mathbb{E}(\xi))(\zeta - \mathbb{E}(\zeta))\right) 				\\
+& = a^2\mathbb{V}(\xi)+ b^2\mathbb{V}(\zeta) + 2ab\mathbb{C}(\xi,\zeta).
+\end{split}
+\end{equation}
+Die Spezialfälle folgen dann direkt mit $a := b := 1$ und $a := 1, b := -1$,
+respektive.
+$\hfill\Box$
+
+# Kovarianz und Korrelation
+\footnotesize
+\begingroup
+\setbeamerfont{block title}{size=\normalsize}
+\begin{theorem}[Korrelation und Unabhängigkeit von Zufallsvariablen]\label{thm:korrelation-unabhaengigkeit}
+\justifying
+\normalfont
+$\xi_1$ und $\xi_2$ seien Zufallsvariablen mit endlichen zweiten Momenten und
+$\mathbb{S}(\xi_1),\mathbb{S}(\xi_2)>0$. Dann gelten:
+\begin{enumerate}
+\item[(1)] Sind $\xi_1$ und $\xi_2$ unabhängig, so sind sie unkorreliert.
+\item[(2)] Sind $\xi_1$ und $\xi_2$ unkorreliert, so sind sie nicht
+notwendigerweise unabhängig.
+\end{enumerate}
+\end{theorem}
+\endgroup
+
+\footnotesize
+\underline{Beweis}
+\vspace{1mm}
+
+\noindent (1) Wir zeigen zunächst, dass aus der Unabhängigkeit von $\xi_1$ und $\xi_2$ 
+$\mathbb{C}(\xi_1,\xi_2) = 0$ folgt. Hierzu halten wir zunächst fest, dass für 
+unabhängige Zufallsvariablen nach dem
+\hyperref[thm:erwartungswert-produkt]{Theorem zum Erwartungswert ihres Produkts} gilt
+\begin{equation}
+\mathbb{E}(\xi_1\xi_2) = \mathbb{E}(\xi_1)\mathbb{E}(\xi_2).
+\end{equation}
+Mit dem \hyperref[thm:kovarianzverschiebungssatz]{Kovarianzverschiebungssatz}
+folgt dann
+\begin{equation}
+\mathbb{C}(\xi_1,\xi_2)
+= \mathbb{E}(\xi_1\xi_2) - \mathbb{E}(\xi_1)\mathbb{E}(\xi_2)
+= \mathbb{E}(\xi_1)\mathbb{E}(\xi_2) - \mathbb{E}(\xi_1)\mathbb{E}(\xi_2)
+= 0.
+\end{equation}
+Mit der \hyperref[def:kovarianz-korrelation]{Definition des
+Korrelationskoeffizienten} folgt dann,
+dass $\rho(\xi_1,\xi_2) = 0$ ist und $\xi_1$ und $\xi_2$ unkorreliert sind.
+
+# Kovarianz und Korrelation
+\footnotesize
+\underline{Beweis (fortgeführt)}
+\vspace{2mm}
+
+\noindent (2) Wir zeigen nun durch Angabe eines Beispiels, dass die Kovarianz 
+von abhängigen Zufallsvariablen $\xi_1$ und $\xi_2$ null sein kann. Zu diesem Zweck 
+betrachten wir den Fall zweier diskreter Zufallsvariablen $\xi_1$ und $\xi_2$ mit 
+Ergebnisräumen $\mathcal{X}_1 = \{-1,0,1\}$ und $\mathcal{X}_2 = \{0,1\}$,
+marginaler WMF von
+$\xi_1$ gegeben durch $p_{\xi_1}(x_1) := \frac{1}{3}$ für alle  $x_1 \in
+\mathcal{X}_1$ und
+der Definition von
+\begin{equation}
+\xi_2 := \xi_1^2.
+\end{equation}
+Die Definition von $\xi_2$ impliziert dann die folgende bedingte WMF 
+\center
+\renewcommand{\arraystretch}{1}
+\begin{tabular}{c|ccc}
+$p_{\xi_2|\xi_1}(x_2|x_1)$	& 	$x_1 = -1$ 	& 	$x_1 = 0$ 	& 	$x_1 = 1$ 	\\\hline
+$x_2 = 0$				&	$0$			&	$1$			&	$0$			\\
+$x_2 = 1$				&	$1$			&	$0$			&	$1$			\\
+\end{tabular}
+\vspace{1mm}
+\flushleft
+Die marginale WMF $p_{\xi_1}$ und die bedingte WMF $p_{\xi_2|\xi_1}$ implizieren dann
+die gemeinsame WMF
+\center
+\renewcommand{\arraystretch}{1.1}
+\begin{tabular}{c|ccc|c}
+$p_{\xi_1,\xi_2}(x_1,x_2)$		& 	$x_1 = -1$ 	& 	$x_1 = 0$ 	& 	$x_1 = 1$ & $p_{\xi_2}(x_2)$		\\\hline
+$x_2 = 0$			&	$0$			&	$1/3$		&	$0$		& $1/3$				\\
+$x_2 = 1$			&	$1/3$		&	$0$			&	$1/3$	& $2/3$				\\\hline
+$p_{\xi_1}(x_1)$ 			&  	$1/3$	 	&  	$1/3$	 	&  	$1/3$
+\end{tabular}
+\vspace{1mm}
+\flushleft
+Es gilt also zum Beispiel
+\begin{equation}
+p_{\xi_1,\xi_2}(-1,0) = 0 \neq \frac{1}{9} = \frac{1}{3} \cdot \frac{1}{3} = p_{\xi_1}(-1)p_{\xi_2}(0).
+\end{equation}
+Die gemeinsame WMF von $\xi_1$ und $\xi_2$ faktorisiert also nicht und $\xi_1$
+und $\xi_2$ sind nicht unabhängig.
+
+
+# Kovarianz und Korrelation
+\footnotesize
+\underline{Beweis (fortgeführt)}
+\vspace{2mm}
+
+Allerdings folgt mit 
+\begin{equation}
+\mathbb{E}(\xi_1)
+= \sum_{x_1 \in \mathcal{X}_1} x_1 p_{\xi_1}(x_1)
+= -1 \cdot \frac{1}{3} + 0\cdot \frac{1}{3} + 1\cdot\frac{1}{3}
+= 0
+\end{equation}
+und
+\begin{equation}
+\mathbb{E}(\xi_1\xi_2)
+= \mathbb{E}(\xi_1\xi_1^2)
+= \mathbb{E}(\xi_1^3)
+= \sum_{x_1 \in \mathcal{X}_1} x_1^3 p_{\xi_1}(x_1)
+= -1^3 \cdot \frac{1}{3} + 0^3\cdot \frac{1}{3} + 1^3\cdot\frac{1}{3}
+= 0, 
+\end{equation}
+sowie dem \hyperref[thm:kovarianzverschiebungssatz]{Kovarianzverschiebungssatz}, dass
+\begin{equation}
+\mathbb{C}(\xi_1,\xi_2)
+= \mathbb{E}(\xi_1\xi_2) - \mathbb{E}(\xi_1)\mathbb{E}(\xi_2)
+= \mathbb{E}(\xi_1^3) - \mathbb{E}(\xi_1)\mathbb{E}(\xi_2)
+= 0 - 0\cdot \mathbb{E}(\xi_2)
+= 0.
+\end{equation}
+Die Kovarianz von $\xi_1$ und $\xi_2$ ist also null und $\xi_1$ und $\xi_2$
+damit unkorreliert,
+obwohl $\xi_1$ und $\xi_2$ nicht unabhängig sind.
+
+$\hfill\Box$
+
+# Kovarianz und Korrelation
+\footnotesize
+\begingroup
+\setbeamerfont{block title}{size=\normalsize}
+\begin{theorem}[Korrelation bei linear-affiner Abhängigkeit]\label{thm:perfekte-korrelation}
+\normalfont
+\justifying
+$\xi_1$ sei eine Zufallsvariable mit $0<\mathbb{V}(\xi_1)<\infty$.
+Für $a,b\in\mathbb{R}$ mit $a\neq0$ sei $\xi_2:=a\xi_1+b$. Dann gilt
+\begin{equation}
+\rho(\xi_1,\xi_2)=\frac{a}{|a|}
+=\begin{cases}1,&a>0,\\-1,&a<0.\end{cases}
+\end{equation}
+\end{theorem}
+\endgroup
+
+Bemerkungen
+
+* Bei linear-affiner Abhängigkeit ist die Korrelation betragsmäßig maximal.
+* Für $a=0$ ist $\xi_2$ konstant und die Korrelation nicht definiert.
+
+# Kovarianz und Korrelation
+\footnotesize
+\vspace{2mm}
+\underline{Beweis}
+
+Mit dem \hyperref[thm:erwartungswert-transformation]{Theorem zum Erwartungswert
+bei linear-affiner Transformation} gilt
+$\mathbb{E}(\xi_2)=a\mathbb{E}(\xi_1)+b$. Damit folgt
+\begin{equation}
+\begin{split}
+\mathbb{C}(\xi_1,\xi_2)
+&=\mathbb{E}\left((\xi_1-\mathbb{E}(\xi_1))(\xi_2-\mathbb{E}(\xi_2))\right) \\
+&=\mathbb{E}\left((\xi_1-\mathbb{E}(\xi_1))
+ (a\xi_1+b-(a\mathbb{E}(\xi_1)+b))\right) \\
+&=\mathbb{E}\left((\xi_1-\mathbb{E}(\xi_1))
+ (a\xi_1-a\mathbb{E}(\xi_1))\right) \\
+&=\mathbb{E}\left((\xi_1-\mathbb{E}(\xi_1))
+ a(\xi_1-\mathbb{E}(\xi_1))\right) \\
+&=a\mathbb{E}\left((\xi_1-\mathbb{E}(\xi_1))^2\right) \\
+&=a\mathbb{V}(\xi_1).
+\end{split}
+\end{equation}
+Nach dem \hyperref[thm:varianz-transformation]{Theorem zur Varianz bei
+linear-affiner Transformation} gilt
+\begin{equation}
+\mathbb{V}(\xi_2)=\mathbb{V}(a\xi_1+b)=a^2\mathbb{V}(\xi_1)>0.
+\end{equation}
+Die Korrelation ist somit definiert. Mit $\sqrt{a^2}=|a|$ folgt
+\begin{equation}
+\begin{split}
+\rho(\xi_1,\xi_2)
+&=\frac{\mathbb{C}(\xi_1,\xi_2)}
+ {\sqrt{\mathbb{V}(\xi_1)}\sqrt{\mathbb{V}(\xi_2)}} \\
+&=\frac{a\mathbb{V}(\xi_1)}
+ {\sqrt{\mathbb{V}(\xi_1)}\sqrt{a^2\mathbb{V}(\xi_1)}} \\
+&=\frac{a\mathbb{V}(\xi_1)}{|a|\mathbb{V}(\xi_1)} \\
+&=\frac{a}{|a|}
+=\begin{cases}1,&a>0,\\-1,&a<0.\end{cases}
+\end{split}
+\end{equation}
+
+
+# 
+\setstretch{3}
+\large
+\vfill
+Erwartungswert
+
+Varianz und Standardabweichung
+
+Kovarianz und Korrelation
+
+**Selbstkontrollfragen**
+\vfill
+
+# Selbstkontrollfragen
+\footnotesize
+
+1. Geben Sie die Definition des Erwartungswerts einer Zufallsvariable wieder.
+1. Berechnen Sie den Erwartungswert einer Bernoulli-Zufallsvariable.
+1. Geben Sie die Definition des Begriffs einer Stichprobe wieder.
+1. Geben Sie die Definition des Stichprobenmittels wieder.
+1. Erläutern Sie den Unterschied zwischen Erwartungswert und Stichprobenmittel.
+1. Geben Sie die drei Theoreme zu den Eigenschaften des Erwartungswerts wieder.
+1. Geben Sie die Definition der Varianz und der Standardabweichung einer
+   Zufallsvariable wieder.
+1. Geben Sie die Interpretation der Varianz einer Zufallsvariable wieder.
+1. Berechnen Sie die Varianz einer Bernoulli-Zufallsvariable.
+1. Geben Sie das Theorem zur Nichtnegativität der Varianz wieder.
+1. Geben Sie das Theorem zum
+Varianzverschiebungssatz wieder.
+1. Geben Sie Varianz und Standardabweichung bei linear-affinen
+   Transformationen an.
+1. Geben Sie die Varianz einer Linearkombination zweier unabhängiger
+   Zufallsvariablen an.
+1. Geben Sie die Definition von Kovarianz und Korrelation zweier
+   Zufallsvariablen wieder.
+1. Geben Sie das Theorem zum
+Kovarianzverschiebungssatz wieder.
+1. Geben Sie das Theorem zu Varianzen von Summen und Differenzen von
+   Zufallsvariablen wieder.
+1. Geben Sie das Theorem zur Korrelation und Unabhängigkeit zweier
+   Zufallsvariablen wieder.
+1. Geben Sie das Theorem zur Korrelation bei linear-affiner Abhängigkeit wieder.
+
+# Selbstkontrollfragen
+\footnotesize
+
+1. Siehe \hyperref[def:erwartungswert]{Definition (Erwartungswert einer
+Zufallsvariable)} (Folie 5).
+1. Siehe Beweis zu Beispiel (Erwartungswert einer Bernoulli-Zufallsvariable)
+   (Folie 7).
+1. Siehe den ersten Satz der \hyperref[def:stichprobenmittel]{Definition
+(Stichprobenmittel)} (Folie 10).
+1. Siehe \hyperref[def:stichprobenmittel]{Definition (Stichprobenmittel)} (Folie 10).
+1. Siehe Bemerkungen zu \hyperref[def:stichprobenmittel]{Definition
+(Stichprobenmittel)} (Folie 10).
+1. Siehe die Erwartungswert-Theoreme auf den Folien
+   \hyperref[thm:erwartungswert-transformation]{13},
+   \hyperref[thm:erwartungswert-linearkombination]{16} und
+   \hyperref[thm:erwartungswert-produkt]{18}.
+1. Siehe \hyperref[def:varianz-standardabweichung]{Definition (Varianz und
+Standardabweichung)} (Folie 21).
+1. Siehe die Bemerkungen zur Varianz und zum Sinn der Standardabweichung, Folien
+   21 und 28.
+1. Siehe Beweis zu Beispiel (Varianz einer Bernoulli-Zufallsvariable) (Folie
+   23).
+1. Siehe \hyperref[thm:nichtnegativitaet-varianz]{Theorem (Nichtnegativität der
+Varianz)}, Folie 29.
+1. Siehe Theorem
+(\hyperref[thm:varianzverschiebungssatz]{Varianzverschiebungssatz}) (Folie 30).
+1. Siehe das \hyperref[thm:varianz-transformation]{Theorem zu linear-affinen
+   Transformationen von Varianz und Standardabweichung}, Folie 31.
+1. Siehe das \hyperref[thm:varianz-unabhaengig]{Theorem zur Varianz bei
+   Linearkombination zweier unabhängiger Zufallsvariablen}, Folie 32.
+1. Siehe \hyperref[def:kovarianz-korrelation]{Definition (Kovarianz und
+Korrelation zweier Zufallsvariablen)} (Folie
+   34).
+1. Siehe Theorem
+(\hyperref[thm:kovarianzverschiebungssatz]{Kovarianzverschiebungssatz}) (Folie
+38).
+1. Siehe \hyperref[thm:varianzen-speziell]{Theorem (Varianzen spezieller
+Linearkombinationen von Zufallsvariablen)}
+   (Folie 46).
+1. Siehe \hyperref[thm:korrelation-unabhaengigkeit]{Theorem (Korrelation und
+Unabhängigkeit von Zufallsvariablen)} (Folie
+   50).
+1. Siehe \hyperref[thm:perfekte-korrelation]{Theorem (Korrelation bei
+   linear-affiner Abhängigkeit)} (Folie 53).

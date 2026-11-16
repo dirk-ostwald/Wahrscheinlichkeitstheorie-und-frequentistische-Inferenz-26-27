@@ -20,6 +20,7 @@ csl: https://www.zotero.org/styles/apa
 pdf-engine: xelatex
 link-citations: true
 filters:
+  - _src/_equation-crossrefs.lua
   - _verweise.lua
   - quarto
 bibliography: _src/Referenzen.bib

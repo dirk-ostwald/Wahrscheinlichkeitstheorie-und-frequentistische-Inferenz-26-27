@@ -14,6 +14,9 @@ Psychologiestudium.
 | 2 · Elementare Wahrscheinlichkeiten | [PDF](2-Elementare-Wahrscheinlichkeiten/2-Elementare-Wahrscheinlichkeiten.pdf) |
 | 3 · Zufallsvariablen | [PDF](3-Zufallsvariablen/3-Zufallsvariablen.pdf) |
 | 4 · Zufallsvektoren | [PDF](4-Zufallsvektoren/4-Zufallsvektoren.pdf) |
+| 5 · Erwartungswerte | [PDF](5-Erwartungswerte/5-Erwartungswerte.pdf) |
+| 6 · Ungleichungen und Grenzwerte | [PDF](6-Ungleichungen-und-Grenzwerte/6-Ungleichungen-und-Grenzwerte.pdf) |
+| 7 · Transformationen der Normalverteilung | [PDF](7-Transformationen-der-Normalverteilung/7-Transformationen-der-Normalverteilung.pdf) |
 | Vorlesungsskript | [PDF](Vorlesungsskript/_book/Wahrscheinlichkeitstheorie-und-Frequentistische-Inferenz-2027.pdf) |
 
 Weitere Informationen zur Veranstaltung stehen auf der

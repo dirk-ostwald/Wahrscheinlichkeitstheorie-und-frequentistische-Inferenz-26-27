@@ -1,5 +1,6 @@
 -- Verweise auf Abschnitte außerhalb der Kapitelauswahl.
 local refs = {
+  ['thm-quadrate-und-betraege'] = {ttl = 'Quadrate und Beträge (PDWP)', url = 'https://dirk-ostwald.github.io/_part_1/103-Summen-Produkte-Potenzen.html#thm-quadrate-und-betraege'},
   ['thm-abzaehlbare-de-morgansche-regeln'] = {ttl = 'Abzählbare de Morgansche Regeln (PDWP)', url = 'https://dirk-ostwald.github.io/_part_1/102-Mengen.html#thm-abzaehlbare-de-morgansche-regeln'},
   ['thm-abzaehlbare-distributivitaet'] = {ttl = 'Abzählbare Distributivität (PDWP)', url = 'https://dirk-ostwald.github.io/_part_1/102-Mengen.html#thm-abzaehlbare-distributivitaet'},
   ['thm-durchschnitte-disjunkter-mengen'] = {ttl = 'Durchschnitte disjunkter Mengen (PDWP)', url = 'https://dirk-ostwald.github.io/_part_1/102-Mengen.html#thm-durchschnitte-disjunkter-mengen'},
